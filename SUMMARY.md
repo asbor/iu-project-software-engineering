@@ -4,4 +4,4 @@
 
 ## Conception Phase
 
-* [HoppyBrew - doc](doc/HoppyBrew.md)
+* [HoppyBrew - doc](doc/HoppyBrew-Concept.md)
