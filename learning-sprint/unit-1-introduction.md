@@ -55,10 +55,16 @@ During the conception phase, you must decide on the **software devellopment meth
 # Software Development Methodologies
 
 you are free to use a software devellopment methodology of your choice. The important thing is that you
+
 - justify your choice
 - follow the selected methodology during the entire project
 
 Typical methodologies are:
+
 - Waterfall
 - Scrum
 - Kanban
+
+## The waterfall model:
+
+![alt text](<images/Screenshot from 2024-03-09 14-02-58.png>)
