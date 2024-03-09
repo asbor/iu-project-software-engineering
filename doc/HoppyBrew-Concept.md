@@ -12,8 +12,6 @@ Moving beyond mere recipe management, HoppyBrew integrates seamlessly with iSpin
 
 ## Project profile
 
-content:
-
 - Objective and scope of the project
 - Target audience
 - Risk associated with the project
@@ -42,4 +40,8 @@ The target audience for HoppyBrew includes homebrewers and brewing enthusiasts s
 The risks associated with the project include:
 
 - Technical challenges in integrating iSpindel over Ethernet
-- 
+
+## Software development methodology
+
+The project will follow the Agile methodology, with a focus on iterative development and continuous feedback. The Agile approach will enable the team to adapt to changing requirements and deliver a high-quality product that meets user expectations.
+
