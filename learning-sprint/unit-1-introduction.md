@@ -46,3 +46,19 @@
     </tbody>
 </table>
 
+# Course assignment
+
+During the conception phase, you must decide on the **software devellopment methodology** that you will follow in the devellopment phase. Briefly explain your choice. Note that depending on the chosen methodology, stages and roles in the project vary.
+
+**The first step is to create a written "project profile"** for your software engineering project. it includes the objectives and the scope of the project, your target group, the risks associated with the project, a project plan, and the project organization. in companies, such a project profile is typically required as input for the decision on its funding. Due to the scope of this course, it is not necessary to calculate the complete business case.
+
+# Software Development Methodologies
+
+you are free to use a software devellopment methodology of your choice. The important thing is that you
+- justify your choice
+- follow the selected methodology during the entire project
+
+Typical methodologies are:
+- Waterfall
+- Scrum
+- Kanban
