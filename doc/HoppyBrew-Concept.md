@@ -1,11 +1,11 @@
-# HoppyBrew documentation
+# HoppyBrew Documentation
 
 ## Introduction
 
-HoppyBrew is a self-hosted web application designed for brewing enthusiasts and homebrewers. Inspired by [Brewfather](https://brewfather.app/), it operates within a Docker container and is offered free of charge. Developed as part of the Software Engineering course at the Faculty of Informatics, International University of Applied Sciences Bad Honnef - Bonn, HoppyBrew caters to those seeking efficient management of their brewing processes.
+HoppyBrew stands as a dedicated web application crafted for brewing enthusiasts and homebrewers, specifically designed for self-hosting. Drawing inspiration from [Brewfather](https://brewfather.app/), it operates seamlessly within a Docker container and comes with no associated costs. Developed as part of the Software Engineering course at the Faculty of Informatics, International University of Applied Sciences Bad Honnef - Bonn, HoppyBrew addresses the critical need for streamlined management of brewing processes.
 
-Motivated by the creator's personal experience as a homebrewer exploring self-hosting, this project aims to provide a tailored solution. The web application enables users to create, share, and manage their beer recipes independently, eliminating the need for subscription-based services like Brewfather.
+Born from the personal journey of the creator as a homebrewer venturing into self-hosting, HoppyBrew aims to be a bespoke solution. This web application empowers users to independently create, share, and manage their beer recipes, eliminating any dependence on subscription-based services like Brewfather.
 
-Distinct from existing alternatives, HoppyBrew fills a niche by offering a self-hosted solution running in a Docker container. Users can create accounts, log in, and seamlessly handle recipe-related tasks, including creation, editing, and deletion. Additionally, the application features a search function for recipes by name, style, or ingredients.
+What sets HoppyBrew apart is its self-hosted architecture within a Docker container, providing users with easy account creation, login, and seamless control over recipe-related tasks such as creation, editing, and deletion. The application also boasts a user-friendly search function for recipes based on name, style, or ingredients.
 
-Going beyond recipe management, HoppyBrew integrates with iSpindel over Ethernet, allowing users to monitor and track the fermentation process. The application also assists users in keeping track of their brewing inventory and generates shopping lists based on selected recipes, enhancing the overall brewing experience.
+Moving beyond mere recipe management, HoppyBrew integrates seamlessly with iSpindel over Ethernet, allowing users to actively monitor and track the fermentation process. It further aids users in keeping a meticulous record of their brewing inventory and generates shopping lists based on selected recipes, thereby elevating the overall brewing experience for users.
