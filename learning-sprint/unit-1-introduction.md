@@ -68,3 +68,12 @@ Typical methodologies are:
 ## The waterfall model:
 
 ![alt text](<images/Screenshot from 2024-03-09 14-02-58.png>)
+
+If you choose to adopt the waterfall model, it is crucial to thoroughly articulate each phase in your project plan. For instance, within the project plan, you should specify the timeline for activities such as requirement engineering in the first week, which may extend to two weeks, followed by one week of system design, and so forth. This explicit documentation ensures transparency, allowing stakeholders to discern the adherence to the waterfall model.
+
+Alternatively, a viable approach involves iteratively traversing the waterfall model, perhaps executing it twice, thereby blending models. This flexibility introduces a touch of agility while still adhering to the structured nature of the waterfall model. However, it is imperative to meticulously document this process to ensure traceability and compliance.
+
+Furthermore, justifying the chosen model is essential. For instance, opting for the waterfall model becomes a sound decision when dealing with fixed and unlikely-to-change requirements. Documenting such justifications provides a clear rationale for the chosen approach.
+
+Valid reasons for selecting the waterfall model include having well-defined and stable requirements, minimal uncertainty, explicit project goals and milestones, suitability for small to medium-sized projects, cost-effectiveness with limited development involvement, reliance on experienced development teams, and alignment with budget and time constraints.
+
