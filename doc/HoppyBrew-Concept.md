@@ -40,8 +40,8 @@ The target audience for HoppyBrew includes homebrewers and brewing enthusiasts s
 The risks associated with the project include:
 
 - Technical challenges in integrating iSpindel over Ethernet
+- Using React for the frontend. It is a new technology for the team and may pose challenges during development and testing phases.
 
 ## Software development methodology
 
 The project will follow the Agile methodology, with a focus on iterative development and continuous feedback. The Agile approach will enable the team to adapt to changing requirements and deliver a high-quality product that meets user expectations.
-
