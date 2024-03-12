@@ -10,39 +10,31 @@ Digital transformation is changing the way how we work and live, how we do busin
 
 It is up to you and your creativity to determine what type of application you will develop. However, your project and the upcoming application must satisfy the following criteria:
 
-- Your application must deliver customer value, i.e., it must have a clear and significant benefit to a defined target group.
-- Your upcoming solution must be something new. You are not allowed to simply copy an existing application.
-- You must implement a reasonable amount of code. A mock-up with slides or a simple configuration of an existing software is not sufficient as final product. Such a step can be helpful in the conception phase to explore and discuss alternatives.
-- The application must run in a web browser.
+- Your application must **deliver customer value**, i.e., it must have a clear and significant benefit to a defined target group.
+- Your upcoming solution must be something **new**. You are not allowed to simply copy an existing application.
+- You must implement a reasonable amount of **code**. A mock-up with slides or a simple configuration of an existing software is not sufficient as final product. Such a step can be helpful in the conception phase to explore and discuss alternatives.
+- The application must **run in a web browser**.
 
-In this course, you will work through all stages of a software development project. It is important that you
-select the appropriate methodologies, techniques, and tools at every stage and for every task. This means that
-you will apply the knowledge in the fields of requirements specification, software design, implementation, and
-testing that you have acquired in prior modules.
-As a considerable percentage of software engineering projects fails to deliver in time, quality, and budget, you
-should take appropriate actions to minimize risks in every phase.
+In this course, **you will work through all stages of a software development project**. It is important that you select the appropriate methodologies, techniques, and tools at every stage and for every task. This means that you will apply the knowledge in the fields of requirements specification, software design, implementation, and testing that you have acquired in prior modules.
+
+As a considerable percentage of software engineering projects fails to deliver in time, quality, and budget, you should take appropriate actions to minimize risks in every phase.
+
 The following acceptance criteria must be met:
-• The tools, programming language and libraries used to implement your application are your own choice.
-However, you are not permitted to copy or modify existing, third-party applications that you might find
-on the internet or elsewhere. You can use third-party libraries if you indicate them correctly.
-• The application must come with a web-based graphical user interface that is self-explanatory and that
-can be intuitively used by potential customers.
-• The solution delivered must be valuable to your customers. It must provide the most important features
-and solve the most basic problems of your target-group. You must provide enough and sensible (test)
-data (no dummy text) so that the application can directly be used, and its benefits become tangible.
-• The application must meet the non-functional requirements. If this is not possible in the scope of the
-project, it must be described as technical debt.
-• The software must come up with an appropriate project documentation, including a project profile, requirements documents, a documentation of the software and system architecture.
-• Version and release control of the software and the corresponding architecture documentation must be
-established.
-• The source code and all necessary files must be provided in GitHub. Hosting the project on GitHub is part
-of building your portfolio.
-Web applications must be provided as cloud-hosted application (e.g. AWS, Google Cloud, …) so that the
-front end can directly be accessed.
-• The software must come with installation and run instructions.
+
+- The tools, programming language and libraries used to implement your application are your own choice. However, you are not permitted to copy or modify existing, third-party applications that you might find on the internet or elsewhere. You can use third-party libraries if you indicate them correctly.
+- The application must come with a web-based graphical user interface that is self-explanatory and that can be intuitively used by potential customers.
+- The solution delivered must be valuable to your customers. It must provide the most important features and solve the most basic problems of your target-group. You must provide enough and sensible (test) data (no dummy text) so that the application can directly be used, and its benefits become tangible.
+- The application must meet the non-functional requirements. If this is not possible in the scope of the project, it must be described as technical debt.
+- The software must come up with an appropriate project documentation, including a project profile, requirements documents, a documentation of the software and system architecture.
+- Version and release control of the software and the corresponding architecture documentation must be established.
+- The source code and all necessary files must be provided in GitHub. Hosting the project on GitHub is part of building your portfolio.
+- Web applications must be provided as cloud-hosted application (e.g. AWS, Google Cloud, …) so that the front end can directly be accessed.
+- The software must come with installation and run instructions.
+
 Your application needs to be designed, built, documented, and delivered according to the following three
 phases.
-1.1.1. Conception phase
+
+### 1.1.1. Conception phase
 This phase is very important for the success of your project. Anything that is overlooked or forgotten in this phase
 has a negative effect on the implementation later and will lead, in the worst case, to useless results.
 The first step is to create a written "project profile" for your software engineering project. It includes the objectives and the scope of the project, your target group, the risks associated with the project, a project plan, and
@@ -67,18 +59,20 @@ drafts, and obtain feedback. In the online tutorials, exemplary work can be disc
 of these channels to avoid errors and to make improvements. You should only submit work after making use
 of the above-mentioned tutorial and informative media. This will be followed by a feedback from the tutor and
 the work on the second phase can begin.
-1.1.2. Development phase/reflection phase
+
+### 1.1.2. Development phase/reflection phase
+
 In this phase, the implementation starts. In addition, there are several activities to ensure that the developed
 application meets customer requirements, that it can be deployed, maintained, and further developed. Take care
 that you establish version and release control of the software and the corresponding architecture documentation.
-• You set up the frameworks and tools that you described in the conception phase.
-• You select third-party libraries you can build upon.
-• You refine the requirements gathered in the conception phase.
-• You implement the modules/components outlined in your building block diagram.
-• You further develop your software and system documentation.
-• You document important design decisions including rationales.
-• You comment your source code to make it easier for humans to understand.
-• You prepare test data and perform adequate software tests.
+- You set up the frameworks and tools that you described in the conception phase.
+- You select third-party libraries you can build upon.
+- You refine the requirements gathered in the conception phase.
+- You implement the modules/components outlined in your building block diagram.
+- You further develop your software and system documentation.
+- You document important design decisions including rationales.
+- You comment your source code to make it easier for humans to understand.
+- You prepare test data and perform adequate software tests.
 In this phase you must submit an explanation of your design and implementation procedure in written form
 (approx. 1/2 page). Additionally, you provide a composite presentation PDF including the updated requirements, the complemented architecture documentation, and references and hyperlinks to the frameworks, thirdparty libraries, and tools you decided to use as well as the rationale behind your decision. The file should contain
 visual elements that facilitate comprehension and present information in a structured way.
@@ -86,21 +80,23 @@ Throughout the process, online tutorials and other channels provide the opportun
 and/or drafts and to get sufficient feedback, tips, and hints. It is recommended to use these channels to avoid
 errors and to improve your work. Once this is done, you can hand in your second phase for evaluation. Following
 a feedback from the tutor, your work on the final draft will continue in the third phase.
-1.1.3. Finalization phase
+
+### 1.1.3. Finalization phase
+
 In this final phase, you prepare everything for the final submission. Your goal is to polish and refine your application and its documentation. Certain elements may have to be improved or changed to finalize the task and complete this portfolio course. It is important that you consider the feedback that you received on your submission at
 the end of the previous phase. Depending on the changes you make in your software, it might be necessary to
 provide an updated version of the documentation of the software and system architecture. In addition - if applicable - you provide a list of the technical debts. Make sure that your software comes with installation and run
 instructions so that it is clear how to install the application and how to use your software. In addition, your application must satisfy the following criteria:
-• Web applications must be provided as docker-compose configuration (.yml) including all relevant files.
-• Web applications must be provided as cloud-hosted application (e.g., AWS, Google Cloud, …) so that the
+- Web applications must be provided as docker-compose configuration (.yml) including all relevant files.
+- Web applications must be provided as cloud-hosted application (e.g., AWS, Google Cloud, …) so that the
 front end can directly be accessed. If you restrict the access, make sure that you include the login credentials in the submitted documentation.
 Your finished application is submitted by providing all files that you created, your program code, documentation
 installation manual etc., as follows:
-• Your project is hosted on a public GitHub repository. That means you must create a GitHub account, if
+- Your project is hosted on a public GitHub repository. That means you must create a GitHub account, if
 you don’t have one yet, and create a repository.
-• You upload all your code and all necessary files into this repository.
-• On submission in PebblePad you provide a link to the repository.
-• You create a ZIP file from all files contained in the GitHub repository and put it into a folder. You must zip
+- You upload all your code and all necessary files into this repository.
+- On submission in PebblePad you provide a link to the repository.
+- You create a ZIP file from all files contained in the GitHub repository and put it into a folder. You must zip
 this folder and paste it into your submission in Pebble Pad
 Important note: The content of the GitHub repository and the contents of the ZIP file uploaded to your zip folder
 should be identical. You are not allowed to modify either one after the final submission. The content of the zip
@@ -115,17 +111,19 @@ In the “Finalization phase”, the online tutorials and other channels also pr
 channels to avoid errors and to make improvements. The finished product is submitted with the results from
 Phase 1 and Phase 2 and together with the materials mentioned above. Following the submission of the third
 portfolio page, the tutor submits the final feedback which includes evaluation and scoring within six weeks.
-1.2. Task 2: Design and development of a mobile application
+
+## 1.2. Task 2: Design and development of a mobile application
+
 Digital transformation is changing the way how we work and live, how we do business. Software enables new
 business models, improves business processes, introduces digitized products and services. Nowadays, ready-touse frameworks and technologies allow software engineers to quickly develop and deploy new, innovative applications. In this project, you will design and develop such a mobile application.
 It is up to you and your creativity to determine what type of application you will develop. However, your project
 and the upcoming application must satisfy the following criteria:
-• Your application must deliver customer value, i.e., it must have a clear and significant benefit to a defined target group.
-• Your upcoming solution must be something new. You are not allowed to simply copy an existing application.
-• You must implement a reasonable amount of code. A mock-up with slides or a simple configuration of an
+- Your application must deliver customer value, i.e., it must have a clear and significant benefit to a defined target group.
+- Your upcoming solution must be something new. You are not allowed to simply copy an existing application.
+- You must implement a reasonable amount of code. A mock-up with slides or a simple configuration of an
 existing software is not sufficient as final product. Such a step can be helpful in the conception phase to
 explore and discuss alternatives.
-• The application must run on a mobile device (smartphone, tablet).
+- The application must run on a mobile device (smartphone, tablet).
 In this course, you will work through all stages of a software development project. It is important that you
 select the appropriate methodologies, techniques, and tools at every stage and for every task. This means that
 you will apply the knowledge in the fields of requirements specification, software design, implementation, and
@@ -133,24 +131,24 @@ testing that you have acquired in prior modules.
 As a considerable percentage of software engineering projects fails to deliver in time, quality, and budget, you
 should take appropriate actions to minimize risks in every phase.
 The following acceptance criteria must be met:
-• The tools, programming language and libraries used to implement your application are your own choice.
+- The tools, programming language and libraries used to implement your application are your own choice.
 However, you are not permitted to copy or modify existing, third-party applications that you might find
 on the internet or elsewhere. You can use third-party libraries if you indicate them correctly.
-• The application must come with a graphical user interface (mobile) that is self-explanatory and that can
+- The application must come with a graphical user interface (mobile) that is self-explanatory and that can
 be intuitively used by potential customers.
-• The solution delivered must be valuable to your customers. It must provide the most important features
+- The solution delivered must be valuable to your customers. It must provide the most important features
 and solve the most basic problems of your target-group. You must provide enough and sensible (test)
 data (no dummy text) so that the application can directly be used, and its benefits become tangible.
-• The application must meet the non-functional requirements. If this is not possible in the scope of the
+- The application must meet the non-functional requirements. If this is not possible in the scope of the
 project, it must be described as technical debt.
-• The software must come up with an appropriate project documentation, including a project profile, requirements documents, a documentation of the software and system architecture.
-• Version and release control of the software and the corresponding architecture documentation must be
+- The software must come up with an appropriate project documentation, including a project profile, requirements documents, a documentation of the software and system architecture.
+- Version and release control of the software and the corresponding architecture documentation must be
 established.
-• The source code and all necessary files must be provided in GitHub. Hosting the project on GitHub is part
+- The source code and all necessary files must be provided in GitHub. Hosting the project on GitHub is part
 of building your portfolio.
-• Mobile applications can be implemented as native or hybrid apps.
-• Mobile applications must be provided as .apk file for android applications or .ipa file for iOS.
-• The software must come with installation and run instructions.
+- Mobile applications can be implemented as native or hybrid apps.
+- Mobile applications must be provided as .apk file for android applications or .ipa file for iOS.
+- The software must come with installation and run instructions.
 Your application needs to be designed, built, documented, and delivered according to the following three
 phases.
 Conception phase
@@ -178,18 +176,20 @@ drafts, and obtain feedback. In the online tutorials, exemplary work can be disc
 of these channels to avoid errors and to make improvements. You should only submit work after making use
 of the above-mentioned tutorial and informative media. This will be followed by a feedback from the tutor and
 the work on the second phase can begin.
-1.2.2. Development phase/reflection phase
+
+### 1.2.2. Development phase/reflection phase
+
 In this phase, the implementation starts. In addition, there are several activities to ensure that the developed
 application meets customer requirements, that it can be deployed, maintained, and further developed. Take care
 that you establish version and release control of the software and the corresponding architecture documentation.
-• You set up the frameworks and tools that you described in the conception phase.
-• You select third-party libraries you can build upon.
-• You refine the requirements gathered in the conception phase.
-• You implement the modules/components outlined in your building block diagram.
-• You further develop your software and system documentation.
-• You document important design decisions including rationales.
-• You comment your source code to make it easier for humans to understand.
-• You prepare test data and perform adequate software tests.
+- You set up the frameworks and tools that you described in the conception phase.
+- You select third-party libraries you can build upon.
+- You refine the requirements gathered in the conception phase.
+- You implement the modules/components outlined in your building block diagram.
+- You further develop your software and system documentation.
+- You document important design decisions including rationales.
+- You comment your source code to make it easier for humans to understand.
+- You prepare test data and perform adequate software tests.
 In this phase you must submit an explanation of your design and implementation procedure in written form
 (approx. 1/2 page). Additionally, you provide a composite presentation PDF including the updated requirements, the complemented architecture documentation, and references and hyperlinks to the frameworks, thirdparty libraries, and tools you decided to use as well as the rationale behind your decision. The file should contain
 visual elements that facilitate comprehension and present information in a structured way.
@@ -197,7 +197,9 @@ Throughout the process, online tutorials and other channels provide the opportun
 and/or drafts and to get sufficient feedback, tips, and hints. It is recommended to use these channels to avoid
 errors and to improve your work. Once this is done, you can hand in your second phase for evaluation. Following
 a feedback from the tutor, your work on the final draft will continue in the third phase.
-1.2.3. Finalization phase
+
+### 1.2.3. Finalization phase
+
 In this final phase, you prepare everything for the final submission. Your goal is to polish and refine your application and its documentation. Certain elements may have to be improved or changed to finalize the task and complete this portfolio course. It is important that you consider the feedback that you received on your submission at
 the end of the previous phase. Depending on the changes you make in your software, it might be necessary to
 provide an updated version of the documentation of the software and system architecture. In addition - if applicable - you provide a list of the technical debts. Make sure that your software comes with installation and run 
@@ -205,11 +207,11 @@ instructions so that it is clear how to install the application and how to use y
 applications must be provided as .apk file for android applications or .ipa file for iOS.
 Your finished application is submitted by providing all files that you created, your program code, documentation
 installation manual etc., as follows:
-• Your project is hosted on a public GitHub repository. That means you must create a GitHub account, if
+- Your project is hosted on a public GitHub repository. That means you must create a GitHub account, if
 you don’t have one yet, and create a repository.
-• You upload all your code and all necessary files into this repository.
-• On submission in PebblePad you provide a link to the repository.
-• You create a ZIP file from all files contained in the GitHub repository and put it into a folder. You must zip
+- You upload all your code and all necessary files into this repository.
+- On submission in PebblePad you provide a link to the repository.
+- You create a ZIP file from all files contained in the GitHub repository and put it into a folder. You must zip
 this folder and paste it into your submission in Pebble Pad.
 Important note: The content of the GitHub repository and the contents of the ZIP file uploaded to your zip folder
 should be identical. You are not allowed to modify either one after the final submission. The content of the zip
@@ -223,7 +225,9 @@ In the “Finalization phase”, the online tutorials and other channels also pr
 channels to avoid errors and to make improvements. The finished product is submitted with the results from
 Phase 1 and Phase 2 and together with the materials mentioned above. Following the submission of the third
 portfolio page, the tutor submits the final feedback which includes evaluation and scoring within six weeks.
-2. TUTORIAL SUPPORT
+
+# 2. TUTORIAL SUPPORT
+
 In principle, several channels are open to attain feedback for the portfolios. The respective use is the sole responsibility of the user. The independent development of a product and the work on the respective portfolio parts is
 part of the examination performance and is included in the overall assessment.
 On the one hand, the tutorial support provides feedback loops on the portfolio parts to be submitted in the context of the conception phase as well as the development and reflection phase. The feedback takes place within
@@ -231,7 +235,9 @@ the framework of a submission of the respective part of the portfolio. In additi
 to discuss other issues with the tutor. The tutor is also available for technical consultations as well as for formal
 and general questions regarding the procedure for portfolio management.
 Technical questions regarding the use of “PebblePad” should be directed to the exam office via mai
-3. EVALUATION
+
+# 3. EVALUATION
+
 The following criteria are used to evaluate the portfolio with the percentage indicated in each case:
 Evaluation criteria Explanation Weighting
 Problem Solving Techniques *Capturing the problem
@@ -258,16 +264,19 @@ Creativity/Correctness: Addressing a previously unsolved customer problem with t
 /or innovative features, correct understanding and implementation of the customer requirements, ensuring correct software by means of testing.
 Formal requirements: The submission follows the acceptance criteria from chapter 3 and the formal guidelines
 provided in the “Guidelines for the creation of a portfolio”. It is particularly important to respect the formal submission requirements outlined in Chapter 4.
-4. FORMAL GUIDELINES AND SPECIFICATIONS FOR SUBMISSION
-4.1. Components of the examination performance
+
+# 4. FORMAL GUIDELINES AND SPECIFICATIONS FOR SUBMISSION
+
+## 4.1. Components of the examination performance
+
 The following is an overview of the examination performance portfolio with its individual phases, individual performances to be submitted, and feedback stages at one glance. A template in “PebblePad” is provided for the
 development of the portfolio parts within the scope of the examination performance. The presentation is part of
 this examination.
 Stage Intermediate result Performance to be submitted
-Conception phase Portfolio part 1 • Concept presentation in written form (approx. 1/2 page),
+Conception phase Portfolio part 1 - Concept presentation in written form (approx. 1/2 page),
 consisting of a summary of the project proposal and your
 considerations with respect to the chosen software development methodology
-• A composite presentation PDF including
+- A composite presentation PDF including
 o the complete project profile,
 o the requirements
 o a glossary
@@ -277,29 +286,29 @@ building block view
 Feedback
 Development phase/
 reflection phase
-Portfolio part 2 • Explanation of your design and implementation procedure in written form (approx. 1/2 page)
-• A composite presentation PDF including
+Portfolio part 2 - Explanation of your design and implementation procedure in written form (approx. 1/2 page)
+- A composite presentation PDF including
 o the updated requirements
 o the complemented architecture documentation
 o references and hyperlinks to the frameworks,
 third-party libraries, and tools as well as the rationale behind your choice
 Feedback
-Finalization phase Portfolio part 3 • 2-page abstract (making of)
-• A .txt file including the link to your public GitHub repository, and – in the case of a web application – the link to
+Finalization phase Portfolio part 3 - 2-page abstract (making of)
+- A .txt file including the link to your public GitHub repository, and – in the case of a web application – the link to
 the application and if applicable the login data
-• Upload the zip-folder (incl. all files and the final product
+- Upload the zip-folder (incl. all files and the final product
 with its installation manual according to the structure
 and content defined in chapter 4.2)
-• Result from phase 1
-• Result from phase 2
+- Result from phase 1
+- Result from phase 2
 Feedback + Grade
 
-4.2. Format for Digital File Submission
+## 4.2. Format for Digital File Submission
 Conception phase
 Recommended tools/software for
 processing
-• Word, Powerpoint, Excel or LaTex
-• Tools to draw software models (e.g. Visio, Enterprise Architect, SmartDraw,
+- Word, Powerpoint, Excel or LaTex
+- Tools to draw software models (e.g. Visio, Enterprise Architect, SmartDraw,
 Edraw)
 Permitted file formats PDF
 File size Max. 15 MB
@@ -310,10 +319,10 @@ Example: Mustermann-Max_12345678_ PSE _P1_S
 Development/reflection phase
 Recommended tools/software for
 processing
-• Word, Powerpoint, Excel or LaTex
-• Tools to draw software models (e.g., Visio, Enterprise Architect, SmartDraw,
+- Word, Powerpoint, Excel or LaTex
+- Tools to draw software models (e.g., Visio, Enterprise Architect, SmartDraw,
 Edraw)
-• Researched tool selection for task implementation
+- Researched tool selection for task implementation
 Permitted file formats PDF
 File size Max. 15 MB
 Further formalities and parameters Files must always be named according to the following pattern:
@@ -323,14 +332,14 @@ Example: Mustermann-Max_12345678_ PSE _P2_S
 Finalization phase
 Recommended tools/software for
 processing
-• Word, Powerpoint, Excel or LaTex
-• Tools to draw software models (e.g., Visio, Enterprise Architect, SmartDraw,
+- Word, Powerpoint, Excel or LaTex
+- Tools to draw software models (e.g., Visio, Enterprise Architect, SmartDraw,
 Edraw)
-• Researched tool selection for task implementation
-Permitted file formats • PebblePad: PDF, TXT
-• GitHub: various file formats for your application and its documentation; PDF
+- Researched tool selection for task implementation
+Permitted file formats - PebblePad: PDF, TXT
+- GitHub: various file formats for your application and its documentation; PDF
 for other related documentation such as installation instructions, etc.
-• Zip folder: various file formats for submissions from all three phases. The
+- Zip folder: various file formats for submissions from all three phases. The
 code submitted via GitHub also must be added to the zip folder by creating a
 ZIP file from all the files.
 File size as small as possible
@@ -339,13 +348,13 @@ IMPORTANT is the upload of the zip folder that has been created especially for t
 you used to complete the task. To ensure a better overview, please create subdirectories for this purpose.
 The folder structure then looks like this:
 o Main directory (name of the zip folder) -> Name: Name-First_Name_Matriculation_Course
-• Subdirectory (these are the project profile, project plans and further documents related to the planning and the management of the project) -> Name:
+- Subdirectory (these are the project profile, project plans and further documents related to the planning and the management of the project) -> Name:
 01-Project-management
-• Subdirectory (these are requirements documents, glossary etc.) -> Name: 02-
+- Subdirectory (these are requirements documents, glossary etc.) -> Name: 02-
 Requirements
-• Subdirectory (the software and system documentation, all diagrams etc.) ->
+- Subdirectory (the software and system documentation, all diagrams etc.) ->
 Name: 03-Architecture-documentation
-• Subdirectory (the program code and related documentation, corresponding
+- Subdirectory (the program code and related documentation, corresponding
 to your upload in the GitHub repository) -> Name: 04-Implementation. In this
 subdirectory, you upload a zipped version (ZIP file with all program code)
 with the following naming convention: Name-FirstName_MatrNo_Course_Submission_Code.zip
@@ -360,7 +369,9 @@ Files must always be named according to the following pattern:
 For the performance-relevant submissions on “PebblePad”:
 Name-FirstName_MatrNo_ Course _P(hase)-3_S(ubmission)
 Example: Mustermann-Max_12345678_ PSE _P3_S
-4.3. Format of Abstract
+
+## 4.3. Format of Abstract
+
 Length 2 pages of text
 Paper size DIN A4
 Margins Top and bottom 2cm; left 2cm; right 2cm
