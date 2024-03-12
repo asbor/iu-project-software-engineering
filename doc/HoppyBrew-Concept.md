@@ -13,10 +13,10 @@ Moving beyond mere recipe management, HoppyBrew integrates seamlessly with iSpin
 ## Project profile
 
 - Objective and scope of the project
-- Target audience
+- Target audience for the project
 - Risk associated with the project
 - project plan
-- project organization
+- project organization and roles of team members
 
 ### Objective and scope of the project
 
@@ -25,6 +25,8 @@ The primary objective of HoppyBrew is to develop a web application tailored for 
 - User account creation and login
 - Recipe management: creation, editing, and deletion
 - Recipe search based on name, style, or ingredients
+- Batch creation and management
+- Batch tracking and monitoring during the brewing process
 - Integration with iSpindel over Ethernet for fermentation process monitoring
 - Inventory management
 - Shopping list generation based on selected recipes
@@ -40,7 +42,11 @@ The target audience for HoppyBrew includes homebrewers and brewing enthusiasts s
 The risks associated with the project include:
 
 - Technical challenges in integrating iSpindel over Ethernet
-- Using React for the frontend. It is a new technology for the team and may pose challenges during development and testing phases.
+- Using Angular* for the first time, which may lead to a learning curve.
+- Ensuring seamless integration of the Docker container architecture
+- CI/CD pipeline setup and maintenance for the project
+
+**Note!** We have many options for building the frontend of our project, but it seems like Angular or React are the most popular choices. Our team doesn't have experience with either of them. After some research, we found out that while React is easier to pick up, Angular is more powerful and performs better. Also, Angular developers tend to earn more than React developers based on information from Glassdoor. Therefore, we've decided to use Angular for our project.
 
 ## Software development methodology
 
