@@ -2,7 +2,7 @@
 
 ## Introduction
 
-HoppyBrew stands as a dedicated web application crafted for brewing enthusiasts and homebrewers, specifically designed for self-hosting. Drawing inspiration from [Brewfather](https://brewfather.app/), it operates seamlessly within a Docker container and comes with no associated costs. Developed as part of the Software Engineering course at the Faculty of Informatics, International University of Applied Sciences Bad Honnef - Bonn, HoppyBrew addresses the critical need for streamlined management of brewing processes.
+HoppyBrew stands as a dedicated web application crafted for brewing enthusiasts and homebrewers, specifically designed for self-hosting. Drawing inspiration from [Brewfather](https://brewfather.app/), [Beersmith](https://beersmith.com/), it operates seamlessly within a Docker container and comes with no associated costs. Developed as part of the Software Engineering course at the Faculty of Informatics, International University of Applied Sciences Bad Honnef - Bonn, HoppyBrew addresses the critical need for streamlined management of brewing processes.
 
 Born from the personal journey of the creator as a homebrewer venturing into self-hosting, HoppyBrew aims to be a bespoke solution. This web application empowers users to independently create, share, and manage their beer recipes, eliminating any dependence on subscription-based services like Brewfather.
 
@@ -42,11 +42,9 @@ The target audience for HoppyBrew includes homebrewers and brewing enthusiasts s
 The risks associated with the project include:
 
 - Technical challenges in integrating iSpindel over Ethernet
-- Using Angular* for the first time, which may lead to a learning curve.
+- Using Vue.js for the first time, which may lead to a learning curve.
 - Ensuring seamless integration of the Docker container architecture
 - CI/CD pipeline setup and maintenance for the project
-
-**Note!** We have many options for building the frontend of our project, but it seems like Angular or React are the most popular choices. Our team doesn't have experience with either of them. After some research, we found out that while React is easier to pick up, Angular is more powerful and performs better. Also, Angular developers tend to earn more than React developers based on information from Glassdoor. Therefore, we've decided to use Angular for our project.
 
 ## Software development methodology
 

@@ -1,6 +1,6 @@
 # Table of contents
 
-* [iu-project-software-engineering](README.md)
+* [Overview](README.md)
 
 ## Documentation
 
