@@ -141,9 +141,8 @@ the work on the second phase can begin.
 
 ### 1.2.2. Development phase/reflection phase
 
-In this phase, the implementation starts. In addition, there are several activities to ensure that the developed
-application meets customer requirements, that it can be deployed, maintained, and further developed. Take care
-that you establish version and release control of the software and the corresponding architecture documentation.
+In this phase, **the implementation starts**. In addition, there are several activities to ensure that the developed application meets customer requirements, that it can be deployed, maintained, and further developed. Take care that you establish **version and release control** of the software and the corresponding architecture documentation.
+
 - You set up the frameworks and tools that you described in the conception phase.
 - You select third-party libraries you can build upon.
 - You refine the requirements gathered in the conception phase.
@@ -152,57 +151,54 @@ that you establish version and release control of the software and the correspon
 - You document important design decisions including rationales.
 - You comment your source code to make it easier for humans to understand.
 - You prepare test data and perform adequate software tests.
-In this phase you must submit an explanation of your design and implementation procedure in written form
-(approx. 1/2 page). Additionally, you provide a composite presentation PDF including the updated requirements, the complemented architecture documentation, and references and hyperlinks to the frameworks, thirdparty libraries, and tools you decided to use as well as the rationale behind your decision. The file should contain
-visual elements that facilitate comprehension and present information in a structured way.
-Throughout the process, online tutorials and other channels provide the opportunity to profoundly discuss ideas
-and/or drafts and to get sufficient feedback, tips, and hints. It is recommended to use these channels to avoid
-errors and to improve your work. Once this is done, you can hand in your second phase for evaluation. Following
-a feedback from the tutor, your work on the final draft will continue in the third phase.
+
+In this phase you must submit an **explanation of your design and implementation procedure** in written form (approx. 1/2 page). Additionally, you provide a **composite presentation PDF** including the updated requirements, the complemented architecture documentation, and references and hyperlinks to the frameworks, thirdparty libraries, and tools you decided to use as well as the rationale behind your decision. The file should contain visual elements that facilitate comprehension and present information in a structured way.
+
+Throughout the process, online tutorials and other channels provide the opportunity to profoundly discuss ideas and/or drafts and to get sufficient feedback, tips, and hints. **It is recommended to use these channels to avoid errors and to improve your work**. Once this is done, you can hand in your second phase for evaluation. Following a feedback from the tutor, your work on the final draft will continue in the third phase.
 
 ### 1.2.3. Finalization phase
 
-In this final phase, you prepare everything for the final submission. Your goal is to polish and refine your application and its documentation. Certain elements may have to be improved or changed to finalize the task and complete this portfolio course. It is important that you consider the feedback that you received on your submission at
-the end of the previous phase. Depending on the changes you make in your software, it might be necessary to
-provide an updated version of the documentation of the software and system architecture. In addition - if applicable - you provide a list of the technical debts. Make sure that your software comes with installation and run 
-instructions so that it is clear how to install the application and how to use your software. In addition, your mobile
-applications must be provided as .apk file for android applications or .ipa file for iOS.
-Your finished application is submitted by providing all files that you created, your program code, documentation
-installation manual etc., as follows:
-- Your project is hosted on a public GitHub repository. That means you must create a GitHub account, if
-you don’t have one yet, and create a repository.
+In this final phase, you prepare everything for the final submission. Your goal is to polish and refine your application and its documentation. Certain elements may have to be improved or changed to finalize the task and complete this portfolio course. It is important that you consider the feedback that you received on your submission at the end of the previous phase. Depending on the changes you make in your software, it might be necessary to provide an updated version of the documentation of the software and system architecture. In addition - if applicable - you provide a list of the technical debts. Make sure that your software comes with installation and run  instructions so that it is clear how to install the application and how to use your software. In addition, your mobile applications must be provided as **.apk file for android applications or .ipa file for iOS**.
+
+Your finished application is submitted by providing all files that you created, your program code, documentation installation manual etc., as follows:
+
+- Your project is hosted on a public GitHub repository. That means you must create a GitHub account, if you don’t have one yet, and create a repository.
 - You upload all your code and all necessary files into this repository.
 - On submission in PebblePad you provide a link to the repository.
-- You create a ZIP file from all files contained in the GitHub repository and put it into a folder. You must zip
-this folder and paste it into your submission in Pebble Pad.
-Important note: The content of the GitHub repository and the contents of the ZIP file uploaded to your zip folder
-should be identical. You are not allowed to modify either one after the final submission. The content of the zip
-folder will be sent to the examination office upon submission.
-Now, it is time to look back at your software engineering project and do a “lessons learned”. You should especially reflect on the applied tools, methodologies, and techniques and on your handling of the resources.
-For the submission, you provide a 2-page abstract PDF document in which you describe your solution in terms
-of content and concept. This abstract presents a short break-down (“making of” of the project) about the technical approach in a clear and informative way. It also includes the main insights from your lessons learned. Moreover, you must prepare a .txt file in which you include the link to your public GitHub repository. In addition,
-you provide all project documentation including the ZIP file with all files contained in the GitHub repository in
-your zip folder. The structure of this folder is defined in chapter 4.2.
-In the “Finalization phase”, the online tutorials and other channels also provide the opportunity to obtain sufficient feedback, tips, and hints before the finished product is finally handed in. It is recommended to use these
-channels to avoid errors and to make improvements. The finished product is submitted with the results from
-Phase 1 and Phase 2 and together with the materials mentioned above. Following the submission of the third
-portfolio page, the tutor submits the final feedback which includes evaluation and scoring within six weeks.
+- You create a ZIP file from all files contained in the GitHub repository and put it into a folder. You must zip this folder and paste it into your submission in Pebble Pad.
+
+**Important note**: The content of the GitHub repository and the contents of the ZIP file uploaded to your zip folder should be identical. You are not allowed to modify either one after the final submission. The content of the zip folder will be sent to the examination office upon submission.
+
+Now, it is time to look back at your software engineering project and do a “**lessons learned**”. You should especially reflect on the applied tools, methodologies, and techniques and on your handling of the resources.
+
+For the submission, you provide a **2-page abstract PDF document** in which you describe your solution in terms of content and concept. This abstract presents a short break-down (“making of” of the project) about the technical approach in a clear and informative way. It also includes the main insights from your lessons learned. Moreover, you must prepare a .txt file in which you include the link to your public GitHub repository. In addition, you provide all project documentation including the ZIP file with all files contained in the GitHub repository in your zip folder. The structure of this folder is defined in chapter 4.2.
+
+In the “Finalization phase”, the online tutorials and other channels also provide the opportunity to obtain sufficient feedback, tips, and hints before the finished product is finally handed in. **It is recommended to use these channels to avoid errors and to make improvements**. The finished product is submitted with the results from Phase 1 and Phase 2 and together with the materials mentioned above. Following the submission of the third portfolio page, the tutor submits the final feedback which includes evaluation and scoring within six weeks.
 
 # 2. TUTORIAL SUPPORT
 
-In principle, several channels are open to attain feedback for the portfolios. The respective use is the sole responsibility of the user. The independent development of a product and the work on the respective portfolio parts is
-part of the examination performance and is included in the overall assessment.
-On the one hand, the tutorial support provides feedback loops on the portfolio parts to be submitted in the context of the conception phase as well as the development and reflection phase. The feedback takes place within
-the framework of a submission of the respective part of the portfolio. In addition, regular online tutorials are offered. These provide you with an opportunity to ask any questions regarding the processing of the portfolio and
-to discuss other issues with the tutor. The tutor is also available for technical consultations as well as for formal
-and general questions regarding the procedure for portfolio management.
-Technical questions regarding the use of “PebblePad” should be directed to the exam office via mai
+In principle, several channels are open to attain feedback for the portfolios. The respective use is the sole responsibility of the user. The independent development of a product and the work on the respective portfolio parts is part of the examination performance and is included in the overall assessment.
+
+On the one hand, the tutorial support provides feedback loops on the portfolio parts to be submitted in the context of the conception phase as well as the development and reflection phase. The feedback takes place within the framework of a submission of the respective part of the portfolio. In addition, regular online tutorials are offered. These provide you with an opportunity to ask any questions regarding the processing of the portfolio and to discuss other issues with the tutor. The tutor is also available for technical consultations as well as for formal and general questions regarding the procedure for portfolio management.
+
+Technical questions regarding the use of “PebblePad” should be directed to the exam office via maiil.
 
 # 3. EVALUATION
 
 The following criteria are used to evaluate the portfolio with the percentage indicated in each case:
-Evaluation criteria Explanation Weighting
-Problem Solving Techniques *Capturing the problem
+
+
+Evaluation criteria | Explanation | Weighting
+--- | --- | ---
+Problem Solving Techniques | *Capturing the problem *Clear problem definition/objective *Understandable concept | 10%
+Methodology/Ideas/Procedure | *Appropriate transfer of theories/models *Clear information about the chosen Methodology/Idea/Procedure | 20%
+Quality of implementation | *Quality of implementation and documentation | 40%
+Creativity/Correctness | *Creativity of the solution approach *Solution implemented fulfils intended objective | 20%
+Formal requirements | * Compliance with formal requirements | 10%
+
+
+Problem Solving Techniques 
+*Capturing the problem
 *Clear problem definition/objective
 *Understandable concept
 10%
