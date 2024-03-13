@@ -2,6 +2,11 @@
 
 * [Overview](README.md)
 
+## Development journal
+
+* [Week 1](doc/Development-Journal/Week-1.md)
+* [Week 2](doc/Development-Journal/Week-2.md)
+
 ## Documentation
 
 * [1. Conception Phase](doc/Conception-Phase.md)
