@@ -190,7 +190,7 @@ The following criteria are used to evaluate the portfolio with the percentage in
 
 Evaluation criteria | Explanation | Weighting
 --- | --- | ---
-Problem Solving Techniques | *Capturing the problem *Clear problem definition/objective *Understandable concept | 10%
+Problem Solving Techniques | - Capturing the problem - Clear problem definition/objective - Understandable concept | 10%
 Methodology/Ideas/Procedure | *Appropriate transfer of theories/models *Clear information about the chosen Methodology/Idea/Procedure | 20%
 Quality of implementation | *Quality of implementation and documentation | 40%
 Creativity/Correctness | *Creativity of the solution approach *Solution implemented fulfils intended objective | 20%
