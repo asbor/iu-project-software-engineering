@@ -187,146 +187,64 @@ Technical questions regarding the use of “PebblePad” should be directed to t
 
 The following criteria are used to evaluate the portfolio with the percentage indicated in each case:
 
-
 Evaluation criteria | Explanation | Weighting
 --- | --- | ---
-Problem Solving Techniques | - Capturing the problem - Clear problem definition/objective - Understandable concept | 10%
-Methodology/Ideas/Procedure | *Appropriate transfer of theories/models *Clear information about the chosen Methodology/Idea/Procedure | 20%
-Quality of implementation | *Quality of implementation and documentation | 40%
-Creativity/Correctness | *Creativity of the solution approach *Solution implemented fulfils intended objective | 20%
-Formal requirements | * Compliance with formal requirements | 10%
+Problem Solving Techniques | <ul><li>Capturing the problem</li><li>Clear problem definition/objective</li><li>Understandable concept</li></ul> | 10%
+Methodology/Ideas/Procedure | <ul><li>Appropriate transfer of theories/models</li><li>Clear information about the chosen Methodology/Idea/Procedure</li></ul> | 20%
+Quality of implementation | Quality of implementation and documentation | 40%
+Creativity/Correctness | <ul><li>Creativity of the solution approach</li><li>Solution implemented fulfils intended objective</li></ul> | 20%
+Formal requirements | Compliance with formal requirements | 10%
 
+The design and construction of the portfolio should take into account the above evaluation criteria, including the following explanations:
 
-Problem Solving Techniques 
-*Capturing the problem
-*Clear problem definition/objective
-*Understandable concept
-10%
-Methodology/Ideas/Procedure *Appropriate transfer of theories/models
-*Clear information about the chosen Methodology/Idea/Procedure
-20%
-Quality of implementation *Quality of implementation and documentation 40%
-Creativity/Correctness *Creativity of the solution approach
-*Solution implemented fulfils intended objective
-20%
-Formal requirements * Compliance with formal requirements 10%
-The design and construction of the portfolio should take into account the above evaluation criteria, including the
-following explanations:
-Problem Solving Techniques: Clear scope and goals as well as comprehensibility of the project, clear beneficiaries of the solution, use of appropriate technologies, libraries and services, understandable setup and execution
-of the application.
-Methodology/Idea/Procedure: Appropriate selection and application of methods and techniques, consistent adherence to the chosen software development methodology, traceable use of methodologies, techniques and best
-practices, recognizable significant design and technology decisions, meaningful choices.
-Quality of implementation: Visible concept of software and system architecture, implementation and testing,
-traceability of the vision, requirements and implemented features, comprehensibility of the architecture documentation and software, intuitive operation of the graphical user interface, compliance with the acceptance criteria outlined in chapter 3.
-Creativity/Correctness: Addressing a previously unsolved customer problem with the project, new benefits and
-/or innovative features, correct understanding and implementation of the customer requirements, ensuring correct software by means of testing.
-Formal requirements: The submission follows the acceptance criteria from chapter 3 and the formal guidelines
-provided in the “Guidelines for the creation of a portfolio”. It is particularly important to respect the formal submission requirements outlined in Chapter 4.
+**Problem Solving Techniques**: Clear scope and goals as well as comprehensibility of the project, clear beneficiaries of the solution, use of appropriate technologies, libraries and services, understandable setup and execution of the application.
+
+**Methodology/Idea/Procedure**: Appropriate selection and application of methods and techniques, consistent adherence to the chosen software development methodology, traceable use of methodologies, techniques and best practices, recognizable significant design and technology decisions, meaningful choices.
+
+**Quality of implementation**: Visible concept of software and system architecture, implementation and testing, traceability of the vision, requirements and implemented features, comprehensibility of the architecture documentation and software, intuitive operation of the graphical user interface, compliance with the acceptance criteria outlined in chapter 3.
+
+**Creativity/Correctness**: Addressing a previously unsolved customer problem with the project, new benefits and/or innovative features, correct understanding and implementation of the customer requirements, ensuring correct software by means of testing.
+
+**Formal requirements**: The submission follows the acceptance criteria from chapter 3 and the formal guidelines provided in the “Guidelines for the creation of a portfolio”. It is particularly important to respect the formal submission requirements outlined in Chapter 4.
 
 # 4. FORMAL GUIDELINES AND SPECIFICATIONS FOR SUBMISSION
 
 ## 4.1. Components of the examination performance
 
-The following is an overview of the examination performance portfolio with its individual phases, individual performances to be submitted, and feedback stages at one glance. A template in “PebblePad” is provided for the
-development of the portfolio parts within the scope of the examination performance. The presentation is part of
+The following is an overview of the examination performance portfolio with its individual phases, individual performances to be submitted, and feedback stages at one glance. A template in “PebblePad” is provided for the development of the portfolio parts within the scope of the examination performance. The presentation is part of
 this examination.
-Stage Intermediate result Performance to be submitted
-Conception phase Portfolio part 1 - Concept presentation in written form (approx. 1/2 page),
-consisting of a summary of the project proposal and your
-considerations with respect to the chosen software development methodology
-- A composite presentation PDF including
-o the complete project profile,
-o the requirements
-o a glossary
-o the system design with at least the system
-scope and context and a diagram with the
-building block view
-Feedback
-Development phase/
-reflection phase
-Portfolio part 2 - Explanation of your design and implementation procedure in written form (approx. 1/2 page)
-- A composite presentation PDF including
-o the updated requirements
-o the complemented architecture documentation
-o references and hyperlinks to the frameworks,
-third-party libraries, and tools as well as the rationale behind your choice
-Feedback
-Finalization phase Portfolio part 3 - 2-page abstract (making of)
-- A .txt file including the link to your public GitHub repository, and – in the case of a web application – the link to
-the application and if applicable the login data
-- Upload the zip-folder (incl. all files and the final product
-with its installation manual according to the structure
-and content defined in chapter 4.2)
-- Result from phase 1
-- Result from phase 2
-Feedback + Grade
+
+Stage | Intermediate result | Performance to be submitted
+--- | --- | ---
+Conception phase | Portfolio part 1 | <ul><li>Concept presentation in written form (approx. 1/2 page), consisting of a summary of the project proposal and your considerations with respect to the chosen software development methodology</li><li>A composite presentation PDF <ul><li>the complete project profile</li><li>the requirements</li><li>a glossary</li><li>the system design with at least the system scope and context and a diagram with the building block view</li></ul></li></ul>
+| | | Feedback
+Development phase/reflection phase | Portfolio part 2 | <ul><li>Explanation of your design and implementation procedure in written form (approx. 1/2 page)</li><li>A composite presentation PDF <ul><li>the updated requirements</li><li>the complemented architecture documentation</li><li>references and hyperlinks to the frameworks, third-party libraries, and tools as well as the rationale behind your choice</li></ul></li></ul>
+| | | Feedback
+Finalization phase | Portfolio part 3 | <ul><li>2-page abstract (making of)</li><li>A .txt file including the link to your public GitHub repository, and – in the case of a web application – the link to the application and if applicable the login data</li><li>Upload the zip-folder (incl. all files and the final product with its installation manual according to the structure and content defined in chapter 4.2)</li><li>Result from phase 1</li><li>Result from phase 2</li></ul>
+| | | Feedback + Grade
 
 ## 4.2. Format for Digital File Submission
-Conception phase
-Recommended tools/software for
-processing
-- Word, Powerpoint, Excel or LaTex
-- Tools to draw software models (e.g. Visio, Enterprise Architect, SmartDraw,
-Edraw)
-Permitted file formats PDF
-File size Max. 15 MB
-Further formalities and parameters Files must always be named according to the following pattern:
-For the performance-relevant submissions on “PebblePad”:
-Name-First_Name_MatrNo_Course _P(hase)-1_S(ubmission)
-Example: Mustermann-Max_12345678_ PSE _P1_S
-Development/reflection phase
-Recommended tools/software for
-processing
-- Word, Powerpoint, Excel or LaTex
-- Tools to draw software models (e.g., Visio, Enterprise Architect, SmartDraw,
-Edraw)
-- Researched tool selection for task implementation
-Permitted file formats PDF
-File size Max. 15 MB
-Further formalities and parameters Files must always be named according to the following pattern:
-For the performance-relevant submissions on “PebblePad”:
-Name-First_Name_MatrNo_Course _P(hase)-2_S(ubmission)
-Example: Mustermann-Max_12345678_ PSE _P2_S
-Finalization phase
-Recommended tools/software for
-processing
-- Word, Powerpoint, Excel or LaTex
-- Tools to draw software models (e.g., Visio, Enterprise Architect, SmartDraw,
-Edraw)
-- Researched tool selection for task implementation
-Permitted file formats - PebblePad: PDF, TXT
-- GitHub: various file formats for your application and its documentation; PDF
-for other related documentation such as installation instructions, etc.
-- Zip folder: various file formats for submissions from all three phases. The
-code submitted via GitHub also must be added to the zip folder by creating a
-ZIP file from all the files.
-File size as small as possible
-Further formalities and parameters The practical work must be submitted on GitHub.
-IMPORTANT is the upload of the zip folder that has been created especially for the submission (please follow the instructions on myCampus). This folder contains all the files
-you used to complete the task. To ensure a better overview, please create subdirectories for this purpose.
-The folder structure then looks like this:
-o Main directory (name of the zip folder) -> Name: Name-First_Name_Matriculation_Course
-- Subdirectory (these are the project profile, project plans and further documents related to the planning and the management of the project) -> Name:
-01-Project-management
-- Subdirectory (these are requirements documents, glossary etc.) -> Name: 02-
-Requirements
-- Subdirectory (the software and system documentation, all diagrams etc.) ->
-Name: 03-Architecture-documentation
-- Subdirectory (the program code and related documentation, corresponding
-to your upload in the GitHub repository) -> Name: 04-Implementation. In this
-subdirectory, you upload a zipped version (ZIP file with all program code)
-with the following naming convention: Name-FirstName_MatrNo_Course_Submission_Code.zip
-Please make sure that you either embed the images (and fonts, if any) linked in your
-document or to place them in the respective directory. Otherwise your documents cannot be opened completely and therefore cannot be assessed!
-For the submission of your code on GitHub you are free to choose your own username.
-You create a public GitHub repository of your choice and upload all your code to it. That
-means your code should be available un-der the following URL schema:
-https://github.com/<user_name>/<repository_name>
-Example: https://github.com/maxmustermann/pse_myproject
-Files must always be named according to the following pattern:
-For the performance-relevant submissions on “PebblePad”:
-Name-FirstName_MatrNo_ Course _P(hase)-3_S(ubmission)
-Example: Mustermann-Max_12345678_ PSE _P3_S
+
+Conception phase | |
+--- | ---
+Recommended tools/software for processing | <ul><li>Word, Powerpoint, Excel or LaTex</li><li>Tools to draw software models (e.g. Visio, Enterprise Architect, SmartDraw, Edraw)</li></ul>
+Permitted file formats | PDF
+File size | Max. 15 MB
+Further formalities and parameters | Files must always be named according to the following pattern: For the performance-relevant submissions on “PebblePad”: Name-First_Name_MatrNo_Course _P(hase)-1_S(ubmission) Example: Mustermann-Max_12345678_ PSE _P1_S
+
+Development/reflection phase | |
+--- | ---
+Recommended tools/software for processing | <ul><li>Word, Powerpoint, Excel or LaTex</li><li>Tools to draw software models (e.g., Visio, Enterprise Architect, SmartDraw, Edraw)</li><li>Researched tool selection for task implementation</li></ul>
+Permitted file formats | PDF
+File size | Max. 15 MB
+Further formalities and parameters | Files must always be named according to the following pattern: For the performance-relevant submissions on “PebblePad”: Name-First_Name_MatrNo_Course _P(hase)-2_S(ubmission) Example: Mustermann-Max_12345678_ PSE _P2_S
+
+Finalization phase | |
+--- | ---
+Recommended tools/software for processing | <ul><li>Word, Powerpoint, Excel or LaTex</li><li>Tools to draw software models (e.g., Visio, Enterprise Architect, SmartDraw, Edraw)</li><li>Researched tool selection for task implementation</li></ul>
+Permitted file formats | <ul><li>PebblePad: PDF, TXT</li><li>GitHub: various file formats for your application and its documentation; PDF for other related documentation such as installation instructions, etc.</li><li>Zip folder: various file formats for submissions from all three phases. The code submitted via GitHub also must be added to the zip folder by creating a ZIP file from all the files.</li></ul>
+File size | as small as possible
+further formalities and parameters | The practical work must be submitted on GitHub. <br><br>**IMPORTANT** is the upload of the zip folder that has been created especially for the submission (please follow the instructions on myCampus). This folder contains all the files you used to complete the task. To ensure a better overview, please create subdirectories for this purpose. <br><br>**The folder structure then looks like this:** <ul><li>Main directory (name of the zip folder) -> Name: Name-First_Name_Matriculation_Course<ul><li>Subdirectory (these are the project profile, project plans and further documents related to the planning and the management of the project) -> Name: 01-Project-management</li><li>Subdirectory (these are requirements documents, glossary etc.) -> Name: 02-Requirements</li><li>Subdirectory (the software and system documentation, all diagrams etc.) -> Name: 03-Architecture-documentation</li><li>Subdirectory (the program code and related documentation, corresponding to your upload in the GitHub repository) -> Name: 04-Implementation. In this subdirectory, you upload a zipped version (ZIP file with all program code) with the following naming convention: Name-FirstName_MatrNo_Course_Submission_Code.zip</li></ul></li></ul> <br><br>Please make sure that you either embed the images (and fonts, if any) linked in your document or to place them in the respective directory. Otherwise your documents cannot be opened completely and therefore cannot be assessed! <br><br>For the submission of your code on GitHub you are free to choose your own username. You create a public GitHub repository of your choice and upload all your code to it. That means your code should be available un-der the following URL schema:<br><br>[https://github.com/<user_name>/<repository_name>]()<br><br>Example: [https://github.com/maxmustermann/pse_myproject](https://github.com/maxmustermann/pse_myproject)<br><br>Files must always be named according to the following pattern:<br><br>**For the performance-relevant submissions on “PebblePad”:**<br>Name-FirstName_MatrNo_ Course _P(hase)-3_S(ubmission)<br>Example: Mustermann-Max_12345678_ PSE _P3_S
 
 ## 4.3. Format of Abstract
 
