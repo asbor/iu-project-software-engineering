@@ -248,16 +248,15 @@ further formalities and parameters | The practical work must be submitted on Git
 
 ## 4.3. Format of Abstract
 
-Length 2 pages of text
-Paper size DIN A4
-Margins Top and bottom 2cm; left 2cm; right 2cm
-Font General Text - Arial 11 pt.; Headings - 12 pt., Justify
-Line Spacing 1,5
-Sentences Justified; hyphenation
-Footnotes Arial 10 pt., Justify
-Paragraphs According to mental structure - 6 pt. after line break
-Affidavit The affidavit shall be made in electronic form via “myCampus”. No submission of the examination performance is possible before it.
-Please follow the instructions for submitting a portfolio on “myCampus”.
+key | value
+--- | ---
+Length | 2 pages of text
+Font | Arial 11 pt.
+Line Spacing | 1,5
+Paragraphs | According to mental structure - 6 pt. after line break
+Affidavit | The affidavit shall be made in electronic form via “myCampus”. No submission of the examination performance is possible before it.<br><br>Please follow the instructions for submitting a portfolio on “myCampus”.
+
 If you have any questions regarding the submission of the portfolio, please contact the exam office via mail.
 Please also note the instructions for using PebblePad & Atlas!
+
 Good luck creating your portfolio!
