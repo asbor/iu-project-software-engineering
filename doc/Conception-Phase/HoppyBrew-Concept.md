@@ -25,7 +25,7 @@ The purpose of the project is to develop a web application that caters to the ne
 - Enable seamless integration with iSpindel over Ethernet for real-time monitoring and tracking of the fermentation process.
 - Facilitate meticulous inventory management of brewing supplies and generate shopping lists based on selected recipes.
 - Ensure the application operates within a Docker container, providing users with easy account creation and login procedures.
-- Retrieve a comprehensive database of beer styles from sources such as https://www.brewersassociation.org/ to provide a baseline for users.
+- Retrieve a comprehensive database of beer styles from sources such as [https://www.brewersassociation.org/](https://www.brewersassociation.org/) to provide a baseline for users.
 - Allow users to search and import recipes from various sources to expand their brewing repertoire.
 
 ### 3. Application Selection
