@@ -85,7 +85,6 @@ Mitigating risks is a crucial aspect of project management, especially given the
 By proactively addressing these risks and implementing appropriate mitigation strategies, the project aims to minimize disruptions and maximize the likelihood of successful outcomes.
 
 # 5. Acceptance Criteria
-# 5. Acceptance Criteria
 
 ## 5.1 Programming Language and Libraries
 
