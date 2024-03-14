@@ -20,76 +20,109 @@ The purpose of the project is to develop a web application that caters to the ne
 
 ## 2.2 Goals and Objectives
 
-- Provide brewing enthusiasts with a bespoke solution for recipe management, eliminating reliance on subscription-based services.
-- Offer users a user-friendly interface for creating, editing, and deleting recipes, enhancing the overall brewing experience.
-- Enable seamless integration with iSpindel over Ethernet for real-time monitoring and tracking of the fermentation process.
-- Facilitate meticulous inventory management of brewing supplies and generate shopping lists based on selected recipes.
-- Ensure the application operates within a Docker container, providing users with easy account creation and login procedures.
-- Retrieve a comprehensive database of beer styles from sources such as [https://www.brewersassociation.org/](https://www.brewersassociation.org/) to provide a baseline for users.
-- Allow users to search and import recipes from various sources to expand their brewing repertoire.
+The overarching goals and objectives for the final project include:
 
-### 3. Application Selection
+- Develop a comprehensive web application tailored for brewing enthusiasts and homebrewers, emphasizing self-hosting, ad-free, and subscription-free usage.
+- Provide users with a user-friendly interface for recipe management, inventory tracking, batch monitoring, and integration with external databases for beer styles.
+- Ensure the application's scalability and flexibility to accommodate future enhancements and integrations.
+- Establish a robust framework for continuous improvement and iteration based on user feedback and evolving requirements.
+- Create a sustainable development process using the Scrum methodology to mitigate risks and deliver incremental value throughout the project lifecycle.
+- Lay the foundation for future iterations and expansions beyond the scope of the initial project, allowing for ongoing development and improvement post-completion.
 
-   3.1 Type of Application
+These goals and objectives will serve as the guiding principles for the project, with further breakdowns and refinement occurring during the iterative development process within the Scrum framework.
 
-   - Encourage creativity in selecting the type of application.
+# 3. Application Selection
 
-   3.2 Criteria Compliance
+## 3.1 Type of Application
 
-   - Discuss how the chosen application will deliver customer value and present something new.
+The selected application is a web-based solution intended for self-hosting, accessible across various devices such as desktops, tablets, and smartphones. Developed using modern web technologies, it ensures compatibility with popular web browsers and mobile devices. The application will run within a Docker container, ensuring a seamless and secure environment for managing brewing processes.
 
-   3.3 Web Browser Compatibility
+## 3.2 Criteria Compliance
 
-   - Explain the necessity for the application to run in a web browser.
+The application will adhere to the following criteria:
+
+- **Self-hosted:** Users can independently manage their brewing processes.
+- **Ad-free:** Ensures a seamless user experience without interruptions from advertisements.
+- **Subscription-free:** Eliminates dependency on subscription-based services for access.
+- **User-friendly:** Features an intuitive interface for effortless recipe creation, sharing, and management.
+- **Scalable and flexible:** Capable of accommodating future enhancements and integrations.
+- **Sustainable development:** Developed using the Scrum methodology for a sustainable development process.
+- **Continuous improvement:** Lays the groundwork for ongoing development and improvement post-completion.
+- **Compatibility:** Ensures accessibility across different platforms and devices.
+- **Secure:** Hosted within a Docker container to provide a secure environment.
+- **Integration:** Integrates with external databases for comprehensive beer style information.
+- **Monitoring:** Enables active monitoring and tracking of the fermentation process with iSpindel over Ethernet.
+- **Inventory tracking:** Assists users in managing brewing inventory and generating shopping lists.
+- **User feedback:** Incorporates user feedback for continuous improvement and iteration.
+- **Future expansions:** Provides a foundation for future iterations and expansions.
+- **Modern web technologies:** Developed using contemporary web technologies.
+- **Docker container:** Hosted within a Docker container for enhanced security and stability.
 
 ### 4. Methodologies and Tools
-   4.1 Methodologies
 
-   - Discuss the methodologies, techniques, and tools to be used at each stage of development.
+#### 4.1 Methodologies
 
-   4.2 Risk Mitigation
+For the development of the project, the Scrum methodology will be adopted. Scrum is chosen for its iterative and incremental approach, which allows for the gradual improvement and refinement of the application over time. This methodology will guide the development process, ensuring effective collaboration, continuous feedback, and adaptation to evolving requirements.
 
-   - Emphasize the importance of minimizing risks at every phase of the project.
+##### Tools and Technologies:
+- **Scrum Framework:** Utilized to manage the project's development process, including sprint planning, daily stand-ups, sprint reviews, and retrospectives.
+- **Vue.js:** Selected for frontend development, although the developer has limited experience with it. This will be an opportunity to learn and apply new skills.
+- **Figma:** Employed for web design, despite the developer's unfamiliarity with it. The learning curve will be navigated to create a visually appealing and user-friendly interface.
+- **Python API and Postgres:** Used for backend development, with the developer having some experience that will be further developed throughout the project.
+- **Web Scraping:** Required for retrieving data from external sources, an area where the developer lacks experience but is willing to explore and learn.
 
-### 5. Acceptance Criteria
+#### 4.2 Risk Mitigation
 
-   5.1 Programming Language and Libraries
+Mitigating risks is a crucial aspect of project management, especially given the numerous challenges and uncertainties faced. To address potential risks, the following strategies will be implemented:
 
-   - Emphasize the freedom to choose tools but restrict copying or modifying third-party applications.
+- **Learning and Skill Development:** Dedicated time will be allocated to learning and mastering new tools and technologies, including Vue.js, Figma, Python API, Postgres, and web scraping.
+- **Support Networks:** Leveraging online resources, forums, and communities to seek guidance, support, and advice when encountering challenges during the development process.
+- **Time Management:** Implementing effective time management strategies to balance project work with personal responsibilities as a stay-at-home dad.
+- **Incremental Development:** Adopting the Scrum methodology to break down the project into manageable tasks and prioritize them based on importance and complexity, allowing for incremental progress and adaptation to changing circumstances.
+- **Continuous Learning and Adaptation:** Embracing a growth mindset and remaining open to feedback and constructive criticism, using each setback as an opportunity for learning and improvement.
+- **Contingency Planning:** Anticipating potential obstacles and setbacks and developing contingency plans to mitigate their impact on project progress.
 
-   5.2 Web-based GUI
+By proactively addressing these risks and implementing appropriate mitigation strategies, the project aims to minimize disruptions and maximize the likelihood of successful outcomes.
 
-   - Describe the requirements for a self-explanatory and intuitive graphical user interface.
+# 5. Acceptance Criteria
 
-   5.3 Value to Customers
+## 5.1 Programming Language and Libraries
 
-   - Explain the need for essential features and solving basic problems for the target group.
+The choice of programming language and libraries for the project is left to the discretion of the developer. However, it is imperative to ensure that any third-party applications used are not simply copied or modified from existing sources found on the internet. While the freedom to select tools is encouraged, originality and adherence to ethical coding practices are paramount.
 
-   5.4 Non-functional Requirements
+## 5.2 Web-based GUI
 
-   - Highlight the importance of meeting non-functional requirements or addressing them as technical debt.
+The graphical user interface (GUI) of the web application must be self-explanatory and intuitive for users. It should facilitate seamless navigation and interaction, ensuring that users can easily understand and utilize the features of the application without encountering unnecessary complexity. Clear and concise design principles should guide the development of the GUI, prioritizing usability and user satisfaction.
 
-   5.5 Documentation
+## 5.3 Value to Customers
 
-   - Specify the required project documentation, including profiles, requirements, software, and system architecture.
+The application must deliver significant value to its target audience, addressing their fundamental needs and providing essential features that enhance their brewing experience. By solving basic problems and offering innovative solutions, the application should strive to become an indispensable tool for brewing enthusiasts and homebrewers, improving their efficiency, productivity, and enjoyment of the brewing process.
 
-   5.6 Version and Release Control
+## 5.4 Non-functional Requirements
 
-   - Emphasize the establishment of version and release control for both software and architecture documentation.
+In addition to meeting functional requirements, the application must fulfill non-functional requirements to ensure optimal performance, reliability, and usability. Any identified non-functional requirements that cannot be met within the project scope should be documented as technical debt, with plans in place for future resolution or mitigation.
 
-   5.7 GitHub Repository
+## 5.5 Documentation
 
-   - Instruct on the necessity to provide source code and files on GitHub as part of building a portfolio.
+Comprehensive project documentation is essential for ensuring transparency, accountability, and maintainability throughout the project lifecycle. This documentation should include profiles, requirements specifications, software design, and system architecture documentation, providing valuable insights into the project's development process and facilitating future enhancements or modifications.
 
-   5.8 Cloud Hosting
+## 5.6 Version and Release Control
 
-   - Specify the requirement for web applications to be cloud-hosted (e.g., AWS, Google Cloud).
+Establishing version and release control mechanisms is critical for managing changes to the software and its associated documentation. By implementing robust version control practices, including the use of Git and GitHub, the project can track changes, manage collaboration, and ensure the integrity and availability of all project assets.
 
-   5.9 Installation and Run Instructions
+## 5.7 GitHub Repository
 
-   - Highlight the need for clear instructions for installing and running the application.
+Hosting the project's source code and files on GitHub is essential for building a comprehensive project portfolio. By maintaining a public repository on GitHub, the developer can showcase their coding skills, project management abilities, and commitment to open collaboration and continuous improvement within the software development community.
 
-### 6. Phases Overview
+## 5.8 Cloud Hosting
+
+Web applications must be hosted on cloud platforms such as AWS, Google Cloud, or similar services to ensure accessibility and scalability. Cloud hosting provides users with direct access to the application's frontend via web browsers, enabling seamless interaction and collaboration across different devices and locations.
+
+## 5.9 Installation and Run Instructions
+
+Clear and concise instructions for installing and running the application must be provided to users. These instructions should guide users through the setup process, including any prerequisites or dependencies, and provide step-by-step guidance on launching the application locally or accessing it via the cloud hosting platform. By facilitating easy installation and deployment, the application can maximize its accessibility and usability for users.
+
+# 6. Phases Overview
 
    6.1 Conception Phase
 
