@@ -58,20 +58,20 @@ The application will adhere to the following criteria:
 - **Modern web technologies:** Developed using contemporary web technologies.
 - **Docker container:** Hosted within a Docker container for enhanced security and stability.
 
-### 4. Methodologies and Tools
+# 4. Methodologies and Tools
 
-#### 4.1 Methodologies
+## 4.1 Methodologies
 
 For the development of the project, the Scrum methodology will be adopted. Scrum is chosen for its iterative and incremental approach, which allows for the gradual improvement and refinement of the application over time. This methodology will guide the development process, ensuring effective collaboration, continuous feedback, and adaptation to evolving requirements.
 
-##### Tools and Technologies:
+### Tools and Technologies:
 - **Scrum Framework:** Utilized to manage the project's development process, including sprint planning, daily stand-ups, sprint reviews, and retrospectives.
 - **Vue.js:** Selected for frontend development, although the developer has limited experience with it. This will be an opportunity to learn and apply new skills.
 - **Figma:** Employed for web design, despite the developer's unfamiliarity with it. The learning curve will be navigated to create a visually appealing and user-friendly interface.
 - **Python API and Postgres:** Used for backend development, with the developer having some experience that will be further developed throughout the project.
 - **Web Scraping:** Required for retrieving data from external sources, an area where the developer lacks experience but is willing to explore and learn.
 
-#### 4.2 Risk Mitigation
+## 4.2 Risk Mitigation
 
 Mitigating risks is a crucial aspect of project management, especially given the numerous challenges and uncertainties faced. To address potential risks, the following strategies will be implemented:
 
@@ -85,42 +85,79 @@ Mitigating risks is a crucial aspect of project management, especially given the
 By proactively addressing these risks and implementing appropriate mitigation strategies, the project aims to minimize disruptions and maximize the likelihood of successful outcomes.
 
 # 5. Acceptance Criteria
+# 5. Acceptance Criteria
 
 ## 5.1 Programming Language and Libraries
 
-The choice of programming language and libraries for the project is left to the discretion of the developer. However, it is imperative to ensure that any third-party applications used are not simply copied or modified from existing sources found on the internet. While the freedom to select tools is encouraged, originality and adherence to ethical coding practices are paramount.
+### Requirement:
+- The project allows freedom in selecting programming languages and libraries.
+
+### Intended Solution:
+- Developers can choose appropriate tools for implementation, ensuring compatibility and efficiency while maintaining ethical coding practices.
 
 ## 5.2 Web-based GUI
 
-The graphical user interface (GUI) of the web application must be self-explanatory and intuitive for users. It should facilitate seamless navigation and interaction, ensuring that users can easily understand and utilize the features of the application without encountering unnecessary complexity. Clear and concise design principles should guide the development of the GUI, prioritizing usability and user satisfaction.
+### Requirement:
+- The web application must feature a self-explanatory and intuitive graphical user interface (GUI).
+
+### Intended Solution:
+- The GUI design prioritizes user-friendly navigation and interaction, fostering ease of use and understanding for users of all skill levels.
 
 ## 5.3 Value to Customers
 
-The application must deliver significant value to its target audience, addressing their fundamental needs and providing essential features that enhance their brewing experience. By solving basic problems and offering innovative solutions, the application should strive to become an indispensable tool for brewing enthusiasts and homebrewers, improving their efficiency, productivity, and enjoyment of the brewing process.
+### Requirement:
+- The application must provide significant value to the target audience, addressing their fundamental needs and enhancing their brewing experience.
+
+### Intended Solution:
+- By delivering essential features and innovative solutions, the application aims to become an indispensable tool for brewing enthusiasts and homebrewers, improving their efficiency and enjoyment of the brewing process.
 
 ## 5.4 Non-functional Requirements
 
-In addition to meeting functional requirements, the application must fulfill non-functional requirements to ensure optimal performance, reliability, and usability. Any identified non-functional requirements that cannot be met within the project scope should be documented as technical debt, with plans in place for future resolution or mitigation.
+### Requirement:
+- The application must meet non-functional requirements to ensure optimal performance, reliability, and usability.
+
+### Intended Solution:
+- Any identified non-functional requirements that cannot be met within the project scope will be documented as technical debt, with plans for future resolution or mitigation.
 
 ## 5.5 Documentation
 
-Comprehensive project documentation is essential for ensuring transparency, accountability, and maintainability throughout the project lifecycle. This documentation should include profiles, requirements specifications, software design, and system architecture documentation, providing valuable insights into the project's development process and facilitating future enhancements or modifications.
+### Requirement:
+- Comprehensive project documentation must be provided, including profiles, requirements specifications, software design, and system architecture documentation.
+
+### Intended Solution:
+- The project documentation will offer insights into the development process and facilitate future enhancements or modifications, ensuring transparency and maintainability.
 
 ## 5.6 Version and Release Control
 
-Establishing version and release control mechanisms is critical for managing changes to the software and its associated documentation. By implementing robust version control practices, including the use of Git and GitHub, the project can track changes, manage collaboration, and ensure the integrity and availability of all project assets.
+### Requirement:
+- Version and release control mechanisms must be established to manage changes to the software and its associated documentation.
+
+### Intended Solution:
+- By implementing robust version control practices, including the use of Git and GitHub, the project will track changes, manage collaboration, and ensure the integrity and availability of all project assets.
 
 ## 5.7 GitHub Repository
 
-Hosting the project's source code and files on GitHub is essential for building a comprehensive project portfolio. By maintaining a public repository on GitHub, the developer can showcase their coding skills, project management abilities, and commitment to open collaboration and continuous improvement within the software development community.
+### Requirement:
+- The project's source code and files must be hosted on GitHub as part of building a comprehensive project portfolio.
+
+### Intended Solution:
+- Maintaining a public repository on GitHub will showcase coding skills, project management abilities, and commitment to open collaboration and continuous improvement within the software development community.
 
 ## 5.8 Cloud Hosting
 
-Web applications must be hosted on cloud platforms such as AWS, Google Cloud, or similar services to ensure accessibility and scalability. Cloud hosting provides users with direct access to the application's frontend via web browsers, enabling seamless interaction and collaboration across different devices and locations.
+### Requirement:
+- Web applications must be hosted on cloud platforms such as AWS, Google Cloud, or similar services for accessibility and scalability.
+
+### Intended Solution:
+- Cloud hosting provides users with direct access to the application's frontend via web browsers, enabling seamless interaction and collaboration across different devices and locations.
 
 ## 5.9 Installation and Run Instructions
 
-Clear and concise instructions for installing and running the application must be provided to users. These instructions should guide users through the setup process, including any prerequisites or dependencies, and provide step-by-step guidance on launching the application locally or accessing it via the cloud hosting platform. By facilitating easy installation and deployment, the application can maximize its accessibility and usability for users.
+### Requirement:
+- Clear and concise instructions for installing and running the application must be provided to users.
+
+### Intended Solution:
+- By facilitating easy installation and deployment, the application maximizes its accessibility and usability for users, ensuring a smooth user experience from setup to operation.
 
 # 6. Phases Overview
 
@@ -132,7 +169,7 @@ Clear and concise instructions for installing and running the application must b
 
    - Provide a brief overview of the upcoming phases.
 
-### 7. Conclusion
+# 7. Conclusion
 
    7.1 Summary
 
