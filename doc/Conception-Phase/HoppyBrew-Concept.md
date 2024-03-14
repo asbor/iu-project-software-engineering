@@ -4,35 +4,29 @@
 
 ## 1.1 Background
 
-Welcome to the world of HoppyBrew, a purpose-built web application tailored for brewing enthusiasts and homebrewers with a unique focus on self-hosting. Born out of the creator's personal journey into the realms of homebrewing and self-hosting, HoppyBrew has emerged as a distinct solution to address the challenges faced in managing brewing processes efficiently.
+HoppyBrew is a web application tailored for brewing enthusiasts and homebrewers, designed for self-hosting. Developed as part of the Software Engineering course at the Faculty of Informatics, International University of Applied Sciences Bad Honnef - Bonn, HoppyBrew addresses the critical need for streamlined management of brewing processes.
 
-### 1.1.1 Inception
+Crafted from the personal journey of the creator as a homebrewer venturing into self-hosting, HoppyBrew aims to be a bespoke solution. This web application empowers users to independently create, share, and manage their beer recipes, eliminating any dependence on subscription-based services like Brewfather.
 
-HoppyBrew finds its roots in the Software Engineering course at the Faculty of Informatics, International University of Applied Sciences Bad Honnef - Bonn. Inspired by notable platforms like [Brewfather](https://brewfather.app/) and [Beersmith](https://beersmith.com/), this web application operates seamlessly within a Docker container and incurs no associated costs.
+What sets HoppyBrew apart is its self-hosted architecture within a Docker container, providing users with easy account creation, login, and seamless control over recipe-related tasks such as creation, editing, and deletion. The application also boasts a user-friendly search function for recipes based on name, style, or ingredients.
 
-### 1.1.2 Purpose and Vision
-
-At its core, HoppyBrew aims to provide brewing enthusiasts with a bespoke solution for independent creation, sharing, and management of beer recipes. The primary objective is to eliminate reliance on subscription-based services, offering users the freedom to control their brewing experiences.
-
-### 1.1.3 Unique Features
-
-What sets HoppyBrew apart is its self-hosted architecture within a Docker container. Users benefit from straightforward account creation, login procedures, and effortless control over recipe-related tasks such as creation, editing, and deletion. The application boasts a user-friendly search function enabling users to discover recipes based on name, style, or ingredients.
-
-### 1.1.4 Beyond Recipe Management
-
-HoppyBrew transcends conventional recipe management by seamlessly integrating with iSpindel over Ethernet. This integration empowers users to actively monitor and track the fermentation process, providing real-time insights. Additionally, the application assists users in maintaining a meticulous inventory of brewing supplies and generates shopping lists based on selected recipes, enhancing the overall brewing experience.
-
-Join us on this brewing journey with HoppyBrew, where innovation meets tradition, and the art of crafting the perfect brew is at your fingertips. Cheers to a new era of homebrewing!
+Beyond recipe management, HoppyBrew integrates seamlessly with iSpindel over Ethernet, allowing users to actively monitor and track the fermentation process. It further aids users in keeping a meticulous record of their brewing inventory and generates shopping lists based on selected recipes, thereby elevating the overall brewing experience for users.
 
 # 2. Project Overview
 
-   2.1 Purpose
+## 2.1 Purpose
 
-   - Clearly define the purpose of the project.
-   
-   2.2 Goals and Objectives
+The purpose of the project is to develop a web application that caters to the needs of brewing enthusiasts and homebrewers, with a specific focus on self-hosting. HoppyBrew aims to streamline the management of brewing processes, empowering users to create, share, and manage their beer recipes independently. Additionally, the application is designed to be ad-free and subscription-free, ensuring a seamless and uninterrupted user experience.
 
-   - List the main goals and objectives the application aims to achieve.
+## 2.2 Goals and Objectives
+
+- Provide brewing enthusiasts with a bespoke solution for recipe management, eliminating reliance on subscription-based services.
+- Offer users a user-friendly interface for creating, editing, and deleting recipes, enhancing the overall brewing experience.
+- Enable seamless integration with iSpindel over Ethernet for real-time monitoring and tracking of the fermentation process.
+- Facilitate meticulous inventory management of brewing supplies and generate shopping lists based on selected recipes.
+- Ensure the application operates within a Docker container, providing users with easy account creation and login procedures.
+- Retrieve a comprehensive database of beer styles from sources such as https://www.brewersassociation.org/ to provide a baseline for users.
+- Allow users to search and import recipes from various sources to expand their brewing repertoire.
 
 ### 3. Application Selection
 
