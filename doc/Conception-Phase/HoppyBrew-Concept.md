@@ -88,93 +88,75 @@ By proactively addressing these risks and implementing appropriate mitigation st
 
 ## 5.1 Programming Language and Libraries
 
-### Requirement 1:
-
-- The project allows freedom in selecting programming languages and libraries.
+### Requirement:
+The project permits flexibility in selecting programming languages and libraries to ensure compatibility and efficiency while upholding ethical coding practices.
 
 ### Intended Solution:
-
-- Developers can choose appropriate tools for implementation, ensuring compatibility and efficiency while maintaining ethical coding practices.
+The front end will be developed using Vue.js for its robust features and ease of use. Python will be utilized for the back end to leverage its versatility and extensive libraries. The database will be implemented in SQL for reliable data storage and retrieval.
 
 ## 5.2 Web-based GUI
 
-### Requirement 2:
-
-- The web application must feature a self-explanatory and intuitive graphical user interface (GUI).
+### Requirement:
+The web application must feature a user-friendly and intuitive graphical user interface (GUI) to facilitate seamless navigation and interaction for users of all skill levels.
 
 ### Intended Solution:
-
-- The GUI design prioritizes user-friendly navigation and interaction, fostering ease of use and understanding for users of all skill levels.
+The GUI design will prioritize clear layout and intuitive controls, enhancing user experience and usability. User feedback will be solicited and incorporated iteratively to refine the GUI design and ensure optimal usability.
 
 ## 5.3 Value to Customers
 
-### Requirement 3:
-
-- The application must provide significant value to the target audience, addressing their fundamental needs and enhancing their brewing experience.
+### Requirement:
+The application must provide substantial value to its target audience by addressing their core needs and enhancing their brewing experience.
 
 ### Intended Solution:
-
-- By delivering essential features and innovative solutions, the application aims to become an indispensable tool for brewing enthusiasts and homebrewers, improving their efficiency and enjoyment of the brewing process.
+The application will offer essential features such as recipe management, inventory tracking, and batch monitoring to streamline brewing processes. Integration with external databases for beer styles and the ability to import recipes from various sources will further enrich the user experience, delivering tangible value to customers.
 
 ## 5.4 Non-functional Requirements
 
-### Requirement 4:
-
-- The application must meet non-functional requirements to ensure optimal performance, reliability, and usability.
+### Requirement:
+The application must meet non-functional requirements such as performance, reliability, and security to ensure optimal operation and user satisfaction.
 
 ### Intended Solution:
-
-- Any identified non-functional requirements that cannot be met within the project scope will be documented as technical debt, with plans for future resolution or mitigation.
+Emphasis will be placed on optimizing application performance, implementing robust security measures, and ensuring reliable operation to meet non-functional requirements. Any identified non-functional requirements that cannot be met initially will be documented as technical debt for future resolution.
 
 ## 5.5 Documentation
 
-### Requirement 5:
-
-- Comprehensive project documentation must be provided, including profiles, requirements specifications, software design, and system architecture documentation.
+### Requirement:
+Comprehensive project documentation, including profiles, requirements specifications, software design, and system architecture, must be provided to facilitate understanding and maintainability.
 
 ### Intended Solution:
-
-- The project documentation will offer insights into the development process and facilitate future enhancements or modifications, ensuring transparency and maintainability.
+Thorough documentation will be prepared at each stage of the project, detailing project objectives, requirements, design decisions, and implementation details. This documentation will serve as a valuable resource for developers, stakeholders, and future maintainers, ensuring transparency and facilitating ongoing development and enhancement of the application.
 
 ## 5.6 Version and Release Control
 
-### Requirement 6:
-
-- Version and release control mechanisms must be established to manage changes to the software and its associated documentation.
+### Requirement:
+Version and release control mechanisms must be established to manage changes to the software and its associated documentation effectively.
 
 ### Intended Solution:
-
-- By implementing robust version control practices, including the use of Git and GitHub, the project will track changes, manage collaboration, and ensure the integrity and availability of all project assets.
+The project will utilize Git for version control, allowing for the tracking of changes, collaboration among team members, and management of software releases. Regular releases will be planned and executed to deliver new features and updates to users in a timely and organized manner.
 
 ## 5.7 GitHub Repository
 
-### Requirement 7:
-
-- The project's source code and files must be hosted on GitHub as part of building a comprehensive project portfolio.
+### Requirement:
+The project's source code and files must be hosted on GitHub to enable collaboration, transparency, and version control.
 
 ### Intended Solution:
-
-- Maintaining a public repository on GitHub will showcase coding skills, project management abilities, and commitment to open collaboration and continuous improvement within the software development community.
+A public GitHub repository will be created to host the project's source code, documentation, and other related files. This repository will serve as a centralized platform for collaboration, allowing developers to contribute code, track changes, and manage project tasks effectively.
 
 ## 5.8 Cloud Hosting
 
-### Requirement 8:
+### Requirement:
+Web applications must be hosted on cloud platforms such as AWS or Google Cloud to ensure accessibility, scalability, and reliability.
 
-- Web applications must be hosted on cloud platforms such as AWS, Google Cloud, or similar services for accessibility and scalability.
-
-### Intended Solution 8:
-
-- Cloud hosting provides users with direct access to the application's frontend via web browsers, enabling seamless interaction and collaboration across different devices and locations.
+### Intended Solution:
+The application will be deployed on a cloud hosting platform, providing users with reliable access to the application's frontend via web browsers. Cloud hosting offers scalability, flexibility, and reliability, ensuring optimal performance and availability for users.
 
 ## 5.9 Installation and Run Instructions
 
-### Requirement 9:
-
-- Clear and concise instructions for installing and running the application must be provided to users.
+### Requirement:
+Clear and concise instructions for installing and running the application must be provided to users to facilitate ease of setup and operation.
 
 ### Intended Solution:
-
-- By facilitating easy installation and deployment, the application maximizes its accessibility and usability for users, ensuring a smooth user experience from setup to operation.
+Comprehensive installation and run instructions will be prepared, guiding users through the process of setting up and running the application on their local environment or accessing it via the cloud hosting platform. These instructions will be user-friendly and easy to follow, ensuring a smooth user experience from installation to operation.
 
 # 6. Phases Overview
 
