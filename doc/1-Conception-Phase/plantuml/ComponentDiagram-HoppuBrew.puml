@@ -1,6 +1,7 @@
 @startuml 
 
 !theme reddress-lightorange
+
 package "Order management system" {
   
   interface ILog
