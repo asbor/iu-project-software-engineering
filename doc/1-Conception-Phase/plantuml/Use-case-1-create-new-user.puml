@@ -1,0 +1,39 @@
+@startuml
+actor User
+participant System
+participant Database
+
+User -> System: Navigate to registration page
+User -> System: Enter email, username, and password
+User -> System: Click "Register" button
+System -> System: Validate user input
+System -> Database: Create new user
+System -> User: Send confirmation email
+User -> User: Receive confirmation email
+User -> System: Click confirmation link
+System -> System: Activate user account
+User -> System: Log in
+System -> User: Redirect to home page
+User -> System: Use system
+User -> System: Log out
+User -> System: Delete account
+User -> System: Reset password
+User -> System: Change password
+
+alt Invalid input
+System -> User: Display error message
+
+alt Existing user
+System -> User: Display error message
+
+alt Confirmation email not received
+User -> User: Check spam folder
+User -> User: Contact support
+
+alt Incorrect confirmation code
+System -> User: Display error message
+
+alt Incorrect login credentials
+System -> User: Display error message
+
+@enduml
