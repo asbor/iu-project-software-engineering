@@ -65,7 +65,7 @@ This use-case describes the process of creating a new user in the system.
 
 ### Main Scenario
 
-[Use case 1 sequence diagram](plantuml/Use-case-1-create-new-user.puml)
+![Fig 2 - Use case 1 sequence diagram](plantuml/Use-case-1-create-new-user.puml)
 
 1. The user navigates to the registration page.
 2. The user enters their email address, username, and password.
