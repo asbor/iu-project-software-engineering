@@ -1,6 +1,36 @@
 # Use-cases
 
-![alt text](../Use-Case-Diagrams-(EA)/HoppyBrew.bmp)
+## Beer Brewing Recipe Manager Overview
+
+The Beer Brewing Recipe Manager conceptualizes a system to simplify the management of brewing processes and related data. It incorporates multiple actors collaborating to enhance different facets of beer brewing.
+
+In this segment, we'll outline the use-cases specific to the Brew application. Figure 1 provides an overview of these use-cases. Further elaboration on each use-case will be presented in subsequent sections.
+
+![Fig 1 - Brew Use case Overview](plantuml/BrewUsecaseOverview/BrewUsecaseOverview.svg)
+
+#### Actors:
+- **Administrator (Admin):** Oversees and manages the overall operation of the brewing system.
+- **Brewer (Brew):** Engages in the brewing process and utilizes the system's functionalities.
+- **Database (DB):** Stores and manages data related to users, recipes, equipment, and other brewing-related information.
+- **ISpindel (Spindel):** Provides real-time data collection capabilities for monitoring the fermentation process.
+
+#### Functionality:
+1. **Manage Users:** Admin has the authority to manage user accounts, including adding, modifying, or removing user profiles.
+2. **Manage Water Profile:** Brew can adjust and customize water profiles used in the brewing process to achieve desired results.
+3. **Manage Equipment Profile:** Brew can configure and maintain equipment profiles, ensuring accurate data for brewing operations.
+4. **Calendar:** Brew can schedule brewing sessions and other related tasks within a calendar interface for better organization.
+5. **Real-time Data Collection:** Brew utilizes Spindel for real-time monitoring of fermentation parameters, providing insights into the brewing process.
+6. **Generate Reports:** Brew can generate reports based on brewing data stored in the database, facilitating analysis and decision-making.
+7. **Manage Own User Account:** Brew can manage their own user account settings, such as password changes or profile updates.
+
+#### Interaction:
+- The management of users and their accounts is integral to the system's functionality, ensuring proper access and permissions.
+- Data related to water and equipment profiles, as well as brewing schedules and reports, are stored and managed in the database.
+- Real-time data collection from Spindel enhances the brewing experience by providing up-to-date information on fermentation progress.
+- Integration with the database enables seamless access to stored data for various system functionalities, such as generating reports or configuring equipment profiles.
+
+This conceptual design aims to provide a comprehensive solution for managing beer brewing processes, catering to the needs of both administrators overseeing the system and brewers actively engaging in brewing activities.
+
 
 ## Use-case 1: Create a new user
 

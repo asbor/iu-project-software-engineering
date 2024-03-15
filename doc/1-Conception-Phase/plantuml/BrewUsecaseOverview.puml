@@ -1,0 +1,30 @@
+@startuml
+
+left to right direction
+
+actor Administrator as Admin
+actor Brewer as Brew
+actor Database as DB
+actor ISpindel as Spindel
+
+Admin -- Brew
+
+rectangle "Beer Brewing Recipe Manager" {
+    Admin --> (Manage Users)
+    Brew --> (Manage Water Profile)
+    Brew --> (Manage Equipment\nProfile)
+    Brew --> (Calendar)
+    Brew --> (Real-time\nData Collection)
+    Brew --> (Generate Reports)
+    Brew --> (Manage Own\nUser Account)
+
+    (Manage Users) .> (Manage Own\nUser Account) : <<Include>>
+    (Real-time\nData Collection) <-- Spindel
+    (Real-time\nData Collection) -- DB
+    (Manage Water Profile) --> DB
+    (Manage Equipment\nProfile) --> DB
+    (Calendar) --> DB
+    (Generate Reports) -- DB
+}
+
+@enduml
