@@ -12,6 +12,7 @@
 * [1. Conception Phase](doc/Conception-Phase.md)
   * [Assignments-Portfolio_DLMCSPSE01](<doc/Conception-Phase/Assignments-Portfolio_DLMCSPSE01 .md>)
   * [HoppyBrew - Concept Documentation](doc/Conception-Phase/HoppyBrew-Concept.md)
+  * [Use cases](doc/Conception-Phase/Use-cases.md)
 
 * [2. Design Phase](doc/Design-Phase.md)
 
