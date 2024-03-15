@@ -1,0 +1,24 @@
+@startuml
+
+skinparam activity {
+    FontSize 15
+    BorderColor Black
+}
+
+start
+:Product Backlog;
+:Sprint Planning Meeting;
+:Sprint Backlog;
+while (Sprint) is (Active) do (Yes)
+    :Daily Standup;
+    if (Any impediments?) then (Yes)
+        :Resolve impediments;
+    endif
+    :Develop increment;
+    :Daily Standup;
+endwhile (No)
+:Review;
+:Retrospective;
+stop
+
+@enduml

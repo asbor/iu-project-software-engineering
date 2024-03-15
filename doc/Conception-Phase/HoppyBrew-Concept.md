@@ -31,13 +31,33 @@ The overarching goals and objectives for the final project include:
 
 These goals and objectives will serve as the guiding principles for the project, with further breakdowns and refinement occurring during the iterative development process within the Scrum framework.
 
-# 3. Application Selection
+# 3. Use-cases
 
-## 3.1 Type of Application
+## 3.1 Use-case 1: Recipe Creation
+
+
+
+### Description:
+
+As a brewing enthusiast, I want to create and manage my beer recipes, including details such as ingredients, quantities, and brewing instructions.
+
+### Actors:
+
+- Brewing Enthusiast
+
+### Preconditions:
+
+- The user is logged into the HoppyBrew application.
+- The user has access to the recipe creation feature.
+- 
+
+# 4. Application Selection
+
+## 4.1 Type of Application
 
 The selected application is a web-based solution intended for self-hosting, accessible across various devices such as desktops, tablets, and smartphones. Developed using modern web technologies, it ensures compatibility with popular web browsers and mobile devices. The application will run within a Docker container, ensuring a seamless and secure environment for managing brewing processes.
 
-## 3.2 Criteria Compliance
+## 4.2 Criteria Compliance
 
 The application will adhere to the following criteria:
 
@@ -58,20 +78,21 @@ The application will adhere to the following criteria:
 - **Modern web technologies:** Developed using contemporary web technologies.
 - **Docker container:** Hosted within a Docker container for enhanced security and stability.
 
-# 4. Methodologies and Tools
+# 5. Methodologies and Tools
 
-## 4.1 Methodologies
+## 5.1 Methodologies
 
 For the development of the project, the Scrum methodology will be adopted. Scrum is chosen for its iterative and incremental approach, which allows for the gradual improvement and refinement of the application over time. This methodology will guide the development process, ensuring effective collaboration, continuous feedback, and adaptation to evolving requirements.
 
 ### Tools and Technologies:
+
 - **Scrum Framework:** Utilized to manage the project's development process, including sprint planning, daily stand-ups, sprint reviews, and retrospectives.
 - **Vue.js:** Selected for frontend development, although the developer has limited experience with it. This will be an opportunity to learn and apply new skills.
 - **Figma:** Employed for web design, despite the developer's unfamiliarity with it. The learning curve will be navigated to create a visually appealing and user-friendly interface.
 - **Python API and Postgres:** Used for backend development, with the developer having some experience that will be further developed throughout the project.
 - **Web Scraping:** Required for retrieving data from external sources, an area where the developer lacks experience but is willing to explore and learn.
 
-## 4.2 Risk Mitigation
+## 5.2 Risk Mitigation
 
 Mitigating risks is a crucial aspect of project management, especially given the numerous challenges and uncertainties faced. To address potential risks, the following strategies will be implemented:
 
@@ -84,9 +105,9 @@ Mitigating risks is a crucial aspect of project management, especially given the
 
 By proactively addressing these risks and implementing appropriate mitigation strategies, the project aims to minimize disruptions and maximize the likelihood of successful outcomes.
 
-# 5. Acceptance Criteria
+# 6. Acceptance Criteria
 
-## 5.1 Programming Language and Libraries
+## 6.1 Programming Language and Libraries
 
 ### Requirement:
 
@@ -96,7 +117,7 @@ The project permits flexibility in selecting programming languages and libraries
 
 The front end will be developed using Vue.js for its robust features and ease of use. Python will be utilized for the back end to leverage its versatility and extensive libraries. The database will be implemented in SQL for reliable data storage and retrieval.
 
-## 5.2 Web-based GUI
+## 6.2 Web-based GUI
 
 ### Requirement:
 
@@ -104,9 +125,9 @@ The web application must feature a user-friendly and intuitive graphical user in
 
 ### Intended Solution:
 
-The GUI design will prioritize clear layout and intuitive controls, enhancing user experience and usability. User feedback will be solicited and incorporated iteratively to refine the GUI design and ensure optimal usability.
+The GUI design will prioritize clear layout and intuitive controls, enhancing user experience and usability. Inspiration will be drawn from modern webpages such as GitBook and Google Photos, with an emphasis on simplicity and elegance. While the design may bear resemblance to existing applications like Brewfather and Beersmith, efforts will be made to innovate and streamline the interface, minimizing the use of windows and pop-ups to improve user flow and engagement. Continuous user feedback will drive iterative refinement of the GUI design to ensure optimal usability and satisfaction.
 
-## 5.3 Value to Customers
+## 6.3 Value to Customers
 
 ### Requirement:
 
@@ -116,7 +137,7 @@ The application must provide substantial value to its target audience by address
 
 The application will offer essential features such as recipe management, inventory tracking, and batch monitoring to streamline brewing processes. Integration with external databases for beer styles and the ability to import recipes from various sources will further enrich the user experience, delivering tangible value to customers.
 
-## 5.4 Non-functional Requirements
+## 6.4 Non-functional Requirements
 
 ### Requirement:
 
@@ -126,7 +147,7 @@ The application must meet non-functional requirements such as performance, relia
 
 Emphasis will be placed on optimizing application performance, implementing robust security measures, and ensuring reliable operation to meet non-functional requirements. Any identified non-functional requirements that cannot be met initially will be documented as technical debt for future resolution.
 
-## 5.5 Documentation
+## 6.5 Documentation
 
 ### Requirement:
 
@@ -134,29 +155,39 @@ Comprehensive project documentation, including profiles, requirements specificat
 
 ### Intended Solution:
 
-Thorough documentation will be prepared at each stage of the project, detailing project objectives, requirements, design decisions, and implementation details. This documentation will serve as a valuable resource for developers, stakeholders, and future maintainers, ensuring transparency and facilitating ongoing development and enhancement of the application.
+To ensure comprehensive project documentation, an organized and systematic approach will be adopted. Markdown files will serve as the primary format for documenting project details, including objectives, requirements, design decisions, and implementation specifics. These markdown files will be stored in the project's GitHub repository and synchronized to GitBook for easy access and navigation.
 
-## 5.6 Version and Release Control
+To streamline the documentation process and ensure consistency, a structured directory hierarchy will be established to categorize and organize the markdown files according to their respective topics and stages of the project. Automated processes, facilitated by tools such as Makefile, will be employed to automate the generation and synchronization of documentation between GitHub and GitBook.
 
-### Requirement:
+Furthermore, R-markdown will be utilized to generate the final documentation in HTML and/or PDF format, leveraging the capabilities of knitting to seamlessly integrate markdown content with additional formatting and styling options. This approach not only ensures the accessibility and availability of documentation but also facilitates collaboration, transparency, and ongoing development and enhancement of the application.
 
-Version and release control mechanisms must be established to manage changes to the software and its associated documentation effectively.
-
-### Intended Solution:
-
-The project will utilize Git for version control, allowing for the tracking of changes, collaboration among team members, and management of software releases. Regular releases will be planned and executed to deliver new features and updates to users in a timely and organized manner.
-
-## 5.7 GitHub Repository
+## 6.6 Version and Release Control
 
 ### Requirement:
 
-The project's source code and files must be hosted on GitHub to enable collaboration, transparency, and version control.
+Establish version and release control mechanisms for effective management of software changes and associated documentation.
 
 ### Intended Solution:
 
-A public GitHub repository will be created to host the project's source code, documentation, and other related files. This repository will serve as a centralized platform for collaboration, allowing developers to contribute code, track changes, and manage project tasks effectively.
+To ensure streamlined management of software changes and releases, the project will adopt Git as the primary version control system. Git provides robust features for tracking code modifications, facilitating collaboration among team members, and maintaining the integrity of the project's codebase.
 
-## 5.8 Cloud Hosting
+In addition to utilizing Git for version control, the project will implement the Scrum methodology to guide the planning and execution of software releases. Emphasizing iterative development cycles known as sprints, typically lasting between one to four weeks, Scrum enables the delivery of potentially shippable product increments at the end of each sprint. This approach allows for regular feedback and adaptation, ensuring that new features and updates are delivered to users in a timely and organized manner.
+
+The project team will prioritize and plan features and enhancements for each sprint based on stakeholder feedback, project objectives, and available resources. By adhering to the Scrum framework, the project can maximize value and minimize risk throughout the development process.
+
+Furthermore, the project will maintain clear version numbering and release notes to document changes introduced in each software release. This documentation will facilitate communication with stakeholders and help users understand the improvements and enhancements delivered in each version of the application.
+
+## 6.7 GitHub Repository
+
+### Requirement:
+
+Host the project's source code and files on GitHub to facilitate collaboration, transparency, and version control.
+
+### Intended Solution:
+
+A public GitHub repository will be established to host the project's source code, documentation, and related files. Serving as a centralized platform for collaboration, the GitHub repository enables developers to contribute code, track changes, and manage project tasks efficiently. This ensures transparency and fosters collaboration among team members, promoting effective version control and facilitating the development process.
+
+## 6.8 Cloud Hosting
 
 ### Requirement:
 
@@ -164,34 +195,36 @@ Web applications must be hosted on cloud platforms such as AWS or Google Cloud t
 
 ### Intended Solution:
 
-The application will be deployed on a cloud hosting platform, providing users with reliable access to the application's frontend via web browsers. Cloud hosting offers scalability, flexibility, and reliability, ensuring optimal performance and availability for users.
+Traditionally, web applications are hosted on cloud platforms like AWS or Google Cloud to guarantee accessibility, scalability, and reliability. However, given your enthusiasm for self-hosting, the application will be deployed on your own server. While this diverges from the typical cloud hosting approach, it presents an opportunity for you to delve into cybersecurity and other related aspects. Although these aspects may not be directly required by the current subject or project, they hold value as they align with the cybersecurity coverage in the master's program. Additionally, self-hosting will provide insights into scalability, contributing to a deeper understanding of system architecture and administration.
 
-## 5.9 Installation and Run Instructions
+## 6.9 Installation and Run Instructions
 
 ### Requirement:
 
-Clear and concise instructions for installing and running the application must be provided to users to facilitate ease of setup and operation.
+Provide clear and concise instructions for installing and running the application to ensure ease of setup and operation for users.
 
 ### Intended Solution:
 
-Comprehensive installation and run instructions will be prepared, guiding users through the process of setting up and running the application on their local environment or accessing it via the cloud hosting platform. These instructions will be user-friendly and easy to follow, ensuring a smooth user experience from installation to operation.
+Comprehensive installation and run instructions will be prepared to guide users through setting up and running the application on their local environment or accessing it via the cloud hosting platform. These instructions will be user-friendly and straightforward, ensuring a seamless user experience from installation to operation.
 
-# 6. Phases Overview
+Additionally, the GitHub repository will include a README file containing a quick summary of the general installation and run instructions. This README file will serve as a convenient reference for users, providing them with essential information to get started with the application quickly and efficiently.
 
-   6.1 Conception Phase
+# 7. Phases Overview
 
-   - Stress the significance of thorough planning to ensure successful implementation.
+## 7.1 Conception Phase
 
-   6.2 Design Phase (To be continued in subsequent documentation phases)
+In the Conception Phase, meticulous planning and strategizing lay the foundation for a successful implementation. This phase emphasizes understanding the project scope, defining goals, identifying potential risks, and outlining the project's roadmap. Thorough analysis and stakeholder engagement are crucial during this phase to ensure alignment with project objectives and customer needs.
 
-   - Provide a brief overview of the upcoming phases.
+## 7.2 Design Phase (To be continued in subsequent documentation phases)
 
-# 7. Conclusion
+The Design Phase builds upon the insights gained during the Conception Phase and focuses on translating conceptual ideas into actionable design plans. This phase involves creating detailed specifications, architectural diagrams, wireframes, and prototypes. It sets the stage for the subsequent implementation phase by providing clear guidance and direction for development activities.
 
-   7.1 Summary
+## 7.3 Implementation Phase
 
-   - Summarize key points and expectations for the concept phase.
+The Implementation Phase marks the transition from planning to execution, where the conceptualized ideas and designs are brought to life. Key activities in this phase include coding, testing, and integration of software components. Deliverables may include functional prototypes, alpha/beta releases, and documentation updates. Continuous communication and collaboration among team members are essential to ensure progress aligns with project objectives and timelines.
 
----
+# 8. Conclusion
 
-*Note: This outline is written in Markdown (md) format for easy conversion into actual documentation.*
+## 8.1 Summary
+
+In summary, the Conception Phase serves as a critical starting point, emphasizing the importance of thorough planning and preparation. It lays the groundwork for subsequent phases, guiding the design and implementation of the project. Expectations for the concept phase include defining clear goals, identifying potential risks, and establishing a roadmap for project success. By adhering to these guidelines, the project can proceed with confidence and clarity, driving towards the realization of its objectives.

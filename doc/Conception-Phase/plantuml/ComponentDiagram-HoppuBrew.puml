@@ -1,0 +1,31 @@
+@startuml 
+
+!theme reddress-lightorange
+package "Order management system" {
+  
+  interface ILog
+  interface IDisplay
+  interface ICalendarObserver
+  
+  ILog <|.. OrderManager
+  IDisplay <|.. OrderManager  
+  OrderManager "1" --> Orders : manages
+  Customer "1" --> "1" Address
+  Customer "1" --> "1" CustomerBuilder
+  CustomerBuilder "1" --> "1" Address
+  Customers "`" --> "0..*" Customer
+  Customers --> Orders : places
+  Orders "1" --> Menus : has
+  Orders "1" --> PaymentGateway : processes
+  Orders "0..*" - "1..*" Order : consists of
+  
+  Order "0..*" - "1..*" Product : consists of
+  OnlineOrder --|> Order : specialization
+  Order "1" -- "1" Calendar : has
+  Calendar "1" -- "1" Event : occurs on
+  
+  PaymentGateway "1" --> CreditCardPayment : processes credit card payments
+  PaymentGateway "1" --> PayPalPayment : processes PayPal payments
+}
+
+@enduml
