@@ -2,29 +2,78 @@
 
 left to right direction
 
-actor Administrator as Admin
-actor Brewer as Brew
-actor Database as DB
-actor ISpindel as Spindel
+rectangle "Primary Actors" {
+    actor Administrator as Admin
+    actor Brewer as Brew
+    actor "{abstract}\nSuper Actor" as SuperActor
 
-Admin -- Brew
+}
+
+rectangle "Secondary actors"{
+    actor Database as DB
+    actor ISpindel as ISpindel
+}
 
 rectangle "Beer Brewing Recipe Manager" {
-    Admin --> (Manage Users)
-    Brew --> (Manage Water Profile)
-    Brew --> (Manage Equipment\nProfile)
-    Brew --> (Calendar)
-    Brew --> (Real-time\nData Collection)
-    Brew --> (Generate Reports)
-    Brew --> (Manage Own\nUser Account)
 
-    (Manage Users) .> (Manage Own\nUser Account) : <<Include>>
-    (Real-time\nData Collection) <-- Spindel
-    (Real-time\nData Collection) -- DB
-    (Manage Water Profile) --> DB
-    (Manage Equipment\nProfile) --> DB
-    (Calendar) --> DB
-    (Generate Reports) -- DB
+    rectangle "Users" {
+        usecase (Manage own\nuser account) as ManageOwnUser
+        usecase (Manage\nUser accounts\n---\nCRUD) as ManageUserAccounts
+        ManageUserAccounts .> ManageOwnUser : include
+    }
+
+    rectangle "Recipes" {
+        usecase (Manage\nrecipes) as ManageRecipes
+        usecase (Beer Style) as SelectedRecipeBeerStyle
+        ManageRecipes .> SelectedRecipeBeerStyle : <<extend>>
+    }
+
+    rectangle "Batch" {
+        usecase (Manage\nbatches) as ManageBatches
+        usecase (Beer Style) as SelectedBatchBeerStyle
+        usecase (Monitor\nbatch) as MonitorBatch
+        ManageBatches .> SelectedBatchBeerStyle : <<extend>>
+        
+    }
+
+    rectangle "Inventory" {
+        usecase (Manage\ninventory) as ManageInventory
+    }
+
+    rectangle "Equipment" {
+        usecase (Manage Equipment\nprofiles) as SelectEquipmentProfile
+    }
+
+    rectangle "Beer Style" {
+        usecase (Retrieve Beer Style\nrecommendation) as BeerStyleRecommendation
+    }
+
+
+
 }
+
+Admin --|> SuperActor
+Brew --|> SuperActor
+
+Admin --> ManageUserAccounts
+SuperActor --> ManageOwnUser
+SuperActor --> BeerStyleRecommendation
+
+BeerStyleRecommendation .> SelectedRecipeBeerStyle : <<include>>
+BeerStyleRecommendation .> SelectedBatchBeerStyle : <<include>>
+
+ManageBatches .> ManageInventory : <<include>>
+
+SuperActor --> ManageRecipes
+SuperActor --> ManageInventory
+SuperActor --> ManageBatches
+
+
+ManageRecipes .> ManageBatches : include
+ManageRecipes --> SelectEquipmentProfile
+
+ManageInventory --> DB
+ISpindel --> MonitorBatch
+
 
 @enduml

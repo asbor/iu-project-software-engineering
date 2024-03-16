@@ -1,5 +1,28 @@
 # Use-cases
 
+## Questions for identifying actors
+
+- Who uses the main use cases?
+- Who needs support for their daily work?
+- Who is responsible for system administration?
+- What are the external devices/(software) systems with which the system must communicate?
+- Who has an interest in the results of the system?
+
+The following actors are identified:
+
+- **Administrator (Admin):** Oversees and manages the overall operation of the brewing system.
+- **Brewer (Brew):** Engages in the brewing process and utilizes the system's functionalities.
+- **Database (DB):** Stores and manages data related to users, recipes, equipment, and other brewing-related information.
+- **ISpindel (Spindel):** Provides real-time data collection capabilities for monitoring the fermentation process.
+
+## Questions for identifying use cases
+
+- What are the main tasks that an actor must perform?
+- Does and actor want to query or even modify information contained in the system?
+- Does the
+- Should an actor be informed about unexpected events within the system ?
+- 
+
 ## Beer Brewing Recipe Manager Overview
 
 The Beer Brewing Recipe Manager conceptualizes a system to simplify the management of brewing processes and related data. It incorporates multiple actors collaborating to enhance different facets of beer brewing.
