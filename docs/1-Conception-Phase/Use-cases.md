@@ -1,6 +1,25 @@
-# Use-cases
+# UML-2.5 Diagrams for the Brewing System
 
-In this section, we will identify the actors and use-cases for the brewing system. The actors are the entities that interact with the system, and the use-cases are the tasks that the actors perform. The following approach to identify the actors and use cases stems from the book [@UML@Classroom].
+In this section, we will identify the actors and use-cases for the brewing system. The actors are the entities that interact with the system, and the use-cases are the tasks that the actors perform. The following approach to identify the actors and use cases stems from the book [@UML@Classroom], however as this UML notation is obsolete, the latest UML notation (Version 2.5) is used [https://www.uml-diagrams.org/](https://www.uml-diagrams.org/) and .
+
+In This document, we will not cover all the different types of diagrams which UML-2.5 offers, but we will focus on the following:
+
+**Behavioral diagrams:**
+
+- Use-case diagrams and descriptions
+- Activity diagrams
+- State machine diagrams
+- Sequence diagrams
+
+**Structural diagrams:**
+
+- Class diagrams
+- Object diagrams
+- Component diagrams
+
+These points might be revisited in the future, but for now, we will focus on the use-case diagrams.
+
+# Use-cases
 
 ## Questions for identifying actors
 
@@ -31,12 +50,9 @@ The main tasks that the actors must perform are:
 - **Manage Recipes:** create, read, update, and delete (CRUD) recipes.
 - **Manage Equipment:** CRUD brewing equipment.
 - **Manage Batches:** CRUD brewing batches, and update all parameters during all four brewing phases (Planing, Brewing, Fermentation, and Conditioning).
+- **Manage Devices:** Attach and detach external devices to the system (e.g., ISpindel).
 - **Manage Inventory:** CRUD inventory items.
-- **Manage schedule:** CRUD brewing schedule.
-- **Monitor Fermentation:** real-time monitoring of the fermentation process.
-- **Manage Users:** CRUD users.
-- **Manage settings:** Update system settings and configurations.
-- **Manage Notifications:** CRUD notifications.
+- **Manage profiles:** CRUD Equipment, Mash, Fermentation and Water profiles.
 
 Does an actor want to query or even modify information contained in the system?
 
