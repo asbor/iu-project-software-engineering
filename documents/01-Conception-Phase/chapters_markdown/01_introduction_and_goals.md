@@ -20,8 +20,6 @@ The motivation behind these goals are to ensure that the application is accessib
 
 HoppyBrew is driven by the following essential features and functional requirements:
 
-![][1]
-
 1.  Manage and create brewing recipes
 2.  Manage and create brews and batches and log their progress
 3.  Monitor fermentation process with iSpindel integration
@@ -30,5 +28,3 @@ HoppyBrew is driven by the following essential features and functional requireme
 The primary motivation behind HoppyBrew is to provide brewing enthusiasts (like myself) with a user-friendly platform for managing their brewing processes independently, without relying on subscription-based services.
 
 ## 1.1 Stakeholders
-
-  [1]: documents/01-Conception-Phase/plantuml/png/Use-Case-Diagram-HoppyBrew.png

@@ -122,7 +122,6 @@ git2:
 doc: 
 	@make md 
 	@make pdf2
-	@make html
 	@make git
 
 
