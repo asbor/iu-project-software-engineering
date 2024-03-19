@@ -23,6 +23,8 @@
 
 2. I encountered a minor issue with organizing the folder structure for the documentation, since Gitbook apparently requires a specific format. I resolved this by reverse-engineering the structure of the Gitbook documentation and adapting my own to match.
 
+3. I have been struggling with building a overall documentation structure which fits this project. I have been looking at the [Arc42](https://arc42.org/) template, and i am considering to use it as a base for the documentation.
+
 ### What did I learn?
 
 * I have expanded my knowledge of the `markdown` language.
@@ -32,7 +34,6 @@
 
 ### What are the tasks for tomorrow?
 
-* I will review the lecture slides and take notes.
-* I will start working on the first assignment.
+* I will continue to work on the Conception Phase, and aim to complete the first chapter.
 
 </details>

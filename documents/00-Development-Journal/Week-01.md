@@ -21,7 +21,6 @@
 
 ### What are the tasks for tomorrow?
 
-* I will review the lecture slides and take notes.
-* I will start working on the first assignment.
+* I will continue to work on the UML diagrams, and try to find a way to make PlantUML work for me.
 
 </details>
