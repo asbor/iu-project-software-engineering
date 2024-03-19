@@ -58,15 +58,17 @@ DIRECTORY=docs/1-Conception-Phase
 BUILDDIR=$(DIRECTORY)/build
 FILENAME=$(DIRECTORY)/HoppyBrew.rmd
 BIBFILENAME=docs/bibliography.bib
+MARKDOWNDIR=docs/1-Conception-Phase/markdown
+
 md:
-	mkdir -p $(BUILDDIR)
+	mkdir -p $(MARKDOWNDIR)
 	# Use shell loop to iterate over all *.Rmd files in the directory
 	for file in $(DIRECTORY)/chapters/*.Rmd; do \
 		pandoc $$file \
 		--filter pandoc-citeproc \
 		--from=markdown+tex_math_single_backslash+tex_math_dollars \
 		--to=markdown \
-		--output=$(BUILDDIR)/$$(basename $$file .Rmd).md \
+		--output=$(MARKDOWNDIR)/$$(basename $$file .Rmd).md \
 		--bibliography=$(BIBFILENAME) \
 		--atx-headers \
 		--wrap=none \
