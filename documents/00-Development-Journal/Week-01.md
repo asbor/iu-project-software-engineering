@@ -10,12 +10,19 @@
 
 * Built the overall documentation structure.
 * Created placeholders for the chapters in the Conception Phase.
-* Created makefile to build the documentation as pdf and markdown files.
+* Created `makefile` to build the documentation as `pdf` and `markdown` files.
 * Created the first development journal entry.
 
 ### Which challenges did I encounter?
 
-* My previous makefile failed to function as intended, necessitating a complete rewrite from the ground up. Additionally, the conventional method of executing make pdf proved ineffective, prompting a complete overhaul of my approach. The revised strategy now employs Rscript -e "rmarkdown::render('documents/01-Conception-Phase.md', output\_format = 'pdf\_document')".
+* My previous `makefile` failed to function as intended, necessitating a complete rewrite from the ground up. Additionally, the conventional method of executing `make pdf` proved ineffective, prompting a complete overhaul of my approach. The revised strategy now employs the following command:
+
+    ```bash
+    Rscript -e "rmarkdown::render('documents/01-Conception-Phase.md', output_format = 'pdf_document')"
+    ```
+
+
+Rscript -e "rmarkdown::render('documents/01-Conception-Phase.md', output\_format = 'pdf\_document')".
 
 ### What did I learn?
 
