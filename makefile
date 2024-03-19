@@ -56,16 +56,23 @@ coverage:
 
 DIRECTORY=docs/1-Conception-Phase
 BUILDDIR=$(DIRECTORY)/build
-FILENAME=$(DIRECTORY)/HoppyBrew-Concept.rmd
+FILENAME=$(DIRECTORY)/HoppyBrew.rmd
 BIBFILENAME=docs/bibliography.bib
 md:
 	mkdir -p $(BUILDDIR)
-	pandoc $(FILENAME) \
-	--filter pandoc-citeproc \
-	--from=markdown+tex_math_single_backslash+tex_math_dollars \
-	--to=markdown \
-	--output=$(BUILDDIR)/$(notdir $(basename $(FILENAME))).md \
-	--bibliography=$(BIBFILENAME)
+	# Use shell loop to iterate over all *.Rmd files in the directory
+	for file in $(DIRECTORY)/chapters/*.Rmd; do \
+		pandoc $$file \
+		--filter pandoc-citeproc \
+		--from=markdown+tex_math_single_backslash+tex_math_dollars \
+		--to=markdown \
+		--output=$(BUILDDIR)/$$(basename $$file .Rmd).md \
+		--bibliography=$(BIBFILENAME) \
+		--atx-headers \
+		--wrap=none \
+		--preserve-tabs \
+		--reference-links; \
+	done
 
 pdf:
 	mkdir -p $(BUILDDIR)
@@ -79,7 +86,7 @@ pdf:
 
 pdf2:
 	mkdir -p $(BUILDDIR)
-	Rscript -e "rmarkdown::render('docs/$(FILENAME)', output_dir = '$(BUILDDIR)', output_format = 'pdf_document', output_file = '$(FILENAME).pdf', params = list(bibfile = '$(BIBFILENAME)'), envir = new.env())"
+	Rscript -e "rmarkdown::render('$(FILENAME)', output_dir = '$(BUILDDIR)', output_format = 'pdf_document', output_file = '$(BUILDDIR)/$(notdir $(basename $(FILENAME))).pdf', params = list(bibfile = '$(BIBFILENAME)'), envir = new.env())"
 
 HTML_OUTPUT_OPTIONS = "highlight=tango lightbox=true self_contained=true theme=readable code_folding=show toc_float=true"
 
@@ -99,10 +106,16 @@ html:
 	--self-contained \
 	--bibliography=$(BIBFILENAME)
 
+git:
+	git add .
+	git commit -m "Update"
+	git push
+
 doc: 
 	@make md 
-	@make pdf 
+	@make pdf2
 	@make html
+	@make git
 
 
 all: 
