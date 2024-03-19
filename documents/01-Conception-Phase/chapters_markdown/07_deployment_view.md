@@ -4,13 +4,13 @@
 
 ***\<Overview Diagram\>***
 
-Motivation\
+Motivation  
 *\<explanation in text form\>*
 
-Quality and/or Performance Features\
+Quality and/or Performance Features  
 *\<explanation in text form\>*
 
-Mapping of Building Blocks to Infrastructure\
+Mapping of Building Blocks to Infrastructure  
 *\<description of the mapping\>*
 
 ## Infrastructure Level 2
@@ -23,7 +23,7 @@ Mapping of Building Blocks to Infrastructure\
 
 *\<diagram + explanation\>*
 
-...
+…
 
 ### *\<Infrastructure Element n\>*
 

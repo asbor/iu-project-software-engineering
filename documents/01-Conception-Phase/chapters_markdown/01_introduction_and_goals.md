@@ -4,15 +4,11 @@ This document outlines the architecture and design of HoppyBrew, a web-based app
 
 The top three quality goals for the architecture and design whose fulfillment is of highest importance to the major stakeholders of HoppyBrew have been identified as follows:
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Priority**            **Key word**            **Quality Goal**
-  ----------------------- ----------------------- -----------------------------------------------------------------------------------------------------------
-  1                       Usability               The application should be easy to use and intuitive, with a clean and modern user interface.
-
-  2                       Compatibility           The application should be compatible with a wide range of devices and browsers. (mobile, desktop, tablet)
-
-  3                       Integration             The application should integrate with other brewing tools and services, such as `iSpindel`.
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------
+| **Priority** | **Key word**  | **Quality Goal**                                                                                          |
+| ------------ | ------------- | --------------------------------------------------------------------------------------------------------- |
+| 1            | Usability     | The application should be easy to use and intuitive, with a clean and modern user interface.              |
+| 2            | Compatibility | The application should be compatible with a wide range of devices and browsers. (mobile, desktop, tablet) |
+| 3            | Integration   | The application should integrate with other brewing tools and services, such as `iSpindel`.               |
 
 The motivation behind these goals are to ensure that the application is accessible to a wide range of users, and that it is easy to use and integrate with other brewing tools and services.
 

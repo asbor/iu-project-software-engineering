@@ -67,7 +67,7 @@ md:
 		pandoc $$file \
 		--filter pandoc-citeproc \
 		--from=markdown+tex_math_single_backslash+tex_math_dollars \
-		--to=markdown \
+		--to=gfm \
 		--output=$(MARKDOWNDIR)/$$(basename $$file .Rmd).md \
 		--bibliography=$(BIBFILENAME) \
 		--atx-headers \

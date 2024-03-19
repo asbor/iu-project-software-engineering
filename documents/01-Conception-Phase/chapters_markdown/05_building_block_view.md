@@ -4,13 +4,13 @@
 
 ***\<Overview Diagram\>***
 
-Motivation\
+Motivation  
 *\<text explanation\>*
 
-Contained Building Blocks\
+Contained Building Blocks  
 *\<Description of contained building block (black boxes)\>*
 
-Important Interfaces\
+Important Interfaces  
 *\<Description of important interfaces\>*
 
 ### \<Name black box 1\>
@@ -37,7 +37,7 @@ Important Interfaces\
 
 ### \<Name interface 1\>
 
-...
+…
 
 ### \<Name interface m\>
 
@@ -51,7 +51,7 @@ Important Interfaces\
 
 *\<white box template\>*
 
-...
+…
 
 ### White Box *\<building block m\>*
 

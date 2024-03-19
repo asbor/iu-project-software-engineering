@@ -32,6 +32,8 @@ output:
     theme: readable
     code_folding: show
     toc_float: true
+  md_document:
+    variant: gfm
 bibliography: ../bibliography.bib
 link-citations: yes
 urlcolor: blue

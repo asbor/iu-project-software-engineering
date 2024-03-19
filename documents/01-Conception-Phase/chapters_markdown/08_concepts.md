@@ -8,7 +8,7 @@
 
 *\<explanation\>*
 
-...
+…
 
 ## *\<Concept n\>*
 
