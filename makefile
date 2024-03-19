@@ -113,6 +113,12 @@ git:
 	git commit -m "Update"
 	git push
 
+git2:
+	@make md 
+	git add .
+	git commit -m "Update"
+	git push
+
 doc: 
 	@make md 
 	@make pdf2
