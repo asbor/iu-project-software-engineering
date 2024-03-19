@@ -1,6 +1,6 @@
 # Development Journal - Week 1
 
-## 1. Tuesday, 19th of March 2024
+## Tuesday, 19th of March 2024
 
 ### What did I do today?
 
