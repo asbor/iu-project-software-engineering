@@ -4,8 +4,8 @@
 
 ## Development journal
 
-* [Week 1](development-journal/week-1.md)
-* [Week 2](development-journal/week-2.md)
+* [Week 1](documents/00-Development-Journal/Week-01.md)
+* 
 
 ## Documentation
 
