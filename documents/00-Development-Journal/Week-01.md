@@ -1,21 +1,24 @@
 # Development Journal - Week 1
 
-## 1. Monday, 14th of September 2020
+## 1. Tuesday, 19th of March 2024
 
 ### What did I do today?
 
-- I attended the first lecture of the Software Engineering course.
-- I read the course syllabus and familiarized myself with the course structure.
-- I reviewed the course schedule and noted down important dates.
+- Built the overall documentation structure.
+- Created placeholders for the chapters in the Conception Phase.
+- Created makefile to build the documentation as pdf and markdown files.
+- Created the first development journal entry.
+
+### Which challenges did I encounter?
+
+- My previous makefile failed to function as intended, necessitating a complete rewrite from the ground up. Additionally, the conventional method of executing make pdf proved ineffective, prompting a complete overhaul of my approach. The revised strategy now employs Rscript -e "rmarkdown::render('documents/01-Conception-Phase.md', output_format = 'pdf_document')".
 
 ### What did I learn?
 
-- I learned about the course structure and the topics that will be covered.
-- I gained an understanding of the expectations and requirements for the course.
-- I learned about the assessment criteria and the weightage of each component.
+- I have expanded my knowledge of the `markdown` language.
+- I have expanded my knowledge of the `make` tool and its shotcomings.
 
 ### What are the tasks for tomorrow?
 
 - I will review the lecture slides and take notes.
 - I will start working on the first assignment.
-
