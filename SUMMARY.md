@@ -7,7 +7,7 @@
 * [Week 1](development-journal/week-1.md)
 * [Week 2](development-journal/week-2.md)
 
-## Documentation
+## docs
 
 * [1. Conception Phase](docs/01-Conception-Phase.md)
   * [1.1 Introduction and Goals](docs/01-conception-phase/markdown/1.1-introduction-and-goals.md)
