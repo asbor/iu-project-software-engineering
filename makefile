@@ -54,10 +54,10 @@ coverage:
 	@coverage html --include app/* --omit tests/*
 	@echo "Done"
 
-DIRECTORY=docs/1-Conception-Phase
+DIRECTORY=documents/01-Conception-Phase
 BUILDDIR=$(DIRECTORY)/build
 FILENAME=$(DIRECTORY)/HoppyBrew.rmd
-BIBFILENAME=docs/bibliography.bib
+BIBFILENAME=documents/bibliography.bib
 
 md:
 	mkdir -p $(BUILDDIR)
@@ -93,12 +93,12 @@ HTML_OUTPUT_OPTIONS = "highlight=tango lightbox=true self_contained=true theme=r
 
 html_downcute:
 	mkdir -p $(BUILDDIR)
-	Rscript -e "rmarkdown::render('docs/$(FILENAME)', output_dir = '$(BUILDDIR)', output_format = 'rmdformats::downcute', output_file = '$(FILENAME).html', params = list(bibfile = '$(BIBFILENAME)), output_options = c($(subst ",\",$(HTML_OUTPUT_OPTIONS))), envir = new.env())"
+	Rscript -e "rmarkdown::render('documents/$(FILENAME)', output_dir = '$(BUILDDIR)', output_format = 'rmdformats::downcute', output_file = '$(FILENAME).html', params = list(bibfile = '$(BIBFILENAME)), output_options = c($(subst ",\",$(HTML_OUTPUT_OPTIONS))), envir = new.env())"
 
 
 html:
 	mkdir -p $(BUILDDIR)
-	pandoc docs/$(FILENAME) \
+	pandoc documents/$(FILENAME) \
 	--filter pandoc-citeproc \
 	--from=markdown+tex_math_single_backslash+tex_math_dollars \
 	--to=html5 \
