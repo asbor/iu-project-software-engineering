@@ -1,16 +1,10 @@
 # Week 1
 
-## Tuesday, 19th of March 2024
-
-
-
 <details>
 
-<summary>Tuesday</summary>
-
-dsfds
-
-</details>
+<summary>
+**Tuesday, 19th of March 2024**
+</summary>
 
 ### What did I do today?
 
@@ -32,3 +26,5 @@ dsfds
 
 * I will review the lecture slides and take notes.
 * I will start working on the first assignment.
+
+</details>
