@@ -10,7 +10,7 @@
 ## Documentation
 
 * [1. Conception Phase](docs/01-Conception-Phase.md)
-* [test](docs/1-Conception-Phase/build/test.md)
+  * [test](docs/1-Conception-Phase/build/test.md)
   * [01. Introduction And Goals](docs/1-Conception-Phase/build/01_introduction_and_goals.md)
   * [02. Architecture Constraints](docs/1-Conception-Phase/build/02_architecture_constraints.md)
   * [03. System Scope And Context](docs/1-Conception-Phase/build/03_system_scope_and_context.md)
