@@ -12,5 +12,3 @@ abstract: "The project aims to develop a comprehensive Beer Brewing Recipe Manag
 bibliography: "references.bib"
 output: pdf_document
 ---
-
-# Introduction
