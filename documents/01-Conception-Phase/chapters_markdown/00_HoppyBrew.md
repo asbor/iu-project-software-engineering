@@ -5,10 +5,7 @@ Software Engineering
 ================
 
 Foo
-= =
-
-Foo
---- -
+    ---
 
 
 
