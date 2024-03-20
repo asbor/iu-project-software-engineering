@@ -4,6 +4,12 @@ Software Engineering
 `< DLMCSPSE01 />`
 ================
 
+Project: **HoppyBrew**
+-----------------------
+
+Concept Phase
+=============
+
 
 # Project: **HoppyBrew**
 ## Concept Phase   
