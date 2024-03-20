@@ -1,11 +1,11 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <title style="text-align: center;">Software Engineering</title>
+    <title>HoppyBrew</title>
+    <h1 style="text-align: center;">Software Engineering</h1>
     <h2 style="text-align: center;">&lt; DLMCSPSE01 /&gt;</h2>
     <br>
     <h1 style="text-align: center;">Project: <strong>HoppyBrew</strong></h1>
