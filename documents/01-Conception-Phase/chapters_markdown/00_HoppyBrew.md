@@ -13,13 +13,21 @@ bibliography: "references.bib"
 output: pdf_document
 ---
 
+% Customizations for Rmd document
 \let\oldsection\section
 \maketitle
 \thispagestyle{empty}
 \clearpage
 
-\pagebreak
+\tableofcontents
+\pagenumbering{roman}
+\clearpage
 
-# Content for Page 2
+\listoftables
+\clearpage
 
-This is the content for Page 2.
+\listoffigures
+\clearpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}

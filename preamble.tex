@@ -1,8 +1,18 @@
 \usepackage{float}
+
+% Redefine figure environment to use [H] option from float package
 \let\origfigure\figure
 \let\endorigfigure\endfigure
-\renewenvironment{figure}[1][2] {
+\renewenvironment{figure}[1][2]{
     \expandafter\origfigure\expandafter[H]
-} {
+}{
     \endorigfigure
+}
+
+% Command for a blank page
+\newcommand\blankpage{
+    \null
+    \thispagestyle{empty}
+    \addtocounter{page}{-1}
+    \newpage
 }
