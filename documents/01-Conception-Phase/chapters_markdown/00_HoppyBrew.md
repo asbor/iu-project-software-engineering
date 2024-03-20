@@ -1,4 +1,5 @@
-[Software Engineering]: # "Software Engineering"
+[Heading identifiers in HTML](#heading-identifiers-in-html)
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
