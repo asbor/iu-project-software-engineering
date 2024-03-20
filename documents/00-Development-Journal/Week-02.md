@@ -48,6 +48,7 @@
 
 * Yesterday i noticed that the formatting of the Tables in the `markdown` files deviated substantially from the `pdf` output. I have been looking for a solution to this problem, and i have just found out that the amount of dashes (-) in the table translates to the width of the columns in the `pdf` output. I have now fixed the tables in the `markdown` files.
 * Also R tends to be very sensitive to its packages, and i have been trying to resolve several issues with these. As of now, i believe all packages have been correctly installed, updated, upgraded and all the paths between the packages are correct. This tends to be very time consuming, but once it is done, i will be able to focus on the actual development of the project.
+* I have finally come to the enevitable conclusion that i will have to put the R Markdown/Bookdown approach to rest. This is the third project where i have been using R Markdown/Bookdown, and allthough i was sucessful in the previouse two projects, it was not without its never ending struggle to debug and fix issues that arose. In retrospect, i believe i have learned a lot from using R Markdown/Bookdown, but i have also come to the conclusion that it is not the right tool for this project. I will now focus on building the documentation in a more straight forward way, and i will use the `markdown` files as a base for the documentation. 
 
 ### Which challenges did I encounter?
 
@@ -55,6 +56,8 @@
 * I have been struggling with the installation of the R packages, and the paths between them. I have now resolved this issue.
 
 ### What did I learn?
+
+* Allthough it is possible to format the tables in the `Rmarkdown` files in such a way that it looks good both the `pdf` and `markdown` output, it appears that Gitbook tends to be ever so slightly more picky about the formatting of the tables and will not render them like the other outputs. This is something i will have to keep in mind when writing the documentation. I guess there is always a trade-off between the different applications, and since i am considering to substitude Gitbook with some form of self-hosted alternative, like [MkDocs](https://www.mkdocs.org/), this might not be a problem in the future.
 
 
 ### What are the tasks for tomorrow?

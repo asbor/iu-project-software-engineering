@@ -60,68 +60,18 @@ FILENAME=$(DIRECTORY)/HoppyBrew.rmd
 BIBFILENAME=documents/bibliography.bib
 MARKDOWNDIR=$(DIRECTORY)/chapters_markdown
 
-md:
-	mkdir -p $(MARKDOWNDIR)
-	# Use shell loop to iterate over all *.Rmd files in the directory
-	for file in $(DIRECTORY)/chapters/*.Rmd; do \
-		pandoc $$file \
-		--filter pandoc-citeproc \
-		--from=markdown+tex_math_single_backslash+tex_math_dollars \
-		--to=gfm \
-		--output=$(MARKDOWNDIR)/$$(basename $$file .Rmd).md \
-		--bibliography=$(BIBFILENAME) \
-		--atx-headers \
-		--wrap=none \
-		--preserve-tabs \
-		--reference-links; \
-	done
+
 
 pdf:
-	mkdir -p $(BUILDDIR)
-	pandoc $(FILENAME) \
-	--filter pandoc-citeproc \
-	--from=markdown+tex_math_single_backslash+tex_math_dollars+raw_tex \
-	--to=latex \
-	--output=$(BUILDDIR)/$(notdir $(basename $(FILENAME))).pdf \
-	--pdf-engine=pdflatex \
-	--bibliography=$(BIBFILENAME)
-
-pdf2:
-	mkdir -p $(BUILDDIR)
-	Rscript -e "rmarkdown::render('$(FILENAME)', output_dir = '$(BUILDDIR)', output_format = 'pdf_document', output_file = '$(BUILDDIR)/$(notdir $(basename $(FILENAME))).pdf', params = list(bibfile = '$(BIBFILENAME)'), envir = new.env())"
-
-HTML_OUTPUT_OPTIONS = "highlight=tango lightbox=true self_contained=true theme=readable code_folding=show toc_float=true"
-
-html_downcute:
-	mkdir -p $(BUILDDIR)
-	Rscript -e "rmarkdown::render('documents/$(FILENAME)', output_dir = '$(BUILDDIR)', output_format = 'rmdformats::downcute', output_file = '$(FILENAME).html', params = list(bibfile = '$(BIBFILENAME)), output_options = c($(subst ",\",$(HTML_OUTPUT_OPTIONS))), envir = new.env())"
-
-
-html:
-	mkdir -p $(BUILDDIR)
-	pandoc documents/$(FILENAME) \
-	--filter pandoc-citeproc \
-	--from=markdown+tex_math_single_backslash+tex_math_dollars \
-	--to=html5 \
-	--output=$(BUILDDIR)/$(FILENAME).html \
-	--mathjax \
-	--self-contained \
-	--bibliography=$(BIBFILENAME)
+	python MarkdownToPdf.py
 
 git:
 	git add .
 	git commit -m "Update"
 	git push
 
-git2:
-	@make md 
-	git add .
-	git commit -m "Update"
-	git push
-
 doc: 
-	@make md 
-	@make pdf2
+	@make pdf
 	@make git
 
 

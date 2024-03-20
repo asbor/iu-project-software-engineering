@@ -44,7 +44,5 @@ rectangle "HoppyBrew" as HoppyBrew {
     
     ManageDevices <-- ISpindel
     CollectRealtimeData <-- ISpindel
-
-
-
+    
 @enduml
