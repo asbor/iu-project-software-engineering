@@ -19,7 +19,9 @@ def merge_and_convert_to_pdf(directory):
 
     # Convert the merged markdown file to PDF
     output_file = os.path.join(directory, "merged.pdf")
-    subprocess.run(["pandoc", merged_file, "-o", output_file])
+    # subprocess.run(["pandoc", merged_file, "-o", output_file])
+    subprocess.run(["pandoc", merged_file, "-o", output_file,
+                   "--variable=geometry:a4paper", "--variable=geometry:margin=1in"])
 
     # Remove the merged markdown file
     os.remove(merged_file)
