@@ -21,6 +21,9 @@ def merge_and_convert_to_pdf(directory):
     output_file = os.path.join(directory, "merged.pdf")
     # subprocess.run(["pandoc", merged_file, "-o", output_file])
     # subprocess.run(["pandoc", merged_file, "-o", output_file, "--variable=geometry:a4paper", "--variable=geometry:margin=1in"])
+    # subprocess.run(["pandoc", merged_file, "-o", output_file,
+    #                "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
+    #                "--pdf-engine=xelatex", "--include-in-header", "preamble.tex"])
     subprocess.run(["pandoc", merged_file, "-o", output_file,
                     "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
                     "--pdf-engine=xelatex", "--include-in-header", "preamble.tex"])

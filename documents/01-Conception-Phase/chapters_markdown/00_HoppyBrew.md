@@ -13,7 +13,6 @@ bibliography: "references.bib"
 output: pdf_document
 ---
 
-% Customizations for Rmd document
 \let\oldsection\section
 \maketitle
 \thispagestyle{empty}
