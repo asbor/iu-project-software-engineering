@@ -1,39 +1,14 @@
-Software Engineering
-====================
+# Software Engineering Project <br> < DLMCSPSE01 />
 
-< DLMCSPSE01 />
-================
+## Subtitle or Tagline
 
-   Foo
 ---
 
-  Foo
------
+**Author:** [Your Name]
 
-  Foo
-  ===
+**Date:** March 20, 2024
 
-
-
-Project: **HoppyBrew**
------------------------
-
-Concept Phase
-=============
-
-
-# Project: **HoppyBrew**
-## Concept Phase   
-
-
-   Foo
 ---
-
-  Foo
------
-
-  Foo
-  ===
 
 
 <html lang="en">
