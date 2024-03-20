@@ -13,7 +13,9 @@ bibliography: "references.bib"
 output: pdf_document
 ---
 
-\newpage
+---
+title: "Page 1"
+---
 
 # Project Title
 
