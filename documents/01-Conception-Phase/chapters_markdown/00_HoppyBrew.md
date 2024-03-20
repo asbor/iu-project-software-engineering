@@ -5,6 +5,12 @@
 [the section on heading identifiers][heading identifiers in
 HTML]
 
+Foo *bar*
+=========
+
+Foo *bar*
+---------
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
