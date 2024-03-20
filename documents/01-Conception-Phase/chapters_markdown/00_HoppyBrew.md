@@ -1,18 +1,19 @@
-Software Engineering Project
-============================
+---
+title: "Project Title"
+author: "Your Name"
+date: "March 20, 2024"
+---
 
-< DLMCSPSE01 />
-----------------
+# Project Title
 
- 
+## Subtitle or Tagline
 
-<div align="center">
-  <h1>Project Title</h1>
-  <h2>Subtitle or Tagline</h2>
-  <hr>
-  <p><strong>Author:</strong> Your Name</p>
-  <p><strong>Date:</strong> March 20, 2024</p>
-</div>
+---
+
+**Author:** Your Name
+
+**Date:** March 20, 2024
+
 
 
 <html lang="en">
