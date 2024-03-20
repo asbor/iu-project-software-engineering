@@ -1,5 +1,8 @@
 [Heading identifiers in HTML](#heading-identifiers-in-html)
 
+[the section on heading identifiers][heading identifiers in
+HTML]
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
