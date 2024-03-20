@@ -4,8 +4,14 @@ Software Engineering
 < DLMCSPSE01 />
 ================
 
-Foo
-    ---
+   Foo
+---
+
+  Foo
+-----
+
+  Foo
+  ===
 
 
 
