@@ -37,3 +37,27 @@
 * I will continue to work on the Conception Phase, and aim to complete the first chapter.
 
 </details>
+
+<details>
+
+<summary><strong>Wednesday, 20th of March 2024</strong></summary>
+
+***
+
+### What did I do today?
+
+* Yesterday i noticed that the formatting of the Tables in the `markdown` files deviated substantially from the `pdf` output. I have been looking for a solution to this problem, and i have just found out that the amount of dashes (-) in the table translates to the width of the columns in the `pdf` output. I have now fixed the tables in the `markdown` files.
+* Also R tends to be very sensitive to its packages, and i have been trying to resolve several issues with these. As of now, i believe all packages have been correctly installed, updated, upgraded and all the paths between the packages are correct. This tends to be very time consuming, but once it is done, i will be able to focus on the actual development of the project.
+
+### Which challenges did I encounter?
+
+* I have been struggling with the formatting of the tables in the `markdown` files. I have now fixed this issue.
+* I have been struggling with the installation of the R packages, and the paths between them. I have now resolved this issue.
+
+### What did I learn?
+
+
+### What are the tasks for tomorrow?
+
+
+</details>

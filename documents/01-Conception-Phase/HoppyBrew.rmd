@@ -77,6 +77,10 @@ text-align: justify}
 </style>
 ```
 
+```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+```
+
 
 
 ```{r child = './chapters/01_introduction_and_goals.Rmd'}
