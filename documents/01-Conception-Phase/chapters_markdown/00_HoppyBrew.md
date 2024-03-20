@@ -13,19 +13,6 @@ bibliography: "references.bib"
 output: pdf_document
 ---
 
-
-# Project Title
-
-## Subtitle or Tagline
-
----
-
-**Author:** Your Name
-
-**Date:** March 20, 2024
-
-
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
