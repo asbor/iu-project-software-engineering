@@ -29,7 +29,6 @@ HoppyBrew is driven by the following essential features and functional requireme
 
 The primary motivation behind HoppyBrew is to provide brewing enthusiasts (like myself) with a user-friendly platform for managing their brewing processes independently, without relying on subscription-based services.
 
-
-
 ## 1.1 Stakeholders
 
+The primary stakeholders of HoppyBrew are brewing enthusiasts like myself, who are looking for a open-source, self-hosted solution for managing their brewing recipes and the brew logs. The secondary stakeholders are the developers and contributors to the project, who are interested in building and maintaining a high-quality, user-friendly application for the brewing community.
