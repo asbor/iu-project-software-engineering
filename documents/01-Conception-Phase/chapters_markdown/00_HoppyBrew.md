@@ -4,14 +4,11 @@ Software Engineering
 < DLMCSPSE01 />
 ================
 
-`Foo
-----
-`
+Foo
+= =
 
-<a title="a lot
----
-of dashes"/>
-
+Foo
+--- -
 
 
 
