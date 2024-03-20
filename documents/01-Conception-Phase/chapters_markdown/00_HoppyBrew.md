@@ -13,6 +13,11 @@ bibliography: "references.bib"
 output: pdf_document
 ---
 
+\let\oldsection\section
+\maketitle
+\thispagestyle{empty}
+\clearpage
+
 \pagebreak
 
 # Content for Page 2
