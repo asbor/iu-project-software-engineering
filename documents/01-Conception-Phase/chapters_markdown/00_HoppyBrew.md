@@ -1,7 +1,10 @@
-   Software Engineering
-=========
+Software Engineering
+====================
+
 < DLMCSPSE01 />
----------
+================
+
+
 # Project: **HoppyBrew**
 ## Concept Phase   
 
