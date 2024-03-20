@@ -1,5 +1,5 @@
 ---
-title: "|   Software Engineering\n|   < DLMCSPSE01 />\n|\n|   Project: **HoppyBrew**\n|\n|\n| **Concept Phase**\n|\n|\n|   *International University of Applyied Sciences*\n|\n|\n"
+title: "|   Software Engineering\n|   < DLMCSPSE01 />\n|\n|   Project: HoppyBrew\n|\n|\n| **Concept Phase**\n|\n|\n|   *International University of Applyied Sciences*\n|\n|\n"
 author: |
   |   Written by
   |   Asbjorn Bordoy
