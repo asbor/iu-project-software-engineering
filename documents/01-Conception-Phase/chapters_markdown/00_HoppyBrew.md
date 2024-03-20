@@ -13,21 +13,7 @@ bibliography: "references.bib"
 output: pdf_document
 ---
 
----
-title: "Page 1"
----
-
-# Content for Page 1
-
-This is the content for Page 1.
-
----
-
 \pagebreak
-
----
-title: "Page 2"
----
 
 # Content for Page 2
 
