@@ -1,15 +1,11 @@
-# Hello 
-
-[Heading identifiers in HTML](#heading-identifiers-in-html)
-
-[the section on heading identifiers][heading identifiers in
-HTML]
-
-Foo *bar*
+Software Engineering
 =========
 
-Foo *bar*
----------
+`Foo
+----
+`
+# <center>Software Engineering</center>
+
 
 <html lang="en">
 <head>
