@@ -58,9 +58,12 @@
 ### What did I learn?
 
 * Allthough it is possible to format the tables in the `Rmarkdown` files in such a way that it looks good both the `pdf` and `markdown` output, it appears that Gitbook tends to be ever so slightly more picky about the formatting of the tables and will not render them like the other outputs. This is something i will have to keep in mind when writing the documentation. I guess there is always a trade-off between the different applications, and since i am considering to substitude Gitbook with some form of self-hosted alternative, like [MkDocs](https://www.mkdocs.org/), this might not be a problem in the future.
+* I have learned that i could recycle much of the Rmd functionality in the `markdown` files, and i will now focus on building the documentation in a more straight forward way. And as pr the knit function, i have created my own python script to render the `markdown` files as `pdf` documents.
 
 
 ### What are the tasks for tomorrow?
+
+* Perhaps i will be able to actually add some value to the project tomorrow, and i will start by reviewing the first chapter of the Conception Phase.
 
 
 </details>

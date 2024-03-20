@@ -10,8 +10,8 @@ knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding, output_dir = "build") })
 
 
-bibliography: "references.bib"
 output: pdf_document
+bibliography: "references.bib"
 ---
 
 \let\oldsection\section
