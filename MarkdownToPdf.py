@@ -3,6 +3,13 @@ import subprocess
 
 
 def merge_and_convert_to_pdf(directory):
+    """
+    Merge all markdown files in the specified directory into a single file and convert it to PDF.
+
+    Args:
+        directory (str): The directory containing the markdown files.
+    """
+
     # Get all markdown files in the directory
     markdown_files = [file for file in os.listdir(
         directory) if file.endswith(".md")]
@@ -19,11 +26,6 @@ def merge_and_convert_to_pdf(directory):
 
     # Convert the merged markdown file to PDF
     output_file = os.path.join(directory, "merged.pdf")
-    # subprocess.run(["pandoc", merged_file, "-o", output_file])
-    # subprocess.run(["pandoc", merged_file, "-o", output_file, "--variable=geometry:a4paper", "--variable=geometry:margin=1in"])
-    # subprocess.run(["pandoc", merged_file, "-o", output_file,
-    #                "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
-    #                "--pdf-engine=xelatex", "--include-in-header", "preamble.tex"])
     subprocess.run(["pandoc", merged_file, "-o", output_file,
                     "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
                     "--pdf-engine=xelatex", "--include-in-header", "preamble.tex"])
@@ -34,8 +36,13 @@ def merge_and_convert_to_pdf(directory):
     print(f"PDF file created: {output_file}")
 
 
-# Specify the directory containing the markdown files
-markdown_directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/chapters_markdown"
+def main():
+    # Specify the directory containing the markdown files
+    markdown_directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/chapters_markdown"
 
-# Call the function to merge and convert the files
-merge_and_convert_to_pdf(markdown_directory)
+    # Call the function to merge and convert the files
+    merge_and_convert_to_pdf(markdown_directory)
+
+
+if __name__ == "__main__":
+    main()
