@@ -16,3 +16,10 @@
     \addtocounter{page}{-1}
     \newpage
 }
+
+% Command for a soft page break
+\newcommand\softpagebreak{
+    \par % Start a new paragraph
+    \vspace{\fill} % Insert stretchable glue
+    \clearpage % Clear the page
+}

@@ -9,9 +9,6 @@ abstract: The project aims to develop a comprehensive Beer Brewing Recipe Manage
 knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding, output_dir = "build") })
 
-
-output: pdf_document
-bibliography: "bibliography.bib"
 ---
 
 \let\oldsection\section
