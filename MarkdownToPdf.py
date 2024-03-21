@@ -17,6 +17,9 @@ def merge_and_convert_to_pdf(directory, outout_file):
     # Sort the files alphabetically
     markdown_files.sort()
 
+    # Change the working directory to the directory containing markdown files
+    os.chdir(directory)
+
     # Merge the markdown files into a single file
     merged_file = os.path.join(directory, "merged.md")
     with open(merged_file, "w") as outfile:
@@ -26,7 +29,6 @@ def merge_and_convert_to_pdf(directory, outout_file):
 
     # Convert the merged markdown file to PDF
     output_file = os.path.join(directory, outout_file)
-    os.chdir(directory)
     subprocess.run(["pandoc", merged_file, "-o", output_file,
                     "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
                     "--pdf-engine=xelatex", "--include-in-header", "preamble.tex"])
