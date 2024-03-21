@@ -38,7 +38,7 @@ def merge_and_convert_to_pdf(directory, outout_file):
 
 def main():
     # Specify the directory containing the markdown files
-    markdown_directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/chapters_markdown"
+    markdown_directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/chapters"
     outout_file = "../HoppyBrew.pdf"
 
     # Call the function to merge and convert the files
