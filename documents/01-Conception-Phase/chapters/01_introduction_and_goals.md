@@ -22,8 +22,8 @@ The motivation behind these goals are to ensure that the application lives up to
 
 The following table lists all the stakeholders of HoppyBrew, along with their roles, contact information, and expectations. It is important to note that these stakeholders are the primary sources of requirements and constraints for the architecture and design of HoppyBrew.
 
-| **Role/Name**             | **expectations**                                                                            |
-| - | - | -- |
+| **Role/Name** | **expectations** |
+| - | -- |
 | **Primary Stakeholder** | Wants a user-friendly and intuitive application for managing brewing recipes and brew logs. |
 | **Secondary Stakeholder** | Wants a high-quality, open-source application that is easy to maintain and extend.          |
 
