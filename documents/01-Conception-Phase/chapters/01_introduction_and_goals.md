@@ -23,7 +23,7 @@ The motivation behind these goals are to ensure that the application lives up to
 In the architecture and design process of HoppyBrew, stakeholders play a pivotal role, providing essential requirements and constraints. Given that this project is part of a school assignment, the stakeholders are limited to the following individuals and their expectations:
 
 | **Priority** | **Name/Category** | **Expectations** |
-| - | - | --- |
+| - | -- | --- |
 | **Primary** | Beer Brewer Enthusiast | Wants a user-friendly and intuitive application for managing brewing recipes and brew logs. |
 | **Secondary** | Self-hosting Enthusiast and devellopers | Wants a high-quality, open-source application that is easy to maintain and extend. |
 
