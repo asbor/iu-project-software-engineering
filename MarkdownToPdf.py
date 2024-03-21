@@ -2,7 +2,7 @@ import os
 import subprocess
 
 
-def merge_and_convert_to_pdf(directory):
+def merge_and_convert_to_pdf(directory, outout_file):
     """
     Merge all markdown files in the specified directory into a single file and convert it to PDF.
 
@@ -25,7 +25,7 @@ def merge_and_convert_to_pdf(directory):
                 outfile.write(infile.read())
 
     # Convert the merged markdown file to PDF
-    output_file = os.path.join(directory, "merged.pdf")
+    output_file = os.path.join(directory, outout_file)
     subprocess.run(["pandoc", merged_file, "-o", output_file,
                     "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
                     "--pdf-engine=xelatex", "--include-in-header", "preamble.tex"])
@@ -42,7 +42,7 @@ def main():
     outout_file = "../HoppyBrew.pdf"
 
     # Call the function to merge and convert the files
-    merge_and_convert_to_pdf(markdown_directory)
+    merge_and_convert_to_pdf(markdown_directory, outout_file)
 
 
 if __name__ == "__main__":
