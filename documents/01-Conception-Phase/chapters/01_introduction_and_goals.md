@@ -29,53 +29,14 @@ The following table lists all the stakeholders of HoppyBrew, along with their ro
 
 HoppyBrew is driven by the following essential features and functional requirements:
 
-\`\`\`{r definePlantuml, include=FALSE} library(plantuml) x \<- ’ left to right direction
-
-actor Administrator as Admin actor Brewer as Brewer actor Database as DB actor ISpindel as ISpindel actor “{abstract}” as AbstractUser
-
-’ x \<- plantuml( x )
-
-```` 
-
-## Plotting to a file
-To save the graph in a file, we simply specify the `file` argument in the plot command:
-```{r exampleFile, include=FALSE}
-plot(
-  x,
-  file = "./documents/01-Conception-Phase/png/testt.png"
-)
-````
-
-And here is the file
-
-![vignettes/test.png](/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/png/testt.png)
-
-![UseCases](/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/png/Use-Case-Diagram-HoppyBrew.png)
+![UseCases](../images/Use-Case-Diagram-HoppyBrew.png)
 
 | **Id** | **Requirement**                                    | **Explanation**                                                                       |
 | ------ | -------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | **F1** | **Manage and create brewing recipes**              | The application should allow users to manage and create brewing recipes.              |
 | **F2** | **Manage and create brews and log their progress** | The application should allow users to manage and create brews and log their progress. |
 
-# Plotting Plantuml graphics
-
-## Define plantuml code
-
-First, we define a plantuml object based on some plantuml code \`\`\`{r definePlantuml, include=FALSE} library(plantuml) x \<- ’ (\*) –\> “Initialization”
-
-if “Some Test” then –\>\[true\] “Some Activity” –\> “Another activity” -right-\> (*) else -\>\[false\] “Something else” –\>\[Ending process\] (*) endif ’ x \<- plantuml( x )
-
-```` 
-
-## Plotting to a file
-To save the graph in a file, we simply specify the `file` argument in the plot command:
-```{r exampleFile, include=FALSE}
-plot(
-  x,
-  file = "./documents/01-Conception-Phase/png/test.png"
-)
-````
 
 And here is the file
 
-![vignettes/test.png](/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/png/test.png)
+![vignettes/test.png](../images/test.png)

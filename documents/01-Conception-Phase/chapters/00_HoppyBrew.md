@@ -11,7 +11,7 @@ knit: (function(inputFile, encoding) {
 
 
 output: pdf_document
-bibliography: "references.bib"
+bibliography: "bibliography.bib"
 ---
 
 \let\oldsection\section
