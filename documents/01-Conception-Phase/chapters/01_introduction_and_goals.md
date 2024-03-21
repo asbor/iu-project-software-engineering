@@ -8,11 +8,11 @@ Note\! The terminology `brew` and `batch` are used interchangeably in this docum
 
 The top three quality goals for the architecture and design whose fulfillment is of highest importance to the major stakeholders of HoppyBrew have been identified as follows:[@AddisonWesley2007]
 
-| **Priority**  | **Quality Goal** |
-| -             | ------- |
-| **1**         | **Usability:** The application should be easy to use and intuitive, with a clean and modern user interface. |
-| **2**         | **Compatibility:** The application should be compatible with a wide range of devices and browsers. (mobile, desktop, tablet) |
-| **3**         | **Integration:** The application should integrate with other brewing tools and services, such as `iSpindel`. |
+| **Priority** | **Key word**  | **Quality Goal** |
+| - | - | ------- |
+| 1 | Usability | The application should be easy to use and intuitive, with a clean and modern user interface. |
+| 2 | Compatibility | The application should be compatible with a wide range of devices and browsers. (mobile, desktop, tablet) |
+| 3 | Integration | The application should integrate with other brewing tools and services, such as `iSpindel`. |
 
 Table: Quality goals and priorities for the application.
 
