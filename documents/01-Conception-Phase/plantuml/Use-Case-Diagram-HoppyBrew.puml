@@ -14,6 +14,7 @@ Brewer --|> AbstractUser
 rectangle "HoppyBrew" as HoppyBrew {
     usecase "Manage  Users" as ManageUsers
     usecase "Manage Recipes" as ManageRecipes
+    usecase "Define water profile" as DefineWaterProfile
     usecase "Create Batch" as CreateBatch
     usecase "Manage Batches" as ManageBatches
     usecase "{abstract}\nManage Profiles" as ManageProfiles
@@ -21,7 +22,6 @@ rectangle "HoppyBrew" as HoppyBrew {
     usecase "Manage Inventory" as ManageInventory
     usecase "Manage System Settings" as ManageSystemSettings
     usecase "Collect\nRealtime Data" as CollectRealtimeData
-
 
     AbstractUser --> ManageUsers
     AbstractUser --> ManageRecipes
