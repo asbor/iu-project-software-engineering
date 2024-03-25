@@ -1,0 +1,26 @@
+@startuml
+
+actor User
+actor iSpindle
+
+package "Software Components" {
+    component Frontend
+    component Backend
+    component Database
+}
+
+package "Infrastructure Components" {
+    node Docker {
+        rectangle "Application Container"
+        rectangle "PostgreSQL Container"
+    }
+}
+
+User --> Frontend
+Frontend --> Backend
+Backend --> Database
+iSpindle --> Backend
+
+Backend --> Database : API Calls
+
+@enduml

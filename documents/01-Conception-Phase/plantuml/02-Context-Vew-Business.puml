@@ -1,0 +1,15 @@
+@startuml
+
+left to right direction
+
+cloud iSpindle
+actor Administrator
+actor Brewer
+rectangle "HoppiBrew" {
+}
+
+iSpindle --> HoppiBrew
+Administrator --> HoppiBrew
+Brewer --> HoppiBrew
+
+@enduml

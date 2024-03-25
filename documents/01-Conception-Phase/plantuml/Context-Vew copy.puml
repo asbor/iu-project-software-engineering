@@ -1,0 +1,276 @@
+@startuml
+
+title "HoppyBrew"
+
+rectangle "HoppyBrew" {
+    object "HoppyBrew" as HoppyBrew {
+        +main()
+    }
+
+    object "HoppyBrewGUI" as HoppyBrewGUI {
+        +main()
+    }
+
+    object "HoppyBrewAPI" as HoppyBrewAPI {
+        +main()
+    }
+
+    HoppyBrew --> HoppyBrewGUI : "main"
+    HoppyBrew --> HoppyBrewAPI : "main"
+}
+
+rectangle "HoppyBrewGUI" {
+    object "HoppyBrewGUI" as HoppyBrewGUI {
+        +main()
+        +displayRecipie()
+        +displayBatch()
+        +displayIngredient()
+        +displayShoppingList()
+        +displayDevice()
+        +displayUser()
+    }
+
+    object "RecipieGUI" as RecipieGUI {
+        +main()
+        +displayRecipie()
+        +addRecipie()
+        +removeRecipie()
+        +editRecipie()
+    }
+
+    object "BatchGUI" as BatchGUI {
+        +main()
+        +displayBatch()
+        +addBatch()
+        +removeBatch()
+        +editBatch()
+    }
+
+    object "IngredientGUI" as IngredientGUI {
+        +main()
+        +displayIngredient()
+        +addIngredient()
+        +removeIngredient()
+        +editIngredient()
+    }
+
+    object "ShoppingListGUI" as ShoppingListGUI {
+        +main()
+        +displayShoppingList()
+        +addIngredient()
+        +removeIngredient()
+        +editIngredient()
+    }
+
+    object "DeviceGUI" as DeviceGUI {
+        +main()
+        +displayDevice()
+        +addDevice()
+        +removeDevice()
+        +editDevice()
+    }
+
+    object "UserGUI" as UserGUI {
+        +main()
+        +displayUser()
+        +addUser()
+        +removeUser()
+        +editUser()t
+    }
+
+    HoppyBrewGUI --> RecipieGUI : "displayRecipie"
+    HoppyBrewGUI --> BatchGUI : "displayBatch"
+    HoppyBrewGUI --> IngredientGUI : "displayIngredient"
+    HoppyBrewGUI --> ShoppingListGUI : "displayShoppingList"
+    HoppyBrewGUI --> DeviceGUI : "displayDevice"
+    HoppyBrewGUI --> UserGUI : "displayUser"
+}
+
+rectangle "HoppyBrewAPI" {
+    object "HoppyBrewAPI" as HoppyBrewAPI {
+        +main()
+        +addRecipie()
+        +removeRecipie()
+        +editRecipie()
+        +getRecipie()
+        +getRecipies()
+        +addBatch()
+        +removeBatch()
+        +editBatch()
+        +getBatch()
+        +getBatches()
+        +addIngredient()
+        +removeIngredient()
+        +editIngredient()
+        +getIngredient()
+        +getIngredients()
+        +addDevice()
+        +removeDevice()
+        +editDevice()
+        +getDevice()
+        +getDevices()
+        +addUser()
+        +removeUser()
+        +editUser()
+        +getUser()
+        +getUsers()
+    }
+
+    object "RecipieManager" as RecipieManager {
+        +addRecipie()
+        +removeRecipie()
+        +editRecipie()
+        +getRecipie()
+        +getRecipies()
+    }       
+
+    object "Recipie" as Recipie {
+        +name
+        +description
+        +ingredients
+        +instructions
+        +image
+        +tags
+        +prepTime
+        +cookTime
+        +sugar
+        +sodium
+        +cholesterol
+        +fiber
+        +rating
+        +reviews
+        +date
+        +author
+        +source
+        +sourceURL
+        +sourceImage
+        +sourceImageURL
+        +sourceImageAttribution
+    }
+
+    object "BatchManager" as BatchManager {
+        +addBatch()
+        +removeBatch()
+        +editBatch()
+        +getBatch()
+        +getBatches()
+    }
+
+    object "Batch" as Batch {
+        +recipie
+        +date
+        +servings
+        +rating
+        +reviews
+        +author
+        +source
+        +sourceURL
+        +sourceImage
+        +sourceImageURL
+        +sourceImageAttribution
+        +ingredients
+        +instructions
+        +image
+        +tags
+        +prepTime
+        +sugar
+        +sodium
+        +cholesterol
+        +fiber
+        +rating
+        +reviews
+        +date
+        +author
+        +source
+        +sourceURL
+        +sourceImage
+        +sourceImageURL
+        +sourceImageAttribution
+    }
+
+    object "InventoryManager" as InventoryManager {
+        +addIngredient()
+        +removeIngredient()
+        +editIngredient()
+        +getIngredient()
+        +getIngredients()
+    }
+
+    object "ShoppingListManager" as ShoppingListManager {
+        +addIngredient()
+        +removeIngredient()
+        +editIngredient()
+        +getIngredient()
+        +getIngredients()
+    }
+
+    object "DeviceManager" as DeviceManager {
+        +addDevice()
+        +removeDevice()
+        +editDevice()
+        +getDevice()
+        +getDevices()
+    }
+
+    object "Device" as Device {
+        +name
+        +type
+        +location
+    }
+
+    object "UserManager" as UserManager {
+        +addUser()
+        +removeUser()
+        +editUser()
+        +getUser()
+        +getUsers()
+    }
+
+    object "User" as User {
+        +name
+        +email
+        +password
+    }
+
+    object "PostGreSQL" as PostGreSQL {
+        +recipies
+        +batches
+        +ingredients
+        +shoppingList
+        +users
+    }
+
+    object "EmailManager" as EmailManager {
+        +sendEmail()
+    }
+
+    Object "Psycopg2" as Psycopg2 {
+        +connect()
+        +cursor()
+        +execute()
+        +fetchall()
+        +fetchone()
+        +commit()
+        +close()
+    }
+
+    Psycopg2 --> PostGreSQL : "connect"
+
+    UserManager --> User
+    ShoppingListManager --> Ingredient
+
+    RecipieManager --> Recipie
+    EmailManager --> User
+    DeviceManager --> Device
+
+    InventoryManager --> Ingredient
+
+
+    BatchManager --> Batch
+
+    }
+    
+}
+
+
+@enduml

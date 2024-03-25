@@ -54,7 +54,7 @@ In this document, I have chosen to reduce the concept of use cases to a single H
 
 The following use cases have been identified for the application:
 
-![High-level use case diagram for the application.](../images/Use-Case-Diagram-HoppyBrew.png)
+![High-level use case diagram for the application.](../images/01-Use-Case-Diagram.png)
 
 #### Actors
 
@@ -117,7 +117,6 @@ The functional requirements for the application are as follows:
 | **FR8** | **Recipe Library** | The application should be able to import and export recipes based on the BeerXML standard. [@beerxml]|
 | **FR9** | **Realtime Data Collection** | The application should be able to collect realtime data from iSpindel. |
 
-
 Table: Functional requirements for the application.
 
 > **Note!**
@@ -126,3 +125,38 @@ Table: Functional requirements for the application.
 >
 > - CRUD stands for Create, Read, Update, and Delete.
 
+### Non-functional Requirements
+
+The non-functional requirements for the application are based on the quality goals that have been identified for the application. The quality goals are intended to provide a high-level overview of the most important quality attributes for the application, and to guide the architecture and design process in a way that ensures that these quality attributes are met. Unlike the functional requirements, the non-functional requirements not always so easily measurable, and are often more subjective in nature.
+
+The non-functional requirements for the application are as follows:
+
+| Id | Requirement | Description |
+| - | -- | ---- |
+| **NFR1** | **Usability** | The application should be easy to use and intuitive, with a clean and modern user interface. |
+| **NFR2** | **Compatibility** | The application should be compatible with a wide range of devices and browsers. |
+| **NFR3** | **Integration** | The application should integrate with other brewing tools and services, such as iSpindel. |
+| **NFR4** | **Performance** | The application should be fast and responsive, with minimal latency. |
+| **NFR5** | **Scalability** | The application should be able to handle a large number of users and data. |
+| **NFR6** | **Reliability** | The application should be reliable and available, with minimal downtime. |
+| **NFR7** | **Security** | The application should be secure, with user authentication and authorization. |
+| **NFR8** | **Maintainability** | The application should be easy to maintain and extend, with clean and modular code. |
+| **NFR9** | **Documentation** | The application should be well-documented, with clear and concise documentation. |
+| **NFR10** | **Open-source** | The application should be open-source, with a permissive license. |
+
+Table: Non-functional requirements for the application.
+
+> **Note!**
+>
+> - The non-functional requirements are based on the quality goals that have been identified for the application.
+>
+> - The non-functional requirements are intended to provide a high-level overview of the most important quality attributes for the application.
+> - The non-functional requirements are intended to guide the architecture and design process in a way that ensures that these quality attributes are met.
+
+## Architecture Constraints
+
+### Assumptions
+
+When starting a new project, we often rely on certain assumptions based on the information we have at the time. Here are the assumptions we've made for this application:
+
+1. **Online Learning:** We assume that any missing knowledge can be gained through online resources and documentation. This means we believe we can learn what we need to know about the technologies used in the project without too much difficulty, and in a reasonable amount of time.
