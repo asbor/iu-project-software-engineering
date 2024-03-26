@@ -1,0 +1,25 @@
+\usepackage{float}
+
+% Redefine figure environment to use [H] option from float package
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2]{
+    \expandafter\origfigure\expandafter[H]
+}{
+    \endorigfigure
+}
+
+% Command for a blank page
+\newcommand\blankpage{
+    \null
+    \thispagestyle{empty}
+    \addtocounter{page}{-1}
+    \newpage
+}
+
+% Command for a soft page break
+\newcommand\softpagebreak{
+    \par % Start a new paragraph
+    \vspace{\fill} % Insert stretchable glue
+    \clearpage % Clear the page
+}
