@@ -1,4 +1,4 @@
-# Introduction and Goals
+Introduction and Goals
 
 ## Conceptual Architecture Documentation for the HoppyBrew application
 
