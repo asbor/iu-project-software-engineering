@@ -28,3 +28,5 @@ Mapping of Building Blocks to Infrastructure
 ### *\<Infrastructure Element n\>*
 
 *\<diagram + explanation\>*
+
+\clearpage

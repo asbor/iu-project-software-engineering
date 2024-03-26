@@ -1,5 +1,1 @@
-\clearpage
-
 # Bibliography
-
-

@@ -1,3 +1,4 @@
+
 # Introduction and Goals
 
 ## Conceptual Architecture Documentation for the HoppyBrew application
@@ -153,6 +154,8 @@ Table: Non-functional requirements for the application.
 > - The non-functional requirements are intended to provide a high-level overview of the most important quality attributes for the application.
 > - The non-functional requirements are intended to guide the architecture and design process in a way that ensures that these quality attributes are met.
 
+\clearpage
+
 # Architecture Constraints
 
 ## Assumptions
@@ -186,6 +189,8 @@ There are a number of risks associated with this project, which could potentiall
 2. **Time Risks:** There is a risk that the project will take longer than expected to complete, due to unforeseen circumstances.
 3. **Skill development Risks:** There is a risk that the required knowledge for the project cannot be acquired in a reasonable amount of time.
 
+\clearpage
+
 # System Scope and Context
 
 ## Business Context
@@ -199,6 +204,8 @@ As indicated in the business context diagram below, the system only interacts wi
 From a technical perspective, the system interacts with several external systems and services. The system is dependent on the iSpindel for collecting real-time data from the brewing process. The system is also dependent on a database for storing and managing data. The system uses GitHub for version control and collaboration. Finally, the system uses Docker for containerization and deployment.
 
 ![Technical-Context-Vew](../images/03-Context-View-Technical.png)
+
+\clearpage
 
 # Solution Strategy
 
@@ -286,6 +293,8 @@ Some additional considerations for the application are as follows:
 5. Compliance: The application will comply with relevant laws and regulations, such as data protection and privacy laws. This will help protect the rights and interests of the users, as well as ensure the legal and ethical operation of the application.
 6. Accessibility: The application will implement accessibility best practices, to ensure that all users can access and use the application. This will help provide a positive and inclusive experience for all users, regardless of their abilities or disabilities.
 7. Localization: The application will implement localization, to support multiple languages and regions. This will help reach a wider audience and improve the usability of the application, as well as provide a more personalized experience for users.
+
+\clearpage
 
 # Building Block View
 
@@ -428,6 +437,8 @@ The HoppyBrew application is responsible for processing the data and storing it 
 
 The PostgreSQL database is responsible for storing the data. It communicates with the HoppyBrew application to receive data.
 
+\clearpage
+
 # Runtime View
 
 ## \<Runtime Scenario 1\>
@@ -473,6 +484,8 @@ Mapping of Building Blocks to Infrastructure
 
 *\<diagram + explanation\>*
 
+\clearpage
+
 # Cross-cutting Concepts
 
 ## *\<Concept 1\>*
@@ -489,13 +502,19 @@ Mapping of Building Blocks to Infrastructure
 
 *\<explanation\>*
 
+\clearpage
+
 # Architecture Decisions
+
+\clearpage
 
 # Quality Requirements
 
 ## Quality Tree
 
 ## Quality Scenarios
+
+\clearpage
 
 # Risks and Technical Debts
 
@@ -525,3 +544,8 @@ Mapping of Building Blocks to Infrastructure
 | **Viewpoint** | A viewpoint is a specification of the conventions for constructing and using a view. A viewpoint specifies not only the kinds of models that are to be constructed, but also the rules governing the construction of those models. |
 | **Viewtype** | A viewtype is a template for a view. It specifies the types of models that are to be constructed, and the rules governing the construction of those models. |
 | **Work Product** | A work product is a document or model that is produced as part of a software development process. Work products are used to capture and communicate information about the system being developed. |
+
+\clearpage
+
+# Bibliography
+

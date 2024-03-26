@@ -11,3 +11,5 @@ As indicated in the business context diagram below, the system only interacts wi
 From a technical perspective, the system interacts with several external systems and services. The system is dependent on the iSpindel for collecting real-time data from the brewing process. The system is also dependent on a database for storing and managing data. The system uses GitHub for version control and collaboration. Finally, the system uses Docker for containerization and deployment.
 
 ![Technical-Context-Vew](../images/03-Context-View-Technical.png)
+
+\clearpage

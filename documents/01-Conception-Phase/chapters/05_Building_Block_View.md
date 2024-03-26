@@ -138,3 +138,5 @@ The HoppyBrew application is responsible for processing the data and storing it 
 ### PostgreSQL
 
 The PostgreSQL database is responsible for storing the data. It communicates with the HoppyBrew application to receive data.
+
+\clearpage
