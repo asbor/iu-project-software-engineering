@@ -1,8 +1,6 @@
-#
+# Introduction and Goals
 
-## Introduction and Goals
-
-### Conceptual Architecture Documentation for the HoppyBrew application
+## Conceptual Architecture Documentation for the HoppyBrew application
 
 **This documentation:** is intended to provide a high-level overview of the HoppyBrew application. The document is based on the template provided by [@arc42]. Arc42 is a template for documenting software architectures. It is based on the ISO/IEC/IEEE 42010 standard, which is the international standard for documenting software architectures. The template is designed to be flexible and adaptable, and to be used in a wide range of software development projects. The template is divided into a number of sections, each of which covers a different aspect of the software architecture. The sections are designed to be used in a modular fashion, so that they can be used individually or in combination with other sections. The template is also designed to be easy to use, with a clear and consistent structure, and with a focus on the most important aspects of software architecture.
 
@@ -10,7 +8,7 @@
 
 Note! The terminology `brew` and `batch` are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.
 
-### Quality Goals
+## Quality Goals
 
 The top three quality goals for the architecture and design whose fulfillment is of highest importance to the major stakeholders of HoppyBrew have been identified as follows:
 
@@ -26,7 +24,7 @@ These quality goals are based on derived summaries of `ISO/IEC 25010 quality mod
 
 The motivation behind these goals are to ensure that the application lives up to the expectations of the most important stakeholders, since they are the ones who will be the ones who influence the fundamental architecture and design decisions.
 
-### Stakeholders
+## Stakeholders
 
 In the architecture and design process of HoppyBrew, stakeholders play a pivotal role, providing essential requirements and constraints. Given that this project is part of a school assignment, the stakeholders are limited to the following individuals and their expectations:
 
@@ -40,7 +38,7 @@ Table: Stakeholders and their expectations for the application.
 
 It's important to recognize that since this is just a school project, the stakeholders are restricted to my own different personas.
 
-### Requirements Overview
+## Requirements Overview
 
 The purpose of this section is to provide a high-level overview of the requirements for the application. The requirements are divided into two categories: functional requirements and non-functional requirements.
 
@@ -52,13 +50,13 @@ So what what exactly is the difference between the two approaches one might ask?
 
 In this document, I have chosen to reduce the concept of use cases to a single High-level use case diagram, and then focus on the functional requirements that are derived from the use cases. The reason for this is because the overall design of the application is relatively simple.
 
-#### High-level Use Cases
+### High-level Use Cases
 
 The following use cases have been identified for the application:
 
 ![High-level use case diagram for the application.](../images/01-Use-Case-Diagram.png)
 
-##### Actors
+#### Actors
 
 The following actors are involved in the use cases:
 
@@ -71,7 +69,7 @@ The following actors are involved in the use cases:
 
 Table: Actors involved in the use cases for the application.
 
-##### Use Cases
+#### Use Cases
 
 The following use cases are supported by the application:
 
@@ -89,7 +87,7 @@ The following use cases are supported by the application:
 
 Table: High-level use cases for the application.
 
-#### Functional Requirements
+### Functional Requirements
 
 The functional requirements for the application are based on the use cases that have been identified for the application. The use cases are intended to provide a high-level overview of the functionality that the application should support. The use cases are based on the requirements provided by the stakeholders and are intended to guide the architecture and design process in a way that ensures that the application meets the expectations of the stakeholders.
 
@@ -127,7 +125,7 @@ Table: Functional requirements for the application.
 >
 > - CRUD stands for Create, Read, Update, and Delete.
 
-#### Non-functional Requirements
+### Non-functional Requirements
 
 The non-functional requirements for the application are based on the quality goals that have been identified for the application. The quality goals are intended to provide a high-level overview of the most important quality attributes for the application, and to guide the architecture and design process in a way that ensures that these quality attributes are met. Unlike the functional requirements, the non-functional requirements not always so easily measurable, and are often more subjective in nature.
 
@@ -155,15 +153,15 @@ Table: Non-functional requirements for the application.
 > - The non-functional requirements are intended to provide a high-level overview of the most important quality attributes for the application.
 > - The non-functional requirements are intended to guide the architecture and design process in a way that ensures that these quality attributes are met.
 
-## Architecture Constraints
+# Architecture Constraints
 
-### Assumptions
+## Assumptions
 
 When starting a new project, we often rely on certain assumptions based on the information we have at the time. Here are the assumptions we've made for this application:
 
 1. **Online Learning:** We assume that any missing knowledge can be gained through online resources and documentation. This means we believe we can learn what we need to know about the technologies used in the project without too much difficulty, and in a reasonable amount of time.
 
-### Constraints
+## Constraints
 
 1. **Deadline:** Since this is just a school project, we've got a deadline we need to meet. We've only got a certain amount of time to finish everything, including planning how the project will work. This deadline is set based on how much credit the project is worth and how much work we expect it to take. For example, since this project is worth 5 credits, we think it'll take about 150 hours to complete.
 
@@ -171,7 +169,7 @@ When starting a new project, we often rely on certain assumptions based on the i
 
 3. **User Interface Simplification:** To keep things simple, we'll make the user interface as basic as possible while still showing how the app works. This means it won't look super fancy or work perfectly on every device, but it'll get the job done. We won't spend too much time on making it look pretty because that's not the main focus of the project.
 
-### Dependencies
+## Dependencies
 
 The application is dependent on the following external services and tools:
 
@@ -180,7 +178,7 @@ The application is dependent on the following external services and tools:
 3. **GitHub:** The application is dependent on GitHub for version control and collaboration.
 4. **Docker:** The application is dependent on Docker for containerization and deployment.
 
-### Risks
+## Risks
 
 There are a number of risks associated with this project, which could potentially impact the success of the project. The following risks have been identified for the application:
 
@@ -188,47 +186,47 @@ There are a number of risks associated with this project, which could potentiall
 2. **Time Risks:** There is a risk that the project will take longer than expected to complete, due to unforeseen circumstances.
 3. **Skill development Risks:** There is a risk that the required knowledge for the project cannot be acquired in a reasonable amount of time.
 
-## System Scope and Context
+# System Scope and Context
 
-### Business Context
+## Business Context
 
 As indicated in the business context diagram below, the system only interacts with three external actors, namely the Administrator, The Brewer, and the ISpindel. The Administrator is responsible for managing the system, including adding new users, managing user roles, and monitoring the system. The Brewer is responsible for creating new brews, managing existing brews, and monitoring the progress of the brews. The ISpindel is responsible for collecting real-time data from the brewing process and sending it to the system.
 
 ![Business-Context-Vew](../images/02-Context-Vew-Business.png)
 
-### Technical Context
+## Technical Context
 
 From a technical perspective, the system interacts with several external systems and services. The system is dependent on the iSpindel for collecting real-time data from the brewing process. The system is also dependent on a database for storing and managing data. The system uses GitHub for version control and collaboration. Finally, the system uses Docker for containerization and deployment.
 
 ![Technical-Context-Vew](../images/03-Context-View-Technical.png)
 
-## Solution Strategy
+# Solution Strategy
 
-### Technology Decisions
+## Technology Decisions
 
 The application will be encapsulated in a containerized environment using Docker. This will allow for easy deployment and scaling of the application, as well as ensuring consistency across different environments. The application will be developed using a microservices architecture, with each component of the application running as a separate service. This will allow for greater flexibility and scalability, as well as making it easier to maintain and update the application.
 
-#### Frontend Technology
+### Frontend Technology
 
 After evaluating the requirements and constraints of the project, we have decided to use Vue.js as the frontend technology for the application. This is because Vue.js is a lightweight and flexible JavaScript framework that allows for rapid development of single-page applications. It provides a simple and intuitive syntax, making it easy to learn and use, which is ideal for a school project with a tight deadline. Additionally, Vue.js has a large and active community, which means there are plenty of resources and support available for developers. This will help us overcome any challenges we may face during the development process.
 
-#### Backend Technology
+### Backend Technology
 
 The backend of the application will be developed using Python and FastAPI. FastAPI is a modern web framework for building APIs with Python. It is fast, easy to use, and provides automatic validation and serialization of request and response data. FastAPI is also based on standard Python type hints, which makes it easy to use and understand for developers who are familiar with Python. Additionally, FastAPI has built-in support for asynchronous programming, which allows for greater performance and scalability of the application. This makes it an ideal choice for building the backend of our application.
 
-#### Database Technology
+### Database Technology
 
 The application will use PostgreSQL as the database technology. PostgreSQL is a powerful, open-source relational database management system that is widely used in the industry. It provides a rich set of features, including support for complex queries, transactions, and data integrity constraints. PostgreSQL is also highly scalable and reliable, making it suitable for use in production environments. Additionally, PostgreSQL has excellent support for JSON data types, which will be useful for storing and querying the data in our application. Overall, PostgreSQL is a solid choice for the database technology of our application.
 
-#### Deployment Technology
+### Deployment Technology
 
 The application will be deployed using Docker and Docker Compose. Docker is a containerization platform that allows applications to be packaged into lightweight, portable containers that can run on any system. Docker Compose is a tool that allows multiple containers to be managed and orchestrated together. This will allow us to easily deploy and scale the application, as well as ensure consistency across different environments. Additionally, Docker and Docker Compose are widely used in the industry, which means there are plenty of resources and support available for developers. This will help us overcome any challenges we may face during the deployment process.
 
-#### Development Tools
+### Development Tools
 
 The development of the application will be done using Visual Studio Code as the primary code editor. Visual Studio Code is a lightweight and powerful code editor that provides a rich set of features, including syntax highlighting, code completion, and debugging tools. It also has a large and active community, which means there are plenty of extensions and support available for developers. This will help us write clean and efficient code, as well as overcome any challenges we may face during the development process.
 
-### Top-level Decomposition
+## Top-level Decomposition
 
 The application will be decomposed into the following components:
 
@@ -239,7 +237,7 @@ The application will be decomposed into the following components:
 
 Each component will be developed and deployed as a separate service, which will communicate with each other using RESTful APIs. This will allow for greater flexibility and scalability, as well as making it easier to maintain and update the application. The frontend will be developed using Vue.js, the backend will be developed using Python and FastAPI, the database will be developed using PostgreSQL, and the deployment will be done using Docker and Docker Compose.
 
-### Key Quality Goals
+## Key Quality Goals
 
 The key quality goals of the application are as follows:
 
@@ -253,11 +251,11 @@ To achieve these quality goals, we will use the following approaches:
 2. Scalability: We will use a microservices architecture for the application, with each component running as a separate service. This will allow for greater flexibility and scalability, as well as making it easier to maintain and update the application. We will also use Docker and Docker Compose for deployment, which will allow us to easily scale the application as needed.
 3. Reliability: We will use PostgreSQL as the database technology, which is highly reliable and provides support for transactions and data integrity constraints. We will also use Docker and Docker Compose for deployment, which will allow us to easily manage and orchestrate multiple containers. Additionally, we will implement automated testing and monitoring to ensure the reliability of the application.
 
-### Organizational Decisions
+## Organizational Decisions
 
 The application will be developed by a team of four developers, with each developer responsible for a specific component of the application. The team will follow an agile development process, with regular stand-up meetings, sprint planning, and retrospectives. The team will also use Git as the version control system, with a central repository hosted on GitHub. This will allow for easy collaboration and coordination between team members, as well as ensuring that the codebase is well-maintained and up-to-date.
 
-### Motivation
+## Motivation
 
 The motivation for the chosen technology decisions is as follows:
 
@@ -267,7 +265,7 @@ The motivation for the chosen technology decisions is as follows:
 4. Deployment Technology: Docker and Docker Compose were chosen as the deployment technology because of their containerization capabilities and ease of use. This will help us deploy and scale the application easily and consistently, with support for managing and orchestrating multiple containers.
 5. Development Tools: Visual Studio Code was chosen as the primary code editor because of its lightweight and powerful nature, as well as its rich set of features and extensions. This will help us write clean and efficient code, with plenty of resources and support available.
 
-### Solution Approaches
+## Solution Approaches
 
 The solution approaches for the application are as follows:
 
@@ -277,7 +275,7 @@ The solution approaches for the application are as follows:
 3. Database: The database of the application will be developed using PostgreSQL, with a focus on reliability, scalability, and data integrity. The database will store the data in a structured and efficient manner, with support for complex queries and transactions.
 4. Deployment: The application will be deployed using Docker and Docker Compose, with a focus on consistency, scalability, and reliability. The application will be packaged into lightweight and portable containers, which can run on any system. The containers will be managed and orchestrated using Docker Compose, which will allow for easy deployment and scaling of the application.
 
-### Additional Considerations
+## Additional Considerations
 
 Some additional considerations for the application are as follows:
 
@@ -289,9 +287,9 @@ Some additional considerations for the application are as follows:
 6. Accessibility: The application will implement accessibility best practices, to ensure that all users can access and use the application. This will help provide a positive and inclusive experience for all users, regardless of their abilities or disabilities.
 7. Localization: The application will implement localization, to support multiple languages and regions. This will help reach a wider audience and improve the usability of the application, as well as provide a more personalized experience for users.
 
-## Building Block View
+# Building Block View
 
-### Whitebox Overall System
+## Whitebox Overall System
 
 ![Overview Diagram](../images/04-white-box-overall-system.png)
 
@@ -374,7 +372,7 @@ Contained Building Blocks
 Important Interfaces  
 *\<Description of important interfaces\>*
 
-### Blackbox Overall System
+## Blackbox Overall System
 
 ![Overview Diagram](../images/05-black-box-overall-system.png)
 
@@ -408,45 +406,45 @@ hoppybrew -- postgres
 @enduml
 ```
 
-#### \<Name black box 1\>
+### \<Name black box 1\>
 
-#### Client Browser
+### Client Browser
 
 The client browser is responsible for displaying the data to the user. It communicates with the Cloudflare service to send and receive data.
 
-#### ISpindel
+### ISpindel
 
 The ISpindel is responsible for collecting the data. It communicates with the Cloudflare service to send and receive data.
 
-#### Cloudflare
+### Cloudflare
 
 The Cloudflare service is responsible for routing the data between the client browser and the Unraid Server.
 
-#### HoppyBrew
+### HoppyBrew
 
 The HoppyBrew application is responsible for processing the data and storing it in the database. It communicates with the Cloudflare service to send and receive data. It also communicates with the PostgreSQL database to store the data. This can also be seen as the business logic of the application.
 
-#### PostgreSQL
+### PostgreSQL
 
 The PostgreSQL database is responsible for storing the data. It communicates with the HoppyBrew application to receive data.
 
-## Runtime View
+# Runtime View
 
-### \<Runtime Scenario 1\>
+## \<Runtime Scenario 1\>
 
 - *\<insert runtime diagram or textual description of the scenario\>*
 
 - *\<insert description of the notable aspects of the interactions between the building block instances depicted in this diagram.\>*
 
-### \<Runtime Scenario 2\>
+## \<Runtime Scenario 2\>
 
-### …
+## …
 
-### \<Runtime Scenario n\>
+## \<Runtime Scenario n\>
 
-## Deployment View
+# Deployment View
 
-### Infrastructure Level 1
+## Infrastructure Level 1
 
 ***\<Overview Diagram\>***
 
@@ -459,51 +457,51 @@ Quality and/or Performance Features
 Mapping of Building Blocks to Infrastructure  
 *\<description of the mapping\>*
 
-### Infrastructure Level 2
+## Infrastructure Level 2
 
-#### *\<Infrastructure Element 1\>*
+### *\<Infrastructure Element 1\>*
 
 *\<diagram + explanation\>*
 
-#### *\<Infrastructure Element 2\>*
+### *\<Infrastructure Element 2\>*
 
 *\<diagram + explanation\>*
 
 …
 
-#### *\<Infrastructure Element n\>*
+### *\<Infrastructure Element n\>*
 
 *\<diagram + explanation\>*
 
-## Cross-cutting Concepts
+# Cross-cutting Concepts
 
-### *\<Concept 1\>*
+## *\<Concept 1\>*
 
 *\<explanation\>*
 
-### *\<Concept 2\>*
+## *\<Concept 2\>*
 
 *\<explanation\>*
 
 …
 
-### *\<Concept n\>*
+## *\<Concept n\>*
 
 *\<explanation\>*
 
-## Architecture Decisions
+# Architecture Decisions
 
-## Quality Requirements
+# Quality Requirements
 
-### Quality Tree
+## Quality Tree
 
-### Quality Scenarios
+## Quality Scenarios
 
-## Risks and Technical Debts
+# Risks and Technical Debts
 
 \clearpage
 
-## Glossary
+# Glossary
 
 | **Term**         | **Definition**         |
 | - | ---- |

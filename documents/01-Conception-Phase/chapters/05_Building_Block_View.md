@@ -69,9 +69,6 @@ rectangle "Unraid Server" {
 
 The motivation for the decomposition is to separate the concerns of the different parts of the system. The client browser is responsible for displaying the data to the user, the ISpindel is responsible for collecting the data, and the Unraid Server is responsible for processing the data and storing it in the database. The Cloudflare service is responsible for routing the data between the client browser and the Unraid Server.
 
-
-
-
 Contained Building Blocks  
 *\<Description of contained building block (black boxes)\>*
 
@@ -85,7 +82,6 @@ Contained Building Blocks
 
 Important Interfaces  
 *\<Description of important interfaces\>*
-
 
 ## Blackbox Overall System
 
