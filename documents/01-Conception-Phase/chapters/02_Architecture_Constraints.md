@@ -1,5 +1,6 @@
 # Architecture Constraints
 
+
 ## Assumptions
 
 When starting a new project, we often rely on certain assumptions based on the information we have at the time. Here are the assumptions we've made for this application:
