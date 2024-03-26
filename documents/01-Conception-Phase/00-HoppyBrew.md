@@ -1,4 +1,4 @@
-Introduction and Goals
+# Introduction and Goals
 
 ## Conceptual Architecture Documentation for the HoppyBrew application
 
@@ -152,7 +152,6 @@ Table: Non-functional requirements for the application.
 >
 > - The non-functional requirements are intended to provide a high-level overview of the most important quality attributes for the application.
 > - The non-functional requirements are intended to guide the architecture and design process in a way that ensures that these quality attributes are met.
-
 
 # Architecture Constraints
 
