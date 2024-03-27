@@ -73,7 +73,7 @@ def main():
 
     # Split the markdown file into chapters
     markdown_file = '00-HoppyBrew.md'
-    destination = 'documents/01-Conception-Phase/chapters'
+    destination = 'documents/01-Conception-Phase/chapters/'
     split_chapters(markdown_file, destination)
 
     # Specify the directory containing the markdown files

@@ -2,7 +2,7 @@
 
 ## Whitebox Overall System
 
-![Overview Diagram](./images/04-white-box-overall-system.png)
+![Overview Diagram](documents/01-Conception-Phase/images/04-white-box-overall-system.png)
 
 ```plantuml
 @startuml
@@ -85,7 +85,7 @@ Important Interfaces
 
 ## Blackbox Overall System
 
-![Overview Diagram](./images/05-black-box-overall-system.png)
+![Overview Diagram](documents/01-Conception-Phase/images/05-black-box-overall-system.png)
 
 ```plantuml
 @startuml
