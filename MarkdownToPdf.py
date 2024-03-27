@@ -18,9 +18,6 @@ def merge_and_convert_to_pdf(directory, outout_file):
     # Sort the files alphabetically
     markdown_files.sort()
 
-    # Change the working directory to the directory containing markdown files
-    os.chdir(directory)
-
     # Merge the markdown files into a single file
     merged_file = os.path.join(directory, "merged.md")
     with open(merged_file, "w") as outfile:
@@ -76,11 +73,14 @@ def main():
     split_chapters(markdown_file)
 
     # Specify the directory containing the markdown files
-    markdown_directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/chapters"
+    directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/chapters"
     outout_file = "../HoppyBrew.pdf"
 
+    # Change the working directory to the directory containing markdown files
+    os.chdir(directory)
+
     # Call the function to merge and convert the files
-    merge_and_convert_to_pdf(markdown_directory, outout_file)
+    merge_and_convert_to_pdf(directory, outout_file)
 
 
 if __name__ == "__main__":
