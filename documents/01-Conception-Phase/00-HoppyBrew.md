@@ -110,7 +110,7 @@ rectangle "HoppyBrew" as HoppyBrew {
 
 </div>
 
-![High-level use case diagram for the application.](01-Use-Case-Diagram.png)
+![High-level use case diagram for the application.](images/01-Use-Case-Diagram.png)
 
 #### Actors
 
