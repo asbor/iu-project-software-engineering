@@ -1,26 +1,148 @@
 @startuml
 
-actor User
-actor iSpindle
+actor Administrator as Admin
+actor Brewer as Brewer
+actor Database as DB
+actor ISpindel as ISpindel
+actor "{abstract}" as AbstractUser
 
-package "Software Components" {
-    component Frontend
-    component Backend
-    component Database
+Admin --|> AbstractUser
+Brewer --|> AbstractUser
+
+rectangle "HoppyBrew" as HoppyBrew {
+    usecase "Manage  Users" as ManageUsers
+    usecase "Manage Recipes" as ManageRecipes
+    usecase "Define water profile" as DefineWaterProfile
+    usecase "Create Batch" as CreateBatch
+    usecase "Manage Batches" as ManageBatches
+    usecase "{abstract}\nManage Profiles" as ManageProfiles
+    usecase "Manage Devices" as ManageDevices
+    usecase "Manage Inventory" as ManageInventory
+    usecase "Manage System Settings" as ManageSystemSettings
+    usecase "Collect\nRealtime Data" as CollectRealtimeData
+
+    AbstractUser --> ManageUsers
+    AbstractUser --> ManageRecipes
+    AbstractUser --> ManageBatches
+    AbstractUser --> ManageProfiles
+    AbstractUser --> ManageDevices
+    AbstractUser --> ManageInventory
+    AbstractUser --> ManageSystemSettings
+
+    CreateBatch .> ManageBatches : <<extends>>
+
+    ManageRecipes .> CreateBatch : <<extends>>
+    CreateBatch --> DB
+
 }
 
-package "Infrastructure Components" {
-    node Docker {
-        rectangle "Application Container"
-        rectangle "PostgreSQL Container"
+ManageInventory --> DB
+ManageRecipes --> DB
+ManageProfiles --> DB
+
+ManageDevices <-- ISpindel
+CollectRealtimeData <-- ISpindel
+
+cloud iSpindle
+actor Administrator
+actor Brewer
+rectangle "HoppiBrew" {
+}
+
+iSpindle --> HoppiBrew
+Administrator --> HoppiBrew
+Brewer --> HoppiBrew
+
+
+
+
+
+user -> WebServer : HTTP Request
+WebServer -> AppServer : HTTP Request
+AppServer -> Database : SQL Query
+Database -> AppServer : SQL Response
+AppServer -> WebServer : HTTP Response
+WebServer -> user : HTTP Response
+
+ISpindel -> AppServer : HTTP Request
+AppServer -> ISpindel : HTTP Response
+
+component "Client Browser" {
+    portout "Port:443" as Client_Port80
+}
+
+component "ISpindel" {
+    portout "Port:9501" as ISpindel_Port80
+}
+
+cloud "Internet" {
+    component "Cloudflare" as cloudflare
+}
+
+ISpindel_Port80 -- cloudflare
+Client_Port80 -- cloudflare
+
+rectangle "Unraid Server" {
+    node "Docker Engine" {
+        component "Cloudflare" as tunnel{
+            portout "Port 443" as CloudFlare_portout443
+        }
+        cloudflare <|..|> tunnel : <<TUNNEL>>
+
+        node "App Container" as Application_Container {
+
+            portin "Port 443" as HoppyBrew_portin443
+            portout "Port 5432" as HoppyBrew_portout5432
+
+            HoppyBrew_portin443 - api : Listens On
+
+            api - HoppyBrew : Uses
+            HoppyBrew -- db_adapter : Uses
+            api -- uvicorn  : Runs
+            api -- endpoints  : Uses
+            api -- APIRouter  : Uses
+
+            db_adapter - HoppyBrew_portout5432 : Listens On
+
+        }
+        CloudFlare_portout443 -- HoppyBrew_portin443  : Connects To
+
+        node "PostgreSQL Container" {
+            component "PostgreSQL" as db
+
+            portin "Port 5432" as Postgres_port5432
+
+            Postgres_port5432 -- db : Listens On
+        }
+
+        HoppyBrew_portout5432 -- Postgres_port5432 : Connects To
+
     }
 }
 
-User --> Frontend
-Frontend --> Backend
-Backend --> Database
-iSpindle --> Backend
+rectangle "Client Browser" {
+    component "Client Browser" as client_browser
+}
 
-Backend --> Database : API Calls
+rectangle "ISpindel" {
+    component "ISpindel" as iSpindel
+}
+
+rectangle "Cloudflare" {
+    component "Cloudflare" as cloudflare
+}
+
+rectangle "HoppyBrew" {
+    component "HoppyBrew" as hoppybrew
+}
+
+rectangle "PostgreSQL" {
+    component "PostgreSQL" as postgres
+}
+
+client_browser -- cloudflare
+iSpindel -- cloudflare
+cloudflare -- hoppybrew
+hoppybrew -- postgres
 
 @enduml

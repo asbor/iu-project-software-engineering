@@ -55,7 +55,62 @@ In this document, I have chosen to reduce the concept of use cases to a single H
 
 The following use cases have been identified for the application:
 
-![High-level use case diagram for the application.](images/01-Use-Case-Diagram.png)
+<div hidden>
+
+```plantuml
+@startuml 01-Use-Case-Diagram
+
+left to right direction
+
+actor Administrator as Admin
+actor Brewer as Brewer
+actor Database as DB
+actor ISpindel as ISpindel
+actor "{abstract}" as AbstractUser
+
+Admin --|> AbstractUser
+Brewer --|> AbstractUser
+
+rectangle "HoppyBrew" as HoppyBrew {
+    usecase "Manage  Users" as ManageUsers
+    usecase "Manage Recipes" as ManageRecipes
+    usecase "Define water profile" as DefineWaterProfile
+    usecase "Create Batch" as CreateBatch
+    usecase "Manage Batches" as ManageBatches
+    usecase "{abstract}\nManage Profiles" as ManageProfiles
+    usecase "Manage Devices" as ManageDevices
+    usecase "Manage Inventory" as ManageInventory
+    usecase "Manage System Settings" as ManageSystemSettings
+    usecase "Collect\nRealtime Data" as CollectRealtimeData
+
+    AbstractUser --> ManageUsers
+    AbstractUser --> ManageRecipes
+    AbstractUser --> ManageBatches
+    AbstractUser --> ManageProfiles
+    AbstractUser --> ManageDevices
+    AbstractUser --> ManageInventory
+    AbstractUser --> ManageSystemSettings
+
+    CreateBatch .> ManageBatches : <<extends>>
+
+    ManageRecipes .> CreateBatch : <<extends>>
+    CreateBatch --> DB
+
+}
+
+    ManageInventory --> DB
+    ManageRecipes --> DB
+    ManageProfiles --> DB
+    
+    ManageDevices <-- ISpindel
+    CollectRealtimeData <-- ISpindel
+    
+@enduml
+```
+
+</div>
+
+![High-level use case diagram for the application.](01-Use-Case-Diagram.png)
 
 #### Actors
 
@@ -197,11 +252,63 @@ There are a number of risks associated with this project, which could potentiall
 
 As indicated in the business context diagram below, the system only interacts with three external actors, namely the Administrator, The Brewer, and the ISpindel. The Administrator is responsible for managing the system, including adding new users, managing user roles, and monitoring the system. The Brewer is responsible for creating new brews, managing existing brews, and monitoring the progress of the brews. The ISpindel is responsible for collecting real-time data from the brewing process and sending it to the system.
 
+<div hidden>
+
+```plantuml
+@startuml 02-Context-Vew-Business
+
+left to right direction
+
+cloud iSpindle
+actor Administrator
+actor Brewer
+rectangle "HoppiBrew" {
+}
+
+iSpindle --> HoppiBrew
+Administrator --> HoppiBrew
+Brewer --> HoppiBrew
+
+@enduml
+```
+
+</div>
+
 ![Business-Context-Vew](images/02-Context-Vew-Business.png)
 
 ## Technical Context
 
 From a technical perspective, the system interacts with several external systems and services. The system is dependent on the iSpindel for collecting real-time data from the brewing process. The system is also dependent on a database for storing and managing data. The system uses GitHub for version control and collaboration. Finally, the system uses Docker for containerization and deployment.
+
+<div hidden>
+
+```plantuml
+@startuml 03-Context-View-Technical
+@startuml
+
+title Technical Context Diagram
+
+actor user as "Operator"
+boundary WebServer as "Web Server"
+control AppServer as "Application Server"
+entity Database as "Database"
+entity ISpindel as "iSpindel"
+
+
+user -> WebServer : HTTP Request
+WebServer -> AppServer : HTTP Request
+AppServer -> Database : SQL Query
+Database -> AppServer : SQL Response
+AppServer -> WebServer : HTTP Response
+WebServer -> user : HTTP Response
+
+ISpindel -> AppServer : HTTP Request
+AppServer -> ISpindel : HTTP Response
+
+@enduml
+```
+
+</div>
 
 ![Technical-Context-Vew](images/03-Context-View-Technical.png)
 
@@ -300,10 +407,10 @@ Some additional considerations for the application are as follows:
 
 ## Whitebox Overall System
 
-![Overview Diagram](images/04-white-box-overall-system.png)
+<div hidden>
 
 ```plantuml
-@startuml
+@startuml 04-white-box-overall-system
 component "Client Browser" {
     portout "Port:443" as Client_Port80
 }
@@ -359,16 +466,18 @@ rectangle "Unraid Server" {
         }
 
         HoppyBrew_portout5432 -- Postgres_port5432 : Connects To
-        
     }
 }
 @enduml
 ```
 
+</div>
+
+![Overview Diagram](images/04-white-box-overall-system.png)
+
 The motivation for the decomposition is to separate the concerns of the different parts of the system. The client browser is responsible for displaying the data to the user, the ISpindel is responsible for collecting the data, and the Unraid Server is responsible for processing the data and storing it in the database. The Cloudflare service is responsible for routing the data between the client browser and the Unraid Server.
 
-Contained Building Blocks  
-*\<Description of contained building block (black boxes)\>*
+Contained Building Blocks 
 
 | Building Block | Responsibilities |
 | -------------- | ---------------- |
@@ -378,14 +487,19 @@ Contained Building Blocks
 | App Container | Process data and store it in the database |
 | PostgreSQL Container | Store data in the database |
 
-Important Interfaces  
-*\<Description of important interfaces\>*
+Important Interfaces
+
+{
+    TODO: Description of important interfaces
+}
 
 ## Blackbox Overall System
 
-![Overview Diagram](images/05-black-box-overall-system.png)
 
-```plantuml
+
+<div hidden>
+
+```plantuml 05-black-box-overall-system
 @startuml
 rectangle "Client Browser" {
     component "Client Browser" as client_browser
@@ -414,6 +528,10 @@ hoppybrew -- postgres
 
 @enduml
 ```
+
+</div>
+
+![Overview Diagram](images/05-black-box-overall-system.png)
 
 ### \<Name black box 1\>
 

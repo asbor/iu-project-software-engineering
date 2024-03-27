@@ -2,10 +2,10 @@
 
 ## Whitebox Overall System
 
-![Overview Diagram](../images/04-white-box-overall-system.png)
+<div hidden>
 
 ```plantuml
-@startuml
+@startuml 04-white-box-overall-system
 component "Client Browser" {
     portout "Port:443" as Client_Port80
 }
@@ -61,16 +61,18 @@ rectangle "Unraid Server" {
         }
 
         HoppyBrew_portout5432 -- Postgres_port5432 : Connects To
-        
     }
 }
 @enduml
 ```
 
+</div>
+
+![Overview Diagram](../images/04-white-box-overall-system.png)
+
 The motivation for the decomposition is to separate the concerns of the different parts of the system. The client browser is responsible for displaying the data to the user, the ISpindel is responsible for collecting the data, and the Unraid Server is responsible for processing the data and storing it in the database. The Cloudflare service is responsible for routing the data between the client browser and the Unraid Server.
 
-Contained Building Blocks  
-*\<Description of contained building block (black boxes)\>*
+Contained Building Blocks 
 
 | Building Block | Responsibilities |
 | -------------- | ---------------- |
@@ -80,14 +82,19 @@ Contained Building Blocks
 | App Container | Process data and store it in the database |
 | PostgreSQL Container | Store data in the database |
 
-Important Interfaces  
-*\<Description of important interfaces\>*
+Important Interfaces
+
+{
+    TODO: Description of important interfaces
+}
 
 ## Blackbox Overall System
 
-![Overview Diagram](../images/05-black-box-overall-system.png)
 
-```plantuml
+
+<div hidden>
+
+```plantuml 05-black-box-overall-system
 @startuml
 rectangle "Client Browser" {
     component "Client Browser" as client_browser
@@ -116,6 +123,10 @@ hoppybrew -- postgres
 
 @enduml
 ```
+
+</div>
+
+![Overview Diagram](../images/05-black-box-overall-system.png)
 
 ### \<Name black box 1\>
 

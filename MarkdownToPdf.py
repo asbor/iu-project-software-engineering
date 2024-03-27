@@ -71,6 +71,10 @@ def split_chapters(markdown_file, destination):
 
 
 def main():
+    # Runn bash command
+    os.system(
+        'bash plantuml -tpng documents/01-Conception-Phase/00-HoppyBrew.md -o images/')
+
     # Set the working directory to the 01-Conception-Phase directory
     os.chdir('./documents/01-Conception-Phase')
 

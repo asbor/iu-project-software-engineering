@@ -54,7 +54,62 @@ In this document, I have chosen to reduce the concept of use cases to a single H
 
 The following use cases have been identified for the application:
 
-![High-level use case diagram for the application.](../images/01-Use-Case-Diagram.png)
+<div hidden>
+
+```plantuml
+@startuml 01-Use-Case-Diagram
+
+left to right direction
+
+actor Administrator as Admin
+actor Brewer as Brewer
+actor Database as DB
+actor ISpindel as ISpindel
+actor "{abstract}" as AbstractUser
+
+Admin --|> AbstractUser
+Brewer --|> AbstractUser
+
+rectangle "HoppyBrew" as HoppyBrew {
+    usecase "Manage  Users" as ManageUsers
+    usecase "Manage Recipes" as ManageRecipes
+    usecase "Define water profile" as DefineWaterProfile
+    usecase "Create Batch" as CreateBatch
+    usecase "Manage Batches" as ManageBatches
+    usecase "{abstract}\nManage Profiles" as ManageProfiles
+    usecase "Manage Devices" as ManageDevices
+    usecase "Manage Inventory" as ManageInventory
+    usecase "Manage System Settings" as ManageSystemSettings
+    usecase "Collect\nRealtime Data" as CollectRealtimeData
+
+    AbstractUser --> ManageUsers
+    AbstractUser --> ManageRecipes
+    AbstractUser --> ManageBatches
+    AbstractUser --> ManageProfiles
+    AbstractUser --> ManageDevices
+    AbstractUser --> ManageInventory
+    AbstractUser --> ManageSystemSettings
+
+    CreateBatch .> ManageBatches : <<extends>>
+
+    ManageRecipes .> CreateBatch : <<extends>>
+    CreateBatch --> DB
+
+}
+
+    ManageInventory --> DB
+    ManageRecipes --> DB
+    ManageProfiles --> DB
+    
+    ManageDevices <-- ISpindel
+    CollectRealtimeData <-- ISpindel
+    
+@enduml
+```
+
+</div>
+
+![High-level use case diagram for the application.](01-Use-Case-Diagram.png)
 
 #### Actors
 
