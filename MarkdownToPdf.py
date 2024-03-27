@@ -43,7 +43,7 @@ def merge_and_convert_to_pdf(directory, outout_file):
     print(f"PDF file created: {output_file}")
 
 
-def split_chapters(markdown_file):
+def split_chapters(markdown_file, destination):
     with open(markdown_file, 'r', encoding='utf-8') as file:
         content = file.read()
 
@@ -57,7 +57,7 @@ def split_chapters(markdown_file):
     for i, chapter_content in enumerate(chapters, start=1):
         chapter_title = chapter_content.split('\n')[0].replace(
             '# ', '')  # Extract chapter title from header
-        chapter_filename = f'./documents/01-Conception-Phase/chapters/{i:02}_{chapter_title.replace(" ", "_")}.md'
+        chapter_filename = f'{destination}{i:02}_{chapter_title.replace(" ", "_")}.md'
 
         with open(chapter_filename, 'w', encoding='utf-8') as chapter_file:
             # Re-add header to chapter content
@@ -68,9 +68,13 @@ def split_chapters(markdown_file):
 
 
 def main():
-    # Replace with the path to your Markdown file
-    markdown_file = './documents/01-Conception-Phase/00-HoppyBrew.md'
-    split_chapters(markdown_file)
+    # Set working directory to the root of the repository
+    os.chdir('/home/asbjorn/Nextcloud/repo/iu-project-software-engineering')
+
+    # Split the markdown file into chapters
+    markdown_file = '00-HoppyBrew.md'
+    destination = 'documents/01-Conception-Phase/chapters'
+    split_chapters(markdown_file, destination)
 
     # Specify the directory containing the markdown files
     directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/chapters"
