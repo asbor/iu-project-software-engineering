@@ -26,6 +26,9 @@ knit: (function(inputFile, encoding) {
 \listoffigures
 \clearpage
 
+\changelog
+\clearpage
+
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
