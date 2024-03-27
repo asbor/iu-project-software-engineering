@@ -54,7 +54,7 @@ In this document, I have chosen to reduce the concept of use cases to a single H
 
 The following use cases have been identified for the application:
 
-![High-level use case diagram for the application.](documents/01-Conception-Phase/images/01-Use-Case-Diagram.png)
+![High-level use case diagram for the application.](../images/01-Use-Case-Diagram.png)
 
 #### Actors
 

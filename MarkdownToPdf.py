@@ -47,6 +47,9 @@ def split_chapters(markdown_file, destination):
     with open(markdown_file, 'r', encoding='utf-8') as file:
         content = file.read()
 
+    # Change references to images to point to the correct directory (../images/) instead of (images/)
+    content = content.replace('](images/', '](../images/')
+
     # Split content into chapters based on headers
     chapters = re.split(r'\n#\s', content)
 
@@ -68,13 +71,18 @@ def split_chapters(markdown_file, destination):
 
 
 def main():
-    # Set working directory to the root of the repository
-    os.chdir('/home/asbjorn/Nextcloud/repo/iu-project-software-engineering')
+    # Set the working directory to the 01-Conception-Phase directory
+    os.chdir('./documents/01-Conception-Phase')
+
+    # Note that the markdown files deriving from the main markdown file are not in same directory as the main markdown file (00-HoppyBrew.md)
+    # we will therefore need to change the references in the derived markdown files to point to the correct directory
 
     # Split the markdown file into chapters
     markdown_file = '00-HoppyBrew.md'
-    destination = 'documents/01-Conception-Phase/chapters/'
+    destination = './chapters/'
     split_chapters(markdown_file, destination)
+
+    # Set the working directory to the 01-Conception-Phase/chapters directory so th
 
     # Specify the directory containing the markdown files
     directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/chapters"
