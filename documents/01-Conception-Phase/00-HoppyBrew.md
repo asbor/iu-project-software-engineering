@@ -13,14 +13,6 @@
 >
 > The terminology `brew` and `batch` are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.
 
-<pre id="mycode" class="haskell numberLines" startFrom="100">
-  <code>
-    if (a > 3) {
-        moveShip(5 * gravity, DOWN);
-    }
-  </code>
-</pre>
-
 ***Why HoppyBrew?***
 
 The thing whch sets HoppyBrew apart from other brewing applications is that it is open-source and free to use. This means that users can use the application without having to pay any subscription fees.
@@ -76,9 +68,8 @@ It's important to recognize that since this is just a school project, the stakeh
 
 The following use cases have been identified for the application:
 
-<div hidden>
-
-```plantuml
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
 @startuml 01-Use-Case-Diagram
 
 left to right direction
@@ -127,9 +118,8 @@ rectangle "HoppyBrew" as HoppyBrew {
     CollectRealtimeData <-- ISpindel
     
 @enduml
-```
-
-</div>
+  </code>
+</pre>
 
 ![High-level use case diagram for the application.](images/01-Use-Case-Diagram.png)
 
