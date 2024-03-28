@@ -12,20 +12,6 @@
 >
 > The terminology `brew` and `batch` are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.
 
->     Code block: This is a code block
->     If (a > b) {
->       return a;
->     } else {
->       return b;
->     }
-
-~~~~~~~
-if (a > 3) {
-  moveShip(5 * gravity, DOWN);
-}
-~~~~~~~
-
-
 <pre id="mycode" class="haskell numberLines" startFrom="100">
   <code>
     if (a > 3) {
