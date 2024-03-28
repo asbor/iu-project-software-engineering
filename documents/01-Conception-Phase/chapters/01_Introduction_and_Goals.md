@@ -36,14 +36,8 @@ These quality goals are based on derived summaries of `ISO/IEC 25010 quality mod
 
 <table>
     <thead>
-        <tr>
-            <th width="110"></th>
-            <th width="150"></th>
-            <th width="440"></th>
-        </tr>
-        <tr>
-            <td><strong>Priority</strong></td>
-            <td><strong>Quality</strong></td>
+            <td width="110"><strong>Priority</strong></td>
+            <td width="150"><strong>Quality</strong></td>
             <td><strong>Motivation</strong></td>
         </tr>
     </thead>
