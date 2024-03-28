@@ -37,7 +37,7 @@ These quality goals are based on derived summaries of `ISO/IEC 25010 quality mod
 
 <table>
     <tr>
-        <th>Priority</th>
+        <th colspan="3">Quality goals and priorities for the application.</th>
         <th>Quality</th>
         <th>Motivation</th>
 
