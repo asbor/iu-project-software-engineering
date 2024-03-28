@@ -1,0 +1,9 @@
+---
+standalone: true
+geometry:
+  - top=2cm
+  - bottom=2cm
+  - left=1.5cm
+  - right=1.5cm
+---
+

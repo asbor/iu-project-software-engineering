@@ -40,8 +40,9 @@ def merge_and_convert_to_pdf(directory, outout_file):
         "--to=pdf",  # Specify output format as PDF
         "--variable=geometry:a4paper",
         "--variable=geometry:margin=1in",
-        "--filter", "pandoc-crossref",  # Use pandoc-crossref filter
         "--pdf-engine=xelatex",
+        "--from=markdown-markdown_in_html_blocks",
+        "--lua-filter=parse-html.lua",
         "--number-sections"
     ])
     # Remove the merged markdown file
