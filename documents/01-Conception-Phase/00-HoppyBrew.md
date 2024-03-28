@@ -110,7 +110,7 @@ rectangle "HoppyBrew" as HoppyBrew {
 
 </div>
 
-![High-level use case diagram for the application.](images/01-Use-Case-Diagram.svg)
+![High-level use case diagram for the application.](images/01-Use-Case-Diagram.tex)
 
 #### Actors
 
@@ -274,7 +274,7 @@ Brewer --> HoppiBrew
 
 </div>
 
-![High-level business context diagram for the application.](images/02-Context-Vew-Business.svg)
+![High-level business context diagram for the application.](images/02-Context-Vew-Business.tex)
 
 ## Technical Context
 
@@ -309,7 +309,7 @@ AppServer -> ISpindel : HTTP Response
 
 </div>
 
-![Technical-Context-Vew](images/03-Context-View-Technical.svg)
+![Technical-Context-Vew](images/03-Context-View-Technical.tex)
 
 \clearpage
 
@@ -472,7 +472,7 @@ rectangle "Unraid Server" {
 
 </div>
 
-![Overview Diagram](images/04-white-box-overall-system.svg)
+![Overview Diagram](images/04-white-box-overall-system.tex)
 
 The motivation for the decomposition is to separate the concerns of the different parts of the system. The client browser is responsible for displaying the data to the user, the ISpindel is responsible for collecting the data, and the Unraid Server is responsible for processing the data and storing it in the database. The Cloudflare service is responsible for routing the data between the client browser and the Unraid Server.
 
@@ -528,7 +528,7 @@ hoppybrew -- postgres
 
 </div>
 
-![Overview Diagram](images/05-black-box-overall-system.svg)
+![Overview Diagram](images/05-black-box-overall-system.tex)
 
 ### \<Name black box 1\>
 
