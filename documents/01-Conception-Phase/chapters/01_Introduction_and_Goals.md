@@ -8,7 +8,12 @@
 
 *HoppyBrew* is a web application designed to help beer-brewer enthusiasts manage their brewing recipes and brew logs. The application is intended to provide a user-friendly and intuitive interface for managing brewing recipes and brew logs. The application is designed to be compatible with a wide range of devices and browsers, and to integrate with other brewing tools and services, such as `iSpindel`. The application is targeted at beer brewer enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
 
-**Note!** *The terminology `brew` and `batch` are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.*
+---
+
+**Note!** 
+*The terminology `brew` and `batch` are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.*
+
+---
 
 ***Why HoppyBrew?***
 
