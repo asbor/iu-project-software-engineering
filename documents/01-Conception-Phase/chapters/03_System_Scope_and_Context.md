@@ -26,7 +26,7 @@ Brewer --> HoppiBrew
 
 </div>
 
-![High-level business context diagram for the application.](../images/02-Context-Vew-Business.tex)
+![High-level business context diagram for the application.](../images/02-Context-Vew-Business.png)
 
 ## Technical Context
 
@@ -61,6 +61,6 @@ AppServer -> ISpindel : HTTP Response
 
 </div>
 
-![Technical-Context-Vew](../images/03-Context-View-Technical.tex)
+![Technical-Context-Vew](../images/03-Context-View-Technical.png)
 
 \clearpage
