@@ -2,9 +2,8 @@
 
 ## Whitebox Overall System
 
-<div hidden>
-
-```plantuml
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
 @startuml 04-white-box-overall-system
 
 title White Box Overall System
@@ -84,9 +83,8 @@ rectangle "Unraid Server" {
     }
 }
 @enduml
-```
-
-</div>
+    </code>
+</pre>
 
 ![Overview Diagram](../images/04-white-box-overall-system.png)
 
@@ -110,9 +108,8 @@ Important Interfaces
 
 ## Blackbox Overall System
 
-<div hidden>
-
-```plantuml
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
 @startuml 05-black-box-overall-system
 
 left to right direction
@@ -143,9 +140,8 @@ cloudflare -- hoppybrew
 hoppybrew -- postgres
 
 @enduml
-```
-
-</div>
+    </code>
+</pre>
 
 ![Overview Diagram](../images/05-black-box-overall-system.png)
 

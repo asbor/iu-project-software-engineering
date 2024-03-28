@@ -263,9 +263,8 @@ There are a number of risks associated with this project, which could potentiall
 
 As indicated in the business context diagram below, the system only interacts with three external actors, namely the Administrator, The Brewer, and the ISpindel. The Administrator is responsible for managing the system, including adding new users, managing user roles, and monitoring the system. The Brewer is responsible for creating new brews, managing existing brews, and monitoring the progress of the brews. The ISpindel is responsible for collecting real-time data from the brewing process and sending it to the system.
 
-<div hidden>
-
-```plantuml
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
 @startuml 02-Context-Vew-Business
 
 left to right direction
@@ -281,9 +280,8 @@ Administrator --> HoppiBrew
 Brewer --> HoppiBrew
 
 @enduml
-```
-
-</div>
+    </code>
+</pre>
 
 ![High-level business context diagram for the application.](images/02-Context-Vew-Business.png)
 
@@ -291,9 +289,8 @@ Brewer --> HoppiBrew
 
 From a technical perspective, the system interacts with several external systems and services. The system is dependent on the iSpindel for collecting real-time data from the brewing process. The system is also dependent on a database for storing and managing data. The system uses GitHub for version control and collaboration. Finally, the system uses Docker for containerization and deployment.
 
-<div hidden>
-
-```plantuml
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
 @startuml 03-Context-View-Technical
 
 title Technical Context Diagram
@@ -316,9 +313,8 @@ ISpindel -> AppServer : HTTP Request
 AppServer -> ISpindel : HTTP Response
 
 @enduml
-```
-
-</div>
+    </code>
+</pre>
 
 ![Technical-Context-Vew](images/03-Context-View-Technical.png)
 
@@ -417,9 +413,8 @@ Some additional considerations for the application are as follows:
 
 ## Whitebox Overall System
 
-<div hidden>
-
-```plantuml
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
 @startuml 04-white-box-overall-system
 
 title White Box Overall System
@@ -499,9 +494,8 @@ rectangle "Unraid Server" {
     }
 }
 @enduml
-```
-
-</div>
+    </code>
+</pre>
 
 ![Overview Diagram](images/04-white-box-overall-system.png)
 
@@ -525,9 +519,8 @@ Important Interfaces
 
 ## Blackbox Overall System
 
-<div hidden>
-
-```plantuml
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
 @startuml 05-black-box-overall-system
 
 left to right direction
@@ -558,9 +551,8 @@ cloudflare -- hoppybrew
 hoppybrew -- postgres
 
 @enduml
-```
-
-</div>
+    </code>
+</pre>
 
 ![Overview Diagram](images/05-black-box-overall-system.png)
 
