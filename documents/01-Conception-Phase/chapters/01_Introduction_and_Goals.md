@@ -6,11 +6,9 @@
 
 ***What is HoppyBrew?***
 
-*HoppyBrew* is a in its essence a web application designed to help beer-brewer enthusiasts manage their brewing recipes and brew logs. The application is intended to provide a user-friendly and intuitive interface for managing brewing recipes and brew logs. The application is designed to be compatible with a wide range of devices and browsers, and to integrate with other brewing tools and services, such as `iSpindel`. The application is targeted at beer brewer enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
+*HoppyBrew* is a web application designed to help beer-brewer enthusiasts manage their brewing recipes and brew logs. The application is intended to provide a user-friendly and intuitive interface for managing brewing recipes and brew logs. The application is designed to be compatible with a wide range of devices and browsers, and to integrate with other brewing tools and services, such as `iSpindel`. The application is targeted at beer brewer enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
 
-> **Note!**
->
-> The terminology `brew` and `batch` are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.
+**Note!** *The terminology `brew` and `batch` are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.*
 
 ***Why HoppyBrew?***
 
@@ -30,12 +28,6 @@ After having spiraled through how to structure the requirement section, I have c
 So what what exactly is the difference between the two approaches one might ask?
 
 > *"Functional requirements and use cases differ in several aspects, such as their level of detail, abstraction, and scope. Functional requirements tend to be more detailed, specific, and precise, while use cases tend to be more abstract, general, and flexible. Functional requirements focus on the system's functionality and behavior, while use cases focus on the user's goals and needs. Functional requirements cover the entire system and all its features, while use cases cover only a subset of the system and its functions."* [@linkedinSolutionArchetecture]
-
-| The limerick packs laughs anatomical
-| In space that is quite economical.
-|    But the good ones I've seen
-|    So seldom are clean
-| And the clean ones so seldom are comical
 
 In this document, I have chosen to reduce the concept of use cases to a single High-level use case diagram, and then focus on the functional requirements that are derived from the use cases. The reason for this is because the overall design of the application is relatively simple.
 
