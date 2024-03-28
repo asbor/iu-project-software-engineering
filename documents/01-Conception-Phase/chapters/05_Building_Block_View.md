@@ -35,8 +35,6 @@ ISpindel_port --( I03 : Transmits Data
 I03 - cloudflare 
 
 
-
-
 rectangle "Unraid Server" {
     node "Docker Engine" {
         component "Cloudflare" as CloudflareTunnel
