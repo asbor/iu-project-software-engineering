@@ -35,15 +35,18 @@ Table: Quality goals and priorities for the application.
 These quality goals are based on derived summaries of `ISO/IEC 25010 quality model` in [@arc42]. The quality requirements will be further detailed in section 10 "Quality Requirements" of this document.
 
 <table>
-    <thead>
-            <td width="110"><strong>Priority</strong></td>
-            <td width="150"><strong>Quality</strong></td>
-            <td><strong>Motivation</strong></td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td><td>Usability</td><td>The application should be easy to use and intuitive, with a clean and modern user interface.</td></tr><tr><td>2</td><td>Compatibility</td><td>The application should be compatible with a wide range of devices and browsers. (mobile, desktop, tablet)</td></tr><tr><td>3</td><td>Integration</td><td>The application should integrate with other brewing tools and services, such as iSpindel.</td></tr></tbody></table>
+    <tr>
+        <th>Priority</th>
+        <th>Quality</th>
+        <th>Motivation</th>
+
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Usability</td>
+        <td>The application should be easy to use and intuitive, with a clean and modern user interface.</td>
+    </tr>
+</table>
 
 Table: Quality goals and priorities for the application.
 
