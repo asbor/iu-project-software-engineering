@@ -1,13 +1,60 @@
 
 # Introduction and Goals
 
-## Conceptual Architecture Documentation for the HoppyBrew application
-
 **This documentation:** is intended to provide a high-level overview of the HoppyBrew application. The document is based on the template provided by [@arc42]. Arc42 is a template for documenting software architectures. It is based on the ISO/IEC/IEEE 42010 standard, which is the international standard for documenting software architectures. The template is designed to be flexible and adaptable, and to be used in a wide range of software development projects. The template is divided into a number of sections, each of which covers a different aspect of the software architecture. The sections are designed to be used in a modular fashion, so that they can be used individually or in combination with other sections. The template is also designed to be easy to use, with a clear and consistent structure, and with a focus on the most important aspects of software architecture.
 
-**HoppyBrew:** is a web application for managing brewing recipes and brew logs. The general idea of the application is to provide a user-friendly and intuitive interface for managing brewing recipes and brew logs. The application is designed to be compatible with a wide range of devices and browsers, and to integrate with other brewing tools and services, such as `iSpindel`. The application is targeted at beer brewer enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
+## Requirements Overview
 
-Note! The terminology `brew` and `batch` are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.
+***What is HoppyBrew?***
+
+*HoppyBrew* is a in its essence a web application designed to help beer-brewer enthusiasts manage their brewing recipes and brew logs. The application is intended to provide a user-friendly and intuitive interface for managing brewing recipes and brew logs. The application is designed to be compatible with a wide range of devices and browsers, and to integrate with other brewing tools and services, such as `iSpindel`. The application is targeted at beer brewer enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
+
+> **Note!**
+>
+> The terminology `brew` and `batch` are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.
+
+>     Code block: This is a code block
+>     If (a > b) {
+>       return a;
+>     } else {
+>       return b;
+>     }
+
+~~~~~~~
+if (a > 3) {
+  moveShip(5 * gravity, DOWN);
+}
+~~~~~~~
+
+
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
+    if (a > 3) {
+        moveShip(5 * gravity, DOWN);
+    }
+  </code>
+</pre>
+
+***Why HoppyBrew?***
+
+The thing whch sets HoppyBrew apart from other brewing applications is that it is open-source and free to use. This means that users can use the application without having to pay any subscription fees.
+
+
+
+***Main Features***
+
+
+
+
+The purpose of this section is to provide a high-level overview of the requirements for the application. The requirements are divided into two categories: functional requirements and non-functional requirements.
+
+After having spiraled through how to structure the requirement section, I have come to see that there are two main ways to structure the requirements section. The first way is to structure the requirements section based on the use cases that have been identified for the application. The second way is to structure the requirements section based on the requirements provided by the stakeholders. The first way is more focused on the functionality of the application, while the second way is more focused on the expectations of the stakeholders.
+
+So what what exactly is the difference between the two approaches one might ask?
+
+> *"Functional requirements and use cases differ in several aspects, such as their level of detail, abstraction, and scope. Functional requirements tend to be more detailed, specific, and precise, while use cases tend to be more abstract, general, and flexible. Functional requirements focus on the system's functionality and behavior, while use cases focus on the user's goals and needs. Functional requirements cover the entire system and all its features, while use cases cover only a subset of the system and its functions."* [@linkedinSolutionArchetecture]
+
+In this document, I have chosen to reduce the concept of use cases to a single High-level use case diagram, and then focus on the functional requirements that are derived from the use cases. The reason for this is because the overall design of the application is relatively simple.
 
 ## Quality Goals
 
@@ -38,18 +85,6 @@ In the architecture and design process of HoppyBrew, stakeholders play a pivotal
 Table: Stakeholders and their expectations for the application.
 
 It's important to recognize that since this is just a school project, the stakeholders are restricted to my own different personas.
-
-## Requirements Overview
-
-The purpose of this section is to provide a high-level overview of the requirements for the application. The requirements are divided into two categories: functional requirements and non-functional requirements.
-
-After having spiraled through how to structure the requirement section, I have come to see that there are two main ways to structure the requirements section. The first way is to structure the requirements section based on the use cases that have been identified for the application. The second way is to structure the requirements section based on the requirements provided by the stakeholders. The first way is more focused on the functionality of the application, while the second way is more focused on the expectations of the stakeholders.
-
-So what what exactly is the difference between the two approaches one might ask?
-
-> *"Functional requirements and use cases differ in several aspects, such as their level of detail, abstraction, and scope. Functional requirements tend to be more detailed, specific, and precise, while use cases tend to be more abstract, general, and flexible. Functional requirements focus on the system's functionality and behavior, while use cases focus on the user's goals and needs. Functional requirements cover the entire system and all its features, while use cases cover only a subset of the system and its functions."* [@linkedinSolutionArchetecture]
-
-In this document, I have chosen to reduce the concept of use cases to a single High-level use case diagram, and then focus on the functional requirements that are derived from the use cases. The reason for this is because the overall design of the application is relatively simple.
 
 ### High-level Use Cases
 
