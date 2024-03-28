@@ -79,7 +79,7 @@ def main():
     os.system(
         'java -jar tools/plantuml-1.2024.3.jar -tpng documents/01-Conception-Phase/00-HoppyBrew.md -o ./images/')
     os.system(
-        'java -jar tools/plantuml-1.2024.3.jar -tlatex documents/01-Conception-Phase/00-HoppyBrew.md -o ./images/')
+        'java -jar tools/plantuml-1.2024.3.jar -tlatex:nopreamble documents/01-Conception-Phase/00-HoppyBrew.md -o ./images/')
 
     # Set the working directory to the 01-Conception-Phase directory
     os.chdir('./documents/01-Conception-Phase')
