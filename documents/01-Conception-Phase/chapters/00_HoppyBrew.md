@@ -10,11 +10,6 @@ knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding, output_dir = "build") })
 bibliography: bibliography.bib
 preamble: preamble.tex  # Specify the preamble file
-geometry: 
-  - top=2cm
-  - bottom=2cm
-  - left=2cm
-  - right=2cm
 
 ---
 
