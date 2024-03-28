@@ -57,7 +57,185 @@ Table: Stakeholders and their expectations for the application.
 
 It's important to recognize that since this is just a school project, the stakeholders are restricted to my own different personas.
 
-### High-level Use Cases
+### Functional Requirements
+
+The functional requirements for the application are based on the use cases that have been identified for the application. The use cases are intended to provide a high-level overview of the functionality that the application should support. The use cases are based on the requirements provided by the stakeholders and are intended to guide the architecture and design process in a way that ensures that the application meets the expectations of the stakeholders.
+
+It is important to note that the difference between a use case and a functional requirement is that a use case describes a specific interaction between a user and the system, while a functional requirement describes a specific function or feature that the system should support. And although the use cases are based on the requirements provided by the stakeholders, the functional requirements are based on the use cases. Which means that the functional requirements are taking a step further and are more detailed than the use cases.
+
+The functional requirements for the application are as follows:
+
+| Id | Requirement | Description |
+| - | -- | ---- |
+| **FR1** | **User Management** | The application should support CRUD operations for users. |
+| **FR2** | **Recipe Management** | The application should support CRUD operations for recipes. |
+| **FR3** | **Batch Management** | The application should support CRUD operations for batches. |
+| **FR4** | **{Profile Management}** | The application should support profile management |
+| *FR4.1* | *Water Profile* | The application should support CRUD operations for water profiles. |
+| *FR4.2* | *Mash Profile* | The application should support CRUD operations for mash profiles. |
+| *FR4.3* | *Fermentation Profile* | The application should support CRUD operations for fermentation profiles.
+| *FR4.4* | *Equipment Profile* | The application should support CRUD operations for equipment profiles. |
+| *FR4.5* | *Beer Style Profile* | The application should support CRUD operations for beer style profiles. |
+| **FR5** | **Device Management** | The application should support CRUD operations for devices. |
+| *FR5.1* | *iSpindel* | The application should support CRUD operations for iSpindel. |
+| **FR6** | **Inventory Management** | The application should support CRUD operations for inventory items. |
+| *FR6.1* | *Fermentables* | The application should support CRUD operations for fermentables. |
+| *FR6.2* | *Hops* | The application should support CRUD operations for hops. |
+| *FR6.3* | *Yeast* | The application should support CRUD operations for yeast. |
+| *FR6.4* | *Miscellaneous* | The application should support CRUD operations for miscellaneous items. |
+| **FR7** | **System Settings** | The application should support system settings. |
+| **FR8** | **Recipe Library** | The application should be able to import and export recipes based on the BeerXML standard. [@beerxml]|
+| **FR9** | **Realtime Data Collection** | The application should be able to collect realtime data from iSpindel. |
+
+Table: Functional requirements for the application.
+
+> **Note!**
+>
+> - Requirements indicated with `{}` are abstract requirements that are further detailed in their respective sub-requirements.
+>
+> - CRUD stands for Create, Read, Update, and Delete.
+
+### Non-functional Requirements
+
+The non-functional requirements for the application are based on the quality goals that have been identified for the application. The quality goals are intended to provide a high-level overview of the most important quality attributes for the application, and to guide the architecture and design process in a way that ensures that these quality attributes are met. Unlike the functional requirements, the non-functional requirements not always so easily measurable, and are often more subjective in nature.
+
+The non-functional requirements for the application are as follows:
+
+| Id | Requirement | Description |
+| - | -- | ---- |
+| **NFR1** | **Usability** | The application should be easy to use and intuitive, with a clean and modern user interface. |
+| **NFR2** | **Compatibility** | The application should be compatible with a wide range of devices and browsers. |
+| **NFR3** | **Integration** | The application should integrate with other brewing tools and services, such as iSpindel. |
+| **NFR4** | **Performance** | The application should be fast and responsive, with minimal latency. |
+| **NFR5** | **Scalability** | The application should be able to handle a large number of users and data. |
+| **NFR6** | **Reliability** | The application should be reliable and available, with minimal downtime. |
+| **NFR7** | **Security** | The application should be secure, with user authentication and authorization. |
+| **NFR8** | **Maintainability** | The application should be easy to maintain and extend, with clean and modular code. |
+| **NFR9** | **Documentation** | The application should be well-documented, with clear and concise documentation. |
+| **NFR10** | **Open-source** | The application should be open-source, with a permissive license. |
+
+Table: Non-functional requirements for the application.
+
+> **Note!**
+>
+> - The non-functional requirements are based on the quality goals that have been identified for the application.
+>
+> - The non-functional requirements are intended to provide a high-level overview of the most important quality attributes for the application.
+> - The non-functional requirements are intended to guide the architecture and design process in a way that ensures that these quality attributes are met.
+
+\clearpage
+
+# Architecture Constraints
+
+## Technical Constraints
+
+| Id | Constraint | Background and / or Motivation |
+| - | -- | ---- |
+| **TC1** | **Technology Stack** | The application will be developed using a specific technology stack, including Vue.js, Python, FastAPI, PostgreSQL, Docker, and Docker Compose. This is to ensure consistency and compatibility across different components of the application. |
+| **TC2** | **Open-source** | The application will be open-source, with a permissive license. This is to ensure that the application is freely available and can be used and modified by anyone. |
+| **TC3** | **Compatibility** | The application should be compatible with a wide range of devices and browsers. However, in this project, we will focus on developing the application for desktop browsers. |
+| **TC4** | **Integration** | The application should integrate with other brewing tools and services, such as iSpindel. However, in this project, we will focus on integrating with iSpindel only. |
+| **TC5** | **Performance** | No aspects related to performance will be considered in this project. |
+| **TC6** | **Scalability** | No aspects related to scalability will be considered in this project. |
+| **TC7** | **Reliability** | No aspects related to reliability will be considered in this project. |
+| **TC8** | **Security** | No aspects related to security will be considered in this project. |
+| **TC9** | **Maintainability** | No aspects related to maintainability will be considered in this project. |
+
+Table: Technical constraints for the application.
+
+## Organizational Constraints
+
+| Id | Constraint | Background and / or Motiqation |
+| - | -- | ---- |
+| **OC1** | **Deadline** | As a school project, worth 5 credits, a time constraint is imposed on the project. The project is expected to take about 150 hours to complete. |
+| **OC2** | **Feature Limitations** | As a school project, some parts of the application will be left out. For example, not every type of action for all the different parts of the app will be implemented. If one type of action can be done for one part, it will be assumed it can be done for all the others. |
+| **OC3** | **User Interface Simplification** | To keep things simple, the user interface will be made as basic as possible while still showing how the app works. This means it won't look super fancy or work perfectly on every device, but it'll get the job done. |
+
+Table: Organizational constraints for the application.
+
+## Conventions
+
+The following conventions will be used in the documentation:
+
+| Id | Convention | Background and / or Motivation |
+| - | -- | ---- |
+| **C1** | **Language** | The documentation will be written inNaming Conventions** | The application will follow a consistent naming convention for variables, functions, and components. This is to ensure that the code is easy to read and understand. | English. This is to ensure that the documentation is accessible to a wide audience. |
+| **C2** | **Architecture** | The documentation will follow the arc42 template. This is to ensure that the documentation is well-structured and consistent. |
+| **C3** | **Version Control** | The application will use Git for version control. This is to ensure that the codebase is well-maintained and up-to-date. |
+| **C4** | **Code Style** | The application will follow a consistent code style, based on the PEP 8 style guide for Python. This is to ensure that the code is clean and readable. |
+
+Table: Conventions for the application.
+
+## Dependencies
+
+The application is dependent on the following external services and tools:
+
+| Id | Dependency | Description |
+| - | -- | ---- |
+| **D1** | **iSpindel** | The application is dependent on iSpindel for collecting realtime data from the brewing process. |
+| **D2** | **Database** | The application is dependent on a database for storing and managing data. |
+| **D3** | **GitHub** | The application is dependent on GitHub for version control and collaboration. |
+| **D4** | **Docker** | The application is dependent on Docker for containerization and deployment. |
+
+Table: Dependencies for the application.
+
+## Risks
+
+There are a number of risks associated with this project, which could potentially impact the success of the project. The following risks have been identified for the application:
+
+| Id | Risk | Description |
+| - | -- | ---- |
+| **R1** | **Technical Risks** | There is a risk that the technologies used in the project are not suitable for the requirements of the application. |
+| **R2** | **Time Risks** | There is a risk that the project will take longer than expected to complete, due to unforeseen circumstances. |
+| **R3** | **Skill development Risks** | There is a risk that the required knowledge for the project cannot be acquired in a reasonable amount of time. |
+
+Table: Risks for the application.
+
+\clearpage
+
+# System Scope and Context
+
+## Business Context
+
+As indicated in the business context diagram below, the system only interacts with three external actors, namely the Administrator, The Brewer, and the ISpindel. The Administrator is responsible for managing the system, including adding new users, managing user roles, and monitoring the system. The Brewer is responsible for creating new brews, managing existing brews, and monitoring the progress of the brews. The ISpindel is responsible for collecting real-time data from the brewing process and sending it to the system.
+
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
+@startuml 02-Context-Vew-Business
+
+left to right direction
+
+cloud iSpindle
+actor Brewer
+database "Online Recipe\nDatabase" as RecipeDB
+
+node "HoppiBrew" as HoppiBrew
+database "PostgreSQL" as PostgreSQL
+
+RecipeDB --> HoppiBrew : CRUD Recipes
+iSpindle --> HoppiBrew : Transmit Live\nData
+Brewer --> HoppiBrew : CRUD Recipes\nand Brews
+HoppiBrew <..> PostgreSQL : <<flows>>
+HoppiBrew --> Brewer : Instructions\nand Notifications
+@enduml
+    </code>
+</pre>
+
+![High-level business context diagram for the application.](images/02-Context-Vew-Business.png)
+
+**Brewer:** The Brewer is responsible for creating new brews, managing existing brews, and monitoring the progress of the brews. The Brewer interacts with the system to create new recipes, manage existing recipes, and monitor the progress of the brews.
+
+**Administrator:** The Administrator is responsible for managing the system, including adding new users, managing user roles, and monitoring the system. The Administrator interacts with the system to add new users, manage user roles, and monitor the system.
+
+**iSpindel:** The iSpindel is responsible for collecting real-time data from the brewing process and sending it to the system. The iSpindel interacts with the system to transmit live data from the brewing process.
+
+**Online Recipe Database:** The Online Recipe Database is responsible for storing and managing recipes for the system. The Online Recipe Database interacts with the system to store and retrieve recipes.
+
+**HoppyBrew:** HoppyBrew is the system that is being developed. It is responsible for managing brewing recipes and brew logs. HoppyBrew interacts with the Brewer, Administrator, iSpindel, and Online Recipe Database to provide the functionality of the system.
+
+**PostgreSQL:** PostgreSQL is the database technology that is being used to store and manage data for the system. PostgreSQL interacts with HoppyBrew to store and retrieve data.
+
+## Use Case Diagram
 
 The following use cases have been identified for the application:
 
@@ -147,136 +325,6 @@ The following use cases are supported by the application:
 
 Table: High-level use cases for the application.
 
-### Functional Requirements
-
-The functional requirements for the application are based on the use cases that have been identified for the application. The use cases are intended to provide a high-level overview of the functionality that the application should support. The use cases are based on the requirements provided by the stakeholders and are intended to guide the architecture and design process in a way that ensures that the application meets the expectations of the stakeholders.
-
-It is important to note that the difference between a use case and a functional requirement is that a use case describes a specific interaction between a user and the system, while a functional requirement describes a specific function or feature that the system should support. And although the use cases are based on the requirements provided by the stakeholders, the functional requirements are based on the use cases. Which means that the functional requirements are taking a step further and are more detailed than the use cases.
-
-The functional requirements for the application are as follows:
-
-| Id | Requirement | Description |
-| - | -- | ---- |
-| **FR1** | **User Management** | The application should support CRUD operations for users. |
-| **FR2** | **Recipe Management** | The application should support CRUD operations for recipes. |
-| **FR3** | **Batch Management** | The application should support CRUD operations for batches. |
-| **FR4** | **{Profile Management}** | The application should support profile management |
-| *FR4.1* | *Water Profile* | The application should support CRUD operations for water profiles. |
-| *FR4.2* | *Mash Profile* | The application should support CRUD operations for mash profiles. |
-| *FR4.3* | *Fermentation Profile* | The application should support CRUD operations for fermentation profiles.
-| *FR4.4* | *Equipment Profile* | The application should support CRUD operations for equipment profiles. |
-| *FR4.5* | *Beer Style Profile* | The application should support CRUD operations for beer style profiles. |
-| **FR5** | **Device Management** | The application should support CRUD operations for devices. |
-| *FR5.1* | *iSpindel* | The application should support CRUD operations for iSpindel. |
-| **FR6** | **Inventory Management** | The application should support CRUD operations for inventory items. |
-| *FR6.1* | *Fermentables* | The application should support CRUD operations for fermentables. |
-| *FR6.2* | *Hops* | The application should support CRUD operations for hops. |
-| *FR6.3* | *Yeast* | The application should support CRUD operations for yeast. |
-| *FR6.4* | *Miscellaneous* | The application should support CRUD operations for miscellaneous items. |
-| **FR7** | **System Settings** | The application should support system settings. |
-| **FR8** | **Recipe Library** | The application should be able to import and export recipes based on the BeerXML standard. [@beerxml]|
-| **FR9** | **Realtime Data Collection** | The application should be able to collect realtime data from iSpindel. |
-
-Table: Functional requirements for the application.
-
-> **Note!**
->
-> - Requirements indicated with `{}` are abstract requirements that are further detailed in their respective sub-requirements.
->
-> - CRUD stands for Create, Read, Update, and Delete.
-
-### Non-functional Requirements
-
-The non-functional requirements for the application are based on the quality goals that have been identified for the application. The quality goals are intended to provide a high-level overview of the most important quality attributes for the application, and to guide the architecture and design process in a way that ensures that these quality attributes are met. Unlike the functional requirements, the non-functional requirements not always so easily measurable, and are often more subjective in nature.
-
-The non-functional requirements for the application are as follows:
-
-| Id | Requirement | Description |
-| - | -- | ---- |
-| **NFR1** | **Usability** | The application should be easy to use and intuitive, with a clean and modern user interface. |
-| **NFR2** | **Compatibility** | The application should be compatible with a wide range of devices and browsers. |
-| **NFR3** | **Integration** | The application should integrate with other brewing tools and services, such as iSpindel. |
-| **NFR4** | **Performance** | The application should be fast and responsive, with minimal latency. |
-| **NFR5** | **Scalability** | The application should be able to handle a large number of users and data. |
-| **NFR6** | **Reliability** | The application should be reliable and available, with minimal downtime. |
-| **NFR7** | **Security** | The application should be secure, with user authentication and authorization. |
-| **NFR8** | **Maintainability** | The application should be easy to maintain and extend, with clean and modular code. |
-| **NFR9** | **Documentation** | The application should be well-documented, with clear and concise documentation. |
-| **NFR10** | **Open-source** | The application should be open-source, with a permissive license. |
-
-Table: Non-functional requirements for the application.
-
-> **Note!**
->
-> - The non-functional requirements are based on the quality goals that have been identified for the application.
->
-> - The non-functional requirements are intended to provide a high-level overview of the most important quality attributes for the application.
-> - The non-functional requirements are intended to guide the architecture and design process in a way that ensures that these quality attributes are met.
-
-\clearpage
-
-# Architecture Constraints
-
-## Assumptions
-
-When starting a new project, we often rely on certain assumptions based on the information we have at the time. Here are the assumptions we've made for this application:
-
-1. **Online Learning:** We assume that any missing knowledge can be gained through online resources and documentation. This means we believe we can learn what we need to know about the technologies used in the project without too much difficulty, and in a reasonable amount of time.
-
-## Constraints
-
-1. **Deadline:** Since this is just a school project, we've got a deadline we need to meet. We've only got a certain amount of time to finish everything, including planning how the project will work. This deadline is set based on how much credit the project is worth and how much work we expect it to take. For example, since this project is worth 5 credits, we think it'll take about 150 hours to complete.
-
-2. **Feature Limitations:** Because it's a school project, we're going to leave out some parts of the application that aren't super important. For instance, we might not implement every single type of action for all the different parts of the app. If we can do one type of action for one part, we'll assume we can do it for all the others.
-
-3. **User Interface Simplification:** To keep things simple, we'll make the user interface as basic as possible while still showing how the app works. This means it won't look super fancy or work perfectly on every device, but it'll get the job done. We won't spend too much time on making it look pretty because that's not the main focus of the project.
-
-## Dependencies
-
-The application is dependent on the following external services and tools:
-
-1. **iSpindel:** The application is dependent on iSpindel for collecting realtime data.
-2. **Database:** The application is dependent on a database for storing and managing data.
-3. **GitHub:** The application is dependent on GitHub for version control and collaboration.
-4. **Docker:** The application is dependent on Docker for containerization and deployment.
-
-## Risks
-
-There are a number of risks associated with this project, which could potentially impact the success of the project. The following risks have been identified for the application:
-
-1. **Technical Risks:** There is a risk that the technologies used in the project are not suitable for the requirements of the application.
-2. **Time Risks:** There is a risk that the project will take longer than expected to complete, due to unforeseen circumstances.
-3. **Skill development Risks:** There is a risk that the required knowledge for the project cannot be acquired in a reasonable amount of time.
-
-\clearpage
-
-# System Scope and Context
-
-## Business Context
-
-As indicated in the business context diagram below, the system only interacts with three external actors, namely the Administrator, The Brewer, and the ISpindel. The Administrator is responsible for managing the system, including adding new users, managing user roles, and monitoring the system. The Brewer is responsible for creating new brews, managing existing brews, and monitoring the progress of the brews. The ISpindel is responsible for collecting real-time data from the brewing process and sending it to the system.
-
-<pre id="mycode" class="haskell numberLines" startFrom="100">
-  <code>
-@startuml 02-Context-Vew-Business
-
-left to right direction
-
-cloud iSpindle
-actor Administrator
-actor Brewer
-rectangle "HoppiBrew" {
-}
-
-iSpindle --> HoppiBrew
-Administrator --> HoppiBrew
-Brewer --> HoppiBrew
-
-@enduml
-    </code>
-</pre>
-
-![High-level business context diagram for the application.](images/02-Context-Vew-Business.png)
 
 ## Technical Context
 

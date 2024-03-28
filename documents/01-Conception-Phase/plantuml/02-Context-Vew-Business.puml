@@ -1,0 +1,17 @@
+@startuml 02-Context-Vew-Business
+
+left to right direction
+
+cloud iSpindle
+actor Brewer
+database "Online Recipe\nDatabase" as RecipeDB
+
+node "HoppiBrew" as HoppiBrew
+database "PostgreSQL" as PostgreSQL
+
+RecipeDB --> HoppiBrew : CRUD Recipes
+iSpindle --> HoppiBrew : Transmit Live\nData
+Brewer --> HoppiBrew : CRUD Recipes\nand Brews
+HoppiBrew <..> PostgreSQL : <<flows>>
+HoppiBrew --> Brewer : Instructions\nand Notifications
+@enduml
