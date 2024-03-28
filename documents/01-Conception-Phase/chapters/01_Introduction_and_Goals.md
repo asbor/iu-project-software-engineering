@@ -44,6 +44,8 @@ These quality goals are based on derived summaries of `ISO/IEC 25010 quality mod
     </thead>
     <tbody><tr><td><strong>Priority</strong></td><td><strong>Quality</strong></td><td><strong>Motivation</strong></td></tr><tr><td>1</td><td>Usability</td><td>The application should be easy to use and intuitive, with a clean and modern user interface.</td></tr><tr><td>2</td><td>Compatibility</td><td>The application should be compatible with a wide range of devices and browsers. (mobile, desktop, tablet)</td></tr><tr><td>3</td><td>Integration</td><td>The application should integrate with other brewing tools and services, such as iSpindel.</td></tr></tbody></table>
 
+Table: Quality goals and priorities for the application.
+
 ## Stakeholders
 
 In the architecture and design process of HoppyBrew, stakeholders play a pivotal role, providing essential requirements and constraints. Given that this project is part of a school assignment, the stakeholders are limited to the following individuals and their expectations:
