@@ -494,6 +494,13 @@ Important Interfaces
 
 ## Blackbox Overall System
 
+@startuml
+participant Bob   [[http://www.yahoo.com]]
+participant Alice [[latex://resource-interaction]]
+Bob -> Alice :    [[http://www.google.com]] hello
+Bob -> Alice :    [[latex://resource-interaction]] interact
+@enduml
+
 <div hidden>
 
 ```plantuml
