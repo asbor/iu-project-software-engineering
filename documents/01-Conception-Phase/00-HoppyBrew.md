@@ -106,7 +106,7 @@ multiple lines.
 
   : Demonstration of pipe table syntax.
 
-# HTML
+## HTML
 
 <table>
 <tr>
