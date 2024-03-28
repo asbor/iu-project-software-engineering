@@ -34,7 +34,7 @@ Table: Quality goals and priorities for the application.
 
 These quality goals are based on derived summaries of `ISO/IEC 25010 quality model` in [@arc42]. The quality requirements will be further detailed in section 10 "Quality Requirements" of this document.
 
-<table data-header-hidden>
+<table>
     <thead>
         <tr>
             <th width="110"></th>
