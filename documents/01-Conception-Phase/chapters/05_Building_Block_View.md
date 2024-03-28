@@ -6,27 +6,33 @@
 
 ```plantuml
 @startuml 04-white-box-overall-system
-component "Client Browser" {
-    portout "Port:443" as Client_Port80
-}
 
-component "ISpindel" {
-    portout "Port:9501" as ISpindel_Port80
-}
+title White Box Overall System
+
+interface " " as I01
+interface " " as I02
+
+component "Client Browser" as ClientBrowser
+component "ISpindel" as ISpindel
 
 cloud "Internet" {
     component "Cloudflare" as cloudflare
 }
 
-ISpindel_Port80 -- cloudflare
-Client_Port80 -- cloudflare
+ClientBrowser --( I01 : Uses
+I01 - cloudflare 
+
+ISpindel --( I02 : Transmits Data
+I02 - cloudflare 
+
+
+
 
 rectangle "Unraid Server" {
     node "Docker Engine" {
-        component "Cloudflare" as tunnel{
-            portout "Port 443" as CloudFlare_portout443
-        }
-        cloudflare <|..|> tunnel : <<TUNNEL>>
+        component "Cloudflare" as CloudflareTunnel
+
+        cloudflare <|..|> CloudflareTunnel : <<TUNNEL>>
 
         node "App Container" as Application_Container {
             component "HoppyBrew" as HoppyBrew
@@ -36,31 +42,25 @@ rectangle "Unraid Server" {
             component "endpoints" as endpoints
             component "APIRouter" as APIRouter
 
-            portin "Port 443" as HoppyBrew_portin443
-            portout "Port 5432" as HoppyBrew_portout5432
-
-            HoppyBrew_portin443 - api : Listens On
-
             api - HoppyBrew : Uses
             HoppyBrew -- db_adapter : Uses
             api -- uvicorn  : Runs
             api -- endpoints  : Uses
             api -- APIRouter  : Uses
-            
-            db_adapter - HoppyBrew_portout5432 : Listens On
-
         }
-        CloudFlare_portout443 -- HoppyBrew_portin443  : Connects To
+
+        interface " " as I03
+        CloudflareTunnel --( I03 : Uses
+        I03 -- api
+
 
         node "PostgreSQL Container" {
             component "PostgreSQL" as db
-            
-            portin "Port 5432" as Postgres_port5432
-
-            Postgres_port5432 -- db : Listens On
         }
 
-        HoppyBrew_portout5432 -- Postgres_port5432 : Connects To
+        interface " " as I04
+        db_adapter --( I04 : Uses
+        I04 -- db
     }
 }
 @enduml
@@ -90,12 +90,10 @@ Important Interfaces
 
 ## Blackbox Overall System
 
-
-
 <div hidden>
 
-```plantuml 05-black-box-overall-system
-@startuml
+```plantuml
+@startuml 05-black-box-overall-system
 rectangle "Client Browser" {
     component "Client Browser" as client_browser
 }

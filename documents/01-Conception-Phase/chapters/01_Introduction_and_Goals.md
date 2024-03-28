@@ -82,7 +82,7 @@ rectangle "HoppyBrew" as HoppyBrew {
     usecase "Manage System Settings" as ManageSystemSettings
     usecase "Collect\nRealtime Data" as CollectRealtimeData
 
-    AbstractUser --> ManageUsers
+    Admin --> ManageUsers
     AbstractUser --> ManageRecipes
     AbstractUser --> ManageBatches
     AbstractUser --> ManageProfiles

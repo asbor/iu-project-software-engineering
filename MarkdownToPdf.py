@@ -27,11 +27,6 @@ def merge_and_convert_to_pdf(directory, outout_file):
 
     # Convert the merged markdown file to PDF
     output_file = os.path.join(directory, outout_file)
-    # subprocess.run(["pandoc", merged_file, "-o", output_file,
-    #                "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
-    #                "--pdf-engine=xelatex", "--include-in-header", "preamble.tex",
-    #                "--bibliography=bibliography.bib"])
-
     subprocess.run(["pandoc", merged_file, "-o", output_file,
                     "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
                     "--pdf-engine=xelatex", "--include-in-header", "preamble.tex",
@@ -72,8 +67,17 @@ def split_chapters(markdown_file, destination):
 
 def main():
     # Runn bash command
+    #
+    # os.system(
+    #    'bash plantuml -tpng documents/01-Conception-Phase/00-HoppyBrew.md -o images/')
+    # the new approach is like this
+    # java -jar plantuml-1.2024.3.jar -tpng ../documents/01-Conception-Phase/plantuml/04-white-box-overall-system.puml
+
+    # Set the working directory to the root of the repository
+    os.chdir('/home/asbjorn/Nextcloud/repo/iu-project-software-engineering')
+    # os.system('java -jar tools/plantuml-1.2024.3.jar -tpng documents/01-Conception-Phase/plantuml/04-white-box-overall-system.puml')
     os.system(
-        'bash plantuml -tpng documents/01-Conception-Phase/00-HoppyBrew.md -o images/')
+        'java -jar tools/plantuml-1.2024.3.jar -tpng documents/01-Conception-Phase/00-HoppyBrew.md -o ./images/')
 
     # Set the working directory to the 01-Conception-Phase directory
     os.chdir('./documents/01-Conception-Phase')

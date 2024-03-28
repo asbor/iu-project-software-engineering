@@ -26,7 +26,7 @@ Brewer --> HoppiBrew
 
 </div>
 
-![Business-Context-Vew](../images/02-Context-Vew-Business.png)
+![High-level business context diagram for the application.](../images/02-Context-Vew-Business.png)
 
 ## Technical Context
 
@@ -36,21 +36,20 @@ From a technical perspective, the system interacts with several external systems
 
 ```plantuml
 @startuml 03-Context-View-Technical
-@startuml
 
 title Technical Context Diagram
 
 actor user as "Operator"
 boundary WebServer as "Web Server"
 control AppServer as "Application Server"
-entity Database as "Database"
+entity Database as "SQLDatabase"
 entity ISpindel as "iSpindel"
 
 
 user -> WebServer : HTTP Request
 WebServer -> AppServer : HTTP Request
 AppServer -> Database : SQL Query
-Database -> AppServer : SQL Response
+SQLDatabase -> AppServer : SQL Response
 AppServer -> WebServer : HTTP Response
 WebServer -> user : HTTP Response
 
