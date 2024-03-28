@@ -54,7 +54,7 @@ rectangle "Unraid Server" {
             portin "Port:80" as port80
             portin "Port:443" as port443
             portin "Port:9501" as port9501
-            port "Port:5432" as db_port
+            portout "Port:5432" as db_port
             
 
             api - HoppyBrew : Uses
