@@ -4,11 +4,17 @@
 
 ## Requirements Overview
 
-***What is HoppyBrew?*** *HoppyBrew* is a web application designed to help beer-brewer enthusiasts manage their brewing recipes and brew logs. The application is intended to provide a user-friendly and intuitive interface for managing brewing recipes and brew logs. The application is designed to be compatible with a wide range of devices and browsers, and to integrate with other brewing tools and services, such as `iSpindel`. The application is targeted at beer brewer enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
+***What is HoppyBrew?***
 
-***Why HoppyBrew?*** The thing which sets HoppyBrew apart from other brewing applications is that it is open-source and free to use. This means that users can use the application without having to pay any subscription fees. 
+*HoppyBrew* is a web application designed to help beer-brewer enthusiasts manage their brewing recipes and brew logs. The application is intended to provide a user-friendly and intuitive interface for managing brewing recipes and brew logs. The application is designed to be compatible with a wide range of devices and browsers, and to integrate with other brewing tools and services, such as `iSpindel`. The application is targeted at beer brewer enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
 
-***Main Features:*** The main features of the application are as follows:
+***Why HoppyBrew?***
+
+The thing which sets HoppyBrew apart from other brewing applications is that it is open-source and free to use. This means that users can use the application without having to pay any subscription fees.
+
+***Main Features:***
+
+The main features of the application are as follows:
 
 * Store and manage brewing recipes
 * Create and manage batches based on recipes.
@@ -18,7 +24,9 @@
 * Manage inventory items, such as fermentables, hops, yeast, and miscellaneous items.
 * Import and export recipes based on the BeerXML standard.
 
-***Target Audience:*** The target audience for the application is a surprisingly large group of beer-brewer enthusiasts and self-hosting enthusiasts who want manage their brewing recipes and brew logs in a simple and efficient way. Without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
+***Target Audience:***
+
+The target audience for the application is a surprisingly large group of beer-brewer enthusiasts and self-hosting enthusiasts who want manage their brewing recipes and brew logs in a simple and efficient way. Without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
 
 ## Quality Goals
 
@@ -33,21 +41,6 @@ The top three quality goals for the architecture and design whose fulfillment is
 Table: Quality goals and priorities for the application.
 
 These quality goals are based on derived summaries of `ISO/IEC 25010 quality model` in [@arc42]. The quality requirements will be further detailed in section 10 "Quality Requirements" of this document.
-
-<table width="100%">
-    <tr>
-        <th width="5%"><strong>Priority</strong></th>
-        <th width="20%">Quality</th>
-        <th width="75%">Motivation</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Usability</td>
-        <td>The application should be easy to use and intuitive, with a clean and modern user interface.</td>
-    </tr>
-</table>
-
-Table: Quality goals and priorities for the application.
 
 ## Stakeholders
 

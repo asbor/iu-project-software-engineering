@@ -38,7 +38,6 @@ def merge_and_convert_to_pdf(directory, outout_file):
         "pandoc", merged_file, "-o", output_file,
         "--from=markdown",  # Specify input format as Markdown
         "--to=pdf",  # Specify output format as PDF
-        "--variable=geometry:a4paper",
         "--variable=geometry:margin=1in",
         "--pdf-engine=xelatex",
         "--from=markdown-markdown_in_html_blocks",
