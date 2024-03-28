@@ -9,33 +9,28 @@
 
 *HoppyBrew* is a web application designed to help beer-brewer enthusiasts manage their brewing recipes and brew logs. The application is intended to provide a user-friendly and intuitive interface for managing brewing recipes and brew logs. The application is designed to be compatible with a wide range of devices and browsers, and to integrate with other brewing tools and services, such as `iSpindel`. The application is targeted at beer brewer enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
 
----
 
-**Note!** 
-*The terminology `brew` and `batch` are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.*
-
----
+**Note!** *The terminology **brew** and **batch** are used interchangeably in this document to refer to the same thing, i.e. a single brewing process.*
 
 ***Why HoppyBrew?***
 
-The thing whch sets HoppyBrew apart from other brewing applications is that it is open-source and free to use. This means that users can use the application without having to pay any subscription fees.
-
-
+The thing which sets HoppyBrew apart from other brewing applications is that it is open-source and free to use. This means that users can use the application without having to pay any subscription fees. 
 
 ***Main Features***
 
+The main features of the application are as follows:
 
+* Store and manage brewing recipes
+* Create and manage batches based on recipes.
+* Define water profiles for brewing recipes.
+* Manage brewing profiles, such as mash profiles, fermentation profiles, equipment profiles, and beer style profiles.
+* Interface with external devices, such as iSpindel, to collect real-time data.
+* Manage inventory items, such as fermentables, hops, yeast, and miscellaneous items.
+* Import and export recipes based on the BeerXML standard.
 
+***Target Audience***
 
-The purpose of this section is to provide a high-level overview of the requirements for the application. The requirements are divided into two categories: functional requirements and non-functional requirements.
-
-After having spiraled through how to structure the requirement section, I have come to see that there are two main ways to structure the requirements section. The first way is to structure the requirements section based on the use cases that have been identified for the application. The second way is to structure the requirements section based on the requirements provided by the stakeholders. The first way is more focused on the functionality of the application, while the second way is more focused on the expectations of the stakeholders.
-
-So what what exactly is the difference between the two approaches one might ask?
-
-> *"Functional requirements and use cases differ in several aspects, such as their level of detail, abstraction, and scope. Functional requirements tend to be more detailed, specific, and precise, while use cases tend to be more abstract, general, and flexible. Functional requirements focus on the system's functionality and behavior, while use cases focus on the user's goals and needs. Functional requirements cover the entire system and all its features, while use cases cover only a subset of the system and its functions."* [@linkedinSolutionArchetecture]
-
-In this document, I have chosen to reduce the concept of use cases to a single High-level use case diagram, and then focus on the functional requirements that are derived from the use cases. The reason for this is because the overall design of the application is relatively simple.
+The target audience for the application is a surprisingly large group of beer-brewer enthusiasts and self-hosting enthusiasts who want manage their brewing recipes and brew logs in a simple and efficient way. Without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
 
 ## Quality Goals
 
