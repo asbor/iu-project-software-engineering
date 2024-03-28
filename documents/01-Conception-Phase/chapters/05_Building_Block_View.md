@@ -54,7 +54,7 @@ rectangle "Unraid Server" {
             port "Port:80" as port80
             port "Port:443" as port443
             port "Port:9501" as port9501
-            port "Port:5432" as db_port
+            port "Port:5432" as port5432
             
 
             api - HoppyBrew : Uses
@@ -65,7 +65,7 @@ rectangle "Unraid Server" {
 
             
             port80 -down- api : Connects
-            db_adapter -- db_port : Connects
+            db_adapter -- port5432 : Connects
         }
 
         interface " " as I04
@@ -76,13 +76,13 @@ rectangle "Unraid Server" {
 
         database "PostgreSQL Container" {
             component "PostgreSQL" as PostgreSQL
-            port "Port:5432" as PostgreSQL_port
+            port "Port:5432" as PostgreSQL_port5432
             PostgreSQL -up- PostgreSQL_port : Connects
         }
 
         interface " " as I05
-        db_port --( I05 : Uses
-        I05 -- PostgreSQL_port
+        port5432 -up-( I05 : Uses
+        I05 -up- PostgreSQL_port5432
     }
 }
 @enduml
