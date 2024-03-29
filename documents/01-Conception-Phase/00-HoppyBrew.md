@@ -325,10 +325,13 @@ The following use cases are supported by the application:
 
 Table: High-level use cases for the application.
 
-
 ## Technical Context
 
 From a technical perspective, the system interacts with several external systems and services. The system is dependent on the iSpindel for collecting real-time data from the brewing process. The system is also dependent on a database for storing and managing data. The system uses GitHub for version control and collaboration. Finally, the system uses Docker for containerization and deployment.
+
+TODO: Create a new diagram for the technical context view.
+
+The technical context diagram provides a high-level overview of the technical environment in which the system operates. The diagram shows the system and its interactions with external systems and services. The diagram also shows the dependencies of the system on external systems and services.
 
 <pre id="mycode" class="haskell numberLines" startFrom="100">
   <code>
@@ -358,6 +361,12 @@ AppServer -> ISpindel : HTTP Response
 </pre>
 
 ![Technical-Context-Vew](images/03-Context-View-Technical.png)
+
+**Backend:** The backend of the application is responsible for processing the data and storing it in the database. The backend communicates with the frontend using RESTful APIs. The backend is developed using Python and FastAPI, with PostgreSQL as the database technology.
+
+**Frontend:** The frontend of the application is responsible for displaying the data to the user. The frontend communicates with the backend using RESTful APIs.
+
+**Database:** The database of the application is responsible for storing and managing the data. The database communicates with the backend using SQL queries.
 
 \clearpage
 
