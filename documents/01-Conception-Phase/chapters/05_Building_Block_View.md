@@ -47,6 +47,8 @@ rectangle "Unraid Server" {
             component "uvicorn" as uvicorn
             component "endpoints" as endpoints
             component "APIRouter" as APIRouter
+            component "EntityManager" as EntityManager
+            component "PictureGallery" as PictureGallery
 
             portin "Port:80" as port80
             portin "Port:443" as port443

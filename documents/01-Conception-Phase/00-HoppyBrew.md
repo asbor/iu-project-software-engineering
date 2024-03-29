@@ -374,7 +374,7 @@ AppServer -> ISpindel : HTTP Response
 
 ## Technology Decisions
 
-The application will be encapsulated in a containerized environment using Docker. This will allow for easy deployment and scaling of the application, as well as ensuring consistency across different environments. The application will be developed using a microservices architecture, with each component of the application running as a separate service. This will allow for greater flexibility and scalability, as well as making it easier to maintain and update the application.
+The application will be encapsulated in a containerized environment using Docker. The application will be developed using Vue.js as the frontend technology, Python and FastAPI as the backend technology, and PostgreSQL as the database technology. The application will be deployed using Docker and Docker Compose. The development of the application will be done using Visual Studio Code as the primary code editor.
 
 ### Frontend Technology
 
@@ -395,17 +395,6 @@ The application will be deployed using Docker and Docker Compose. Docker is a co
 ### Development Tools
 
 The development of the application will be done using Visual Studio Code as the primary code editor. Visual Studio Code is a lightweight and powerful code editor that provides a rich set of features, including syntax highlighting, code completion, and debugging tools. It also has a large and active community, which means there are plenty of extensions and support available for developers. This will help us write clean and efficient code, as well as overcome any challenges we may face during the development process.
-
-## Top-level Decomposition
-
-The application will be decomposed into the following components:
-
-1. Frontend
-2. Backend
-3. Database
-4. Deployment
-
-Each component will be developed and deployed as a separate service, which will communicate with each other using RESTful APIs. This will allow for greater flexibility and scalability, as well as making it easier to maintain and update the application. The frontend will be developed using Vue.js, the backend will be developed using Python and FastAPI, the database will be developed using PostgreSQL, and the deployment will be done using Docker and Docker Compose.
 
 ## Key Quality Goals
 
@@ -508,6 +497,8 @@ rectangle "Unraid Server" {
             component "uvicorn" as uvicorn
             component "endpoints" as endpoints
             component "APIRouter" as APIRouter
+            component "EntityManager" as EntityManager
+            component "PictureGallery" as PictureGallery
 
             portin "Port:80" as port80
             portin "Port:443" as port443
