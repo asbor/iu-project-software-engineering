@@ -150,6 +150,8 @@ control AppServer as "Application Server"
 entity Database as "SQLDatabase"
 entity ISpindel as "iSpindel"
 
+ISpindel -> AppServer : HTTP Request
+AppServer -> ISpindel : HTTP Response
 
 user -> WebServer : HTTP Request
 WebServer -> AppServer : HTTP Request
@@ -157,9 +159,6 @@ AppServer -> Database : SQL Query
 Database -> AppServer : SQL Response
 AppServer -> WebServer : HTTP Response
 WebServer -> user : HTTP Response
-
-ISpindel -> AppServer : HTTP Request
-AppServer -> ISpindel : HTTP Response
 
 @enduml
     </code>
