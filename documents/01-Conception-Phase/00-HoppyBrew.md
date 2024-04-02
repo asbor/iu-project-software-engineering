@@ -776,6 +776,10 @@ CloudflareTunnel -> ClientBrowser : 23. Receive Response
     </code>
 </pre>
 
+![CRUD Batch](images/07-Runtime-View-CRUD-Batch.png)
+
+
+
 
 
 
