@@ -348,8 +348,8 @@ entity ISpindel as "iSpindel"
 
 user -> WebServer : HTTP Request
 WebServer -> AppServer : HTTP Request
-AppServer -> SQLDatabase : SQL Query
-SQLDatabase -> AppServer : SQL Response
+AppServer -> Database : SQL Query
+Database -> AppServer : SQL Response
 AppServer -> WebServer : HTTP Response
 WebServer -> user : HTTP Response
 
