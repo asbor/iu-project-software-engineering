@@ -720,7 +720,7 @@ actor Brewer as Brewer
 participant "Client Browser" as ClientBrowser
 entity "Cloudflare Tunnel" as CloudflareTunnel
 boundary WebServer as "Web Server"
-control AppServer as "Application Server\HoppyBrew"
+control AppServer as "Application Server\nHoppyBrew"
 database "PostgreSQL" as PostgreSQL
 
 Brewer -> ClientBrowser : 1. Create Recipe
