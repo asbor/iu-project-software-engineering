@@ -848,9 +848,40 @@ WebServer -> ClientBrowser : Add Notes
 
 # Deployment View
 
-The deployment view provides an overview of the deployment architecture of the application. It shows the different components of the application and how they are deployed in the production environment.
+Key words: Docker, Docker Compose, PostgreSQL, Github, publish.yml, Dockerfile, Github Actions, Continuous Integration, Continuous Deployment, CI/CD, Docker Hub.
 
-The deployment architecture consists of the following components:
+The deployment view describes how the application is deployed and managed in a production environment. The application is deployed using Docker and Docker Compose, with PostgreSQL as the database technology. The codebase is stored in a central repository on GitHub, with a Dockerfile for building the application image and a publish.yml file for deploying the application. The deployment process is automated using GitHub Actions, which provides continuous integration and continuous deployment (CI/CD) for the application. The application image is stored in Docker Hub, which provides a registry for storing and managing container images.
+
+TODO: Need to figure out how i automate update on the Unraid server when a new version is pushed to Docker Hub.
+
+## Deployment Diagram
+
+The deployment diagram provides a high-level overview of the deployment architecture of the application. It shows the different components of the application, including the client browser, the ISpindel, the Cloudflare service, the Unraid Server, and the PostgreSQL database. It also shows the communication paths between the components, including the HTTP requests and responses that are sent and received. The deployment diagram helps to visualize how the application is deployed and managed in a production environment, and how the different components interact with each other.
+
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
+@startuml 08-Deployment-View
+title Deployment Diagram
+
+node "Client Browser" as client
+node "ISpindel" as ispindel
+node "Cloudflare Service" as cloudflare
+node "Unraid Server" as unraid
+database "PostgreSQL Database" as postgres
+
+client --> cloudflare : HTTP requests/responses
+cloudflare --> unraid : HTTP requests/responses
+ispindel --> unraid : HTTP requests/responses
+unraid --> postgres : HTTP requests/responses
+
+@enduml
+    </code>
+</pre>
+
+![Deployment Diagram](images/08-Deployment-View.png)
+
+
+
 
 
 ## Infrastructure Level 1
