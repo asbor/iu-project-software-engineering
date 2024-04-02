@@ -53,6 +53,12 @@ AppServer -> WebServer : Delete Recipe
 WebServer -> ClientBrowser : Delete Recipe
 
 Brewer -> ClientBrowser : List Recipes
+ClientBrowser -> WebServer : List Recipes
+WebServer -> AppServer : List Recipes
+AppServer -> PostgreSQL : List Recipes
+PostgreSQL -> AppServer : List Recipes
+AppServer -> WebServer : List Recipes
+WebServer -> ClientBrowser : List Recipes
 
 @enduml
     </code>
