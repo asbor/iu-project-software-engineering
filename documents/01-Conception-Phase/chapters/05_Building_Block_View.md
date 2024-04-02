@@ -1,5 +1,74 @@
 # Building Block View
 
+## Blackbox Overall System
+
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
+@startuml 05-black-box-overall-system
+
+left to right direction
+
+rectangle "Client" {
+    component "Client Browser" as client_browser
+}
+
+rectangle "Devices" {
+    component "ISpindel" as iSpindel
+}
+
+cloud "Cloudflare" {
+    component "Cloudflare" as cloudflare
+}
+rectangle "Unraid Server" {
+    rectangle "Docker Engine" {
+
+        node "Cloudflare\nDocker Container" {
+            component "Cloudflare Tunnel" as cloudflareTunnel
+        }
+
+        node "Application\nDocker Container" {
+            component "HoppyBrew" as hoppybrew
+        }
+
+        node "Database\nDocker Container" {
+            database "PostgreSQL" as postgres
+        }
+    }
+}
+
+
+client_browser -- cloudflare
+iSpindel -- cloudflare
+cloudflare -- cloudflareTunnel
+cloudflareTunnel -- hoppybrew
+hoppybrew -- postgres
+
+@enduml
+    </code>
+</pre>
+
+![Overview Diagram](../images/05-black-box-overall-system.png)
+
+### Client Browser
+
+The client browser is responsible for displaying the data to the user. It communicates with the Cloudflare service to send and receive data.
+
+### Cloudflare
+
+The Cloudflare service is responsible for routing the data between the client browser and the Unraid Server.
+
+### ISpindel
+
+The ISpindel is responsible for collecting the data. It communicates with the Cloudflare service to send and receive data.
+
+### HoppyBrew
+
+The HoppyBrew application is responsible for processing the data and storing it in the database. It communicates with the Cloudflare service to send and receive data. It also communicates with the PostgreSQL database to store the data. This can also be seen as the business logic of the application.
+
+### PostgreSQL
+
+The PostgreSQL database is responsible for storing the data. It communicates with the HoppyBrew application to receive data.
+
 ## Whitebox Overall System
 
 <pre id="mycode" class="haskell numberLines" startFrom="100">
@@ -49,7 +118,6 @@ rectangle "Unraid Server" {
             component "uvicorn" as uvicorn
             component "endpoints" as endpoints
             component "APIRouter" as APIRouter
-            component "EntityManager" as EntityManager
             component "PictureGallery" as PictureGallery
             component "SQLAlchemy" as SQLAlchemy
 
@@ -100,7 +168,8 @@ Contained Building Blocks:
 
 **Intent/Responsibility:**
 
-The PictureGallery component is responsible for managing the pictures in the application. It provides CRUD operations for pictures, as well as the ability to upload and download pictures. It communicates with the EntityManager component to store and retrieve pictures from the database.
+The PictureGallery component is responsible for managing the pictures in the application. 
+
 
 **Interfaces:**
 
@@ -114,7 +183,7 @@ Table: PictureGallery interfaces.
 
 **Intent/Responsibility:**
 
-The FastAPI component is responsible for providing the RESTful API for the application. It provides endpoints for managing users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the EntityManager component to store and retrieve data from the database.
+The FastAPI component is responsible for providing the RESTful APIs for the application. It provides endpoints for users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the PostgreSQL database to store and retrieve data.
 
 **Interfaces:**
 
@@ -123,88 +192,5 @@ The FastAPI component is responsible for providing the RESTful API for the appli
 | REST interface | /api/* |
 
 Table: FastAPI interfaces.
-
-### EntityManager (Blackbox)
-
-**Intent/Responsibility:**
-
-The EntityManager component is responsible for managing the data in the application. It provides CRUD operations for users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the PostgreSQL database to store and retrieve data.
-
-**Interfaces:**
-
-
-
-
-
-## Blackbox Overall System
-
-<pre id="mycode" class="haskell numberLines" startFrom="100">
-  <code>
-@startuml 05-black-box-overall-system
-
-left to right direction
-
-rectangle "Client" {
-    component "Client Browser" as client_browser
-}
-
-rectangle "Devices" {
-    component "ISpindel" as iSpindel
-}
-
-cloud "Cloudflare" {
-    component "Cloudflare" as cloudflare
-}
-rectangle "Unraid Server" {
-    rectangle "Docker Engine" {
-
-        node "Cloudflare\nDocker Container" {
-            component "Cloudflare Tunnel" as cloudflareTunnel
-        }
-
-        node "Application\nDocker Container" {
-            component "HoppyBrew" as hoppybrew
-        }
-
-        node "Database\nDocker Container" {
-            database "PostgreSQL" as postgres
-        }
-    }
-}
-
-
-client_browser -- cloudflare
-iSpindel -- cloudflare
-cloudflare -- cloudflareTunnel
-cloudflareTunnel -- hoppybrew
-hoppybrew -- postgres
-
-@enduml
-    </code>
-</pre>
-
-![Overview Diagram](../images/05-black-box-overall-system.png)
-
-### \<Name black box 1\>
-
-### Client Browser
-
-The client browser is responsible for displaying the data to the user. It communicates with the Cloudflare service to send and receive data.
-
-### ISpindel
-
-The ISpindel is responsible for collecting the data. It communicates with the Cloudflare service to send and receive data.
-
-### Cloudflare
-
-The Cloudflare service is responsible for routing the data between the client browser and the Unraid Server.
-
-### HoppyBrew
-
-The HoppyBrew application is responsible for processing the data and storing it in the database. It communicates with the Cloudflare service to send and receive data. It also communicates with the PostgreSQL database to store the data. This can also be seen as the business logic of the application.
-
-### PostgreSQL
-
-The PostgreSQL database is responsible for storing the data. It communicates with the HoppyBrew application to receive data.
 
 \clearpage
