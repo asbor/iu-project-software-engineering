@@ -714,14 +714,12 @@ User interactions with the system are depicted in the following sequence diagram
 
 actor Brewer as Brewer
 participant "Client Browser" as ClientBrowser
-participant "Cloudflare" as Cloudflare
 participant "Cloudflare Tunnel" as CloudflareTunnel
 participant "HoppyBrew" as HoppyBrew
 participant "PostgreSQL" as PostgreSQL
 
 Brewer -> ClientBrowser : 1. Create Recipe
-ClientBrowser -> Cloudflare : 2. Send Request
-Cloudflare -> CloudflareTunnel : 3. Route Request
+ClientBrowser -> CloudflareTunnel : 2. Send Request
 CloudflareTunnel -> HoppyBrew : 4. Receive Request
 HoppyBrew -> PostgreSQL : 5. Store Recipe
 PostgreSQL -> HoppyBrew : 6. Return Response
