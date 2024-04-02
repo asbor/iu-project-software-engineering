@@ -145,11 +145,10 @@ The technical context diagram provides a high-level overview of the technical en
 title Technical Context Diagram
 
 actor user as "Operator"
-actor ISpindel as "iSpindel"
+entity ISpindel as "iSpindel"
 boundary WebServer as "Web Server"
 control AppServer as "Application Server"
 entity Database as "SQLDatabase"
-
 
 ISpindel -> AppServer : HTTP Request
 AppServer -> ISpindel : HTTP Response
