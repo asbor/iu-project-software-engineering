@@ -1135,9 +1135,6 @@ recipe ||--o{ inventory : "Contains"
 
 ![ER-Diagram](images/09-ER-Diagram.png)
 
-
-
-
 \clearpage
 
 # Architecture Decisions
