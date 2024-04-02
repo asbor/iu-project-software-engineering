@@ -37,6 +37,7 @@ knit: (function(inputFile, encoding) {
 | 1.1      | 25-Mar-2024| Updated Abstract     | Asbjorn Bordoy |
 
 Table: Revision History
+
 \clearpage
 
 \pagenumbering{arabic}
