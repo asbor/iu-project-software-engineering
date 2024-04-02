@@ -4,7 +4,9 @@ User interactions with the system are depicted in the following sequence diagram
 
 ## CRUD Recipe
 
-As all CRUD operations follow the same pattern, the CRUD operations for the other entities are not depicted here.
+The sequence diagram illustrates CRUD operations for the Recipe entity, showcasing the standard pattern for all CRUD operations. It starts with the Brewer creating a new Recipe, which is then stored in the database. Subsequently, the Brewer can perform actions such as retrieving, updating, and deleting the Recipe as required. Additionally, there's an option to list all Recipes stored in the database.
+
+The Brewer interacts with the system via the Client Browser, initiating communication with the Cloudflare Tunnel. This tunnel then communicates with the HoppyBrew application. Within the HoppyBrew application, communication with the PostgreSQL database takes place for storing and retrieving data.
 
 <pre id="mycode" class="haskell numberLines" startFrom="100">
   <code>
@@ -12,17 +14,50 @@ As all CRUD operations follow the same pattern, the CRUD operations for the othe
 
 actor Brewer as Brewer
 participant "Client Browser" as ClientBrowser
-participant "Cloudflare Tunnel" as CloudflareTunnel
-participant "HoppyBrew" as HoppyBrew
-participant "PostgreSQL" as PostgreSQL
+entity "Cloudflare Tunnel" as CloudflareTunnel
+boundary WebServer as "Web Server"
+control AppServer as "Application Server\HoppyBrew"
+database "PostgreSQL" as PostgreSQL
 
 Brewer -> ClientBrowser : 1. Create Recipe
 ClientBrowser -> CloudflareTunnel : 2. Send Request
-CloudflareTunnel -> HoppyBrew : 4. Receive Request
-HoppyBrew -> PostgreSQL : 5. Store Recipe
-PostgreSQL -> HoppyBrew : 6. Return Response
-HoppyBrew -> CloudflareTunnel : 7. Send Response
-CloudflareTunnel -> ClientBrowser : 9. Receive Response
+CloudflareTunnel -> AppServer : 3. Receive Request
+AppServer -> PostgreSQL : 4. Store Recipe
+PostgreSQL -> AppServer : 5. Return Response
+AppServer -> CloudflareTunnel : 6. Send Response
+CloudflareTunnel -> ClientBrowser : 7. Receive Response
+
+Brewer -> ClientBrowser : 8. Retrieve Recipe
+ClientBrowser -> CloudflareTunnel : 9. Send Request
+CloudflareTunnel -> AppServer : 10. Receive Request
+AppServer -> PostgreSQL : 11. Retrieve Recipe
+PostgreSQL -> AppServer : 12. Return Response
+AppServer -> CloudflareTunnel : 13. Send Response
+CloudflareTunnel -> ClientBrowser : 14. Receive Response
+
+Brewer -> ClientBrowser : 15. Update Recipe
+ClientBrowser -> CloudflareTunnel : 16. Send Request
+CloudflareTunnel -> AppServer : 17. Receive Request
+AppServer -> PostgreSQL : 18. Update Recipe
+PostgreSQL -> AppServer : 19. Return Response
+AppServer -> CloudflareTunnel : 20. Send Response
+CloudflareTunnel -> ClientBrowser : 21. Receive Response
+
+Brewer -> ClientBrowser : 22. Delete Recipe
+ClientBrowser -> CloudflareTunnel : 23. Send Request
+CloudflareTunnel -> AppServer : 24. Receive Request
+AppServer -> PostgreSQL : 25. Delete Recipe
+PostgreSQL -> AppServer : 26. Return Response
+AppServer -> CloudflareTunnel : 27. Send Response
+CloudflareTunnel -> ClientBrowser : 28. Receive Response
+
+Brewer -> ClientBrowser : 29. List Recipes
+ClientBrowser -> CloudflareTunnel : 30. Send Request
+CloudflareTunnel -> AppServer : 31. Receive Request
+AppServer -> PostgreSQL : 32. Retrieve Recipes
+PostgreSQL -> AppServer : 33. Return Response
+AppServer -> CloudflareTunnel : 34. Send Response
+CloudflareTunnel -> ClientBrowser : 35. Receive Response
 
 @enduml
     </code>
@@ -42,7 +77,7 @@ actor Brewer as Brewer
 participant "Client Browser" as ClientBrowser
 participant "Cloudflare Tunnel" as CloudflareTunnel
 participant "HoppyBrew" as HoppyBrew
-participant "PostgreSQL" as PostgreSQL
+database "PostgreSQL" as PostgreSQL
 
 Brewer -> ClientBrowser : 1. List Recipes
 ClientBrowser -> CloudflareTunnel : 2. Send Request
@@ -86,7 +121,7 @@ actor Brewer as Brewer
 participant "Client Browser" as ClientBrowser
 participant "Cloudflare Tunnel" as CloudflareTunnel
 participant "HoppyBrew" as HoppyBrew
-participant "ISpindel" as ISpindel
+entity "ISpindel" as ISpindel
 
 Brewer -> ClientBrowser : 1. Select Batch
 ClientBrowser -> CloudflareTunnel : 2. Send Request
