@@ -706,6 +706,8 @@ The ISpindel component is responsible for providing the data collection service 
 
 User interactions with the system are depicted in the following sequence diagrams.
 
+For the sake of simplicity, we will not include all possible interactions in the sequence diagrams. Instead, we will focus on the core interactions that are essential for understanding the system. And we will not include all components in the sequence diagrams such as cloudflare.
+
 ## CRUD Recipe
 
 The sequence diagram illustrates CRUD operations for the Recipe entity, showcasing the standard pattern for all CRUD operations. It starts with the Brewer creating a new Recipe, which is then stored in the database. Subsequently, the Brewer can perform actions such as retrieving, updating, and deleting the Recipe as required. Additionally, there's an option to list all Recipes stored in the database.
@@ -718,50 +720,50 @@ The Brewer interacts with the system via the Client Browser, initiating communic
 
 actor Brewer as Brewer
 participant "Client Browser" as ClientBrowser
-entity "Cloudflare Tunnel" as CloudflareTunnel
 boundary WebServer as "Web Server"
 control AppServer as "Application Server\nHoppyBrew"
 database "PostgreSQL" as PostgreSQL
 
-Brewer -> ClientBrowser : 1. Create Recipe
-ClientBrowser -> CloudflareTunnel : 2. Send Request
-CloudflareTunnel -> AppServer : 3. Receive Request
-AppServer -> PostgreSQL : 4. Store Recipe
-PostgreSQL -> AppServer : 5. Return Response
-AppServer -> CloudflareTunnel : 6. Send Response
-CloudflareTunnel -> ClientBrowser : 7. Receive Response
+ClientBrowser -> WebServer : HTTP Request
+WebServer -> AppServer : HTTP Request
+AppServer -> PostgreSQL : SQL Query
+PostgreSQL -> AppServer : SQL Response
+AppServer -> WebServer : HTTP Response
+WebServer -> ClientBrowser : HTTP Response
 
-Brewer -> ClientBrowser : 8. Retrieve Recipe
-ClientBrowser -> CloudflareTunnel : 9. Send Request
-CloudflareTunnel -> AppServer : 10. Receive Request
-AppServer -> PostgreSQL : 11. Retrieve Recipe
-PostgreSQL -> AppServer : 12. Return Response
-AppServer -> CloudflareTunnel : 13. Send Response
-CloudflareTunnel -> ClientBrowser : 14. Receive Response
+Brewer -> ClientBrowser : Create Recipe
+ClientBrowser -> WebServer : Create Recipe
+WebServer -> AppServer : Create Recipe
+AppServer -> PostgreSQL : Create Recipe
+PostgreSQL -> AppServer : Create Recipe
+AppServer -> WebServer : Create Recipe
+WebServer -> ClientBrowser : Create Recipe
 
-Brewer -> ClientBrowser : 15. Update Recipe
-ClientBrowser -> CloudflareTunnel : 16. Send Request
-CloudflareTunnel -> AppServer : 17. Receive Request
-AppServer -> PostgreSQL : 18. Update Recipe
-PostgreSQL -> AppServer : 19. Return Response
-AppServer -> CloudflareTunnel : 20. Send Response
-CloudflareTunnel -> ClientBrowser : 21. Receive Response
+Brewer -> ClientBrowser : Retrieve Recipe
+ClientBrowser -> WebServer : Retrieve Recipe
+WebServer -> AppServer : Retrieve Recipe
+AppServer -> PostgreSQL : Retrieve Recipe
+PostgreSQL -> AppServer : Retrieve Recipe
+AppServer -> WebServer : Retrieve Recipe
+WebServer -> ClientBrowser : Retrieve Recipe
 
-Brewer -> ClientBrowser : 22. Delete Recipe
-ClientBrowser -> CloudflareTunnel : 23. Send Request
-CloudflareTunnel -> AppServer : 24. Receive Request
-AppServer -> PostgreSQL : 25. Delete Recipe
-PostgreSQL -> AppServer : 26. Return Response
-AppServer -> CloudflareTunnel : 27. Send Response
-CloudflareTunnel -> ClientBrowser : 28. Receive Response
+Brewer -> ClientBrowser : Update Recipe
+ClientBrowser -> WebServer : Update Recipe
+WebServer -> AppServer : Update Recipe
+AppServer -> PostgreSQL : Update Recipe
+PostgreSQL -> AppServer : Update Recipe
+AppServer -> WebServer : Update Recipe
+WebServer -> ClientBrowser : Update Recipe
 
-Brewer -> ClientBrowser : 29. List Recipes
-ClientBrowser -> CloudflareTunnel : 30. Send Request
-CloudflareTunnel -> AppServer : 31. Receive Request
-AppServer -> PostgreSQL : 32. Retrieve Recipes
-PostgreSQL -> AppServer : 33. Return Response
-AppServer -> CloudflareTunnel : 34. Send Response
-CloudflareTunnel -> ClientBrowser : 35. Receive Response
+Brewer -> ClientBrowser : Delete Recipe
+ClientBrowser -> WebServer : Delete Recipe
+WebServer -> AppServer : Delete Recipe
+AppServer -> PostgreSQL : Delete Recipe
+PostgreSQL -> AppServer : Delete Recipe
+AppServer -> WebServer : Delete Recipe
+WebServer -> ClientBrowser : Delete Recipe
+
+Brewer -> ClientBrowser : List Recipes
 
 @enduml
     </code>
@@ -771,7 +773,15 @@ CloudflareTunnel -> ClientBrowser : 35. Receive Response
 
 ## CRUD Batch
 
-A new Batch recipe is instantiated from an existing Recipe. The Brewer can then modify the Batch recipe as needed.
+As we already have covered the CRUD operations for the Recipe entity, the CRUD operations for the Batch entity follow a similar pattern and we will therefore not repeat the explanation here.
+
+A new Batch is instantiated by the Brewer from an existing Recipe. The Brewer can then edit the Batch, instance without affecting the original Recipe. The Brewer can also delete the Batch if it is no longer needed. The Brewer can also list all Batches stored in the database.
+
+A batch is intended to represent a single brewing process, which is why the batch can undergo Three core brewing stages, which then are followed by a variety of additional stages that are optional like conditioning, archiving, etc.
+
+1. **Preparation:** The Brewer prepares the ingredients and equipment for the brewing process. This is basically just the initial instantiation of the Recipe as a Batch.
+2. **Brewing:** The Brewer starts the brewing process. In this stage, the Brewer is provided with all key information about the Recipe, These are mainly a good overview of the recipe. A countdown timer to indicate when the next ingredient should be added, Required temperatures, PH levels, and other key information. The Brewer can also add notes to the batch.
+3. **Fermentation:** The Brewer transfers the wort to the fermenter and adds the yeast. The Brewer can monitor the fermentation process, including the temperature, gravity, and other key metrics. The Brewer can also add notes to the batch. It is at this stage that the ISpindel comes into play, as it collects real-time data from the fermentation process and sends it to the system. The Brewer can monitor this data in real-time. The Brewer can also add notes to the batch.
 
 <pre id="mycode" class="haskell numberLines" startFrom="100">
   <code>
@@ -779,87 +789,6 @@ A new Batch recipe is instantiated from an existing Recipe. The Brewer can then 
 
 actor Brewer as Brewer
 participant "Client Browser" as ClientBrowser
-participant "Cloudflare Tunnel" as CloudflareTunnel
-participant "HoppyBrew" as HoppyBrew
-database "PostgreSQL" as PostgreSQL
-
-Brewer -> ClientBrowser : 1. List Recipes
-ClientBrowser -> CloudflareTunnel : 2. Send Request
-CloudflareTunnel -> HoppyBrew : 4. Receive Request
-HoppyBrew -> PostgreSQL : 5. Retrieve Recipes
-PostgreSQL -> HoppyBrew : 6. Return Response
-HoppyBrew -> CloudflareTunnel : 7. Send Response
-CloudflareTunnel -> ClientBrowser : 9. Receive Response
-
-Brewer -> ClientBrowser : 10. Instantiate Batch from Recipe
-ClientBrowser -> CloudflareTunnel : 11. Send Request
-CloudflareTunnel -> HoppyBrew : 12. Receive Request
-HoppyBrew -> PostgreSQL : 13. Retrieve Recipe
-PostgreSQL -> HoppyBrew : 14. Return Response
-HoppyBrew -> CloudflareTunnel : 15. Send Response
-CloudflareTunnel -> ClientBrowser : 16. Receive Response
-
-Brewer -> ClientBrowser : 17. Modify Batch
-ClientBrowser -> CloudflareTunnel : 18. Send Request
-CloudflareTunnel -> HoppyBrew : 19. Receive Request
-HoppyBrew -> PostgreSQL : 20. Store Batch
-PostgreSQL -> HoppyBrew : 21. Return Response
-HoppyBrew -> CloudflareTunnel : 22. Send Response
-CloudflareTunnel -> ClientBrowser : 23. Receive Response
-
-@enduml
-    </code>
-</pre>
-
-![CRUD Batch](images/07-Runtime-View-CRUD-Batch.png)
-
-## Start Brew Process
-
-The Brewer starts the brewing process by selecting a Batch recipe and starting the process. The ISpindel collects data from the brewing process and sends it to the system.
-
-<pre id="mycode" class="haskell numberLines" startFrom="100">
-  <code>
-@startuml 08-Runtime-View-Start-Brew-Process
-
-actor Brewer as Brewer
-participant "Client Browser" as ClientBrowser
-participant "Cloudflare Tunnel" as CloudflareTunnel
-participant "HoppyBrew" as HoppyBrew
-entity "ISpindel" as ISpindel
-
-Brewer -> ClientBrowser : 1. Select Batch
-ClientBrowser -> CloudflareTunnel : 2. Send Request
-CloudflareTunnel -> HoppyBrew : 4. Receive Request
-HoppyBrew -> PostgreSQL : 5. Retrieve Batch
-PostgreSQL -> HoppyBrew : 6. Return Response
-HoppyBrew -> CloudflareTunnel : 7. Send Response
-CloudflareTunnel -> ClientBrowser : 9. Receive Response
-
-Brewer -> ClientBrowser : 10. Start Brew Process
-ClientBrowser -> CloudflareTunnel : 11. Send Request
-CloudflareTunnel -> HoppyBrew : 12. Receive Request
-HoppyBrew -> ISpindel : 13. Start Brew Process
-ISpindel -> CloudflareTunnel : 14. Send Data
-CloudflareTunnel -> HoppyBrew : 15. Receive Data
-HoppyBrew -> PostgreSQL : 16. Store Data
-PostgreSQL -> HoppyBrew : 17. Return Response
-HoppyBrew -> CloudflareTunnel : 18. Send Response
-CloudflareTunnel -> ClientBrowser : 19. Receive Response
-
-@enduml
-    </code>
-</pre>
-
-![Start Brew Process](images/08-Runtime-View-Start-Brew-Process.png)
-
-
-
-
-
-
-
-
-
 
 
 ## \<Runtime Scenario 1\>
