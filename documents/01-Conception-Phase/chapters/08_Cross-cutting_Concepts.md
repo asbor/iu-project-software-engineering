@@ -8,6 +8,8 @@ HoppyBrew is a datacentric application, which is why everything revolves around 
   <code>
 @startuml 09-ER-Diagram
 
+title Entity-Relationship Diagram
+
 entity "User" as user {
     + id: int
     --
@@ -22,31 +24,49 @@ entity "User" as user {
 entity "Recipe" as recipe {
     + id: int
     --
+    + picture: obj
     + name: str
-    + description: str
-    + style: str
-    + abv: float
-    + ibu: float
-    + srm: float
-    + og: float
-    + fg: float
+    + author: str
+    + type: enum
+    + eqiupment: obj
+    + style: obj
+    + fermentables: obj
+    + hops: obj
+    + miscellaneous: obj
+    + yeast: obj
+    + mash_profile: obj
+    + fermentation_profile: obj
+    + water_profile: obj
     + created_at: datetime
     + updated_at: datetime
+    + notes: str
+}
+
+enum "type" as type {
+    + All Grain
+    + Extract
+    + Partial Mash
 }
 
 entity "Batch" as batch {
     + id: int
     --
+    + picture: obj
     + name: str
-    + description: str
-    + style: str
-    + abv: float
-    + ibu: float
-    + srm: float
-    + og: float
-    + fg: float
+    + author: str
+    + type: enum (All Grain, Extract, Partial Mash)
+    + eqiupment: obj
+    + style: obj
+    + fermentables: obj
+    + hops: obj
+    + miscellaneous: obj
+    + yeast: obj
+    + mash_profile: obj
+    + fermentation_profile: obj
+    + water_profile: obj
     + created_at: datetime
     + updated_at: datetime
+    + notes: str
 }
 
 entity "Profile" as profile {
@@ -86,12 +106,114 @@ entity "System Settings" as systemSettings {
     + updated_at: datetime
 }
 
-user ||--o{ recipe
-recipe ||--o{ batch
-user ||--o{ profile
-user ||--o{ device
+entity "Equipment Profile" as equipmentProfile {
+    + id: int
+    --
+    + name: str
+    + description: str
+    + created_at: datetime
+    + updated_at: datetime
+}
+
+entity "Mash Profile" as mashProfile {
+    + id: int
+    --
+    + name: str
+    + description: str
+    + created_at: datetime
+    + updated_at: datetime
+}
+
+entity "Fermentation Profile" as fermentationProfile {
+    + id: int
+    --
+    + name: str
+    + description: str
+    + created_at: datetime
+    + updated_at: datetime
+}
+
+entity "Water Profile" as waterProfile {
+    + id: int
+    --
+    + name: str
+    + description: str
+    + created_at: datetime
+    + updated_at: datetime
+}
+
+entity "Devices" as devices {
+    + id: int
+    --
+    + name: str
+    + description: str
+    + created_at: datetime
+    + updated_at: datetime
+}
+
+entity "Fermentables" as fermentables {
+    + id: int
+    --
+    + name: str
+    + description: str
+    + created_at: datetime
+    + updated_at: datetime
+}
+
+entity "Hops" as hops {
+    + id: int
+    --
+    + name: str
+    + description: str
+    + created_at: datetime
+    + updated_at: datetime
+}
+
+entity "Miscellaneous" as miscellaneous {
+    + id: int
+    --
+    + name: str
+    + description: str
+    + created_at: datetime
+    + updated_at: datetime
+}
+
+entity "Yeast" as yeast {
+    + id: int
+    --
+    + name: str
+    + description: str
+    + created_at: datetime
+    + updated_at: datetime
+}
+
+recipe ||--|| type : "Has"
+batch ||--|| type : "Has"
+
+user ||--o{ recipe : "Creates"
+recipe }o--o{ batch : "Instantiates"
+user ||--o{ batch : "Creates"
+user ||--o{ devices : "Owns"
+recipe ||--|| profile : "Has"
+recipe ||--o{ device
 user ||--o{ inventory
 user ||--o{ systemSettings
+
+profile ||--o{ equipmentProfile
+profile ||--o{ mashProfile
+profile ||--o{ fermentationProfile
+profile ||--o{ waterProfile
+
+inventory ||--o{ fermentables
+inventory ||--o{ hops
+inventory ||--o{ miscellaneous
+inventory ||--o{ yeast
+
+batch }o--o{ inventory : "Contains"
+
+waterProfile ||--o{ inventory : "Contains"
+
+recipe ||--o{ inventory : "Contains"
 
 @enduml
     </code>
