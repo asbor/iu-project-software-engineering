@@ -51,6 +51,7 @@ rectangle "Unraid Server" {
             component "APIRouter" as APIRouter
             component "EntityManager" as EntityManager
             component "PictureGallery" as PictureGallery
+            component "SQLAlchemy" as SQLAlchemy  # Include SQLAlchemy component
 
             portin "Port:80" as port80
             portin "Port:443" as port443
@@ -58,7 +59,8 @@ rectangle "Unraid Server" {
             portout "Port:5432" as port5432
 
             api - HoppyBrew : Uses
-            HoppyBrew -- db_adapter : Uses
+            HoppyBrew -- SQLAlchemy : Uses
+            SQLAlchemy - db_adapter : Uses
             api -- uvicorn  : Runs
             api -- endpoints  : Uses
             api -- APIRouter  : Uses
@@ -108,11 +110,25 @@ The PictureGallery component is responsible for managing the pictures in the app
 
 Table: PictureGallery interfaces.
 
+### FastAPI (Blackbox)
+
+**Intent/Responsibility:**
+
+The FastAPI component is responsible for providing the RESTful API for the application. It provides endpoints for managing users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the EntityManager component to store and retrieve data from the database.
+
+**Interfaces:**
+
+| **Interface** | **Description** |
+| -- | ---- |
+| REST interface | /api/* |
+
+Table: FastAPI interfaces.
+
 ### EntityManager (Blackbox)
 
 **Intent/Responsibility:**
 
-The EntityManager
+The EntityManager component is responsible for managing the data in the application. It provides CRUD operations for users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the PostgreSQL database to store and retrieve data.
 
 **Interfaces:**
 
