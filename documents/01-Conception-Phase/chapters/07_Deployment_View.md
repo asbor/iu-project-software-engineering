@@ -25,7 +25,9 @@ node "GitHub" as github {
 }
 
 node "Docker Hub" as dockerHub {
-    component "Application Image" as appImage
+    component "Application Image\nHoppyBrew" as appImage
+    component "Cloudflare Image" as cloudflareImage
+    component "Database Image" as databaseImage
 }
 
 node "Unraid Server" as unraid {
@@ -44,8 +46,10 @@ node "Unraid Server" as unraid {
     }
 }
 
-github ..|> dockerHub : Publish Image
-dockerHub ..|> unraid : Download Update
+github ..|> appImage : Publish Image
+appImage <|--|> hoppybrew : Download Update
+cloudflareImage <|--|> cloudflareTunnel : Download Update
+databaseImage <|--|> postgres : Download Update
 
 @enduml
     </code>
