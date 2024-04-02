@@ -95,7 +95,7 @@ The motivation for the decomposition is to separate the concerns of the differen
 Contained Building Blocks:
 
 | Building Block | Responsibilities |
-| -- | ---- |
+| -- | ----- |
 | **Client Browser** | The client browser is responsible for displaying the data to the user. It communicates with the Cloudflare service to send and receive data. |
 | **ISpindel** | The ISpindel is responsible for collecting the data. It communicates with the Cloudflare service to send and receive data. |
 | **Cloudflare** | The Cloudflare service is responsible for routing the data between the client browser and the Unraid Server. |
