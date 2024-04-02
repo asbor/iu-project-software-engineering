@@ -578,7 +578,7 @@ cloud "Cloudflare" {
     component "Cloudflare" as cloudflare
 }
 rectangle "Unraid Server" {
-    rectngle "Docker Engine" {
+    rectangle "Docker Engine" {
         rectangle "App Docker Container" {
             component "HoppyBrew" as hoppybrew
         }
