@@ -153,7 +153,7 @@ entity ISpindel as "iSpindel"
 
 user -> WebServer : HTTP Request
 WebServer -> AppServer : HTTP Request
-AppServer -> Database : SQL Query
+AppServer -> SQLDatabase : SQL Query
 SQLDatabase -> AppServer : SQL Response
 AppServer -> WebServer : HTTP Response
 WebServer -> user : HTTP Response
