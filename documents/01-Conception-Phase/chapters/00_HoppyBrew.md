@@ -26,6 +26,17 @@ knit: (function(inputFile, encoding) {
 \listoffigures
 \clearpage
 
+# Revision History
+
+| Revision | Date       | Description          | Author       |
+|----------|------------|----------------------|--------------|
+| 1.0      | 18-Mar-2024| Initial Release      | Asbjorn Bordoy |
+| 1.1      | 25-Mar-2024| Updated Abstract     | Asbjorn Bordoy |
+
+Table: Revision History
+
+\clearpage
+
 \pagenumbering{arabic}
 \setcounter{page}{1}
 

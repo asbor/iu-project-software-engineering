@@ -1,4 +1,3 @@
-
 # Introduction and Goals
 
 **This documentation:** is intended to provide a high-level overview of the HoppyBrew application. The document is based on the template provided by [@arc42]. Arc42 is a template for documenting software architectures. It is based on the ISO/IEC/IEEE 42010 standard, which is the international standard for documenting software architectures. The template is designed to be flexible and adaptable, and to be used in a wide range of software development projects. The template is divided into a number of sections, each of which covers a different aspect of the software architecture. The sections are designed to be used in a modular fashion, so that they can be used individually or in combination with other sections. The template is also designed to be easy to use, with a clear and consistent structure, and with a focus on the most important aspects of software architecture.
@@ -548,7 +547,7 @@ Contained Building Blocks:
 
 **Intent/Responsibility:**
 
-PictureGallery manages file uploads (images). It stores them locally and provides an RSS interface for getting metadata and image data.
+The PictureGallery component is responsible for managing the pictures in the application. It provides CRUD operations for pictures, as well as the ability to upload and download pictures. It communicates with the EntityManager component to store and retrieve pictures from the database.
 
 **Interfaces:**
 
@@ -559,6 +558,12 @@ PictureGallery manages file uploads (images). It stores them locally and provide
 Table: PictureGallery interfaces.
 
 ### EntityManager (Blackbox)
+
+**Intent/Responsibility:**
+
+The EntityManager
+
+**Interfaces:**
 
 
 

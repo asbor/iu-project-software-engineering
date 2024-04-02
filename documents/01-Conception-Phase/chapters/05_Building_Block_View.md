@@ -98,7 +98,7 @@ Contained Building Blocks:
 
 **Intent/Responsibility:**
 
-PictureGallery manages file uploads (images). It stores them locally and provides an RSS interface for getting metadata and image data.
+The PictureGallery component is responsible for managing the pictures in the application. It provides CRUD operations for pictures, as well as the ability to upload and download pictures. It communicates with the EntityManager component to store and retrieve pictures from the database.
 
 **Interfaces:**
 
@@ -109,6 +109,12 @@ PictureGallery manages file uploads (images). It stores them locally and provide
 Table: PictureGallery interfaces.
 
 ### EntityManager (Blackbox)
+
+**Intent/Responsibility:**
+
+The EntityManager
+
+**Interfaces:**
 
 
 
