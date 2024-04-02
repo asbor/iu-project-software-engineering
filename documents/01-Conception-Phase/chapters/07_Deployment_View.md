@@ -1,5 +1,10 @@
 # Deployment View
 
+The deployment view provides an overview of the deployment architecture of the application. It shows the different components of the application and how they are deployed in the production environment.
+
+The deployment architecture consists of the following components:
+
+
 ## Infrastructure Level 1
 
 ***\<Overview Diagram\>***

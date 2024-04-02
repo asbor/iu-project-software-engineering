@@ -141,18 +141,3 @@ WebServer -> ClientBrowser : Add Notes
 </pre>
 
 ![CRUD Batch](../images/07-Runtime-View-CRUD-Batch.png)
-
-
-
-
-## \<Runtime Scenario 1\>
-
-- *\<insert runtime diagram or textual description of the scenario\>*
-
-- *\<insert description of the notable aspects of the interactions between the building block instances depicted in this diagram.\>*
-
-## \<Runtime Scenario 2\>
-
-## …
-
-## \<Runtime Scenario n\>

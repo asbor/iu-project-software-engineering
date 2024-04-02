@@ -846,22 +846,12 @@ WebServer -> ClientBrowser : Add Notes
 
 ![CRUD Batch](images/07-Runtime-View-CRUD-Batch.png)
 
-
-
-
-## \<Runtime Scenario 1\>
-
-- *\<insert runtime diagram or textual description of the scenario\>*
-
-- *\<insert description of the notable aspects of the interactions between the building block instances depicted in this diagram.\>*
-
-## \<Runtime Scenario 2\>
-
-## …
-
-## \<Runtime Scenario n\>
-
 # Deployment View
+
+The deployment view provides an overview of the deployment architecture of the application. It shows the different components of the application and how they are deployed in the production environment.
+
+The deployment architecture consists of the following components:
+
 
 ## Infrastructure Level 1
 
