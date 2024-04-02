@@ -74,6 +74,45 @@ CloudflareTunnel -> ClientBrowser : 23. Receive Response
 
 ![CRUD Batch](../images/07-Runtime-View-CRUD-Batch.png)
 
+## Start Brew Process
+
+The Brewer starts the brewing process by selecting a Batch recipe and starting the process. The ISpindel collects data from the brewing process and sends it to the system.
+
+<pre id="mycode" class="haskell numberLines" startFrom="100">
+  <code>
+@startuml 08-Runtime-View-Start-Brew-Process
+
+actor Brewer as Brewer
+participant "Client Browser" as ClientBrowser
+participant "Cloudflare Tunnel" as CloudflareTunnel
+participant "HoppyBrew" as HoppyBrew
+participant "ISpindel" as ISpindel
+
+Brewer -> ClientBrowser : 1. Select Batch
+ClientBrowser -> CloudflareTunnel : 2. Send Request
+CloudflareTunnel -> HoppyBrew : 4. Receive Request
+HoppyBrew -> PostgreSQL : 5. Retrieve Batch
+PostgreSQL -> HoppyBrew : 6. Return Response
+HoppyBrew -> CloudflareTunnel : 7. Send Response
+CloudflareTunnel -> ClientBrowser : 9. Receive Response
+
+Brewer -> ClientBrowser : 10. Start Brew Process
+ClientBrowser -> CloudflareTunnel : 11. Send Request
+CloudflareTunnel -> HoppyBrew : 12. Receive Request
+HoppyBrew -> ISpindel : 13. Start Brew Process
+ISpindel -> CloudflareTunnel : 14. Send Data
+CloudflareTunnel -> HoppyBrew : 15. Receive Data
+HoppyBrew -> PostgreSQL : 16. Store Data
+PostgreSQL -> HoppyBrew : 17. Return Response
+HoppyBrew -> CloudflareTunnel : 18. Send Response
+CloudflareTunnel -> ClientBrowser : 19. Receive Response
+
+@enduml
+    </code>
+</pre>
+
+![Start Brew Process](../images/08-Runtime-View-Start-Brew-Process.png)
+
 
 
 
