@@ -10,19 +10,8 @@ knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding, output_dir = "build") })
 
 ---
-\newcommand{\revisiontable}{
+\newcommand{\revisiontableheading}{
     \section*{Revision History}
-    \begin{center}
-    \begin{tabular}{|c|c|p{0.6\linewidth}|c|}
-    \hline
-    Revision & Date & Description & Author \\
-    \hline
-    1.0 & 18-Mar-2024 & Initial Release & Asbjorn Bordoy \\
-    1.1 & 25-Mar-2024 & Updated Abstract & Asbjorn Bordoy \\
-    \hline
-    \end{tabular}
-    \end{center}
-    \clearpage
 }
 
 \let\oldsection\section
@@ -40,11 +29,7 @@ knit: (function(inputFile, encoding) {
 \listoffigures
 \clearpage
 
-\revisiontable
-\clearpage
-
-Revision History
-================
+\revisiontableheading
 
 | Revision | Date       | Description          | Author       |
 |----------|------------|----------------------|--------------|
@@ -52,6 +37,7 @@ Revision History
 | 1.1      | 25-Mar-2024| Updated Abstract     | Asbjorn Bordoy |
 
 Table: Revision History
+\clearpage
 
 \pagenumbering{arabic}
 \setcounter{page}{1}
