@@ -129,8 +129,9 @@ cloud "Cloudflare" {
 }
 rectangle "Unraid Server" {
     rectangle "Docker Engine" {
-        rectangle "Cloudflare" {
-            component "Cloudflare\nDocker Container" as cloudflareTunnel
+
+        rectangle "Cloudflare\nDocker Container" {
+            component "Cloudflare Tunnel" as cloudflareTunnel
         }
 
         rectangle "Application\nDocker Container" {
