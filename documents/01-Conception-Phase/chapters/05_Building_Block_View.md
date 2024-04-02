@@ -127,14 +127,16 @@ rectangle "Devices" {
 cloud "Cloudflare" {
     component "Cloudflare" as cloudflare
 }
-
-rectangle "Application Docker Container" {
+rectangle "Unraid Server" {
+    rectangle "Docker Container" {
     component "HoppyBrew" as hoppybrew
+    }
+
+    rectangle "Docker Container" {
+        component "PostgreSQL" as postgres
+    }
 }
 
-rectangle "PostgreSQL Docker Container" {
-    component "PostgreSQL" as postgres
-}
 
 client_browser -- cloudflare
 iSpindel -- cloudflare
