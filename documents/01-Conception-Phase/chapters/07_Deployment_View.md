@@ -52,45 +52,14 @@ node "Unraid Server" as unraid {
 }
 
 githubActions --|> appImage : Publish Image
-appImage <|--|> hoppybrew : Download Update
-cloudflareImage <|--|> cloudflareTunnel : Download Update
-databaseImage <|--|> postgres : Download Update
+appImage --|> hoppybrew : Download Update
+cloudflareImage --|> cloudflareTunnel : Download Update
+databaseImage --|> postgres : Download Update
 
 @enduml
     </code>
 </pre>
 
 ![Deployment Diagram](../images/08-Deployment-View.png)
-
-
-
-## Infrastructure Level 1
-
-***\<Overview Diagram\>***
-
-Motivation  
-*\<explanation in text form\>*
-
-Quality and/or Performance Features  
-*\<explanation in text form\>*
-
-Mapping of Building Blocks to Infrastructure  
-*\<description of the mapping\>*
-
-## Infrastructure Level 2
-
-### *\<Infrastructure Element 1\>*
-
-*\<diagram + explanation\>*
-
-### *\<Infrastructure Element 2\>*
-
-*\<diagram + explanation\>*
-
-…
-
-### *\<Infrastructure Element n\>*
-
-*\<diagram + explanation\>*
 
 \clearpage
