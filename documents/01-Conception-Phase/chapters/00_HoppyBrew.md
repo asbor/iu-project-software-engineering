@@ -31,10 +31,9 @@ knit: (function(inputFile, encoding) {
 
 \revisiontableheading
 
-| Revision | Date       | Description          | Author       |
-|----------|------------|----------------------|--------------|
-| 1.0      | 18-Mar-2024| Initial Release      | Asbjorn Bordoy |
-| 1.1      | 25-Mar-2024| Updated Abstract     | Asbjorn Bordoy |
+| Revision | Date | Description | Author |
+| - | - | - | - |
+| 1.0 | 02-Apr-2024 | Preliminary Release | Asbjorn Bordoy |
 
 Table: Revision History
 
