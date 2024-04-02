@@ -787,6 +787,7 @@ A batch is intended to represent a single brewing process, which is why the batc
 @startuml 07-Runtime-View-CRUD-Batch
 
 actor Brewer as Brewer
+entity "ISpindel" as ISpindel
 participant "Client Browser" as ClientBrowser
 boundary WebServer as "Web Server"
 control AppServer as "Application Server\nHoppyBrew"
