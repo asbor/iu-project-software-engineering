@@ -17,34 +17,41 @@ These instructions will are based on Linux and MacOS. The application can be run
 ### 1.2.1 Prepare the virtual environment
 
 1. Clone the repository
+
 ```bash
 git clone https://github.com/asbor/iu-project-software-engineering.git
 ```
 
-2. Change into the project directory
+1. Change into the project directory
+
 ```bash
 cd iu-project-software-engineering
 ```
 
-3. Create a virtual environment
+1. Create a virtual environment
+
 ```bash
 python3 -m venv .venv
 ```
 
-4. Activate the virtual environment
+1. Activate the virtual environment
+
 ```bash
 source .venv/bin/activate
 ```
 
-5. Install the required packages
+1. Install the required packages
+
 ```bash
 pip install -r requirements.txt
 ```
 
-6. Run the application
+1. Run the application
+
 ```bash
 uvicorn app.main:app --reload
 ```
+
 1. Open a web browser and navigate to `http://127.0.0.1:8000/`
 
 2. To stop the application, press `Ctrl + C`
