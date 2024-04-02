@@ -148,7 +148,7 @@ actor user as "Operator"
 entity ISpindel as "iSpindel"
 boundary WebServer as "Web Server"
 control AppServer as "Application Server"
-entity Database as "SQLDatabase"
+database Database as "SQLDatabase"
 
 ISpindel -> AppServer : HTTP Request
 AppServer -> ISpindel : HTTP Response
