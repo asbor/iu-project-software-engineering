@@ -579,6 +579,8 @@ cloud "Cloudflare" {
 }
 rectangle "Unraid Server" {
     rectangle "Docker Engine" {
+        component "Cloudflare" as cloudflareTunnel
+
         rectangle "App Docker Container" {
             component "HoppyBrew" as hoppybrew
         }
@@ -592,7 +594,8 @@ rectangle "Unraid Server" {
 
 client_browser -- cloudflare
 iSpindel -- cloudflare
-cloudflare -- hoppybrew
+cloudflare -- cloudflareTunnel
+cloudflareTunnel -- hoppybrew
 hoppybrew -- postgres
 
 @enduml
