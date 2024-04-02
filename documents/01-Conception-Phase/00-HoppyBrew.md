@@ -525,8 +525,8 @@ rectangle "Unraid Server" {
         I04 -- port443
         I04 -- port9501
 
-        database "PostgreSQL Container" {
-            component "PostgreSQL" as PostgreSQL
+        node "PostgreSQL Container" {
+            database "PostgreSQL" as PostgreSQL
             portin "Port:5432" as PostgreSQL_port5432
             PostgreSQL_port5432 - PostgreSQL : Connects
         }
