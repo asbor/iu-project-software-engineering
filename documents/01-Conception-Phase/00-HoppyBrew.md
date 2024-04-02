@@ -788,6 +788,72 @@ A batch is intended to represent a single brewing process, which is why the batc
 
 actor Brewer as Brewer
 participant "Client Browser" as ClientBrowser
+boundary WebServer as "Web Server"
+control AppServer as "Application Server\nHoppyBrew"
+database "PostgreSQL" as PostgreSQL
+
+Brewer -> ClientBrowser : List Recipes
+ClientBrowser -> WebServer : List Recipes
+WebServer -> AppServer : List Recipes
+AppServer -> PostgreSQL : List Recipes
+PostgreSQL -> AppServer : List Recipes
+AppServer -> WebServer : List Recipes
+WebServer -> ClientBrowser : List Recipes
+
+Brewer -> ClientBrowser : Instantiate Batch
+ClientBrowser -> WebServer : Instantiate Batch
+WebServer -> AppServer : Instantiate Batch
+AppServer -> PostgreSQL : Instantiate Batch
+PostgreSQL -> AppServer : Instantiate Batch
+AppServer -> WebServer : Instantiate Batch
+WebServer -> ClientBrowser : Instantiate Batch
+
+Brewer -> ClientBrowser : Edit Batch
+ClientBrowser -> WebServer : Edit Batch
+WebServer -> AppServer : Edit Batch
+AppServer -> PostgreSQL : Edit Batch
+PostgreSQL -> AppServer : Edit Batch
+AppServer -> WebServer : Edit Batch
+WebServer -> ClientBrowser : Edit Batch
+
+Brewer -> ClientBrowser : Start Brewing
+ClientBrowser -> WebServer : Start Brewing
+WebServer -> AppServer : Start Brewing
+AppServer -> PostgreSQL : Start Brewing
+PostgreSQL -> AppServer : Start Brewing
+AppServer -> WebServer : Start Brewing
+WebServer -> ClientBrowser : Start Brewing
+
+Brewer -> ClientBrowser : Start Fermentation
+ClientBrowser -> WebServer : Start Fermentation
+WebServer -> AppServer : Start Fermentation
+AppServer -> PostgreSQL : Start Fermentation
+PostgreSQL -> AppServer : Start Fermentation
+AppServer -> WebServer : Start Fermentation
+WebServer -> ClientBrowser : Start Fermentation
+ISpindel -> WebServer : Send Data
+WebServer -> AppServer : Receive Data
+AppServer -> PostgreSQL : Store Data
+PostgreSQL -> AppServer : Confirm Data
+AppServer -> WebServer : Confirm Data
+WebServer -> ClientBrowser : Confirm Data
+
+Brewer -> ClientBrowser : Add Notes
+ClientBrowser -> WebServer : Add Notes
+WebServer -> AppServer : Add Notes
+AppServer -> PostgreSQL : Add Notes
+PostgreSQL -> AppServer : Add Notes
+AppServer -> WebServer : Add Notes
+WebServer -> ClientBrowser : Add Notes
+
+
+@enduml
+    </code>
+</pre>
+
+![CRUD Batch](images/07-Runtime-View-CRUD-Batch.png)
+
+
 
 
 ## \<Runtime Scenario 1\>
