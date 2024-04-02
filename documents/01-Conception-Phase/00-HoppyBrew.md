@@ -578,12 +578,14 @@ cloud "Cloudflare" {
     component "Cloudflare" as cloudflare
 }
 rectangle "Unraid Server" {
-    rectangle "Docker Container" {
-    component "HoppyBrew" as hoppybrew
-    }
+    rectngle "Docker Engine" {
+        rectangle "App Docker Container" {
+            component "HoppyBrew" as hoppybrew
+        }
 
-    rectangle "Docker Container" {
-        component "PostgreSQL" as postgres
+        rectangle "DB Docker Container" {
+            component "PostgreSQL" as postgres
+        }
     }
 }
 
