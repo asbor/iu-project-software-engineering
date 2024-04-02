@@ -143,7 +143,7 @@ rectangle "Unraid Server" {
             component "HoppyBrew" as hoppybrew
         }
 
-        rectangle "Database\nDocker Container" {
+        database "Database\nDocker Container" {
             component "PostgreSQL" as postgres
         }
     }
