@@ -1,13 +1,13 @@
 from fastapi import APIRouter
 
-from dbs_assignment.endpoints import authors
-from dbs_assignment.endpoints import cards
-from dbs_assignment.endpoints import categories
-from dbs_assignment.endpoints import instances
-from dbs_assignment.endpoints import publications
-from dbs_assignment.endpoints import rentals
-from dbs_assignment.endpoints import reservation
-from dbs_assignment.endpoints import user
+from controller.endpoints import authors
+from controller.endpoints import cards
+from controller.endpoints import categories
+from controller.endpoints import instances
+from controller.endpoints import publications
+from controller.endpoints import rentals
+from controller.endpoints import reservation
+from controller.endpoints import user
 
 # create the router and include all the routers from the endpoints folder
 router = APIRouter()

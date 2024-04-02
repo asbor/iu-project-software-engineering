@@ -1,13 +1,13 @@
 from datetime import datetime
-from fastapi import APIRouter,HTTPException, status
+from fastapi import APIRouter, HTTPException, status
 import uuid
-from dbs_assignment.database import SessionLocal
-import dbs_assignment.models as models
-import dbs_assignment.schemas as schemas
+from model.database import SessionLocal
+import model.db_models as models
+import data.schemas as schemas
 
 router = APIRouter()
 
-db=SessionLocal()
+db = SessionLocal()
 
 
 # create a publication
@@ -34,11 +34,14 @@ db=SessionLocal()
   "updated_at": "{{$timestamp}}"
 }
 """
+
+
 @router.post("/publications", response_model=schemas.Publication, status_code=status.HTTP_201_CREATED)
 def create_publication(publication: schemas.Publication):
     # check if publication exists
     if db.query(models.Publication).filter(models.Publication.id == publication.id).first():
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Publication already exists")
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT,
+                            detail="Publication already exists")
 
     # create or get authors
     authors = []
@@ -67,7 +70,8 @@ def create_publication(publication: schemas.Publication):
 
 def get_or_create_author(author: schemas.Author) -> models.Author:
     # check if author exists
-    author_obj = db.query(models.Author).filter(models.Author.name == author.name, models.Author.surname == author.surname).first()
+    author_obj = db.query(models.Author).filter(
+        models.Author.name == author.name, models.Author.surname == author.surname).first()
     if author_obj is None:
         # create new author
         author_obj = models.Author(
@@ -88,7 +92,8 @@ def get_or_create_author(author: schemas.Author) -> models.Author:
 
 def get_or_create_category(category: schemas.Category) -> models.Category:
     # check if category exists
-    category_obj = db.query(models.Category).filter(models.Category.name == category.name).first()
+    category_obj = db.query(models.Category).filter(
+        models.Category.name == category.name).first()
     if category_obj is None:
         # create new category
         category_obj = models.Category(
@@ -103,29 +108,40 @@ def get_or_create_category(category: schemas.Category) -> models.Category:
     return category_obj
 
 # get all publications
+
+
 @router.get("/publications", status_code=status.HTTP_200_OK)
 async def get_all_publications():
     publications = db.query(models.Publication).all()
     return publications
 
 # get a publication by id
+
+
 @router.get("/publications/{id}", status_code=status.HTTP_200_OK)
 async def get_publication_by_id(id: str):
-    publication = db.query(models.Publication).filter(models.Publication.id == id).first()
+    publication = db.query(models.Publication).filter(
+        models.Publication.id == id).first()
     if publication is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Publication not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Publication not found")
     return publication
 
 # update a publication by id
+
+
 @router.put("/publications/{id}", status_code=status.HTTP_200_OK)
 async def update_publication_by_id(id: str, publication: schemas.Publication):
-    publication_exists = db.query(models.Publication).filter(models.Publication.id == id).first()
+    publication_exists = db.query(models.Publication).filter(
+        models.Publication.id == id).first()
     if publication_exists is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Publication not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Publication not found")
 
     # check if author exists in Author table, by comparing name and surname, if not then create it, else add it to the publication
     for author in publication.authors:
-        author_exists = db.query(models.Author).filter(models.Author.name == author.name, models.Author.surname == author.surname).first()
+        author_exists = db.query(models.Author).filter(
+            models.Author.name == author.name, models.Author.surname == author.surname).first()
         if author_exists is None:
             new_author = models.Author(
                 # create a new id for the author
@@ -143,7 +159,8 @@ async def update_publication_by_id(id: str, publication: schemas.Publication):
 
     # check if category exists in Category table by comparing name, if not then create it, else add it to the publication
     for category in publication.categories:
-        category_exists = db.query(models.Category).filter(models.Category.name == category.name).first()
+        category_exists = db.query(models.Category).filter(
+            models.Category.name == category.name).first()
         if category_exists is None:
             new_category = models.Category(
                 # create a new id for the category
@@ -167,12 +184,15 @@ async def update_publication_by_id(id: str, publication: schemas.Publication):
     return publication_exists
 
 # delete a publication by id
+
+
 @router.delete("/publications/{id}", status_code=status.HTTP_200_OK)
 async def delete_publication_by_id(id: str):
-    publication = db.query(models.Publication).filter(models.Publication.id == id).first()
+    publication = db.query(models.Publication).filter(
+        models.Publication.id == id).first()
     if publication is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Publication not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Publication not found")
     db.delete(publication)
     db.commit()
     return {"message": "Publication deleted successfully"}
-

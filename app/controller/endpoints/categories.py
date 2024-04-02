@@ -1,20 +1,22 @@
-from fastapi import APIRouter,HTTPException, status
+from fastapi import APIRouter, HTTPException, status
 import uuid
-from dbs_assignment.database import SessionLocal
-import dbs_assignment.models as models
-import dbs_assignment.schemas as schemas
+from model.database import SessionLocal
+import model.db_models as models
+import data.schemas as schemas
 
 router = APIRouter()
 
-db=SessionLocal()
+db = SessionLocal()
 
 # create a new category
+
+
 @router.post("/categories", response_model=schemas.Category)
 def create_category(category: schemas.Category):
     if db.query(models.Category).filter(models.Category.name == category.name).first():
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Category already exists")
-    
-    
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Category already exists")
+
     new_category = models.Category(
         id=category.id,
         name=category.name,
@@ -35,22 +37,30 @@ def get_all_categories():
     return categories
 
 # get a category by id
+
+
 @router.get("/categories/{categoryId}", response_model=schemas.Category)
 def get_category(categoryId: uuid.UUID):
-    category = db.query(models.Category).filter(models.Category.id == categoryId).first()
+    category = db.query(models.Category).filter(
+        models.Category.id == categoryId).first()
     if category is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
     return category
 
 # Update a category
+
+
 @router.patch("/categories/{categoryId}", status_code=status.HTTP_200_OK)
 async def patch_category(categoryId: uuid.UUID, category: schemas.Category):
-    db_category = db.query(models.Category).filter(models.Category.id == categoryId).first()
-    
+    db_category = db.query(models.Category).filter(
+        models.Category.id == categoryId).first()
+
     # The category id must exist in the database
     if db_category is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
-    
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
+
     if category.name is not None:
         db_category.name = category.name                # type: ignore
     if category.created_at is not None:
@@ -64,14 +74,18 @@ async def patch_category(categoryId: uuid.UUID, category: schemas.Category):
     return db_category
 
 # Delete a category
+
+
 @router.delete("/categories/{categoryId}", status_code=status.HTTP_200_OK)
 async def delete_category(categoryId: uuid.UUID):
-    db_category = db.query(models.Category).filter(models.Category.id == categoryId).first()
-    
+    db_category = db.query(models.Category).filter(
+        models.Category.id == categoryId).first()
+
     # The category id must exist in the database
     if db_category is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
-    
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
+
     db.delete(db_category)
     db.commit()
 

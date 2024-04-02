@@ -1,7 +1,6 @@
 
 # Dockerfile
-TODO: Check version of alpine
-FROM alpine:3.17 as builder
+FROM alpine:latest as builder
 
 # Install python3 and pip3
 RUN apk add --no-cache python3 py3-pip libpq postgresql-client curl
