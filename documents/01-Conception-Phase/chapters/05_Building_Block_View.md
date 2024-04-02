@@ -116,23 +116,23 @@ Important Interfaces
 
 left to right direction
 
-rectangle "Client Browser" {
+rectangle "Client" {
     component "Client Browser" as client_browser
 }
 
-rectangle "ISpindel" {
+rectangle "Devices" {
     component "ISpindel" as iSpindel
 }
 
-rectangle "Cloudflare" {
+cloud "Cloudflare" {
     component "Cloudflare" as cloudflare
 }
 
-rectangle "HoppyBrew" {
+rectangle "Application Docker Container" {
     component "HoppyBrew" as hoppybrew
 }
 
-rectangle "PostgreSQL" {
+rectangle "PostgreSQL Docker Container" {
     component "PostgreSQL" as postgres
 }
 
