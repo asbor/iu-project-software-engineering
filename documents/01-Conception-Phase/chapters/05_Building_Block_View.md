@@ -36,7 +36,9 @@ I03 - cloudflare
 
 rectangle "Unraid Server" {
     node "Docker Engine" {
-        component "Cloudflare" as CloudflareTunnel
+        node "Cloudflare\nDocker Container" {
+            component "Cloudflare Tunnel" as CloudflareTunnel
+        }
 
         cloudflare <|..|> CloudflareTunnel : <<TUNNEL>>
 
@@ -94,32 +96,22 @@ The motivation for the decomposition is to separate the concerns of the differen
 
 Contained Building Blocks:
 
-| Building Block | Responsibilities |
-| -- | ----- |
-| **Client Browser** | The client browser is responsible for displaying the data to the user. It communicates with the Cloudflare service to send and receive data. |
-| **ISpindel** | The ISpindel is responsible for collecting the data. It communicates with the Cloudflare service to send and receive data. |
-| **Cloudflare** | The Cloudflare service is responsible for routing the data between the client browser and the Unraid Server. |
-| **HoppyBrew** | The HoppyBrew application is responsible for processing the data and storing it in the database. It communicates with the Cloudflare service to send and receive data. It also communicates with the PostgreSQL database to store the data. |
-| **PostgreSQL** | The PostgreSQL database is responsible for storing the data. It communicates with the HoppyBrew application to receive data. |
-| **Cloudflare Tunnel** | The Cloudflare Tunnel is responsible for routing the data between the Cloudflare service and the Unraid Server. |
-| **Docker Engine** | The Docker Engine is responsible for managing the containers of the Unraid Server. It communicates with the Cloudflare service to send and receive data. |
-| **App Container** | The App Container is responsible for running the HoppyBrew application. It communicates with the Cloudflare service to send and receive data. It also communicates with the PostgreSQL database to store the data. |
-| **PostgreSQL Container** | The PostgreSQL Container is responsible for running the PostgreSQL database. It communicates with the HoppyBrew application to receive data. |
-| **FastAPI** | The FastAPI is responsible for providing the API endpoints for the HoppyBrew application. It communicates with the HoppyBrew application to process the data. |
-| **Psycopg db-adapter** | The Psycopg db-adapter is responsible for connecting the HoppyBrew application to the PostgreSQL database. It communicates with the HoppyBrew application to store the data. |
-| **uvicorn** | The uvicorn is responsible for running the FastAPI application. It communicates with the FastAPI application to process the data. |
-| **endpoints** | The endpoints are responsible for providing the API endpoints for the FastAPI application. They communicate with the FastAPI application to process the data. |
-| **APIRouter** | The APIRouter is responsible for routing the API requests to the appropriate endpoints. It communicates with the FastAPI application to process the data. |
-| **EntityManager** | The EntityManager is responsible for managing the entities of the HoppyBrew application. It communicates with the HoppyBrew application to process the data. |
-| **PictureGallery** | The PictureGallery is responsible for managing the pictures of the HoppyBrew application. It communicates with the HoppyBrew application to process the data. |
+### PictureGallery (Blackbox)
+
+**Intent/Responsibility:**
+
+PictureGallery manages file uploads (images). It stores them locally and provides an RSS interface for getting metadata and image data.
+
+**Interfaces:**
+| ****Interface** | **Description** |
+| -- | ---- |
+| REST interface | /api/PictureGallery/* |
+
+Contains all methods for adding and reading arbitrary pictures.
 
 
 
-Important Interfaces
 
-{
-    TODO: Description of important interfaces
-}
 
 ## Blackbox Overall System
 
