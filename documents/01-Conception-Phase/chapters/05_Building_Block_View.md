@@ -51,7 +51,7 @@ rectangle "Unraid Server" {
             component "APIRouter" as APIRouter
             component "EntityManager" as EntityManager
             component "PictureGallery" as PictureGallery
-            component "SQLAlchemy" as SQLAlchemy  # Include SQLAlchemy component
+            component "SQLAlchemy" as SQLAlchemy
 
             portin "Port:80" as port80
             portin "Port:443" as port443
