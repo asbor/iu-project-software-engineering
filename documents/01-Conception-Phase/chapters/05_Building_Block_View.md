@@ -56,7 +56,6 @@ rectangle "Unraid Server" {
             portin "Port:443" as port443
             portin "Port:9501" as port9501
             portout "Port:5432" as port5432
-            
 
             api - HoppyBrew : Uses
             HoppyBrew -- db_adapter : Uses
@@ -64,7 +63,6 @@ rectangle "Unraid Server" {
             api -- endpoints  : Uses
             api -- APIRouter  : Uses
 
-            
             port80 -down- api : Connects
             db_adapter -down- port5432 : Connects
         }
@@ -103,7 +101,7 @@ Contained Building Blocks:
 PictureGallery manages file uploads (images). It stores them locally and provides an RSS interface for getting metadata and image data.
 
 **Interfaces:**
-| ****Interface** | **Description** |
+| **Interface** | **Description** |
 | -- | ---- |
 | REST interface | /api/PictureGallery/* |
 
