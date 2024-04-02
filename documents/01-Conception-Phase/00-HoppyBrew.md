@@ -863,18 +863,20 @@ The deployment diagram provides a high-level overview of the deployment architec
 @startuml 08-Deployment-View
 title Deployment Diagram
 
-node "GitHub" {
+left to right direction
+
+node "GitHub" as github {
     component "Codebase" as codebase
     component "Dockerfile" as dockerfile
     component "publish.yml" as publish
     component "GitHub Actions" as githubActions
 }
 
-node "Docker Hub" {
+node "Docker Hub" as dockerHub {
     component "Application Image" as appImage
 }
 
-node "Unraid Server" {
+node "Unraid Server" as unraid {
     node "Docker Engine" {
         node "Cloudflare\nDocker Container" {
             component "Cloudflare Tunnel" as cloudflareTunnel
@@ -890,13 +892,8 @@ node "Unraid Server" {
     }
 }
 
-codebase - dockerfile
-codebase - publish
-codebase - githubActions
-githubActions - appImage
-appImage - cloudflareTunnel
-appImage - hoppybrew
-appImage - postgres
+github ..|> dockerHub : Publish Image
+dockerHub ..|> unraid : Download Update
 
 @enduml
     </code>

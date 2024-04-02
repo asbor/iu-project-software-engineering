@@ -33,6 +33,4 @@ node "Unraid Server" as unraid {
 github ..|> dockerHub : Publish Image
 dockerHub ..|> unraid : Download Update
 
-
-
 @enduml
