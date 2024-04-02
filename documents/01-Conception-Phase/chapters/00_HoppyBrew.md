@@ -33,7 +33,7 @@ knit: (function(inputFile, encoding) {
 
 | Revision | Date | Description | Author |
 | - | -- | --- | -- |
-| 1.0 | 02-Apr-2024 | Preliminary Release | Asbjorn Bordoy |
+| 1.0 | 02-Apr-2024 | Preliminary Release in Concept Phase | Asbjorn Bordoy |
 
 Table: Revision History
 
