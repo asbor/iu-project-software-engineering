@@ -10,6 +10,20 @@ knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding, output_dir = "build") })
 
 ---
+\newcommand{\revisiontable}{
+    \section*{Revision History}
+    \begin{center}
+    \begin{tabular}{|c|c|p{0.6\linewidth}|c|}
+    \hline
+    Revision & Date & Description & Author \\
+    \hline
+    1.0 & 18-Mar-2024 & Initial Release & Asbjorn Bordoy \\
+    1.1 & 25-Mar-2024 & Updated Abstract & Asbjorn Bordoy \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \clearpage
+}
 
 \let\oldsection\section
 \maketitle
@@ -26,15 +40,7 @@ knit: (function(inputFile, encoding) {
 \listoffigures
 \clearpage
 
-# Revision History
-
-| Revision | Date       | Description          | Author       |
-|----------|------------|----------------------|--------------|
-| 1.0      | 18-Mar-2024| Initial Release      | Asbjorn Bordoy |
-| 1.1      | 25-Mar-2024| Updated Abstract     | Asbjorn Bordoy |
-
-Table: Revision History
-
+\revisiontable
 \clearpage
 
 \pagenumbering{arabic}
