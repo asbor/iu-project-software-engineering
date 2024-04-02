@@ -551,11 +551,14 @@ Contained Building Blocks:
 PictureGallery manages file uploads (images). It stores them locally and provides an RSS interface for getting metadata and image data.
 
 **Interfaces:**
+
 | **Interface** | **Description** |
 | -- | ---- |
 | REST interface | /api/PictureGallery/* |
 
-Contains all methods for adding and reading arbitrary pictures.
+Table: PictureGallery interfaces.
+
+### EntityManager (Blackbox)
 
 
 
