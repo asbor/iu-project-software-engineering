@@ -20,8 +20,7 @@ CloudflareTunnel -> HoppyBrew : 4. Receive Request
 HoppyBrew -> PostgreSQL : 5. Store Recipe
 PostgreSQL -> HoppyBrew : 6. Return Response
 HoppyBrew -> CloudflareTunnel : 7. Send Response
-CloudflareTunnel -> Cloudflare : 8. Route Response
-Cloudflare -> ClientBrowser : 9. Receive Response
+CloudflareTunnel -> ClientBrowser : 9. Receive Response
 
 @enduml
     </code>
