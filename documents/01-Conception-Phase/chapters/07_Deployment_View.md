@@ -15,16 +15,21 @@ The deployment diagram provides a high-level overview of the deployment architec
 @startuml 08-Deployment-View
 title Deployment Diagram
 
-node "Client Browser" as client
-node "ISpindel" as ispindel
-node "Cloudflare Service" as cloudflare
-node "Unraid Server" as unraid
-database "PostgreSQL Database" as postgres
+node "Unraid Server" {
+    node "Docker Engine" {
+        node "Cloudflare\nDocker Container" {
+            component "Cloudflare Tunnel" as cloudflareTunnel
+        }
 
-client --> cloudflare : HTTP requests/responses
-cloudflare --> unraid : HTTP requests/responses
-ispindel --> unraid : HTTP requests/responses
-unraid --> postgres : HTTP requests/responses
+        node "Application\nDocker Container" {
+            component "HoppyBrew" as hoppybrew
+        }
+
+        node "Database\nDocker Container" {
+            database "PostgreSQL" as postgres
+        }
+    }
+}
 
 @enduml
     </code>
