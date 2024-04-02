@@ -24,6 +24,11 @@ node "GitHub" as github {
     component "GitHub Actions" as githubActions
 }
 
+codebase - dockerfile : Build Image
+dockerfile - publish : Deploy Image
+publish - githubActions : Automate Deployment
+
+
 node "Docker Hub" as dockerHub {
     component "Application Image\nHoppyBrew" as appImage
     component "Cloudflare Image" as cloudflareImage
@@ -46,7 +51,7 @@ node "Unraid Server" as unraid {
     }
 }
 
-github ..|> appImage : Publish Image
+githubActions --|> appImage : Publish Image
 appImage <|--|> hoppybrew : Download Update
 cloudflareImage <|--|> cloudflareTunnel : Download Update
 databaseImage <|--|> postgres : Download Update
