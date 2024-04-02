@@ -793,14 +793,6 @@ boundary WebServer as "Web Server"
 control AppServer as "Application Server\nHoppyBrew"
 database "PostgreSQL" as PostgreSQL
 
-Brewer -> ClientBrowser : List Recipes
-ClientBrowser -> WebServer : List Recipes
-WebServer -> AppServer : List Recipes
-AppServer -> PostgreSQL : List Recipes
-PostgreSQL -> AppServer : List Recipes
-AppServer -> WebServer : List Recipes
-WebServer -> ClientBrowser : List Recipes
-
 Brewer -> ClientBrowser : Instantiate Batch
 ClientBrowser -> WebServer : Instantiate Batch
 WebServer -> AppServer : Instantiate Batch
