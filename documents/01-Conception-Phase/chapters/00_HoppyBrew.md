@@ -43,8 +43,8 @@ knit: (function(inputFile, encoding) {
 \revisiontable
 \clearpage
 
-<!-- Revision History -->
-## Revision History
+Revision History
+================
 
 | Revision | Date       | Description          | Author       |
 |----------|------------|----------------------|--------------|
