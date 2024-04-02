@@ -1,15 +1,38 @@
-@startuml
-[c]
-component C {
-  port p1
-  port p2
-  port p3
-  component c1
+@startuml 08-Deployment-View
+title Deployment Diagram
+
+left to right direction
+
+node "GitHub" as github {
+    component "Codebase" as codebase
+    component "Dockerfile" as dockerfile
+    component "publish.yml" as publish
+    component "GitHub Actions" as githubActions
 }
 
-c --> p1
-c --> p2
-c --> p3
-p1 --> c1
-p2 --> c1
+node "Docker Hub" as dockerHub {
+    component "Application Image" as appImage
+}
+
+node "Unraid Server" as unraid {
+    node "Docker Engine" {
+        node "Cloudflare\nDocker Container" {
+            component "Cloudflare Tunnel" as cloudflareTunnel
+        }
+
+        node "Application\nDocker Container" {
+            component "HoppyBrew" as hoppybrew
+        }
+
+        node "Database\nDocker Container" {
+            database "PostgreSQL" as postgres
+        }
+    }
+}
+
+github ..|> dockerHub : Publish Image
+dockerHub ..|> unraid : Download Update
+
+
+
 @enduml
