@@ -29,6 +29,10 @@ Cloudflare -> ClientBrowser : 9. Receive Response
     </code>
 </pre>
 
+![CRUD Recipe](../images/06-Runtime-View-CRUD-Recipe.png)
+
+
+
 
 
 
