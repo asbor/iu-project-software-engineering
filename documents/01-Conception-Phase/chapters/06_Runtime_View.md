@@ -20,13 +20,6 @@ boundary WebServer as "Web Server"
 control AppServer as "Application Server\nHoppyBrew"
 database "PostgreSQL" as PostgreSQL
 
-ClientBrowser -> WebServer : HTTP Request
-WebServer -> AppServer : HTTP Request
-AppServer -> PostgreSQL : SQL Query
-PostgreSQL -> AppServer : SQL Response
-AppServer -> WebServer : HTTP Response
-WebServer -> ClientBrowser : HTTP Response
-
 Brewer -> ClientBrowser : Create Recipe
 ClientBrowser -> WebServer : Create Recipe
 WebServer -> AppServer : Create Recipe
