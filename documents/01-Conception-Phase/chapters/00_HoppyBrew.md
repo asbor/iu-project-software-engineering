@@ -43,6 +43,16 @@ knit: (function(inputFile, encoding) {
 \revisiontable
 \clearpage
 
+<!-- Revision History -->
+## Revision History
+
+| Revision | Date       | Description          | Author       |
+|----------|------------|----------------------|--------------|
+| 1.0      | 18-Mar-2024| Initial Release      | Asbjorn Bordoy |
+| 1.1      | 25-Mar-2024| Updated Abstract     | Asbjorn Bordoy |
+
+Table: Revision History
+
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
