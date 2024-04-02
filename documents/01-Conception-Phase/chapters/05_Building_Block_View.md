@@ -129,13 +129,15 @@ cloud "Cloudflare" {
 }
 rectangle "Unraid Server" {
     rectangle "Docker Engine" {
-        component "Cloudflare" as cloudflareTunnel
+        rectangle "Cloudflare" {
+            component "Cloudflare\nDocker Container" as cloudflareTunnel
+        }
 
-        rectangle "App Docker Container" {
+        rectangle "Application\nDocker Container" {
             component "HoppyBrew" as hoppybrew
         }
 
-        rectangle "DB Docker Container" {
+        rectangle "Database\nDocker Container" {
             component "PostgreSQL" as postgres
         }
     }
