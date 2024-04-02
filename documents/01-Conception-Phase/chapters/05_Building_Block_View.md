@@ -183,14 +183,72 @@ Table: PictureGallery interfaces.
 
 **Intent/Responsibility:**
 
-The FastAPI component is responsible for providing the RESTful APIs for the application. It provides endpoints for users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the PostgreSQL database to store and retrieve data.
+The FastAPI component is responsible for providing the web framework for the application. It provides a set of APIs for the different parts of the application, such as users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the SQLAlchemy component to store and retrieve data.
 
-**Interfaces:**
+### APIRouter (Blackbox)
 
-| **Interface** | **Description** |
-| -- | ---- |
-| REST interface | /api/* |
+**Intent/Responsibility:**
 
-Table: FastAPI interfaces.
+The APIRouter component is responsible for routing the requests to the different parts of the application. It provides a set of routes for the different parts of the application, such as users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the FastAPI component to handle the requests and responses.
+
+### Endpoints (Blackbox)
+
+**Intent/Responsibility:**
+
+The Endpoints component is responsible for defining the endpoints for the different parts of the application. It provides a set of endpoints for the different parts of the application, such as users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the FastAPI component to handle the requests and responses.
+
+### SQLAlchemy (Blackbox)
+
+**Intent/Responsibility:**
+
+The SQLAlchemy component is responsible for providing the Object Relational Mapper (ORM) for the application. It provides a high-level interface for interacting with the PostgreSQL database, including support for complex queries, transactions, and data integrity constraints. It communicates with the FastAPI component to store and retrieve data.
+
+### Psycopg db-adapter (Blackbox)
+
+**Intent/Responsibility:**
+
+The Psycopg db-adapter component is responsible for providing the database adapter for the application. It provides a low-level interface for interacting with the PostgreSQL database, including support for connecting, querying, and updating data. It communicates with the SQLAlchemy component to store and retrieve data.
+
+### uvicorn (Blackbox)
+
+**Intent/Responsibility:**
+
+The uvicorn component is responsible for providing the ASGI server for the application. It provides a high-performance server for handling the requests and responses of the application. It communicates with the FastAPI component to run the application.
+
+### HoppyBrew (Blackbox)
+
+**Intent/Responsibility:**
+
+The HoppyBrew component is responsible for providing the business logic of the application. It provides a set of APIs for the different parts of the application, such as users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the SQLAlchemy component to store and retrieve data.
+
+### Cloudflare (Blackbox)
+
+**Intent/Responsibility:**
+
+The Cloudflare component is responsible for providing the routing service for the application. It provides a secure and reliable connection between the client browser and the Unraid Server. It communicates with the Cloudflare Tunnel component to route the data between the client browser and the Unraid Server.
+
+### Cloudflare Tunnel (Blackbox)
+
+**Intent/Responsibility:**
+
+The Cloudflare Tunnel component is responsible for providing the tunnel for the application. It provides a secure and reliable connection between the client browser and the Unraid Server. It communicates with the Cloudflare service to route the data between the client browser and the Unraid Server.
+
+### PostgreSQL (Blackbox)
+
+**Intent/Responsibility:**
+
+The PostgreSQL component is responsible for providing the database technology for the application. It provides a powerful and reliable relational database management system for storing and managing the data of the application. It communicates with the HoppyBrew component to store and retrieve data.
+
+### Client Browser (Blackbox)
+
+**Intent/Responsibility:**
+
+The Client Browser component is responsible for providing the user interface for the application. It provides a set of interfaces for the different parts of the application, such as users, recipes, batches, profiles, devices, inventory, and system settings. It communicates with the Cloudflare service to send and receive data.
+
+### ISpindel (Blackbox)
+
+**Intent/Responsibility:**
+
+The ISpindel component is responsible for providing the data collection service for the application. It provides a set of interfaces for collecting the data from the brewing process. It communicates with the Cloudflare service to send and receive data.
 
 \clearpage
