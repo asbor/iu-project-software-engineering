@@ -46,6 +46,10 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+**Note:**
+
+This requirements.txt file should only contain the packages required for the application to run.
+
 1. Run the application
 
 ```bash
@@ -64,9 +68,6 @@ To set the environment in VSCode, you can add the following configuration to the
 
 ```json
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
@@ -75,16 +76,20 @@ To set the environment in VSCode, you can add the following configuration to the
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "env": {
-                "DATABASE_USER": "postgres",
-                "DATABASE_PASSWORD": "postgres",
-                "DATABASE_HOST": "localhost",
-                "DATABASE_PORT": "5432",
-                "DATABASE_NAME": "dbname"
-            }
+            "envFile": "${workspaceFolder}/.env" // Use the .env file
         }
     ]
 }
+```
+
+Then, create a `.env` file in the root directory of the project and add the following environment variables:
+
+```bash
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5434
+POSTGRES_NAME=HoppyBrew_DB
 ```
 
 Once the environment variables are set, you need to make sure that you use the correct debugger, which is `Python Debugger: Debug using launch.json` in the debugger dropdown.
@@ -99,6 +104,75 @@ Once the environment variables are set, you need to make sure that you use the c
 ### 2.2.1 Install Docker
 
 To install Docker on Ubuntu, follow the instructions on the official Docker website: https://docs.docker.com/engine/install/ubuntu/
+
+### 2.2.2 Build the docker-image and Create docker-container based on example repository
+
+Confirm that you have docker installed
+
+```docker
+docker -v
+```
+
+
+navigate to the project folder, and clone the GitHub example repository
+
+```git
+git clone  
+```
+
+This repository comes with further instructions on steps which are to taken.
+
+build the docker image
+
+```docker
+docker build -t dockerfile . 
+```
+
+have a look at which images you have, you can use the following command to list your images in the terminal, or alternatively have a look in the Docker IDE
+
+```docker
+docker images
+```
+
+Run a new container with the following environment variables
+
+Environment variable    | Description               | Example
+---                     | ---                       | ---
+DATABASE_HOST           | IP of database server     | 127.0.0.1
+DATABASE_PORT           | Port of database          | 5432
+DATABASE_NAME           | Name of the database      | dbs
+DATABASE_USER           | Database user             | xstudent
+DATABASE_PASSWORD       | Password                  | SuperSecret
+
+Run the application
+
+> **NOTE !**
+> 
+> It turnes out that it was quite dificult to be able to establish a connection between the API and the database, and the issue was for some reason caused by the `DATABASE_HOST` parameter. Supposetly under normal circumstances, the DATABASE_HOST would function fine by using the IP-Address `172.17.0.1`. but for some reason this was not possible, which is why we needed to enter `host.docker.internal`.
+
+```docker
+docker run -d -p 127.0.0.1:8000:8000 --env NAME=Dexter --env DATABASE_HOST=host.docker.internal --env DATABASE_PORT=5432 --env DATABASE_NAME=postgres --env DATABASE_USER=postgres --env DATABASE_PASSWORD=postgres --name dbs-python dbs-python-example
+postgres
+```
+
+> *`host.docker.internal` exists only in **Windows WSL** because **Docker Desktop for Windows** runs Docker daemon inside the special **WSL VM Docker-Desktop**. It has its own `localhost` and its own `WSL2 interface` to communicate with Windows. **This VM has no static IP**. The IP is generated every time when VM is created and passed via host.docker.internal in the generated /etc/hosts to every distro. Although there is no bridge or real v-switch all ports opened on eth0 of VM internal network are mapped on the host Local network, BUT NOT ON THE ETH0 OF THE HOST. There is no real bridge and port mapping - nothing to configure. Inside WSL VM its Localhost is the same as the localhost of the Linux machine. 2 processes inside WSL VM can communicate via localhost. Cross-distro IPC must use host.docker.internal. It is possible to create bridge inside WSL VM -Docker does it.*
+>
+> Source: https://stackoverflow.com/questions/48546124/what-is-linux-equivalent-of-host-docker-internal#:~:text=on%20this%20post.-,host.,interface%20to%20communicate%20with%20Windows.
+
+see also: https://blog.devgenius.io/connect-locally-hosted-postgresql-from-docker-daffea720af1
+
+to see which containers we have we can
+
+```docker
+    docker ps
+```
+
+we can also create a new docker container for the PostgreSQL server and interconnect the contaioners. 
+
+```docker
+docker run --name myPostgresDb -p 5455:5432 -e POSTGRES_USER=postgresUser -e POSTGRES_PASSWORD=postgresPW -e POSTGRES_DB=postgresDB -d postgres
+```
+
 
 
 

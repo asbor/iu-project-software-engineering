@@ -1,10 +1,10 @@
 from datetime import datetime
-from fastapi import APIRouter,HTTPException, status
-from dbs_assignment.database import SessionLocal
+from fastapi import APIRouter, HTTPException, status
+from app.model.database import SessionLocal
 from pydantic import validate_email
 import uuid
-import dbs_assignment.models as models
-import dbs_assignment.schemas as schemas
+import app.data.models as models
+import app.data.schemas as schemas
 import re
 
 router = APIRouter()
@@ -12,12 +12,11 @@ router = APIRouter()
 db = SessionLocal()
 
 
-
 def email_validtion(email):
-   pat = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
-   if re.match(pat,email):
-      return True
-   return False
+    pat = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
+    if re.match(pat, email):
+        return True
+    return False
 
 
 @router.get("/user", status_code=status.HTTP_200_OK)
@@ -31,7 +30,8 @@ async def get_user():
 async def get_user_by_id(user_id: uuid.UUID):
     user = db.query(models.User).filter(models.User.id == user_id).first()
     if user is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     return user
 
 
@@ -39,41 +39,45 @@ async def get_user_by_id(user_id: uuid.UUID):
 @router.patch("/user/{user_id}", status_code=status.HTTP_200_OK)
 async def patch_user(user_id: uuid.UUID, user: schemas.User):
     db_user = db.query(models.User).filter(models.User.id == user_id).first()
-    
+
     # The user id must exist in the database
     if db_user is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+
     # The user id cannot be changed
     if user.id is not None:
         if db_user.id != user.id:
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="User id cannot be changed")
-
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST, detail="User id cannot be changed")
 
     # FUNCTION TO VALIDATE EMAIL ADDRESS
     if email_validtion(user.email) == False:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email address is not valid")   
-    
-    
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail="Email address is not valid")
+
     # the email address must be unique, so if it is changed, it must be unique in the database, if it is not changed, then it can be ignored, and the email address can be the same as the one in the database
     if user.email is not None:
         if db_user.email != user.email:
             if db.query(models.User).filter(models.User.email == user.email).first() is not None:
-                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email address already exists")
-    
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST, detail="Email address already exists")
+
     # if the personal identificator is changed, it must be unique. If it is not changed, then it can be ignored.
     # numbers only, 10 digits long
     if user.personal_identificator is not None:
         if db_user.personal_identificator != user.personal_identificator:
             if db.query(models.User).filter(models.User.personal_identificator == user.personal_identificator).first() is not None:
-                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Personal identificator already exists")
-            
+                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                                    detail="Personal identificator already exists")
+
             if len(user.personal_identificator) != 10:
-                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Personal identificator must be 10 digits long")
-            
+                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                                    detail="Personal identificator must be 10 digits long")
+
             if not user.personal_identificator.isdigit():
-                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Personal identificator must be numbers only")
-            
+                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                                    detail="Personal identificator must be numbers only")
 
     if user.name is not None:
         db_user.name = user.name                                        # type: ignore
@@ -89,7 +93,7 @@ async def patch_user(user_id: uuid.UUID, user: schemas.User):
         db_user.reservations = user.reservations
     if user.rentals is not None:
         db_user.rentals = user.rentals
-    
+
     # updating the updated_at field
     db_user.updated_at = user.updated_at                                # type: ignore
 
@@ -104,13 +108,13 @@ async def patch_user(user_id: uuid.UUID, user: schemas.User):
 async def delete_user(userId: uuid.UUID):
     db_user = db.query(models.User).filter(models.User.id == userId).first()
     if db_user is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+
     db.delete(db_user)
     db.commit()
 
     return "User deleted"
-
 
 
 # Create a new user
@@ -118,40 +122,45 @@ async def delete_user(userId: uuid.UUID):
 async def create_user(user: schemas.User):
     # user id must be unique
     if db.query(models.User).filter(models.User.id == user.id).first() is not None:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="User id already exists")
-    
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="User id already exists")
+
     # FUNCTION TO VALIDATE EMAIL ADDRESS
     if validate_email(user.email) is False:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email address is not valid")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail="Email address is not valid")
 
     # email address must be unique
     if db.query(models.User).filter(models.User.email == user.email).first() is not None:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email already exists")
-    
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Email already exists")
+
     # personal identificator must be unique
     if db.query(models.User).filter(models.User.personal_identificator == user.personal_identificator).first() is not None:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Personal identificator already exists")
-    
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail="Personal identificator already exists")
+
     # Personal identificator must be 10 digits long
     if len(user.personal_identificator) != 10:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Personal identificator must be 10 digits long")
-    
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail="Personal identificator must be 10 digits long")
+
     # Personal identificator must be numbers only
     if not user.personal_identificator.isdigit():
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Personal identificator must be numbers only")
-    
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail="Personal identificator must be numbers only")
+
     # birth_date must be in a valid format
     try:
         datetime.strptime(user.birth_date.strftime("%Y-%m-%d"), "%Y-%m-%d")
     except ValueError:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Birth date must be in a valid format like 1999-12-31")
-        
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail="Birth date must be in a valid format like 1999-12-31")
+
     # generate user id if it is not provided
     if user.id is None:
         user.id = uuid.uuid4()
 
-    
-    
     new_user = models.User(
         id=user.id,
         name=user.name,
@@ -170,5 +179,3 @@ async def create_user(user: schemas.User):
     db.commit()
     db.refresh(new_user)
     return new_user
-
-

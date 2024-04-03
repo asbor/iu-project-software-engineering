@@ -63,7 +63,7 @@ MARKDOWNDIR=$(DIRECTORY)/chapters_markdown
 
 
 pdf:
-	python MarkdownToPdf.py
+	python tools/MarkdownToPdf.py
 
 git:
 	git add .
