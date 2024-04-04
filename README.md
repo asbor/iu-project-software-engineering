@@ -83,6 +83,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+---
+
 ![HoppyBrew](images/Brewmaster.webp)
 
 The project, undertaken as part of the Software Engineering course at the Faculty of Informatics, International University of Applied Sciences Bad Honnef - Bonn, seeks to develop a web application tailored for home-brewers. Inspired by the existing project Brewfather, the objective is to create a platform that assists brewers in efficiently managing their brewing processes. The project is motivated by personal experience, with the creator being a homebrewer looking for a self-hosted solution. By leveraging Docker containers, the aim is to provide a self-hosted alternative to subscription-based services like Brewfather, catering to a specific niche within the brewing community.
@@ -125,9 +127,11 @@ This project provides multiple ways to get started. You can either clone the rep
 
 1. Local Deployment
 2. Docker Deployment
-3. Unraid Deployment (coming soon) 
+3. Unraid Deployment (coming soon)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Local Deployment
 
 ### Prerequisites for Local Deployment
 
@@ -135,15 +139,13 @@ To run the project locally, you need to have the following software installed on
 
 * Python 3.8 or higher
 
+## Docker Deployment
+
 ### Prerequisites for Docker Deployment
 
 To run the project using Docker, you need to have the following software installed on your machine:
 
 * Docker
-* Docker Compose (optional)
-* DockerHub account (optional)
-* Git (optional)
-* GitHub account (optional)
 
 
 
