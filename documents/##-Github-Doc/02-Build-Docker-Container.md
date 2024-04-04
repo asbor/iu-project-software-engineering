@@ -66,18 +66,18 @@ Run a new container with the following environment variables
 
 Environment variable    | Description               | Example
 ---                     | ---                       | ---
-POSTGRES_HOST           | IP of database server     | 127.0.0.1
-POSTGRES_PORT           | Port of database          | 5455
-POSTGRES_NAME           | Name of the database      | HoppyBrew_DB
-POSTGRES_USER           | Database user             | postgres
-POSTGRES_PASSWORD       | Password                  | postgres
+DATABASE_HOST           | IP of database server     | 127.0.0.1
+DATABASE_PORT           | Port of database          | 5455
+DATABASE_NAME           | Name of the database      | HoppyBrew_DB
+DATABASE_USER           | Database user             | postgres
+DATABASE_PASSWORD       | Password                  | postgres
 
 
 Run the application
 
 > **NOTE !**
 > 
-> It turnes out that it was quite dificult to be able to establish a connection between the API and the database, and the issue was for some reason caused by the `POSTGRES_HOST` parameter. Supposetly under normal circumstances, the POSTGRES_HOST would function fine by using the IP-Address `172.17.0.1`. but for some reason this was not possible, which is why we needed to enter `host.docker.internal`.
+> It turnes out that it was quite dificult to be able to establish a connection between the API and the database, and the issue was for some reason caused by the `DATABASE_HOST` parameter. Supposetly under normal circumstances, the DATABASE_HOST would function fine by using the IP-Address `172.17.0.1`. but for some reason this was not possible, which is why we needed to enter `host.docker.internal`.
 
 ```docker
 docker run -d -p 127.0.0.1:8000:8000 --env NAME=Dexter --name docker-hoppy-brew-app-container docker-hoppy-brew-app-image
@@ -86,11 +86,11 @@ docker run -d -p 127.0.0.1:8000:8000 --env NAME=Dexter --name docker-hoppy-brew-
 ```docker
 docker run -d -p 127.0.0.1:8000:8000\
     --env NAME=Dexter\
-    --env POSTGRES_HOST=host.docker.internal\
-    --env POSTGRES_PORT=5455\
-    --env POSTGRES_NAME=HoppyBrew_DB\
-    --env POSTGRES_USER=postgres\
-    --env POSTGRES_PASSWORD=postgres\
+    --env DATABASE_HOST=host.docker.internal\
+    --env DATABASE_PORT=5455\
+    --env DATABASE_NAME=HoppyBrew_DB\
+    --env DATABASE_USER=postgres\
+    --env DATABASE_PASSWORD=postgres\
     --name docker-hoppy-brew-app-container docker-hoppy-brew-app-image
 ```
 
@@ -117,12 +117,12 @@ Also, you can access the redoc documentation by navigating to the following URL:
 we can also create a new docker container for the PostgreSQL server and interconnect the containers. This can be done by running the following command:
 
 ```docker
-docker run --name HoppyBrew_DB \
+docker run --name HoppyBrew_DB_Cont \
     -p 5455:5432 \
-    -e POSTGRES_USER=postgres \
-    -e POSTGRES_PASSWORD=postgres \
-    -e POSTGRES_DB=postgres \
+    -e DATABASE_USER=brewer \
+    -e DATABASE_PASSWORD=password \
+    -e DATABASE_DB=hoppybrew_db \
     -d postgres:latest
 ```
 
-This will create a new docker container with the name `HoppyBrew_DB` and expose the port `5455` to the host machine. The environment variables `POSTGRES_USER`, `POSTGRES_PASSWORD`, and `POSTGRES_DB` are set to `postgres`, `postgres`, and `postgres` respectively. The container is based on the `postgres:latest` image.
+This will create a new docker container with the name `HoppyBrew_DB` and expose the port `5455` to the host machine. The environment variables `DATABASE_USER`, `DATABASE_PASSWORD`, and `DATABASE_DB` are set to `postgres`, `postgres`, and `postgres` respectively. The container is based on the `postgres:latest` image.

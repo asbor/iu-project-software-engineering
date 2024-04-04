@@ -11,11 +11,11 @@
 # Usage: docker build -t docker-hoppy-brew-app-image .
 #        docker run -d -p 127.0.0.1:8000:8000\
 #           --env NAME=Dexter\
-#           --env POSTGRES_HOST=host.docker.internal\
-#           --env POSTGRES_PORT=5455\
-#           --env POSTGRES_NAME=HoppyBrew_DB\
-#           --env POSTGRES_USER=postgres\
-#           --env POSTGRES_PASSWORD=postgres\
+#           --env DATABASE_HOST=host.docker.internal\
+#           --env DATABASE_PORT=5455\
+#           --env DATABASE_NAME=hoppybrew_db\
+#           --env DATABASE_USER=postgres\
+#           --env DATABASE_PASSWORD=postgres\
 #           --name docker-hoppy-brew-app-container docker-hoppy-brew-app-image
 
 # Stage 1: Build the image

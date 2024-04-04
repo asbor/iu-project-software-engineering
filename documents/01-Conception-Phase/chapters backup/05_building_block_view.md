@@ -55,12 +55,12 @@ rectangle "Unraid Server" {
         node "PostgreSQL Container" {
             component "PostgreSQL" as db
             
-            portin "Port 5432" as Postgres_port5432
+            portin "Port 5432" as DATABASE_port5432
 
-            Postgres_port5432 -- db : Listens On
+            DATABASE_port5432 -- db : Listens On
         }
 
-        HoppyBrew_portout5432 -- Postgres_port5432 : Connects To
+        HoppyBrew_portout5432 -- DATABASE_port5432 : Connects To
         
     }
 }

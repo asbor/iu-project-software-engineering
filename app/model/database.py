@@ -8,12 +8,13 @@ import os
 
 # remove special characters (except . and _) from string and convert to lowercase
 
-user = os.getenv("POSTGRES_USER")
-password = os.getenv("POSTGRES_PASSWORD")
-host = os.getenv("POSTGRES_HOST")
-port = os.getenv("POSTGRES_PORT")
-dbname = os.getenv("POSTGRES_NAME")
+user = os.getenv("DATABASE_USER")
+password = os.getenv("DATABASE_PASSWORD")
+host = os.getenv("DATABASE_HOST")
+port = os.getenv("DATABASE_PORT")
+dbname = os.getenv("DATABASE_NAME")
 
+# Determine if we are using postgres or sqlite
 
 SQLALCHEMY_DATABASE_URL = f"postgresql://{user}:{password}@{host}/{dbname}"
 

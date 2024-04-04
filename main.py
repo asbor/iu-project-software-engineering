@@ -6,10 +6,10 @@ Description:    Main file for the FastAPI application
 Date:           2024-apr-04
 """
 
-from fastapi import FastAPI
-from app.model.database import engine
-from app.controller.router import router
 from app.model import db_models
+from app.model.database import engine
+from fastapi import FastAPI
+from app.controller.router import router
 
 # create the database tables if they do not exist already
 db_models.Base.metadata.create_all(bind=engine)

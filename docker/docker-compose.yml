@@ -1,8 +1,7 @@
 # Use postgres/example user/password credentials
-version: '3.9'
+version: "3.9"
 
 services:
-
   db:
     image: postgres
     restart: always
@@ -15,11 +14,11 @@ services:
     #    tmpfs:
     #      size: 134217728 # 128*2^20 bytes = 128Mb
     environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-      POSTGRES_HOST: "localhost"
-      POSTGRES_PORT: "5434"
-      POSTGRES_NAME: "HoppyBrew"
+      DATABASE_USER: "postgres"
+      DATABASE_PASSWORD: "postgres"
+      DATABASE_HOST: "localhost"
+      DATABASE_PORT: "5434"
+      DATABASE_NAME: "HoppyBrew"
 
   adminer:
     image: adminer

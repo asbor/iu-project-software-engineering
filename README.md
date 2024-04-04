@@ -161,93 +161,48 @@ Note: The following steps assume you are running locally on a Linux machine. If 
     sudo apt install postgresql postgresql-contrib
     ```
 
-3. Enter the PostgreSQL shell
+    The installation process will create a new user called `postgres` with the role `postgres`. It will also create a new system account with the same name. To use PostgreSQL, you need to log in as the `postgres` user.
+
+    The HoppyBrew application will create a new database called `hoppybrew_db` upon startup. You can change the database name in the `.env` file.
+
+    Should you chose to remove the database, you can do so by running the following command:
 
     ```sh
-    sudo -u postgres psql
-    ```
-    **Note:** If you are prompted for a password, enter your system password to continue. Once you are in the shell, you should see the prompt `postgres=#` indicating that you are in the PostgreSQL shell. If you want to exit the shell, you can type `\q` or press `Ctrl + D`.
-
-
-
-4. Create a new database
-
-    ```sh
-    CREATE DATABASE hoppybrew;
-    ```
-    **Note:** If you wish to remove the database, you can use the following command:
-
-    ```sh
-    DROP DATABASE hoppybrew;
-    DROP DATABASE HoppyBrew_DB;
+    sudo -u postgres psql -c "DROP DATABASE hoppybrew_db"
     ```
 
-5. Check if the database was created
-
-    ```sh
-    \l
-    ```
-
-6. Create a new user and grant all privileges to the new database
-
-    ```sh
-    CREATE USER username WITH PASSWORD 'password';
-
-    # Example: 
-    CREATE USER hoppybrew WITH PASSWORD 'password';
-    ```
-
-7. Update the database URL in the `.env` file
-
-    ```sh
-    DATABASE_URL=postgresql://username:password@localhost:5432/hoppybrew
-
-    # Example:
-    DATABASE_URL=postgresql://hoppybrew:password@localhost:5432/hoppybrew
-    ```
-
-8. If you choose to use SQLite, you can skip this step
-
-8. Continue with the steps below
-
-9. Clone the repo
-
-    ```sh
-    git clone https://github.com/asbor/iu-project-software-engineering.git
-    ```
-
-10. Change directory to the project folder
+2. Change directory to the project folder
 
     ```sh
     cd iu-project-software-engineering
     ```
 
-11. Create a virtual environment
+3. Create a virtual environment
 
     ```sh
     python3 -m venv .venv
     ```
 
-12. Activate the virtual environment
+4. Activate the virtual environment
 
     ```sh
     source .venv/bin/activate
     ```
 
-13. Install the required packages
+5. Install the required packages
 
     ```sh
     pip install -r requirements.txt
     ```
 
-14. Run the project
+6. Run the project
 
     ```sh
     uvicorn main:app --reload
     ```
 
-15. Open your browser and navigate to `http://localhost:8000`
-16. You should see the project running
+7. Open your browser and navigate to `http://localhost:8000`
+8. You should see the project running
 
 At this point, you should have the project running locally on your machine. You can now move on to the next steps to set up the database and start using the application.
 
