@@ -8,9 +8,15 @@
 #       The image is built in two stages, the first stage installs the required packages
 #       and the second stage runs the uvicorn server
 
-# Usage: docker build -t fastapi-app .
-#       docker run -d -p 8000:8000 fastapi-app
-#       docker run -d -p 8000:8000 -v $(pwd):/home/dbs fastapi-app
+# Usage: docker build -t docker-hoppy-brew-app-image .
+#        docker run -d -p 127.0.0.1:8000:8000\
+#           --env NAME=Dexter\
+#           --env POSTGRES_HOST=host.docker.internal\
+#           --env POSTGRES_PORT=5455\
+#           --env POSTGRES_NAME=HoppyBrew_DB\
+#           --env POSTGRES_USER=postgres\
+#           --env POSTGRES_PASSWORD=postgres\
+#           --name docker-hoppy-brew-app-container docker-hoppy-brew-app-image
 
 # Stage 1: Build the image
 FROM alpine:3.17 as builder
