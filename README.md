@@ -93,59 +93,27 @@ The project, undertaken as part of the Software Engineering course at the Facult
 
 The project is built using the following technologies:
 
-#### Integrated Development Environment (IDE):
+| Frontend | Backend | Database | Containerization |
+| --- | --- | --- | --- |
+| [![Vue.js][Vue.js]][Vue-url] | [![Python][Python.org]][Python-url] | [![PostgreSQL][PostgreSQL.org]][PostgreSQL-url] | [![Docker.com][Docker.com]][Docker-url] |
+| | [![Flask][Flask.pocoo]][Flask-url] | [![SQLite][SQLite]][SQLite-url] | [![Unraid][Unraid]][Unraid-url] |
+| | [![FastAPI][FastAPI.org]][FastAPI-url] | [![Redis][Redis]][Redis-url] |  |
+| | [![sqlalchemy][sqlalchemy]][sqlalchemy-url] | | |
+| | [![pydantic][pydantic]][pydantic-url] | | |
+| | [![uvicorn][uvicorn]][uvicorn-url] | | |
 
-| Technology | Description |
-| --- | --- |
-| [![VsCode][VsCode]][VsCode-url] | Visual Studio Code is a source-code editor developed by Microsoft for Windows, Linux, and macOS. |
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-#### Frontend:
+### Tools
 
-| Technology | Description |
-| --- | --- |
-| [![Vue][Vue.js]][Vue-url] | A progressive JavaScript framework for building user interfaces. |
+The project is developed using the following tools:
 
-#### Backend:
-
-| Technology | Description |
-| --- | --- |
-| [![Python][Python.org]][Python-url] | Python is an interpreted high-level general-purpose programming language. |
-| [![FastAPI][FastAPI.org]][FastAPI-url] | FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints. |
-| [![Flask][Flask.pocoo]][Flask-url] | Flask is a lightweight WSGI web application framework. It is designed to make getting started quick and easy, with the ability to scale up to complex applications. |
-| [![sqlalchemy][sqlalchemy]][sqlalchemy-url] | SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL. |
-| [![uvicorn][uvicorn]][uvicorn-url] | Uvicorn is a lightning-fast ASGI server implementation, using uvloop and httptools. |
-| [![pydantic][pydantic]][pydantic-url] | Pydantic is a data validation and settings management using Python type annotations. |
-
-
-#### Database:
-
-| Technology | Description |
-| --- | --- |
-| [![PostgreSQL][PostgreSQL.org]][PostgreSQL-url] | PostgreSQL is a powerful, open-source object-relational database system. |
-| [![SQLite][SQLite]][SQLite-url] | SQLite is a C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine. |
-| [![Redis][Redis]][Redis-url] | Redis is an open-source, in-memory data structure store, used as a database, cache, and message broker. |
-
-#### Infrastructure/DevOps:
-
-| Technology | Description |
-| --- | --- |
-| [![Docker][Docker.com]][Docker-url] | Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. |
-| [![Alpine Linux][Alpine Linux]][Alpine Linux-url] | Alpine Linux is a Linux distribution based on musl and BusyBox, designed for security, simplicity, and resource efficiency. |
-| [![Ubuntu][Ubuntu]][Ubuntu-url] | Ubuntu is a Linux distribution based on Debian and composed mostly of free and open-source software. |
-| [![GitHub][GitHub]][GitHub-url] | GitHub is a web-based platform for version control and collaboration. |
-| [![DockerHub][dockerhub.com]][dockerhub-url] | DockerHub is a cloud-based registry service that allows you to link to code repositories, build your images, test them, and distribute them. |
-| [![Git][Git-scm]][Git-scm-url] | Git is a distributed version-control system for tracking changes in source code during software development. |
-| [![Unraid][Unraid]][Unraid-url] | Unraid is an operating system that brings enterprise-class features for personal and small business applications. |
-
-#### Documentation:
-
-| Technology | Description |
-| --- | --- |
-| [![Markdown][Markdown]][Markdown-url] | Markdown is a lightweight markup language with plain-text-formatting syntax. |
-| [![PlantUML][PlantUML]][PlantUML-url] | PlantUML is an open-source tool allowing users to create UML diagrams from a plain text language. |
-| [![PanDoc][pandoc]][pandoc-url] | Pandoc is a free and open-source document converter, widely used as a writing tool (especially by scholars) and as a basis for publishing workflows. |
-| [![GitBook][GitBook]][GitBook-url] | GitBook is a modern documentation platform where teams can document everything from products to internal knowledge-bases and APIs. |
-
+| IDE | Documentation | Version Control | Operating System |
+| --- | --- | --- | --- |
+| [![VsCode][VsCode]][VsCode-url] | [![Markdown][Markdown]][Markdown-url] | [![Git-scm][Git-scm]][Git-scm-url] | [![Ubuntu][Ubuntu]][Ubuntu-url] |
+| | [![PlantUML][PlantUML]][PlantUML-url] | [![GitHub][GitHub]][GitHub-url] | [![Alpine Linux][Alpine Linux]][Alpine Linux-url] |
+| | [![pandoc][pandoc]][pandoc-url] | [![DockerHub][dockerhub.com]][dockerhub-url] | [![Unraid][Unraid]][Unraid-url] |
+| | [![gitbook][gitbook]][gitbook-url] | | |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -153,7 +121,13 @@ The project is built using the following technologies:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This project provides multiple ways to get started. You can either clone the repository and run the project locally or use the provided Docker container to run the project in a containerized environment. The following sections provide detailed instructions on how to get started with the project using both method of deployment.
+This project provides multiple ways to get started. You can either clone the repository and run the project locally or use the provided Docker container to run the project in a containerized environment. The following sections provide detailed instructions on how to get started with the project using the following three methods:
+
+1. Local Deployment
+2. Docker Deployment
+3. Unraid Deployment (coming soon) 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Prerequisites for Local Deployment
 
