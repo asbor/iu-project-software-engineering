@@ -81,9 +81,10 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
 
 ---
+
+## About The Project
 
 ![HoppyBrew](images/Brewmaster.webp)
 
