@@ -86,7 +86,7 @@
 
 ## About The Project
 
-![HoppyBrew](images/Brewmaster.webp)
+<img src="images/Brewmaster.webp" width="500" alt="HoppyBrew">
 
 The project, undertaken as part of the Software Engineering course at the Faculty of Informatics, International University of Applied Sciences Bad Honnef - Bonn, seeks to develop a web application tailored for home-brewers. Inspired by the existing project Brewfather, the objective is to create a platform that assists brewers in efficiently managing their brewing processes. The project is motivated by personal experience, with the creator being a homebrewer looking for a self-hosted solution. By leveraging Docker containers, the aim is to provide a self-hosted alternative to subscription-based services like Brewfather, catering to a specific niche within the brewing community.
 
@@ -132,6 +132,81 @@ This project provides multiple ways to get started. You can either clone the rep
 3. Unraid Deployment (coming soon)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Structure
+
+The project is structured as follows:
+
+```plaintext
+iu-project-software-engineering
+├── api `FastAPI Application`
+│   ├── __init__.py
+│   ├── models `Pydantic Models`
+│   │   ├── __init__.py
+│   │   ├── beer.py 
+│   │   ├── brew.py
+│   │   ├── equipment.py
+│   │   ├── fermentation.py
+│   │   ├── ingredient.py
+│   │   ├── recipe.py
+│   │   └── user.py
+│   ├── routes `API Endpoints`
+│   │   ├── __init__.py
+│   │   ├── beer.py
+│   │   ├── brew.py
+│   │   ├── equipment.py
+│   │   ├── fermentation.py
+│   │   ├── ingredient.py
+│   │   ├── recipe.py
+│   │   └── user.py
+│   └── utils `Utility Functions`
+│       ├── __init__.py
+│       ├── database.py
+│       └── hashing.py
+├── app `Flask Application`
+│   ├── __init__.py
+│   ├── main.py
+│   └── settings.py
+├── db `Database Migrations`
+│   ├── __init__.py
+│   ├── base.py
+│   ├── models `SQLAlchemy Models`
+│   │   ├── __init__.py
+│   │   ├── beer.py
+│   │   ├── brew.py
+│   │   ├── equipment.py
+│   │   ├── fermentation.py
+│   │   ├── ingredient.py
+│   │   ├── recipe.py
+│   │   └── user.py
+│   └── schemas `Pydantic Schemas`
+│       ├── __init__.py
+│       ├── beer.py
+│       ├── brew.py
+│       ├── equipment.py
+│       ├── fermentation.py
+│       ├── ingredient.py
+│       ├── recipe.py
+│       └── user.py
+├── tests `Unit Tests`
+│   ├── __init__.py
+│   ├── test_beer.py
+│   ├── test_brew.py
+│   ├── test_equipment.py
+│   ├── test_fermentation.py
+│   ├── test_ingredient.py
+│   ├── test_recipe.py
+│   └── test_user.py
+├── docker-compose.yml
+├── Dockerfile
+├── .env
+├── .gitignore
+├── LICENSE.txt
+├── README.md
+├── requirements.txt
+└── .gitignore
+```
+
 
 ---
 
