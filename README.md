@@ -93,23 +93,43 @@ The project, undertaken as part of the Software Engineering course at the Facult
 
 The project is built using the following technologies:
 
-| Backend | Frontend | Documentation | Hosting | CI/CD | Operating System |
-| :---: | :---: | :---: | :---: | :---: | :---: |
+
 | [![Python][Python.org]][Python-url] | [![Vue][Vue.js]][Vue-url] | [![Markdown][Markdown]][Markdown-url] | [![Docker][Docker.com]][Docker-url] | [![Github Actions][GitHub]][GitHub-url] | [![Unraid][Unraid]][Unraid-url] |
 | [![Flask][Flask.pocoo]][Flask-url] | [![FastAPI][FastAPI.org]][FastAPI-url] | [![PlantUML][PlantUML]][PlantUML-url] | [![Unraid][Unraid]][Unraid-url] | | [![Ubuntu][Ubuntu]][Ubuntu-url] |
-| [![sqlalchemy][sqlalchemy]][sqlalchemy-url] | | [![pandoc][pandoc]][pandoc-url] | [![GitHub][GitHub]][GitHub-url] | | [![Alpine Linux][Alpine Linux]][Alpine Linux-url] |
+| [![sqlalchemy][sqlalchemy]][sqlalchemy-url] | [![uvicorn][uvicorn]][uvicorn-url] | [![pandoc][pandoc]][pandoc-url] | [![GitHub][GitHub]][GitHub-url] | | [![Alpine Linux][Alpine Linux]][Alpine Linux-url] |
 | [![pydantic][pydantic]][pydantic-url] | | | [![DockerHub][DockerHub.com]][DockerHub-url] | | |
 | [![PostgreSQL][PostgreSQL.org]][PostgreSQL-url] | | | [![GitBook][GitBook]][GitBook-url] | | |
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+[![Git-scm][Git-scm]][Git-scm-url]
+[![VsCode][VsCode]][VsCode-url]
 
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+This project provides multiple ways to get started. You can either clone the repository and run the project locally or use the provided Docker container to run the project in a containerized environment. The following sections provide detailed instructions on how to get started with the project using both method of deployment.
+
+### Prerequisites for Local Deployment
+
+To run the project locally, you need to have the following software installed on your machine:
+
+* Python 3.8 or higher
+
+### Prerequisites for Docker Deployment
+
+To run the project using Docker, you need to have the following software installed on your machine:
+
+* Docker
+* Docker Compose (optional)
+* DockerHub account (optional)
+* Git (optional)
+* GitHub account (optional)
+
+
 
 ### Prerequisites
 
@@ -260,5 +280,11 @@ Project Link: [https://github.com/asbor/iu-project-software-engineering](https:/
 [Alpine Linux-url]: https://alpinelinux.org/
 [Ubuntu]: https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white
 [Ubuntu-url]: https://ubuntu.com/
+[uvicorn]: https://img.shields.io/badge/uvicorn-316192?style=for-the-badge&logo=uvicorn&logoColor=white
+[uvicorn-url]: https://www.uvicorn.org/
+[Git-scm]: https://img.shields.io/badge/Git-181717?style=for-the-badge&logo=git&logoColor=F05032
+[Git-scm-url]: https://git-scm.com/
+[VsCode]: https://img.shields.io/badge/Visual_Studio_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white
+[VsCode-url]: https://code.visualstudio.com/
 
 
