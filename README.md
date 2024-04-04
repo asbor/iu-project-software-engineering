@@ -120,6 +120,7 @@ The project is developed using the following tools:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+---
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -132,6 +133,8 @@ This project provides multiple ways to get started. You can either clone the rep
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+---
+
 ## Local Deployment
 
 ### Prerequisites for Local Deployment
@@ -139,10 +142,159 @@ This project provides multiple ways to get started. You can either clone the rep
 To run the project locally, you need to have the following software installed on your machine:
 
 * Python 3.8 or higher
+* Database (PostgreSQL or SQLite)
 
-## Docker Deployment
+### Installation for Local Deployment
 
-### Prerequisites for Docker Deployment
+In order to run the application locally, follow the steps below:
+
+Before you start, make sure you have the database set up. You can either use PostgreSQL or SQLite. If you choose to use PostgreSQL, make sure you have it installed on your machine. If you choose to use SQLite, you can skip this step.
+
+Note: The following steps assume you are running locally on a Linux machine. If you are using a different operating system, the steps may vary.
+
+#### PostgreSQL
+
+1. Install PostgreSQL on your machine
+
+    ```sh
+    sudo apt update
+    sudo apt install postgresql postgresql-contrib
+    ```
+
+3. Enter the PostgreSQL shell
+
+    ```sh
+    sudo -u postgres psql
+    ```
+    **Note:** If you are prompted for a password, enter your system password to continue. Once you are in the shell, you should see the prompt `postgres=#` indicating that you are in the PostgreSQL shell. If you want to exit the shell, you can type `\q` or press `Ctrl + D`.
+
+
+
+4. Create a new database
+
+    ```sh
+    CREATE DATABASE hoppybrew;
+    ```
+    **Note:** If you wish to remove the database, you can use the following command:
+
+    ```sh
+    DROP DATABASE hoppybrew;
+    DROP DATABASE HoppyBrew_DB;
+    ```
+
+5. Check if the database was created
+
+    ```sh
+    \l
+    ```
+
+6. Create a new user and grant all privileges to the new database
+
+    ```sh
+    CREATE USER username WITH PASSWORD 'password';
+
+    # Example: 
+    CREATE USER hoppybrew WITH PASSWORD 'password';
+    ```
+
+7. Update the database URL in the `.env` file
+
+    ```sh
+    DATABASE_URL=postgresql://username:password@localhost:5432/hoppybrew
+
+    # Example:
+    DATABASE_URL=postgresql://hoppybrew:password@localhost:5432/hoppybrew
+    ```
+
+8. If you choose to use SQLite, you can skip this step
+
+8. Continue with the steps below
+
+9. Clone the repo
+
+    ```sh
+    git clone https://github.com/asbor/iu-project-software-engineering.git
+    ```
+
+10. Change directory to the project folder
+
+    ```sh
+    cd iu-project-software-engineering
+    ```
+
+11. Create a virtual environment
+
+    ```sh
+    python3 -m venv .venv
+    ```
+
+12. Activate the virtual environment
+
+    ```sh
+    source .venv/bin/activate
+    ```
+
+13. Install the required packages
+
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+14. Run the project
+
+    ```sh
+    uvicorn main:app --reload
+    ```
+
+15. Open your browser and navigate to `http://localhost:8000`
+16. You should see the project running
+
+At this point, you should have the project running locally on your machine. You can now move on to the next steps to set up the database and start using the application.
+
+To stop the project, press `Ctrl + C` in the terminal.
+
+## FAQ
+
+### ERROR: [Errno 98] Address already in use
+
+This error occurs when the port you are trying to use is already in use by another process. To fix this error, you can either stop the process using the port or change the port number in the command.
+
+### How do I change the port number?
+
+To change the port number, you can add the `--port` flag followed by the port number you want to use. For example, to run the project on port 5000, you can use the following command:
+
+```sh
+uvicorn main:app --reload --port 5000
+```
+
+### How do i connect PGAdmin to the PostgreSQL database?
+
+To connect PGAdmin to the PostgreSQL database, follow the steps below:
+
+1. Open PGAdmin and click on the `Add New Server` button
+2. Enter the connection details:
+    - Hostname/Address: `localhost`
+    - Port: `5432`
+    - Maintenance Database: `hoppybrew`
+    - Username: `username`
+    - Password: `password`
+3. Click `Save` to save the connection details
+4. You should now see the new server listed in the left sidebar
+
+
+
+
+
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+### Docker Deployment
+
+#### Prerequisites for Docker Deployment
 
 To run the project using Docker, you need to have the following software installed on your machine:
 

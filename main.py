@@ -1,3 +1,11 @@
+"""
+File:           main.py
+Author:         Asbjorn Bordoy
+Email:          asbjorn.bordoy@gmail.com
+Description:    Main file for the FastAPI application
+Date:           2024-apr-04
+"""
+
 from fastapi import FastAPI
 from app.model.database import engine
 from app.controller.router import router
