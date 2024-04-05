@@ -14,9 +14,6 @@ host = os.getenv("DATABASE_HOST")
 port = os.getenv("DATABASE_PORT")
 dbname = os.getenv("DATABASE_NAME")
 
-# Determine if we are using postgres or sqlite by checking if the DATABASE_URL environment variable is set
-#
-
 SQLALCHEMY_DATABASE_URL = f"postgresql://{user}:{password}@{host}/{dbname}"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)

@@ -85,7 +85,7 @@ DATABASE_USER=postgres
 DATABASE_PASSWORD=postgres
 DATABASE_HOST=localhost
 DATABASE_PORT=5455
-DATABASE_NAME=HoppyBrew_DB
+DATABASE_NAME=hoppybrew_db
 ```
 
 Once the environment variables are set, you need to make sure that you use the correct debugger, which is `Python Debugger: Debug using launch.json` in the debugger dropdown.

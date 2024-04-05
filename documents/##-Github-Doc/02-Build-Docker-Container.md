@@ -68,7 +68,7 @@ Environment variable    | Description               | Example
 ---                     | ---                       | ---
 DATABASE_HOST           | IP of database server     | 127.0.0.1
 DATABASE_PORT           | Port of database          | 5455
-DATABASE_NAME           | Name of the database      | HoppyBrew_DB
+DATABASE_NAME           | Name of the database      | hoppybrew_db
 DATABASE_USER           | Database user             | postgres
 DATABASE_PASSWORD       | Password                  | postgres
 
@@ -88,7 +88,7 @@ docker run -d -p 127.0.0.1:8000:8000\
     --env NAME=Dexter\
     --env DATABASE_HOST=host.docker.internal\
     --env DATABASE_PORT=5455\
-    --env DATABASE_NAME=HoppyBrew_DB\
+    --env DATABASE_NAME=hoppybrew_db\
     --env DATABASE_USER=postgres\
     --env DATABASE_PASSWORD=postgres\
     --name docker-hoppy-brew-app-container docker-hoppy-brew-app-image
@@ -117,7 +117,7 @@ Also, you can access the redoc documentation by navigating to the following URL:
 we can also create a new docker container for the PostgreSQL server and interconnect the containers. This can be done by running the following command:
 
 ```docker
-docker run --name HoppyBrew_DB_Cont \
+docker run --name hoppybrew_db_Cont \
     -p 5455:5432 \
     -e DATABASE_USER=brewer \
     -e DATABASE_PASSWORD=password \
@@ -125,4 +125,4 @@ docker run --name HoppyBrew_DB_Cont \
     -d postgres:latest
 ```
 
-This will create a new docker container with the name `HoppyBrew_DB` and expose the port `5455` to the host machine. The environment variables `DATABASE_USER`, `DATABASE_PASSWORD`, and `DATABASE_DB` are set to `postgres`, `postgres`, and `postgres` respectively. The container is based on the `postgres:latest` image.
+This will create a new docker container with the name `hoppybrew_db` and expose the port `5455` to the host machine. The environment variables `DATABASE_USER`, `DATABASE_PASSWORD`, and `DATABASE_DB` are set to `postgres`, `postgres`, and `postgres` respectively. The container is based on the `postgres:latest` image.

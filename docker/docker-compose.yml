@@ -1,27 +1,30 @@
-# Use postgres/example user/password credentials
-version: "3.9"
+# File:  docker-compose.yml
+# Author:  Asbjorn Bordoy
+# Date:  2024-apr-05
+# Description:  Docker compose file for the HoppyBrew application.
+
+version: "3.8"
 
 services:
-  db:
+  hoppybrew-db:
     image: postgres
-    restart: always
-    # set shared memory limit when using docker-compose
-    shm_size: 128mb
-    # or set shared memory limit when deploy via swarm stack
-    #volumes:
-    #  - type: tmpfs
-    #    target: /dev/shm
-    #    tmpfs:
-    #      size: 134217728 # 128*2^20 bytes = 128Mb
     environment:
-      DATABASE_USER: "postgres"
-      DATABASE_PASSWORD: "postgres"
-      DATABASE_HOST: "localhost"
-      DATABASE_PORT: "5434"
-      DATABASE_NAME: "HoppyBrew"
-
-  adminer:
-    image: adminer
-    restart: always
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: hoppybrew_db
     ports:
-      - 8080:8080
+      - "5432:5432"
+
+  hoppybrew-app:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    environment:
+      NAME: HoppyBrew
+      DATABASE_HOST: host.docker.internal
+      DATABASE_PORT: 5432
+      DATABASE_NAME: hoppybrew_db
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+    ports:
+      - "8000:8000"

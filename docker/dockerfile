@@ -26,7 +26,7 @@ USER dbs
 
 # Set the working directory
 WORKDIR /home/dbs
-COPY /docker/requirements.txt .
+COPY docker/requirements.txt .
 COPY /app /home/dbs/app
 COPY main.py .
 COPY __init__.py .

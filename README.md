@@ -133,81 +133,6 @@ This project provides multiple ways to get started. You can either clone the rep
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Structure
-
-The project is structured as follows:
-
-```plaintext
-iu-project-software-engineering
-├── api `FastAPI Application`
-│   ├── __init__.py
-│   ├── models `Pydantic Models`
-│   │   ├── __init__.py
-│   │   ├── beer.py 
-│   │   ├── brew.py
-│   │   ├── equipment.py
-│   │   ├── fermentation.py
-│   │   ├── ingredient.py
-│   │   ├── recipe.py
-│   │   └── user.py
-│   ├── routes `API Endpoints`
-│   │   ├── __init__.py
-│   │   ├── beer.py
-│   │   ├── brew.py
-│   │   ├── equipment.py
-│   │   ├── fermentation.py
-│   │   ├── ingredient.py
-│   │   ├── recipe.py
-│   │   └── user.py
-│   └── utils `Utility Functions`
-│       ├── __init__.py
-│       ├── database.py
-│       └── hashing.py
-├── app `Flask Application`
-│   ├── __init__.py
-│   ├── main.py
-│   └── settings.py
-├── db `Database Migrations`
-│   ├── __init__.py
-│   ├── base.py
-│   ├── models `SQLAlchemy Models`
-│   │   ├── __init__.py
-│   │   ├── beer.py
-│   │   ├── brew.py
-│   │   ├── equipment.py
-│   │   ├── fermentation.py
-│   │   ├── ingredient.py
-│   │   ├── recipe.py
-│   │   └── user.py
-│   └── schemas `Pydantic Schemas`
-│       ├── __init__.py
-│       ├── beer.py
-│       ├── brew.py
-│       ├── equipment.py
-│       ├── fermentation.py
-│       ├── ingredient.py
-│       ├── recipe.py
-│       └── user.py
-├── tests `Unit Tests`
-│   ├── __init__.py
-│   ├── test_beer.py
-│   ├── test_brew.py
-│   ├── test_equipment.py
-│   ├── test_fermentation.py
-│   ├── test_ingredient.py
-│   ├── test_recipe.py
-│   └── test_user.py
-├── docker-compose.yml
-├── Dockerfile
-├── .env
-├── .gitignore
-├── LICENSE.txt
-├── README.md
-├── requirements.txt
-└── .gitignore
-```
-
-
 ---
 
 ## Local Deployment
@@ -217,7 +142,7 @@ iu-project-software-engineering
 To run the project locally, you need to have the following software installed on your machine:
 
 * Python 3.8 or higher
-* Database (PostgreSQL or SQLite)
+* Database PostgreSQL
 
 ### Installation for Local Deployment
 
@@ -226,8 +151,6 @@ In order to run the application locally, follow the steps below:
 Before you start, make sure you have the database set up. You can either use PostgreSQL or SQLite. If you choose to use PostgreSQL, make sure you have it installed on your machine. If you choose to use SQLite, you can skip this step.
 
 Note: The following steps assume you are running locally on a Linux machine. If you are using a different operating system, the steps may vary.
-
-#### PostgreSQL
 
 1. Install PostgreSQL on your machine
 
@@ -283,6 +206,125 @@ At this point, you should have the project running locally on your machine. You 
 
 To stop the project, press `Ctrl + C` in the terminal.
 
+## Docker Deployment
+
+### Prerequisites for Docker Deployment
+
+To run the project using Docker, you need to have the following software installed on your machine:
+
+* Docker
+
+### Installation for Docker Deployment
+
+In order to run the application using Docker, follow the steps below:
+
+1. **Run postgres database in a docker container**
+
+    ```sh
+    docker run --name hoppybrew-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=hoppybrew_db -p 5432:5432 -d postgres
+    ```
+    Where:
+    - `--name hoppybrew-db` specifies the name of the container
+    - `-e POSTGRES_PASSWORD=postgres` specifies the password for the database
+    - `-e POSTGRES_USER=postgres` specifies the username for the database
+    - `-e POSTGRES_DB=hoppybrew_db` specifies the name of the database
+    - `-p 5432:5432` specifies the port mapping for the database
+    - `-d postgres` specifies the image to use for the container
+    - You can change the values for `POSTGRES_PASSWORD`, `POSTGRES_USER`, and `POSTGRES_DB` to suit your needs
+    - You can also change the port mapping to a different port if needed
+
+    This command will first pull the PostgreSQL image from Docker Hub and then run the container with the specified options.
+
+2. **Build the Docker image for the application**
+
+    ```sh
+    docker build -t hoppybrew_image .
+    ```
+
+3. **Run the Docker container**
+
+    ```sh
+    docker run -d -p 127.0.0.1:8000:8000\
+        --env NAME=HoppyBrew\
+        --env DATABASE_HOST=hoppybrew-db\
+        --env DATABASE_PORT=5455\
+        --env DATABASE_NAME=hoppybrew_db\
+        --env DATABASE_USER=postgres\
+        --env DATABASE_PASSWORD=postgres\
+        --name hoppybrew_container hoppybrew_image
+    ```
+
+    Where:
+    - `--name hoppybrew_container hoppybrew_image` specifies the name of the container and the image to use for the container
+    - `-d` specifies that the container should run in detached mode
+    - `-p -p 127.0.0.1:8000:8000` specifies the port mapping for the container
+    - `--env NAME=HoppyBrew` specifies the name of the application
+    - `--env DATABASE_HOST=host.docker.internal` specifies the host for the database container. That means the application will connect to the database running on the host machine on port 5432 (default port for PostgreSQL) The typical options are:
+        - For Windows and Mac: `host.docker.internal`
+        - For Linux: `localhost`
+        - For Docker container: `hoppybrew-db`
+    - `--env DATABASE_PORT=5455` specifies the port for the database container
+    - `--env DATABASE_NAME=hoppybrew_db` specifies the name of the database
+    - `--env DATABASE_USER=postgres` specifies the username for the database
+    - `--env DATABASE_PASSWORD=postgres` specifies the password for the database
+
+4. **Open your browser and navigate to [http://localhost:8000](http://localhost:8000)**
+5. **You should see the project running**
+
+At this point, you should have the project running in a Docker container on your machine. You can now move on to the next steps to set up the database and start using the application.
+
+## Docker compose
+
+To run the project using Docker Compose, follow the steps below:
+
+1. **Create a `docker-compose.yml` file**
+
+    ```yml
+    version: '3.8'
+
+    services:
+      # This will create a PostgreSQL database service based on the official PostgreSQL image. If the image is not available locally, Docker will pull it from Docker Hub.
+      hoppybrew-db:
+        image: postgres
+        environment:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: hoppybrew_db
+        ports:
+          - "5455:5432"
+
+      # This will create an application service based on the Dockerfile in the current directory.
+      hoppybrew-app:
+        build: .
+        environment:
+          NAME: HoppyBrew
+          DATABASE_HOST: hoppybrew-db
+          DATABASE_PORT: 5455
+          DATABASE_NAME: hoppybrew_db
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+        ports:
+          - "8000:8000"
+    ```
+    Where:
+    - `hoppybrew-db` is the name of the database service
+    - `hoppybrew-app` is the name of the application service
+    - `image: postgres` specifies the image to use for the database service
+    - `build: .` specifies the build context for the application service
+    - `environment` specifies the environment variables for the services
+    - `ports` specifies the port mapping for the services
+    - You can change the values for `POSTGRES_PASSWORD`, `POSTGRES_USER`, and `POSTGRES_DB` to suit your needs
+    - You can also change the port mapping to a different port if needed
+    - You can add additional services to the `docker-compose.yml` file as needed
+
+2. **Run the Docker Compose stack**
+
+    ```sh
+    docker-compose up
+    ```
+    This command will first build the Docker image for the application and then run the Docker Compose stack with the specified services.
+
+
 ## FAQ
 
 ### ERROR: [Errno 98] Address already in use
@@ -311,6 +353,29 @@ To connect PGAdmin to the PostgreSQL database, follow the steps below:
 3. Click `Save` to save the connection details
 4. You should now see the new server listed in the left sidebar
 
+### How do i distinguish between the local and docker postgres database?
+
+To distinguish between the local and docker PostgreSQL databases, you can use different port numbers for the two databases. For example, you can use port 5432 for the local database and port 5455 for the docker database. This way, you can connect to the correct database based on the port number.
+
+### What are the most frequently used Docker commands?
+
+Here are some of the most frequently used Docker commands:
+
+- `docker ps` - List all running containers
+- `docker ps -a` - List all containers (running and stopped)
+- `docker images` - List all images
+- `docker build -t <image_name> .` - Build a Docker image
+- `docker run -d -p <host_port>:<container_port> <image_name>` - Run a Docker container in detached mode
+- `docker stop <container_id>` - Stop a running container
+- `docker rm <container_id>` - Remove a stopped container
+- `docker rmi <image_id>` - Remove an image
+- `docker exec -it <container_id> /bin/bash` - Start a shell in a running container
+- `docker logs <container_id>` - View the logs of a container
+- `docker-compose up` - Start a Docker Compose stack
+- `docker-compose down` - Stop a Docker Compose stack
+- `docker-compose logs` - View the logs of a Docker Compose stack
+- `docker-compose ps` - List all services in a Docker Compose stack
+- `docker-compose exec <service_name> /bin/bash` - Start a shell in a service container
 
 
 
