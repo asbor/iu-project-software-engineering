@@ -11,7 +11,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
-      POSTGRES_DB: hoppybrew_db
+    hostname: hoppybrew-db
     ports:
       - "5432:5432"
 
@@ -19,12 +19,15 @@ services:
     build:
       context: .
       dockerfile: dockerfile
+
     environment:
       NAME: HoppyBrew
-      DATABASE_HOST: host.docker.internal
+      DATABASE_HOST: hoppybrew-db
       DATABASE_PORT: 5432
       DATABASE_NAME: hoppybrew_db
       DATABASE_USER: postgres
       DATABASE_PASSWORD: postgres
     ports:
       - "8000:8000"
+    depends_on:
+      - hoppybrew-db

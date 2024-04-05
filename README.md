@@ -152,7 +152,9 @@ Before you start, make sure you have the database set up. You can either use Pos
 
 Note: The following steps assume you are running locally on a Linux machine. If you are using a different operating system, the steps may vary.
 
-1. Install PostgreSQL on your machine
+### The database
+
+1. **Install PostgreSQL on your machine**
 
     ```sh
     sudo apt update
@@ -169,38 +171,46 @@ Note: The following steps assume you are running locally on a Linux machine. If 
     sudo -u postgres psql -c "DROP DATABASE hoppybrew_db"
     ```
 
-2. Change directory to the project folder
+### The application
+
+1. **Clone the repository**
+
+    ```sh
+    git clone
+    ```
+
+2. **Navigate to the project directory**
 
     ```sh
     cd iu-project-software-engineering
     ```
 
-3. Create a virtual environment
+3. **Create a virtual environment**
 
     ```sh
     python3 -m venv .venv
     ```
 
-4. Activate the virtual environment
+4. **Activate the virtual environment**
 
     ```sh
     source .venv/bin/activate
     ```
 
-5. Install the required packages
+5. **Install the required packages**
 
     ```sh
-    pip install -r requirements.txt
+    pip install -r /docker/requirements.txt
     ```
 
-6. Run the project
+6. **Run the project**
 
     ```sh
     uvicorn main:app --reload
     ```
 
-7. Open your browser and navigate to `http://localhost:8000`
-8. You should see the project running
+7. **Open your browser and navigate to `http://localhost:8000`**
+8. **You should see the project running**
 
 At this point, you should have the project running locally on your machine. You can now move on to the next steps to set up the database and start using the application.
 
@@ -221,13 +231,12 @@ In order to run the application using Docker, follow the steps below:
 1. **Run postgres database in a docker container**
 
     ```sh
-    docker run --name hoppybrew-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=hoppybrew_db -p 5432:5432 -d postgres
+    docker run --name hoppybrew-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -p 5432:5432 -d postgres
     ```
     Where:
     - `--name hoppybrew-db` specifies the name of the container
     - `-e POSTGRES_PASSWORD=postgres` specifies the password for the database
     - `-e POSTGRES_USER=postgres` specifies the username for the database
-    - `-e POSTGRES_DB=hoppybrew_db` specifies the name of the database
     - `-p 5432:5432` specifies the port mapping for the database
     - `-d postgres` specifies the image to use for the container
     - You can change the values for `POSTGRES_PASSWORD`, `POSTGRES_USER`, and `POSTGRES_DB` to suit your needs
@@ -246,7 +255,7 @@ In order to run the application using Docker, follow the steps below:
     ```sh
     docker run -d -p 127.0.0.1:8000:8000\
         --env NAME=HoppyBrew\
-        --env DATABASE_HOST=hoppybrew-db\
+        --env DATABASE_HOST=host.docker.internal\
         --env DATABASE_PORT=5455\
         --env DATABASE_NAME=hoppybrew_db\
         --env DATABASE_USER=postgres\
@@ -259,10 +268,7 @@ In order to run the application using Docker, follow the steps below:
     - `-d` specifies that the container should run in detached mode
     - `-p -p 127.0.0.1:8000:8000` specifies the port mapping for the container
     - `--env NAME=HoppyBrew` specifies the name of the application
-    - `--env DATABASE_HOST=host.docker.internal` specifies the host for the database container. That means the application will connect to the database running on the host machine on port 5432 (default port for PostgreSQL) The typical options are:
-        - For Windows and Mac: `host.docker.internal`
-        - For Linux: `localhost`
-        - For Docker container: `hoppybrew-db`
+    - `--env DATABASE_HOST=host.docker.internal` specifies the host for the database container
     - `--env DATABASE_PORT=5455` specifies the port for the database container
     - `--env DATABASE_NAME=hoppybrew_db` specifies the name of the database
     - `--env DATABASE_USER=postgres` specifies the username for the database
