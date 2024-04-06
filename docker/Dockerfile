@@ -10,7 +10,6 @@
 
 # Usage: docker build -t docker-hoppy-brew-app-image .
 
-
 # Stage 1: Build the image
 FROM alpine:3.17 as builder
 RUN apk add --no-cache python3 py3-pip libpq postgresql-client curl
@@ -18,11 +17,11 @@ RUN adduser -D dbs
 USER dbs
 
 # Set the working directory
-WORKDIR /home/dbs
-COPY docker/requirements.txt .
-COPY /app /home/dbs/app
-COPY main.py .
-COPY __init__.py .
+WORKDIR /app
+COPY ./docker/requirements.txt .
+COPY ./app /app
+COPY ./main.py .
+COPY ./__init__.py .
 
 # Install requirements
 RUN pip3 install -r requirements.txt --no-cache-dir
@@ -31,6 +30,4 @@ RUN pip3 install -r requirements.txt --no-cache-dir
 EXPOSE 8000
 
 # Run uvicorn server
-CMD /home/dbs/.local/bin/uvicorn main:app --reload --host 0.0.0.0
-
-
+CMD /app.local/bin/uvicorn main:app --reload --host 0.0.0.0
