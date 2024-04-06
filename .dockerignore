@@ -1,0 +1,25 @@
+# Ignore files and directories commonly excluded in Docker builds
+
+# Ignore build artifacts
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ignore development and system files
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore version control files
+.git
+.gitignore

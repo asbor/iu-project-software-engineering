@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/asbor/iu-project-software-engineering">
-    <img src="images/logo.png" alt="Logo" width="300">
+    <img src="documents/images/logo.png" alt="Logo" width="300">
   </a>
 
 <h3 align="center">HoppyBrew</h3>
@@ -86,7 +86,7 @@
 
 ## About The Project
 
-<img src="images/Brewmaster.webp" width="500" alt="HoppyBrew">
+<img src="documents/images/Brewmaster.webp" width="500" alt="HoppyBrew">
 
 The project, undertaken as part of the Software Engineering course at the Faculty of Informatics, International University of Applied Sciences Bad Honnef - Bonn, seeks to develop a web application tailored for home-brewers. Inspired by the existing project Brewfather, the objective is to create a platform that assists brewers in efficiently managing their brewing processes. The project is motivated by personal experience, with the creator being a homebrewer looking for a self-hosted solution. By leveraging Docker containers, the aim is to provide a self-hosted alternative to subscription-based services like Brewfather, catering to a specific niche within the brewing community.
 
@@ -517,7 +517,7 @@ Project Link: [https://github.com/asbor/iu-project-software-engineering](https:/
 [license-url]: https://github.com/asbor/iu-project-software-engineering/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: www.linkedin.com/in/asbjørn-bordoy-89b0462a
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: documents/images/screenshot.png
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
 [Python-url]: https://www.python.org/
