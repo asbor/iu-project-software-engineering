@@ -9,7 +9,7 @@ Date:           2024-apr-04
 from model import db_models
 from model.database import engine
 from fastapi import FastAPI
-from controller.router import router
+from app.controller.routes.router import router
 
 # create the database tables if they do not exist already
 db_models.Base.metadata.create_all(bind=engine)

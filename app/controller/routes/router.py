@@ -1,10 +1,10 @@
-from app.controller.endpoints import user
-from app.controller.endpoints import reservation
-from app.controller.endpoints import publications
-from app.controller.endpoints import instances
-from app.controller.endpoints import categories
-from app.controller.endpoints import cards
-from app.controller.endpoints import authors
+from app.controller.api import user
+from app.controller.api import reservation
+from app.controller.api import publications
+from app.controller.api import instances
+from app.controller.api import categories
+from app.controller.api import cards
+from app.controller.api import authors
 from fastapi import APIRouter
 
 
