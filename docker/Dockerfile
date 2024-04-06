@@ -8,7 +8,8 @@
 #       The image is built in two stages, the first stage installs the required packages
 #       and the second stage runs the uvicorn server
 
-# Usage: docker build -t docker-hoppy-brew-app-image .
+# Usage: docker build -f docker/Dockerfile -t docker-hoppy-brew-app-image .
+
 
 # Stage 1: Build the image
 FROM alpine:3.17 as builder
@@ -17,13 +18,11 @@ RUN adduser -D dbs
 USER dbs
 
 # Set the working directory
-WORKDIR /app
-COPY --from=builder ./docker/requirements.txt .
-COPY --from=builder ./app /app
-COPY --from=builder ./main.py .
-COPY --from=builder ./__init__.py .
-
-
+WORKDIR /home/dbs
+COPY ./docker/requirements.txt .
+COPY ./app /home/dbs/app
+COPY ./main.py .
+COPY ./__init__.py .
 
 # Install requirements
 RUN pip3 install -r requirements.txt --no-cache-dir
@@ -32,4 +31,4 @@ RUN pip3 install -r requirements.txt --no-cache-dir
 EXPOSE 8000
 
 # Run uvicorn server
-CMD /app.local/bin/uvicorn main:app --reload --host 0.0.0.0
+CMD /home/dbs/.local/bin/uvicorn main:app --reload --host 0.0.0.0
