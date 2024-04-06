@@ -89,10 +89,6 @@ async def patch_user(user_id: uuid.UUID, user: schemas.User):
         db_user.birth_date = user.birth_date                            # type: ignore
     if user.personal_identificator is not None:
         db_user.personal_identificator = user.personal_identificator    # type: ignore
-    if user.reservations is not None:
-        db_user.reservations = user.reservations
-    if user.rentals is not None:
-        db_user.rentals = user.rentals
 
     # updating the updated_at field
     db_user.updated_at = user.updated_at                                # type: ignore
@@ -168,8 +164,6 @@ async def create_user(user: schemas.User):
         email=user.email,
         birth_date=user.birth_date,
         personal_identificator=user.personal_identificator,
-        reservations=user.reservations,
-        rentals=user.rentals,
         created_at=user.created_at,
         updated_at=user.updated_at
 
