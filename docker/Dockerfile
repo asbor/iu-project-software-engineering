@@ -21,7 +21,6 @@ USER dbs
 WORKDIR /home/dbs
 COPY ./docker/requirements.txt .
 COPY ./app /home/dbs/app
-COPY ./__init__.py .
 
 # Install requirements
 RUN pip3 install -r requirements.txt --no-cache-dir
