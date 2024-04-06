@@ -3,6 +3,8 @@
 # Date:  2024-apr-05
 # Description:  Docker compose file for the HoppyBrew application.
 
+# Usage:  docker-compose up
+
 version: "3.8"
 
 services:
@@ -18,7 +20,7 @@ services:
   hoppybrew-app:
     build:
       context: ../
-      dockerfile: docker/dockerfile
+      dockerfile: docker/Dockerfile
 
     environment:
       NAME: HoppyBrew

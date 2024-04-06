@@ -21,7 +21,6 @@ USER dbs
 WORKDIR /home/dbs
 COPY ./docker/requirements.txt .
 COPY ./app /home/dbs/app
-COPY ./main.py .
 COPY ./__init__.py .
 
 # Install requirements
@@ -31,4 +30,4 @@ RUN pip3 install -r requirements.txt --no-cache-dir
 EXPOSE 8000
 
 # Run uvicorn server
-CMD /home/dbs/.local/bin/uvicorn main:app --reload --host 0.0.0.0
+CMD /home/dbs/.local/bin/uvicorn app/main:app --reload --host 0.0.0.0
