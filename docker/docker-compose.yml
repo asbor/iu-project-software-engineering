@@ -17,8 +17,8 @@ services:
 
   hoppybrew-app:
     build:
-      context: .
-      dockerfile: dockerfile
+      context: ../
+      dockerfile: docker/dockerfile
 
     environment:
       NAME: HoppyBrew
