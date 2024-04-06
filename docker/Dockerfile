@@ -18,10 +18,12 @@ USER dbs
 
 # Set the working directory
 WORKDIR /app
-COPY ./docker/requirements.txt .
-COPY ./app /app
-COPY ./main.py .
-COPY ./__init__.py .
+COPY --from=builder ./docker/requirements.txt .
+COPY --from=builder ./app /app
+COPY --from=builder ./main.py .
+COPY --from=builder ./__init__.py .
+
+
 
 # Install requirements
 RUN pip3 install -r requirements.txt --no-cache-dir
