@@ -3,7 +3,8 @@
 # Date:  2024-apr-05
 # Description:  Docker compose file for the HoppyBrew application.
 
-# Usage:  docker-compose up
+# Usage:  docker-compose -f docker/docker-compose.yml up
+# Usage:  docker-compose -f docker/docker-compose.yml down
 
 version: "3.8"
 
