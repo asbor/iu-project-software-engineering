@@ -18,7 +18,7 @@
 1. My previous `makefile` failed to function as intended, necessitating a complete rewrite from the ground up. Additionally, the conventional method of executing `make pdf` proved ineffective, prompting a complete overhaul of my approach. The revised strategy now employs the following command:
 
     ```bash
-    Rscript -e "rmarkdown::render('documents/01-Conception-Phase.md', output_format = 'pdf_document')"
+    Rscript -e "rmarkdown::render('documents/docs.md', output_format = 'pdf_document')"
     ```
 
 2. I encountered a minor issue with organizing the folder structure for the documentation, since Gitbook apparently requires a specific format. I resolved this by reverse-engineering the structure of the Gitbook documentation and adapting my own to match.

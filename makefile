@@ -54,7 +54,7 @@ coverage:
 	@coverage html --include app/* --omit tests/*
 	@echo "Done"
 
-DIRECTORY=documents/01-Conception-Phase
+DIRECTORY=documents/docs
 BUILDDIR=$(DIRECTORY)/build
 FILENAME=$(DIRECTORY)/HoppyBrew.rmd
 BIBFILENAME=documents/bibliography.bib

@@ -66,20 +66,13 @@ def split_chapters(markdown_file, destination):
 
 
 def main():
-    # Runn bash command
-    #
-    # os.system(
-    #    'bash plantuml -tpng documents/01-Conception-Phase/00-HoppyBrew.md -o images/')
-    # the new approach is like this
-    # java -jar plantuml-1.2024.3.jar -tpng ../documents/01-Conception-Phase/plantuml/04-white-box-overall-system.puml
-
     # Set the working directory to the root of the repository
     os.chdir('/home/asbjorn/Nextcloud/repo/iu-project-software-engineering')
     os.system(
-        'java -jar tools/plantuml-1.2024.3.jar -tpng documents/01-Conception-Phase/00-HoppyBrew.md -o ./images/')
+        'java -jar tools/plantuml-1.2024.3.jar -tpng documents/docs/00-HoppyBrew.md -o ./images/')
 
-    # Set the working directory to the 01-Conception-Phase directory
-    os.chdir('./documents/01-Conception-Phase')
+    # Set the working directory to the docs directory
+    os.chdir('./documents/docs')
 
     # Note that the markdown files deriving from the main markdown file are not in same directory as the main markdown file (00-HoppyBrew.md)
     # we will therefore need to change the references in the derived markdown files to point to the correct directory
@@ -89,10 +82,10 @@ def main():
     destination = './chapters/'
     split_chapters(markdown_file, destination)
 
-    # Set the working directory to the 01-Conception-Phase/chapters directory so th
+    # Set the working directory to the docs/chapters directory so th
 
     # Specify the directory containing the markdown files
-    directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/01-Conception-Phase/chapters"
+    directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/docs/chapters"
     outout_file = "../HoppyBrew.pdf"
 
     # Change the working directory to the directory containing markdown files
