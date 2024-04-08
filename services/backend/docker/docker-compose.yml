@@ -34,3 +34,13 @@ services:
       - "8000:8000"
     depends_on:
       - hoppybrew-db
+
+  frontend:
+    build: 
+      context: ../
+      dockerfile: web/Dockerfile
+    volumes:
+      - './web:/app'
+      - '/app/node_modules'
+    ports:
+      - 8080:8080

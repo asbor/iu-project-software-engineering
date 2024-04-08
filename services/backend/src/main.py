@@ -10,7 +10,7 @@ from model import db_models
 from model.database import engine
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware  # NEW
-from app.controller.routes.router import router
+from src.controller.routes.router import router
 
 # create the database tables if they do not exist already
 db_models.Base.metadata.create_all(bind=engine)

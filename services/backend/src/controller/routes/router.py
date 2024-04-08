@@ -1,6 +1,6 @@
-from app.controller.api import user
-from app.controller.api import categories
-from app.controller.api import authors
+from src.controller.api import user
+from src.controller.api import categories
+from src.controller.api import authors
 from fastapi import APIRouter
 
 
