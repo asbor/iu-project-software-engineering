@@ -19,8 +19,8 @@ USER dbs
 
 # Set the working directory
 WORKDIR /home/dbs
-COPY ./docker/requirements.txt .
-COPY ./app /home/dbs/app
+COPY ./services/backend/docker/requirements.txt .
+COPY ./services/backend/src /home/dbs/app
 
 # Install requirements
 RUN pip3 install -r requirements.txt --no-cache-dir
