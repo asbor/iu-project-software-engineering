@@ -15,23 +15,28 @@
 # https://docs.gitlab.com/ee/development/cicd/templates.html
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+default:
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  beforescript:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
 
 stages: # List of stages for jobs, and their order of execution
   - build
   - test
+  - release
   - deploy
 
-build-job: # This job runs in the build stage, which runs first.
+variables:
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
+
+build:
   stage: build
-  image: docker
-  services:
-    - docker:dind
   script:
-    - echo "Compiling the code..."
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
-    - docker build -t $CI_REGISTRY_IMAGE .
-    - docker push $CI_REGISTRY_IMAGE
-    - echo "Compile complete."
+    - docker build --pull -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
   only:
     - master
     - main
@@ -49,10 +54,20 @@ lint-test-job: # This job also runs in the test stage.
     - echo "Linting code... This will take about 10 seconds."
     - echo "No lint issues found."
 
+release-image:
+  stage: release
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+  only:
+    - master
+    - main
+    - tags
+
 deploy-job: # This job runs in the deploy stage.
   stage: deploy # It only runs when *both* jobs in the test stage complete successfully.
   environment: production
   script:
     - echo "Deploying application..."
-    - docker push $CI_REGISTRY_IMAGE
     - echo "Application successfully deployed."
