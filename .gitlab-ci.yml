@@ -29,7 +29,7 @@ build-job: # This job runs in the build stage, which runs first.
   script:
     - echo "Compiling the code..."
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
-    - docker build $CI_REGISTRY_IMAGE -f ./services/backend/docker/Dockerfile
+    - docker build $CI_REGISTRY_IMAGE -f .
     - docker push $CI_REGISTRY_IMAGE
     - echo "Compile complete."
   only:
