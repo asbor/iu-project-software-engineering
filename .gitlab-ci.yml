@@ -17,28 +17,9 @@
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
 stages: # List of stages for jobs, and their order of execution
-  - validate
   - build
   - test
   - deploy
-
-variables: # List of global variables that will be used in all jobs
-  CI_REGISTRY_USER: $CI_REGISTRY_USER
-  CI_REGISTRY_PASSWORD: $CI_REGISTRY_PASSWORD
-  CI_REGISTRY_IMAGE: $CI_REGISTRY_IMAGE
-
-validate-job: # This job runs in the validate stage, which runs first.
-  stage: validate
-  script:
-    - echo "Validating the code..."
-    - echo $CI_REGISTRY_USER
-    - echo $CI_REGISTRY_PASSWORD
-    - echo $CI_REGISTRY_IMAGE
-    - echo "Validation complete."
-  only:
-    - master
-    - main
-    - tags
 
 build-job: # This job runs in the build stage, which runs first.
   stage: build
@@ -48,7 +29,7 @@ build-job: # This job runs in the build stage, which runs first.
   script:
     - echo "Compiling the code..."
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
-    - docker build -t $CI_REGISTRY_IMAGE ./services/backend/src/Dockerfile
+    - docker build -t $CI_REGISTRY_IMAGE ./services/backend/src/
     - docker push $CI_REGISTRY_IMAGE
     - echo "Compile complete."
   only:
