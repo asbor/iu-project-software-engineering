@@ -22,7 +22,7 @@ WORKDIR /home/dbs
 COPY ./services/backend/src /home/dbs/app
 
 # Install requirements
-RUN pip3 install -r requirements.txt --no-cache-dir
+RUN pip3 install -r /home/dbs/app/requirements.txt --no-cache-dir
 
 # Expose port 8000 for the FastAPI application
 EXPOSE 8000
