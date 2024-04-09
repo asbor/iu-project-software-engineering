@@ -24,17 +24,16 @@ stages: # List of stages for jobs, and their order of execution
 build-job: # This job runs in the build stage, which runs first.
   stage: build
   image: docker
+  context: .
   services:
     - docker:dind
   script:
     - echo "Compiling the code..."
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
-    - docker build -t $CI_REGISTRY_IMAGE .
-    - docker push $CI_REGISTRY_IMAGE
+    - docker build -t registry.gitlab.com/asbor1/iu-project-software-engineering/services/backend/docker/ .
+    - docker push registry.gitlab.com/asbor1/iu-project-software-engineering
     - echo "Compile complete."
-  with:
-    context: .
-    file: ./docker/Dockerfile
+
   only:
     - master
     - main
