@@ -20,8 +20,8 @@ services:
 
   hoppybrew-app:
     build:
-      context: ../
-      dockerfile: docker/Dockerfile
+      context: .
+      dockerfile: docker
 
     environment:
       NAME: HoppyBrew
@@ -35,10 +35,10 @@ services:
     depends_on:
       - hoppybrew-db
 
-  frontend:
+  hoppybrew-front:
     build: 
-      context: ../
-      dockerfile: web/Dockerfile
+      context: .
+      dockerfile: docker/Dockerfile.front
     volumes:
       - './web:/app'
       - '/app/node_modules'

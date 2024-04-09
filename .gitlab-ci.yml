@@ -54,5 +54,5 @@ deploy-job: # This job runs in the deploy stage.
   environment: production
   script:
     - echo "Deploying application..."
-    - docker push $CI_REGISTRY_IMAGE # Push the image to the registry
+    - docker push $CI_REGISTRY_IMAGE
     - echo "Application successfully deployed."
