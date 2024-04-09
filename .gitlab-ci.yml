@@ -24,7 +24,6 @@ stages: # List of stages for jobs, and their order of execution
 build-job: # This job runs in the build stage, which runs first.
   stage: build
   image: docker
-  context: .
   services:
     - docker:dind
   script:
@@ -33,7 +32,6 @@ build-job: # This job runs in the build stage, which runs first.
     - docker build -t registry.gitlab.com/asbor1/iu-project-software-engineering/services/backend/docker/ .
     - docker push registry.gitlab.com/asbor1/iu-project-software-engineering
     - echo "Compile complete."
-
   only:
     - master
     - main
