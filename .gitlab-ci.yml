@@ -39,7 +39,14 @@ build:
   stage: build
   script:
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
-    - docker push $CONTAINER_TEST_IMAGE
+    - docker run -d -p 127.0.0.1:8000:8000\
+      --env NAME=HoppyBrew\
+      --env DATABASE_HOST=host.docker.internal\
+      --env DATABASE_PORT=5455\
+      --env DATABASE_NAME=hoppybrew_db\
+      --env DATABASE_USER=postgres\
+      --env DATABASE_PASSWORD=postgres\
+      --name hoppybrew_container hoppybrew_image
   only:
     - master
     - main
