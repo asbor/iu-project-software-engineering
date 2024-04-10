@@ -15,6 +15,9 @@
 # https://docs.gitlab.com/ee/development/cicd/templates.html
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+
+# Source: https://docs.gitlab.com/ee/user/packages/container_registry/build_and_push_images.html
+
 default:
   image: docker:20.10.16
   services:
