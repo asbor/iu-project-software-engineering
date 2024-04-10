@@ -60,7 +60,7 @@ lint-test-job: # This job also runs in the test stage.
 release-image:
   stage: release
   script:
-    - echo $CI_DEPLOY_PASSWORD | docker login $CI_REGISTRY -u $CI_DEPLOY_USER --password-stdin
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
     - docker pull $CONTAINER_TEST_IMAGE
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
