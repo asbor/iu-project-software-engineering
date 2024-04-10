@@ -23,7 +23,7 @@ default:
   services:
     - docker:20.10.16-dind
   before_script:
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin <<<$CI_REGISTRY_PASSWORD
 
 stages: # List of stages for jobs, and their order of execution
   - build
@@ -60,6 +60,7 @@ lint-test-job: # This job also runs in the test stage.
 release-image:
   stage: release
   script:
+    - docker login $CI_REGISTRY -u $CI_DEPLOY_USER --password-stdin <<<$CI_DEPLOY_PASSWORD
     - docker pull $CONTAINER_TEST_IMAGE
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
