@@ -39,14 +39,7 @@ build:
   stage: build
   script:
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
-    - docker run -d -p 127.0.0.1:8000:8000\
-      --env NAME=HoppyBrew\
-      --env DATABASE_HOST=host.docker.internal\
-      --env DATABASE_PORT=5455\
-      --env DATABASE_NAME=hoppybrew_db\
-      --env DATABASE_USER=postgres\
-      --env DATABASE_PASSWORD=postgres\
-      --name hoppybrew_container hoppybrew_image
+    - docker push $CONTAINER_TEST_IMAGE
   only:
     - master
     - main
@@ -67,7 +60,6 @@ lint-test-job: # This job also runs in the test stage.
 release-image:
   stage: release
   script:
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
     - docker pull $CONTAINER_TEST_IMAGE
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
