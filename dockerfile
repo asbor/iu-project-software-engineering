@@ -27,5 +27,13 @@ RUN pip3 install -r /home/dbs/app/requirements.txt --no-cache-dir
 # Expose port 8000 for the FastAPI application
 EXPOSE 8000
 
+# Environment variables
+ENV NAME="HoppyBrew"
+ENV DATABASE_HOST="host.docker.internal"
+ENV DATABASE_HOST=5455
+ENV DATABASE_PORT="hoppybrew_db"
+ENV DATABASE_USER="postgres"
+ENV DATABASE_PASSWORD="postgres"
+
 # Run uvicorn server
 CMD /home/dbs/.local/bin/uvicorn app/main:app --reload --host 0.0.0.0
