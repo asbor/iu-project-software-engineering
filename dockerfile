@@ -36,4 +36,4 @@ ENV DATABASE_USER="postgres"
 ENV DATABASE_PASSWORD="postgres"
 
 # Run uvicorn server
-CMD /home/dbs/.local/bin/uvicorn app/main:app --reload --host 0.0.0.0
+CMD /home/dbs/.local/bin/uvicorn app.main:app --reload --host 0.0.0.0
