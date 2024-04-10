@@ -10,7 +10,6 @@
 
 # Usage: docker build -f docker/Dockerfile -t docker-hoppy-brew-app-image .
 
-
 # Stage 1: Build the image
 FROM alpine:3.17 as builder
 RUN apk add --no-cache python3 py3-pip libpq postgresql-client curl
@@ -19,21 +18,28 @@ USER dbs
 
 # Set the working directory
 WORKDIR /home/dbs
-COPY ./services/backend/src /home/dbs/app
+COPY ./services/backend/src .
 
 # Install requirements
-RUN pip3 install -r /home/dbs/app/requirements.txt --no-cache-dir
+RUN pip3 install -r requirements.txt --no-cache-dir
 
 # Expose port 8000 for the FastAPI application
 EXPOSE 8000
 
+# Arguments for the environment variables
+ARG NAME=HoppyBrew
+ARG DATABASE_HOST=host.docker.internal
+ARG DATABASE_PORT=5455
+ARG DATABASE_USER=postgres
+ARG DATABASE_PASSWORD=postgres
+
 # Environment variables
-ENV NAME="HoppyBrew"
-ENV DATABASE_HOST="host.docker.internal"
-ENV DATABASE_HOST=5455
-ENV DATABASE_PORT="hoppybrew_db"
-ENV DATABASE_USER="postgres"
-ENV DATABASE_PASSWORD="postgres"
+ENV NAME $NAME
+ENV DATABASE_HOST $DATABASE_HOST
+ENV DATABASE_PORT $DATABASE_PORT
+ENV DATABASE_USER $DATABASE_USER
+ENV DATABASE_PASSWORD $DATABASE_PASSWORD
 
 # Run uvicorn server
-CMD /home/dbs/.local/bin/uvicorn app.main:app --reload --host 0.0.0.0
+CMD /home/dbs/.local/bin/uvicorn main:app --reload --host 0.0.0.0
+

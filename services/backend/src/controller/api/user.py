@@ -1,10 +1,10 @@
 from datetime import datetime
 from fastapi import APIRouter, HTTPException, status
-from src.model.database import SessionLocal
+from model.database import SessionLocal
 from pydantic import validate_email
 import uuid
-import src.data.models as models
-import src.data.schemas as schemas
+import data.models as models
+import data.schemas as schemas
 import re
 
 router = APIRouter()

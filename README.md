@@ -279,6 +279,40 @@ In order to run the application using Docker, follow the steps below:
 
 At this point, you should have the project running in a Docker container on your machine. You can now move on to the next steps to set up the database and start using the application.
 
+## Setting the environment variables as default values in the Dockerfile
+
+Instead of passing the environment variables as command-line arguments when running the Docker container, you can set the default values in the Dockerfile. This way, you don't have to specify the environment variables every time you run the container.
+
+As it turns out, you can not directly set the environment variables in the Dockerfile. This is because the environment variables are set at runtime, not at build time. However you create some arguments in the Dockerfile and then pass the arguments to the environment variables at runtime. Here's how you can do it:
+
+![An overview of ARG and ENV availability.](https://vsupalov.com/images/docker-env-vars/docker_environment_build_args.png)
+
+> Note: in the image, there is a rectangle around Dockerfile. This is a bit confusing. It should be around the “build image” step only. But that would be harder to read…
+
+```Dockerfile
+# Arguments for the environment variables
+ARG NAME=HoppyBrew
+ARG DATABASE_HOST=host.docker.internal
+ARG DATABASE_PORT=5455
+ARG DATABASE_USER=postgres
+ARG DATABASE_PASSWORD=postgres
+
+# Environment variables
+ENV NAME $NAME
+ENV DATABASE_HOST $DATABASE_HOST
+ENV DATABASE_PORT $DATABASE_PORT
+ENV DATABASE_USER $DATABASE_USER
+ENV DATABASE_PASSWORD $DATABASE_PASSWORD
+```
+
+Now you can run the Docker container without specifying all the environment variables:
+
+```sh
+docker run -d -p 127.0.0.1:8000:8000 --name hoppybrew_container hoppybrew_image
+```
+
+The benefit with this approach is when you pull the image from Docker, the environment variables are already set with the default values. This is particularly useful when you pull the image to a unraid server, because Unraid is then able to generate a template for the container with the default values.
+
 ## Docker compose
 
 To run the project using Docker Compose, follow the steps below:
