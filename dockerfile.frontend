@@ -1,0 +1,31 @@
+# Filename: dockerfile.frontend
+# This Dockerfile is used to build the frontend service
+# The frontend service is a Vue.js application
+# The Vue.js application is built and served using npm
+
+# docker build -t frontend -f dockerfile.frontend .
+
+
+# Base image
+FROM node:14-alpine
+
+# Set the working directory
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json
+COPY services/frontend/package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application code
+COPY ./services/frontend .
+
+# Build the Vue.js application
+RUN npm run build
+
+# Expose the application port
+EXPOSE 80
+
+# Start the application
+CMD ["npm", "run", "serve"]

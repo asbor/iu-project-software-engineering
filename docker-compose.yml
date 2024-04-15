@@ -21,7 +21,7 @@ services:
   hoppybrew-app:
     build:
       context: .
-      dockerfile: docker
+      dockerfile: dockerfile.backend
     ports:
       - "8000:8000"
     depends_on:
@@ -30,9 +30,6 @@ services:
   hoppybrew-front:
     build: 
       context: .
-      dockerfile: docker/Dockerfile.front
-    volumes:
-      - './web:/app'
-      - '/app/node_modules'
+      dockerfile: dockerfile.frontend
     ports:
       - 8080:8080
