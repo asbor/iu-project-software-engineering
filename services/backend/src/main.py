@@ -1,28 +1,23 @@
-"""
-File:           main.py
-Author:         Asbjorn Bordoy
-Email:          asbjorn.bordoy@gmail.com
-Description:    Main file for the FastAPI application
-Date:           2024-apr-04
-"""
-
-from model import db_models
-from model.database import engine
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware  # NEW
-from controller.routes.router import router
+from fastapi.middleware.cors import CORSMiddleware
+from tortoise import Tortoise
 
-# create the database tables if they do not exist already
-db_models.Base.metadata.create_all(bind=engine)
+from src.database.register import register_tortoise
+from src.database.config import TORTOISE_ORM
 
-# create the FastAPI app and include the router from the endpoints folder
-app = FastAPI(title="PostgreSQL and FastAPI")
-app.include_router(router)
 
-# create a root endpoint
+# enable schemas to read relationship between models
+Tortoise.init_models(["src.database.models"], "models")
 
-# NEW
-# CORSMiddleware is required to make cross-origin requests -- i.e., requests that originate from a different protocol, IP address, domain name, or port. This is necessary since the frontend will run at http://localhost:8080.
+"""
+import 'from src.routes import users, notes' must be after 'Tortoise.init_models'
+why?
+https://stackoverflow.com/questions/65531387/tortoise-orm-for-python-no-returns-relations-of-entities-pyndantic-fastapi
+"""
+from src.routes import users, notes
+
+app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:8080"],
@@ -30,8 +25,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.include_router(users.router)
+app.include_router(notes.router)
+
+register_tortoise(app, config=TORTOISE_ORM, generate_schemas=False)
 
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+def home():
+    return "Hello, World!"

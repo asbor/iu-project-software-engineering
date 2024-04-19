@@ -4,10 +4,6 @@
 
 We have decided to use the Model-View-Controller (MVC) architecture for the application. The MVC architecture is a software design pattern that separates the application into three main components: the model, the view, and the controller. The model represents the data and business logic of the application, the view represents the user interface, and the controller acts as an intermediary between the model and the view. This separation of concerns helps to improve the maintainability, scalability, and testability of the application. It also allows for easier collaboration between developers, as each component can be developed independently.
 
-## Microservices Architecture
-
-We have decided to use a microservices architecture for the application. The microservices architecture is a software design pattern that decomposes the application into a set of small, independent services. Each service is responsible for a specific function or feature of the application, and communicates with other services using lightweight protocols such as HTTP or messaging. This separation of concerns helps to improve the scalability, flexibility, and maintainability of the application. It also allows for easier deployment and scaling of the application, as each service can be developed, tested, and deployed independently.
-
 ## RESTful APIs
 
 We have decided to use RESTful APIs for communication between the frontend and backend of the application. RESTful APIs are a set of architectural constraints that define how web services should be designed and implemented. They are based on the principles of statelessness, uniform interface, and resource-based architecture. RESTful APIs use standard HTTP methods such as GET, POST, PUT, and DELETE to perform operations on resources, and use standard data formats such as JSON or XML to represent data. This makes it easy to develop, test, and maintain the APIs, as well as allowing for interoperability with other systems and services.

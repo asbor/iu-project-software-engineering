@@ -436,8 +436,7 @@ The key quality goals of the application are as follows:
 To achieve these quality goals, we will use the following approaches:
 
 1. Performance: We will use FastAPI for the backend, which is a high-performance web framework that is optimized for speed. We will also use PostgreSQL as the database technology, which is highly scalable and reliable. Additionally, we will use Docker and Docker Compose for deployment, which will allow us to easily scale the application as needed.
-2. Scalability: We will use a microservices architecture for the application, with each component running as a separate service. This will allow for greater flexibility and scalability, as well as making it easier to maintain and update the application. We will also use Docker and Docker Compose for deployment, which will allow us to easily scale the application as needed.
-3. Reliability: We will use PostgreSQL as the database technology, which is highly reliable and provides support for transactions and data integrity constraints. We will also use Docker and Docker Compose for deployment, which will allow us to easily manage and orchestrate multiple containers. Additionally, we will implement automated testing and monitoring to ensure the reliability of the application.
+2. Reliability: We will use PostgreSQL as the database technology, which is highly reliable and provides support for transactions and data integrity constraints. We will also use Docker and Docker Compose for deployment, which will allow us to easily manage and orchestrate multiple containers. Additionally, we will implement automated testing and monitoring to ensure the reliability of the application.
 
 ## Organizational Decisions
 
@@ -1172,10 +1171,6 @@ recipe ||--o{ inventory : "Contains"
 ## Model-View-Controller (MVC) Architecture
 
 We have decided to use the Model-View-Controller (MVC) architecture for the application. The MVC architecture is a software design pattern that separates the application into three main components: the model, the view, and the controller. The model represents the data and business logic of the application, the view represents the user interface, and the controller acts as an intermediary between the model and the view. This separation of concerns helps to improve the maintainability, scalability, and testability of the application. It also allows for easier collaboration between developers, as each component can be developed independently.
-
-## Microservices Architecture
-
-We have decided to use a microservices architecture for the application. The microservices architecture is a software design pattern that decomposes the application into a set of small, independent services. Each service is responsible for a specific function or feature of the application, and communicates with other services using lightweight protocols such as HTTP or messaging. This separation of concerns helps to improve the scalability, flexibility, and maintainability of the application. It also allows for easier deployment and scaling of the application, as each service can be developed, tested, and deployed independently.
 
 ## RESTful APIs
 
