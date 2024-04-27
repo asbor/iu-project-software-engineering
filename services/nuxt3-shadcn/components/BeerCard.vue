@@ -12,7 +12,7 @@ const props = defineProps(["card"]);
 </script>
 
 <template>
-    <Card class="bg-neutral-200">
+    <Card>
         <CardHeader class="px-4 pt-4 pb-1">
             <div class="flex items-center gap-2">
                 <div class="yellow-400">

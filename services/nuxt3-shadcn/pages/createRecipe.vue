@@ -11,8 +11,8 @@ const loading = ref(false)
         </header>
 
         <main class="grid w-full gap-4">
-            <div class="flex items-start justify-between border-2 border-black gap-2">
-                <div name="Image Section" class="border-2 border-black items-center w-full gap-1">
+            <div class="flex items-start justify-between border-2  gap-2">
+                <div name="Image Section" class="items-center w-full gap-1">
                     <div>
                         <Icon size="150" name="ri:beer-fill" />
                     </div>
@@ -21,7 +21,7 @@ const loading = ref(false)
                         <p>Add Image</p>
                     </Button>
                 </div>
-                <div name="Metadata" class="border-2 border-black w-full gap-2">
+                <div name="Metadata" class="w-full gap-2">
                     <div>
                         <div>
                             <label for="RecipeName" class="form-label">Name:</label>
@@ -45,7 +45,7 @@ const loading = ref(false)
                         Type
                     </div>
                 </div>
-                <div name="Equipment Style" class="border-2 border-black w-full gap-2">
+                <div name="Equipment Style" class="w-full gap-2">
                     <div class="w-full gap-2">
                         <div class="flex items-start items-center gap-2">
                             <div>
@@ -105,17 +105,21 @@ const loading = ref(false)
                         </div>
                     </div>
                 </div>
-                <div class="w-full gap-2">
-                    <div class="flex items-start items-center gap-2">
-                        <div>
-                            <Icon size="20" name="ion:book-sharp" />
+                <div name="Style" class="w-full gap-2">
+                    <div class="flex items-start items-center gap-2 w-full justify-between">
+                        <div class="flex items-start items-center gap-2">
+                            <div>
+                                <Icon size="20" name="ion:book-sharp" />
+                            </div>
+                            <div>
+                                <label for="Style" class="form-label">Style:</label>
+                            </div>
                         </div>
-                        <div>
-                            <label for="Style" class="form-label">Style:</label>
-                        </div>
-                        <div class="bg-neutral-300 rounded w-40 p-2 items-center gap-2">
-                            <button class="btn btn-primary">SELECT</button>
-                        </div>
+                        <Button class="items-center gap-2">
+                            <Icon size="20" name="ph:target" />
+                            <p>Select Target Style</p>
+                        </Button>
+
                     </div>
                     <div>
                         <div class="flex items-start items-center gap-2">
@@ -169,9 +173,9 @@ const loading = ref(false)
                     </div>
                 </div>
             </div>
-            <div class="flex items-start justify-between border-2 border-black gap-2">
+            <div class="flex items-start justify-between border-2  gap-2">
                 <div>
-                    <div class="flex items-start items-center gap-2 w-full">
+                    <div name="Fermentables" class="flex items-start items-center gap-2 w-full">
                         <div>
                             <Icon size="20" name="lucide:wheat" />
                         </div>
@@ -179,7 +183,7 @@ const loading = ref(false)
                             <label for="Fermentables" class="form-label">Fermentables:</label>
                         </div>
                     </div>
-                    <div class="flex items-start items-center gap-2 w-full">
+                    <div name="Hops" class="flex items-start items-center gap-2 w-full">
                         <div>
                             <Icon size="20" name="lucide:hop" />
                         </div>
@@ -187,7 +191,7 @@ const loading = ref(false)
                             <label for="Hops" class="form-label">Hops:</label>
                         </div>
                     </div>
-                    <div class="flex items-start items-center gap-2 w-full">
+                    <div name="Misc" class="flex items-start items-center gap-2 w-full">
                         <div>
                             <Icon size="20" name="game-icons:cool-spices" />
                         </div>
@@ -195,7 +199,7 @@ const loading = ref(false)
                             <label for="Misc" class="form-label">Misc:</label>
                         </div>
                     </div>
-                    <div class="flex items-start items-center gap-2 w-full">
+                    <div name="Yeast" class="flex items-start items-center gap-2 w-full">
                         <div>
                             <Icon size="20" name="heroicons-solid:beaker" />
                         </div>
@@ -203,7 +207,7 @@ const loading = ref(false)
                             <label for="Yeast" class="form-label">Yeast:</label>
                         </div>
                     </div>
-                    <div class="flex items-start items-center gap-2 w-full">
+                    <div name="MashProfile" class="flex items-start items-center gap-2 w-full">
                         <div>
                             <Icon size="20" name="mdi:water-temperature-outline" />
                         </div>
@@ -211,7 +215,7 @@ const loading = ref(false)
                             <label for="MashProfile" class="form-label">Mash Profile:</label>
                         </div>
                     </div>
-                    <div class="flex items-start items-center gap-2 w-full">
+                    <div name="FermentationProfile" class="flex items-start items-center gap-2 w-full">
                         <div>
                             <Icon size="20" name="lucide:wheat" />
                         </div>
@@ -219,7 +223,7 @@ const loading = ref(false)
                             <label for="FermentationProfile" class="form-label">Fermentation Profile:</label>
                         </div>
                     </div>
-                    <div class="flex items-start items-center gap-2 w-full">
+                    <div name="WaterProfile" class="flex items-start items-center gap-2 w-full">
                         <div>
                             <Icon size="20" name="ion:water-outline" />
                         </div>
@@ -227,7 +231,7 @@ const loading = ref(false)
                             <label for="WaterProfile" class="form-label">Water Profile:</label>
                         </div>
                     </div>
-                    <div class="flex items-start items-center gap-2 w-full">
+                    <div name="Other" class="flex items-start items-center gap-2 w-full">
                         <div>
                             <Icon size="20" name="material-symbols-light:other-admission-outline-sharp" />
                         </div>
@@ -237,7 +241,7 @@ const loading = ref(false)
                     </div>
                 </div>
             </div>
-            <div class="border-2 border-black gap-2">
+            <div name="Tags" class="border-2  gap-2">
                 <div>
                     <label for="Tags" class="form-label">Tags:</label>
                 </div>
@@ -245,12 +249,23 @@ const loading = ref(false)
                     <Input class="w-full" placeholder="Add Tags" />
                 </div>
             </div>
-            <div class="border-2 border-black gap-2">
-                <div>
-                    <label for="Notes" class="form-label">Notes:</label>
+            <form @submit.prevent="submit">
+                <div name="Notes" class="border-2  gap-2">
+                    <div>
+                        <label for="Notes" class="form-label">Notes:</label>
+                    </div>
+                    <div>
+                        <Input class="w-full" placeholder="Special notes about this recipe..." />
+                    </div>
                 </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div name="Actions" class="border-2  gap-2">
                 <div>
-                    <Input class="w-full" placeholder="Special notes about this recipe..." />
+                    <Button class="items-center gap-2">
+                        <Icon size="20" name="carbon:save" />
+                        <p>Save</p>
+                    </Button>
                 </div>
             </div>
         </main>

@@ -23,24 +23,41 @@ const items = ref([
   // Settings
   { title: "Settings", path: "/settings", icon: "ri:settings-3-line" },
 ])
+
+
+import { useDark, useToggle } from "@vueuse/core";
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 </script>
 
 <template>
   <div>
     <header class="flex items-center gap-2 p-4 transition cursor-pointer">
       <Logo />
-      <p class="font-bold text-black">HoppyBrew</p>
+      <h2 class="font-bold">HoppyBrew</h2>
       <p class="text-sm text-neutral-500">v1.0.0</p>
     </header>
-    <div class="px-4 grow">
+    <main class="px-4 grow">
       <div class="grid gap-2">
         <DropDownCreate />
         <NuxtLink :href="item.path" v-for='(item, index) in items' :key='index'
-          class="flex items-center gap-2 px-2 py-1 transition rounded cursor-pointer hover:bg-neutral-100">
-          <Icon size="20" :name="item.icon" color="black" />
+          class="flex items-center gap-2 px-2 py-1 transition rounded cursor-pointer hover:bg-neutral-100 hover:text-neutral-900">
+          <Icon size="20" :name="item.icon" />
           <span>{{ item.title }}</span>
         </NuxtLink>
       </div>
-    </div>
+    </main>
+    <footer>
+      <div>
+        <div class="flex items-center justify-between p-4">
+          <button @click="toggleDark()">
+            <Icon :name="isDark.value ? 'bx:bx-moon' : 'bx:bx-sun'" />
+            <span>Toggle Color Mode</span>
+          </button>
+        </div>
+        <UserAccountUserItem />
+      </div>
+    </footer>
   </div>
 </template>

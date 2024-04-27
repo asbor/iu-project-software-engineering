@@ -1,38 +1,73 @@
 version: '3.8'
 
 services:
-
-  backend:
-    build: ./services/backend
+  nuxt3-shadcn:
+    container_name: my-nuxt3-app
+    build: 
+      context: ./services/nuxt3-shadcn
+      dockerfile: Dockerfile
     ports:
-      - 5000:5000
-    environment:
-      - DATABASE_URL=postgres://hello_fastapi:hello_fastapi@db:5432/hello_fastapi_dev
-      - SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7
+      - "3000:3000"
     volumes:
-      - ./services/backend:/app
-    command: uvicorn src.main:app --reload --host 0.0.0.0 --port 5000
-    depends_on:
-      - db
+      - './nuxt3-scadcn:/app'  # Mount the entire application directory
+      - '/app/node_modules'    # Ensure node_modules persistence
+    environment:
+      - NODE_ENV=production
+    networks:
+      - my-network
+  
+  pgadmin:
+    container_name: my-pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=name@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    restart: always
 
   frontend:
+    container_name: iu-project-software-engineering-frontend-1
     build: ./services/frontend
     volumes:
       - './services/frontend:/app'
       - '/app/node_modules'
     ports:
       - 8080:8080
+    networks:
+      - my-network
+
+  backend:
+    container_name: iu-project-software-engineering-backend-1
+    build: ./services/backend
+    ports:
+      - 8000:8000
+    volumes:
+      - ./services/backend:/app
+    command: /home/app/.local/bin/uvicorn main:app --reload --host 0.0.0.0 --port 8000
+    depends_on:
+      - db
+    env_file:
+      - ./services/backend/.env
+    networks:
+      - my-network
 
   db:
-    image: postgres:15.1
-    expose:
-      - 5432
+    container_name: iu-project-software-engineering-db-1
+    image: postgres:latest
     environment:
-      - POSTGRES_USER=hello_fastapi
-      - POSTGRES_PASSWORD=hello_fastapi
-      - POSTGRES_DB=hello_fastapi_dev
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=hoppybrew_db
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
 
 volumes:
   postgres_data:

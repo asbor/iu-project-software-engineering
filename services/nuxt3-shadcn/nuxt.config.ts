@@ -10,5 +10,11 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: './components/ui'
-  }
+  },
+  runtimeConfig: {
+    API_URL: "http://localhost:5000/",
+    public:{
+      API_URL: "http://localhost:5000/"
+    }
+  },
 })

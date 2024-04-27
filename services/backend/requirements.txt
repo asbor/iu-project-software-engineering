@@ -1,9 +1,26 @@
-aerich==0.7.1
-asyncpg==0.27.0
-bcrypt==4.0.1
-passlib==1.7.4
-fastapi==0.88.0
-python-jose==3.3.0
-python-multipart==0.0.5
-tortoise-orm==0.19.2
+
+# Install the FastAPI framework
+fastapi==0.89.1
+
+# Install the Uvicorn server
 uvicorn==0.20.0
+
+# Install the SQLAlchemy ORM
+SQLAlchemy
+
+# Install fastapi-utils
+sqlalchemy-utils
+
+#install pydantic
+pydantic
+pydantic[email]
+
+# Install psycopg2-binary
+psycopg2-binary 
+
+# Install alembic
+alembic
+
+# Install config
+config~=0.5.1
+python-dotenv

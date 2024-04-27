@@ -1,17 +1,14 @@
-FROM python:3.11-buster
+FROM alpine:3.17 as builder
 
-RUN mkdir app
-WORKDIR /app
+RUN apk add --no-cache python3 py3-pip libpq postgresql-client curl
+RUN adduser -D app
 
-ENV PATH="${PATH}:/root/.local/bin"
-ENV PYTHONPATH=.
+USER app
 
-COPY requirements.txt .
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+WORKDIR /home/app
 
-# for migrations
-COPY migrations .
-COPY pyproject.toml .
+COPY . .
+RUN pip3 install -r requirements.txt --no-cache-dir
 
-COPY src/ .
+EXPOSE 8000
+CMD /home/app/.local/bin/uvicorn main:app --reload --host 0.0.0.0
