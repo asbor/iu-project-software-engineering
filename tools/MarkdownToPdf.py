@@ -65,31 +65,34 @@ def split_chapters(markdown_file, destination):
     print(f'{len(chapters)} chapters split and saved successfully.')
 
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
 def main():
+    # Change the working directory to the root of the repository
+    print(bcolors.OKCYAN + "Working directory: ", os.getcwd() + bcolors.ENDC)
     # Set the working directory to the root of the repository
-    os.chdir('/home/asbjorn/Nextcloud/repo/iu-project-software-engineering')
     os.system(
         'java -jar tools/plantuml-1.2024.3.jar -tpng documents/docs/00-HoppyBrew.md -o ./images/')
-
-    # Set the working directory to the docs directory
-    os.chdir('./documents/docs')
 
     # Note that the markdown files deriving from the main markdown file are not in same directory as the main markdown file (00-HoppyBrew.md)
     # we will therefore need to change the references in the derived markdown files to point to the correct directory
 
     # Split the markdown file into chapters
-    markdown_file = '00-HoppyBrew.md'
-    destination = './chapters/'
-    split_chapters(markdown_file, destination)
+    markdown_file = './documents/docs/00-HoppyBrew.md'
 
-    # Set the working directory to the docs/chapters directory so th
-
-    # Specify the directory containing the markdown files
-    directory = "/home/asbjorn/Nextcloud/repo/iu-project-software-engineering/documents/docs/chapters"
-    outout_file = "../HoppyBrew.pdf"
-
-    # Change the working directory to the directory containing markdown files
-    os.chdir(directory)
+    directory = "./documents/docs/chapters/"
+    split_chapters(markdown_file, directory)
+    outout_file = "HoppyBrew.pdf"
 
     # Call the function to merge and convert the files
     merge_and_convert_to_pdf(directory, outout_file)

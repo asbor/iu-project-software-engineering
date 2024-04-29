@@ -48,13 +48,13 @@ services:
     depends_on:
       - db
     env_file:
-      - ./services/backend/.env
+      - .env
     networks:
       - my-network
 
   db:
     container_name: iu-project-software-engineering-db-1
-    image: postgres:latest
+    image: postgres:16.2
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

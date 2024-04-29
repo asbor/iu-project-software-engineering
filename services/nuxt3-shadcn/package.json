@@ -14,19 +14,19 @@
     "@vueuse/core": "^10.9.0",
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "lucide-vue-next": "^0.368.0",
     "nuxt": "^3.11.2",
     "nuxt-highcharts": "^3.1.1",
-    "radix-vue": "^1.7.0",
-    "shadcn-nuxt": "^0.10.2",
-    "tailwind-merge": "^2.2.2",
+    "radix-vue": "^1.7.3",
+    "shadcn-nuxt": "^0.10.4",
+    "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.11.4",
+    "@nuxtjs/tailwindcss": "^6.12.0",
     "nuxt-icon": "^0.6.10",
     "typescript": "^5.4.5"
   }
