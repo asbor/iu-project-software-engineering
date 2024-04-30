@@ -1,42 +1,94 @@
-// ExampleComponent.vue
 <template>
     <div>
-        <h1>Notes:</h1>
+        <h1>Authors</h1>
         <ul>
-            <li v-for="note in notes" :key="note.id">
-                {{ note.title }} - {{ note.content }}
+            <li v-for="author in authors" :key="author.id">
+                <strong>Name:</strong> {{ author.name }}<br>
+                <strong>Surname:</strong> {{ author.surname }}<br>
+                <strong>Created At:</strong> {{ author.created_at }}<br>
+                <strong>Updated At:</strong> {{ author.updated_at }}<br>
+                <button @click="deleteAuthor(author.id)">Delete</button>
             </li>
         </ul>
+        <form @submit.prevent="createAuthor">
+            <input type="text" v-model="newAuthorName" placeholder="Name">
+            <input type="text" v-model="newAuthorSurname" placeholder="Surname">
+            <button type="submit">Add Author</button>
+        </form>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
     data() {
         return {
-            notes: []
+            authors: [],
+            newAuthorName: '',
+            newAuthorSurname: ''
         };
     },
-    mounted() {
-        this.fetchNotes();
+    async created() {
+        await this.fetchAuthors();
     },
     methods: {
-        async fetchNotes() {
+        async fetchAuthors() {
             try {
-                const token = 'Bearer YOUR_ACCESS_TOKEN'; // Replace with your actual access token
-                const config = {
+                const response = await fetch('http://localhost:8000/authors', {
+                    method: 'GET',
                     headers: {
-                        Authorization: token
+                        'Accept': 'application/json'
                     }
-                };
-                const response = await axios.get('http://localhost:5000/notes', config);
-                this.notes = response.data;
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch authors');
+                }
+                const data = await response.json();
+                this.authors = data;
             } catch (error) {
-                console.error('Error fetching notes:', error);
+                console.error(error);
+            }
+        },
+        async createAuthor() {
+            try {
+                const response = await fetch('http://localhost:8000/authors', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        // autoincrement uuid
+                        // id format: 558687de-d967-464e-84d7-c2bd89371586
+                        id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+                        name: this.newAuthorName,
+                        surname: this.newAuthorSurname,
+                        created_at: new Date().toISOString(), // format: 2024-04-29T13:00:00.158Z
+                        updated_at: new Date().toISOString() // format: 2024-04-29T13:00:00.158Z
+
+                    })
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to create author');
+                }
+                await this.fetchAuthors();
+                this.newAuthorName = '';
+                this.newAuthorSurname = '';
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async deleteAuthor(authorId) {
+            try {
+                const response = await fetch(`http://localhost:8000/authors/${authorId}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to delete author');
+                }
+                await this.fetchAuthors();
+            } catch (error) {
+                console.error(error);
             }
         }
     }
-}
+};
 </script>

@@ -8,9 +8,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    volumes:
-      - './nuxt3-scadcn:/app'  # Mount the entire application directory
-      - '/app/node_modules'    # Ensure node_modules persistence
     environment:
       - NODE_ENV=production
     networks:
@@ -26,16 +23,16 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=admin
     restart: always
 
-  frontend:
-    container_name: iu-project-software-engineering-frontend-1
-    build: ./services/frontend
-    volumes:
-      - './services/frontend:/app'
-      - '/app/node_modules'
-    ports:
-      - 8080:8080
-    networks:
-      - my-network
+#  frontend:
+#    container_name: iu-project-software-engineering-frontend-1
+#    build: ./services/frontend
+#    volumes:
+#      - './services/frontend:/app'
+#      - '/app/node_modules'
+#    ports:
+#      - 8080:8080
+#    networks:
+#      - my-network
 
   backend:
     container_name: iu-project-software-engineering-backend-1
