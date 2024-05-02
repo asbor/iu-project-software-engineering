@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
 import uuid
 from setup import SessionLocal
-import database.models.models as models
+import database.models as models
 import database.schemas.schemas as schemas
 
 router = APIRouter()

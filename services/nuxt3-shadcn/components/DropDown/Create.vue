@@ -29,7 +29,7 @@ import {
                 </NuxtLink>
             </DropdownMenuItem>
             <DropdownMenuItem>
-                <NuxtLink href="/importRecipe"
+                <NuxtLink href="/ImportXML"
                     class="flex items-center hover:bg-neutral-300 rounded cursor-pointer p-2 gap-2 w-full">
                     <Icon size="20" name="bx:bx-import" />
                     <div class="flex flex-col gap-1">

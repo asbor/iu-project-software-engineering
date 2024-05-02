@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException, status
 from setup import SessionLocal
 from pydantic import validate_email
 import uuid
-import database.models.models as models
+import database.models as models
 import database.schemas.schemas as schemas
 import re
 

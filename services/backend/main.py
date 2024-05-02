@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from setup import engine
 from api.router import router
-import database.models.models as models
+from database.models.base import Base
 from fastapi.middleware.cors import CORSMiddleware
 
-# create the database tables if they do not exist already
-models.Base.metadata.create_all(bind=engine)
+# Connect to the database (bind the engine)
+# Create the tables in the database (create_all)
+Base.metadata.create_all(bind=engine)
 
 # create the FastAPI app and include the router from the endpoints folder
 app = FastAPI(title="PostgreSQL and FastAPI")
