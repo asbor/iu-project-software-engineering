@@ -5,28 +5,28 @@
                 <input type="file" @change="handleFileUpload">
             </div>
             <div>
-                <div v-if="recipes && recipes.length">
-                    <h2>Recipes:</h2>
+                <div v-if="recipe && recipe.length">
+                    <h2>Recipe:</h2>
                     <ul>
-                        <li v-for="(recipe, index) in recipes" :key="index">
+                        <li v-for="(recipe, index) in recipe" :key="index">
                             <label>
-                                <input type="checkbox" v-model="selectedRecipes" :value="recipe">
+                                <input type="checkbox" v-model="selectedRecipe" :value="recipe">
                                 {{ recipe.name }}
                             </label>
                         </li>
                     </ul>
                 </div>
                 <div v-else>
-                    <p>No recipes found.</p>
+                    <p>No recipe found.</p>
                 </div>
             </div>
             <div>
-                <p>Import selected recipes:</p>
-                <Button @click="importRecipes">Import</button>
+                <p>Import selected recipe:</p>
+                <Button @click="importRecipe">Import</button>
             </div>
         </div>
-        <div v-if="selectedRecipes.length > 0" class="grid gap-4 lg:grid-cols-3">
-            <XMLBeerCard v-for='( recipe, index ) in selectedRecipes' :card="recipe" :key='index' />
+        <div v-if="selectedRecipe.length > 0" class="grid gap-4 lg:grid-cols-3">
+            <XMLBeerCard v-for='( recipe, index ) in selectedRecipe' :card="recipe" :key='index' />
         </div>
     </div>
 
@@ -38,8 +38,8 @@ export default {
     data() {
         return {
             xmlData: null,
-            recipes: [],
-            selectedRecipes: []
+            recipe: [],
+            selectedRecipe: []
         };
     },
     methods: {
@@ -59,7 +59,7 @@ export default {
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(this.xmlData, "text/xml");
             const recipeNodes = xmlDoc.getElementsByTagName("RECIPE");
-            const recipes = [];
+            const recipe = [];
             for (let i = 0; i < recipeNodes.length; i++) {
                 const recipeNode = recipeNodes[i];
                 const name = recipeNode.getElementsByTagName("NAME")[0].textContent;
@@ -68,8 +68,8 @@ export default {
                 const batchSize = recipeNode.getElementsByTagName("BATCH_SIZE")[0].textContent;
                 // Extract other recipe details as needed
 
-                // Extract hops
-                const hops = [];
+                // Extract hop
+                const hop = [];
                 const hopNodes = recipeNode.getElementsByTagName("HOP");
                 for (let j = 0; j < hopNodes.length; j++) {
                     const hopNode = hopNodes[j];
@@ -78,10 +78,10 @@ export default {
                     const hopUse = hopNode.getElementsByTagName("USE")[0].textContent;
                     const hopTime = hopNode.getElementsByTagName("TIME")[0].textContent;
                     // Extract other hop details as needed
-                    hops.push({ name: hopName, amount: hopAmount, use: hopUse, time: hopTime });
+                    hop.push({ name: hopName, amount: hopAmount, use: hopUse, time: hopTime });
                 }
 
-                const fermentables = [];
+                const fermentable = [];
                 const fermentableNodes = recipeNode.getElementsByTagName("FERMENTABLE");
                 for (let j = 0; j < fermentableNodes.length; j++) {
                     const fermentableNode = fermentableNodes[j];
@@ -89,16 +89,16 @@ export default {
                     const fermentableAmount = fermentableNode.getElementsByTagName("TYPE")[0].textContent;
                     const fermentableUse = fermentableNode.getElementsByTagName("NOTES")[0].textContent;
                     // Extract other fermentable details as needed
-                    fermentables.push({ name: fermentableName, amount: fermentableAmount, use: fermentableUse });
+                    fermentable.push({ name: fermentableName, amount: fermentableAmount, use: fermentableUse });
                 }
 
-                const miscs = [];
+                const misc = [];
                 const miscNodes = recipeNode.getElementsByTagName("MISC");
                 for (let j = 0; j < miscNodes.length; j++) {
                     const miscNode = miscNodes[j];
                     const miscName = miscNode.getElementsByTagName("NAME")[0].textContent;
                     // Extract other misc details as needed
-                    miscs.push({ name: miscName });
+                    misc.push({ name: miscName });
                 }
 
                 const yeasts = [];
@@ -142,28 +142,28 @@ export default {
                 }
 
 
-                recipes.push({ name, type, brewer, batchSize, hops, fermentables, miscs, yeasts, styles });
+                recipe.push({ name, type, brewer, batchSize, hop, fermentable, misc, yeasts, styles });
             }
-            this.recipes = recipes;
+            this.recipe = recipe;
         },
-        async importRecipes() {
+        async importRecipe() {
             try {
-                const response = await fetch("http://localhost:8000/api/recipes/import", {
+                const response = await fetch("http://localhost:8000/api/recipe/import", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(this.selectedRecipes)
+                    body: JSON.stringify(this.selectedRecipe)
                 });
                 if (response.ok) {
-                    alert("Recipes imported successfully!");
+                    alert("Recipe imported successfully!");
                 } else {
-                    alert("Failed to import recipes.");
+                    alert("Failed to import recipe.");
                 }
                 await this.parseXMLData();
             } catch (error) {
                 console.error(error);
-                alert("Failed to import recipes.");
+                alert("Failed to import recipe.");
             }
         }
     }

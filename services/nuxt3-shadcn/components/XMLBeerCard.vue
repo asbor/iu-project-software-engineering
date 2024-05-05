@@ -19,14 +19,14 @@
             <p><strong>Batch Size:</strong> {{ formatVolume(card.batchSize) }}</p>
             <div>
                 <div class="flex items-center gap-2">
-                    <strong>Hops:</strong> {{ Array.from(new Set(card.hops.map(hop => hop.name))).join(', ') }}
+                    <strong>Hop:</strong> {{ Array.from(new Set(card.hop.map(hop => hop.name))).join(', ') }}
                 </div>
                 <div class="flex items-center gap-2">
-                    <strong>Fermentables:</strong> {{ Array.from(new Set(card.fermentables.map(fermentable =>
+                    <strong>Fermentable:</strong> {{ Array.from(new Set(card.fermentable.map(fermentable =>
                         fermentable.name))).join(', ') }}
                 </div>
                 <div class="flex items-center gap-2">
-                    <strong>Misc:</strong> {{ Array.from(new Set(card.miscs.map(misc => misc.name))).join(', ') }}
+                    <strong>Misc:</strong> {{ Array.from(new Set(card.misc.map(misc => misc.name))).join(', ') }}
                 </div>
                 <div class="flex items-center gap-2">
                     <strong>Yeast:</strong> {{ Array.from(new Set(card.yeasts.map(yeast => yeast.name))).join(', ') }}

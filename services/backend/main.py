@@ -4,6 +4,7 @@ from api.router import router
 from database.models.base import Base
 from fastapi.middleware.cors import CORSMiddleware
 
+
 # Connect to the database (bind the engine)
 # Create the tables in the database (create_all)
 Base.metadata.create_all(bind=engine)

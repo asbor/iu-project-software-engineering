@@ -4,8 +4,8 @@ import Button from '../ui/button/Button.vue';
 const items = ref([
   // Dashboard
   { title: "Dashboard", path: "/", icon: "ri:dashboard-line" },
-  // Beer brewing recipes
-  { title: "Recipes", path: "/recipes", icon: "lucide:book-open-text" },
+  // Beer brewing recipe
+  { title: "Recipe", path: "/recipe", icon: "lucide:book-open-text" },
   // Beer brewing batches
   { title: "Batches", path: "/batches", icon: "lucide:beer" },
   // Inventory
@@ -29,6 +29,7 @@ import { useDark, useToggle } from "@vueuse/core";
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
+
 </script>
 
 <template>
@@ -50,11 +51,12 @@ const toggleDark = useToggle(isDark);
     </main>
     <footer>
       <div>
-        <div class="flex items-center justify-between p-4">
-          <button @click="toggleDark()">
+        <div class="p-4">
+          <button @click="toggleDark()" class="flex items-center gap-2">
             <Icon :name="isDark.value ? 'bx:bx-moon' : 'bx:bx-sun'" />
             <span>Toggle Color Mode</span>
           </button>
+          <CheckDatabaseConnection />
         </div>
         <UserAccountUserItem />
       </div>

@@ -6,7 +6,7 @@ const loading = ref(false)
     <div class="grid w-full gap-4">
         <header class="flex items-start justify-between">
             <div class="grow">
-                <h1>Create Recipes</h1>
+                <h1>Create Recipe</h1>
             </div>
         </header>
 
@@ -175,20 +175,20 @@ const loading = ref(false)
             </div>
             <div class="flex items-start justify-between border-2  gap-2">
                 <div>
-                    <div name="Fermentables" class="flex items-start items-center gap-2 w-full">
+                    <div name="Fermentable" class="flex items-start items-center gap-2 w-full">
                         <div>
                             <Icon size="20" name="lucide:wheat" />
                         </div>
                         <div>
-                            <label for="Fermentables" class="form-label">Fermentables:</label>
+                            <label for="Fermentable" class="form-label">Fermentable:</label>
                         </div>
                     </div>
-                    <div name="Hops" class="flex items-start items-center gap-2 w-full">
+                    <div name="Hop" class="flex items-start items-center gap-2 w-full">
                         <div>
                             <Icon size="20" name="lucide:hop" />
                         </div>
                         <div>
-                            <label for="Hops" class="form-label">Hops:</label>
+                            <label for="Hop" class="form-label">Hop:</label>
                         </div>
                     </div>
                     <div name="Misc" class="flex items-start items-center gap-2 w-full">

@@ -1,17 +1,17 @@
 version: '3.8'
 
 services:
-  nuxt3-shadcn:
-    container_name: my-nuxt3-app
-    build: 
-      context: ./services/nuxt3-shadcn
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-    networks:
-      - my-network
+#  nuxt3-shadcn:
+#    container_name: my-nuxt3-app
+#    build: 
+#      context: ./services/nuxt3-shadcn
+#      dockerfile: Dockerfile
+#    ports:
+#      - "3000:3000"
+#    environment:
+#      - NODE_ENV=production
+#    networks:
+#      - my-network
   
   pgadmin:
     container_name: my-pgadmin

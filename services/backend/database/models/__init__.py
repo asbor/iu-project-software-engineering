@@ -1,24 +1,26 @@
 # database/models/__init__.py
-from .equipments import Equipments
-from .fermentables import Fermentables
-from .hops import Hops
-from .mashes import Mashes
-from .miscs import Miscs
-from .recipes import Recipes
-from .styles import Styles
-from .users import Users
-from .waters import Waters
-from .yeasts import Yeasts
+from .equipment import Equipment
+from .fermentable import Fermentable
+from .hop import Hop
+from .mash import Mash
+from .misc import Misc
+from .recipe import Recipe
+from .style import Style
+from .user import User
+from .water import Water
+from .yeast import Yeast
+from .log import Log
 
 __all__ = [
-    "Equipments",
-    "Fermentables",
-    "Hops",
-    "Mashes",
-    "Miscs",
-    "Recipes",
-    "Styles",
-    "Users",
-    "Waters",
-    "Yeasts",
+    "Equipment",
+    "Fermentable",
+    "Hop",
+    "Mash",
+    "Misc",
+    "Recipe",
+    "Style",
+    "User",
+    "Water",
+    "Yeast",
+    "Log"
 ]
