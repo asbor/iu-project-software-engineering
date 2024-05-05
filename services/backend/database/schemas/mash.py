@@ -43,7 +43,7 @@ class Mash(BaseModel):
     ph: int
     tun_weight: int
     tun_specific_heat: int
-    equip_adjust: bool
+    # equip_adjust: bool
     notes: str
     display_grain_temp: str
     display_tun_temp: str

@@ -46,7 +46,7 @@ class Mash(Base):
     ph = Column(Integer, nullable=False)
     tun_weight = Column(Integer, nullable=False)
     tun_specific_heat = Column(Integer, nullable=False)
-    equip_adjust = Column(Boolean, nullable=False)
+    # equip_adjust = Column(Boolean, nullable=False)
     notes = Column(String(255), nullable=False)
     display_grain_temp = Column(String(255), nullable=False)
     display_tun_temp = Column(String(255), nullable=False)

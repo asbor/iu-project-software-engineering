@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { defineProps } from 'vue';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { useRouter } from 'vue-router'; // Import Vue Router
+import EquipmentEditDialog from '@/components/equipment/EditDialog.vue'; // Import EquipmentEditDialog component
 
 const props = defineProps({
   card: Object
@@ -9,6 +11,8 @@ const props = defineProps({
 
 const loading = ref(false);
 const formData = ref({ id: '' });
+
+const router = useRouter(); // Initialize Vue Router
 
 async function deleteEquipment() {
   try {
@@ -31,6 +35,9 @@ async function deleteEquipment() {
   } finally {
     loading.value = false;
   }
+}
+
+function editEquipment() {
 }
 </script>
 
@@ -56,6 +63,8 @@ async function deleteEquipment() {
     </CardContent>
     <CardFooter class="flex justify-end px-4 py-2 bg-gray-100">
       <button @click="deleteEquipment" class="text-red-500 hover:text-red-700 font-semibold">Delete</button>
+      <equipmentEditDialog />
+      <EditDialog :formData="props.card" />
     </CardFooter>
   </Card>
 </template>

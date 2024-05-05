@@ -3,30 +3,68 @@ from uuid import UUID
 from setup import SessionLocal
 import database.models as models
 import database.schemas as schemas
+from api.validation.mash_validation import MashCreate
+from typing import List
+from uuid import uuid4
 
 router = APIRouter()
 db = SessionLocal()
 
 
-@router.post("/mash", response_model=schemas.Mash)
-def create_mash(mash: schemas.Mash):
-    """
-    Create a new mash entry in the database.
+@router.post("/mash", response_model=dict, status_code=status.HTTP_201_CREATED)
+async def create_mash(mash: MashCreate):
+    # Check if mash name already exists
+    existing_mash = db.query(models.Mash).filter(
+        models.Mash.name == mash.name).first()
+    if existing_mash:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Mash name already exists")
 
-    Args:
-        mash (Mash): The mash data to be added to the database.
+    # Generate unique ID
+    mash_id = str(uuid4())
 
-    Returns:
-        Mash: The mash data that was added to the database.
+    # Create new mash profile
+    new_mash = models.Mash(
+        id=mash_id,
+        name=mash.name,
+        version=mash.version,
+        grain_temp=mash.grain_temp,
+        tun_temp=mash.tun_temp,
+        sparge_temp=mash.sparge_temp,
+        ph=mash.ph,
+        tun_weight=mash.tun_weight,
+        tun_specific_heat=mash.tun_specific_heat,
+        # equip_adjust=mash.equip_adjust,
+        notes=mash.notes if mash.notes else "",
+        display_grain_temp=mash.display_grain_temp if mash.display_grain_temp else "",
+        display_tun_temp=mash.display_tun_temp if mash.display_tun_temp else "",
+        display_sparge_temp=mash.display_sparge_temp if mash.display_sparge_temp else "",
+        display_tun_weight=mash.display_tun_weight if mash.display_tun_weight else "",
+        # recipe_id=mash.recipe_id,
+        # recipe=mash.recipe
+    )
 
-    Raises:
-        HTTPException: If an error occurs while trying to add the mash data to the database.
-    """
-    new_mash = models.Mash(**mash.dict())
+    # Add mash profile to the database
     db.add(new_mash)
     db.commit()
     db.refresh(new_mash)
-    return new_mash
+
+    return {"message": "Mash profile created successfully", "mash_id": mash_id}
+
+
+@router.get("/mash", response_model=List[schemas.Mash])
+def get_all_mash():
+    """
+    Retrieve all mash entries from the database.
+
+    Returns:
+        List[mash]: The list of all mash entries retrieved from the database.
+
+    Raises:
+        HTTPException: If an error occurs while trying to retrieve mash data from the database.
+    """
+    mash = db.query(models.Mash).all()
+    return mash
 
 
 @router.get("/mash/{mash_id}", response_model=schemas.Mash)
