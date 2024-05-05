@@ -88,30 +88,37 @@ def read_mash(mash_id: UUID):
     return mash
 
 
-@router.put("/mash/{mash_id}", response_model=schemas.Mash)
-def update_mash(mash_id: UUID, mash: schemas.Mash):
-    """
-    Update a mash entry in the database.
-
-    Args:
-        mash_id (UUID): The unique identifier for the mash.
-        mash (Mash): The mash data to be added to the database.
-
-    Returns:
-        Mash: The updated mash data.
-
-    Raises:
-        HTTPException: If the mash data with the specified ID does not exist in the database.
-    """
-    mash_data = db.query(models.Mash).filter(models.Mash.id == mash_id).first()
-    if mash_data is None:
+@router.put("/mash/{mash_id}", response_model=dict)
+async def update_mash(mash_id: UUID, mash: MashCreate):
+    # Check if mash exists
+    existing_mash = db.query(models.Mash).filter(
+        models.Mash.id == mash_id).first()
+    if not existing_mash:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Mash not found")
-    for key, value in mash.dict().items():
-        setattr(mash_data, key, value)
+
+    # Update mash profile
+    existing_mash.id = mash_id
+    existing_mash.name = mash.name
+    existing_mash.version = mash.version
+    existing_mash.grain_temp = mash.grain_temp
+    existing_mash.tun_temp = mash.tun_temp
+    existing_mash.sparge_temp = mash.sparge_temp
+    existing_mash.ph = mash.ph
+    existing_mash.tun_weight = mash.tun_weight
+    existing_mash.tun_specific_heat = mash.tun_specific_heat
+    existing_mash.notes = mash.notes if mash.notes else ""
+    existing_mash.display_grain_temp = mash.display_grain_temp if mash.display_grain_temp else ""
+    existing_mash.display_tun_temp = mash.display_tun_temp if mash.display_tun_temp else ""
+    existing_mash.display_sparge_temp = mash.display_sparge_temp if mash.display_sparge_temp else ""
+    existing_mash.display_tun_weight = mash.display_tun_weight if mash.display_tun_weight else ""
+    # existing_mash.mash_steps = mash.mash_steps if mash.mash_steps else []
+    # existing_mash.recipe_id = mash.recipe_id
+    # existing_mash.recipe = mash.recipe
+
     db.commit()
-    db.refresh(mash_data)
-    return mash_data
+
+    return {"message": "Mash profile updated successfully", "mash_id": mash_id}
 
 
 @router.delete("/mash/{mash_id}")
