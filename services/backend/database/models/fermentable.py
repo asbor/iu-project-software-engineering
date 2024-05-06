@@ -12,82 +12,67 @@ class Fermentable(Base):
 
     Attributes:
         id (UUID): The unique identifier for the fermentable.
-        created_at (DateTime): The timestamp when the fermentable was created.
-        updated_at (DateTime): The timestamp when the fermentable was last updated.
+        created_at (datetime): The date and time the fermentable was created.
+        updated_at (datetime): The date and time the fermentable was last updated.
         name (str): The name of the fermentable.
-        version (int): The version number of the fermentable.
-        type (str): The type of fermentable.
-        amount (int): The amount of fermentable used.
-        yield_ (int): The yield of the fermentable.
-        color (int): The color of the fermentable.
-        add_after_boil (bool): Whether to add the fermentable after the boil.
-        origin (str): The origin of the fermentable.
+        amount (int): The amount of the fermentable in kilograms.
+        cost_per_unit (float): The cost per unit in Euros.
         supplier (str): The supplier of the fermentable.
+        origin (str): The origin of the fermentable.
+        type (str): The type of the fermentable.
+        color (int): The color of the fermentable in EBC.
+        potential (int): The potential of the fermentable in PPG (Points Per Gallon).
+        yield_ (float): The yield of the fermentable as a percentage.
+        manufacturing_date (str): The manufacturing date of the fermentable.
+        expiry_date (str): The expiry date of the fermentable.
+        lot_number (str): The lot number of the fermentable.
+        exclude_from_total (bool): Indicates whether to exclude the fermentable from the total.
+        not_fermentable (bool): Indicates whether the fermentable is not fermentable.
         notes (str): Additional notes about the fermentable.
-        coarse_fine_diff (int): The difference between coarse and fine grind of the fermentable.
-        moisture (int): The moisture content of the fermentable.
-        diastatic_power (int): The diastatic power of the fermentable.
-        protein (int): The protein content of the fermentable.
-        max_in_batch (int): The maximum amount of fermentable in a batch.
-        recommend_mash (bool): Whether to recommend mashing the fermentable.
-        ibu_gal_per_lb (int): The IBU per gallon per pound of fermentable.
-        display_amount (str): Formatted amount of fermentable.
-        inventory (int): The amount of fermentable in inventory.
-        potential (int): The potential of the fermentable.
-        display_color (str): Formatted color of the fermentable.
-        recipe_id (UUID): The unique identifier for the recipe.
-        recipe (relationship): Relationship to the Recipe table.
+        description (str): Description of the fermentable.
+        substitutes (str): Substitutes for the fermentable.
+        used_in (str): Where the fermentable is used.
     """
     __tablename__ = "fermentable"
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    created_at = Column(DateTime, default=datetime.now(
-        timezone.utc), nullable=False)
-    updated_at = Column(DateTime, default=datetime.now(
-        timezone.utc), nullable=False)
-    name = Column(String(255), nullable=False)
-    version = Column(Integer, nullable=False)
-    type = Column(String(255), nullable=False)
+    created_at = Column(DateTime, default=datetime.now(timezone.utc))
+    updated_at = Column(DateTime, default=datetime.now(timezone.utc))
+    name = Column(String, nullable=False)
     amount = Column(Integer, nullable=False)
-    yield_ = Column(Integer, nullable=False)
+    cost_per_unit = Column(Integer, nullable=False)
+    supplier = Column(String, nullable=False)
+    origin = Column(String, nullable=False)
+    type = Column(String, nullable=False)
     color = Column(Integer, nullable=False)
-    add_after_boil = Column(Boolean, nullable=False)
-    origin = Column(String(255), nullable=False)
-    supplier = Column(String(255), nullable=False)
-    notes = Column(String(255), nullable=False)
-    coarse_fine_diff = Column(Integer, nullable=False)
-    moisture = Column(Integer, nullable=False)
-    diastatic_power = Column(Integer, nullable=False)
-    protein = Column(Integer, nullable=False)
-    max_in_batch = Column(Integer, nullable=False)
-    recommend_mash = Column(Boolean, nullable=False)
-    ibu_gal_per_lb = Column(Integer, nullable=False)
-    display_amount = Column(String(255), nullable=False)
-    inventory = Column(Integer, nullable=False)
     potential = Column(Integer, nullable=False)
-    display_color = Column(String(255), nullable=False)
+    yield_ = Column(Integer, nullable=False)
+    manufacturing_date = Column(DateTime, default=datetime.now(timezone.utc))
+    expiry_date = Column(DateTime, default=datetime.now(timezone.utc))
+    lot_number = Column(String, nullable=False)
+    exclude_from_total = Column(Boolean, nullable=False)
+    not_fermentable = Column(Boolean, nullable=False)
+    notes = Column(String, nullable=False)
+    description = Column(String, nullable=False)
+    substitutes = Column(String, nullable=False)
+    used_in = Column(String, nullable=False)
 
     def __repr__(self):
         return f"Fermentable(id={self.id}, \
-                created_at={self.created_at}, \
-                updated_at={self.updated_at}, \
-                name={self.name}, \
-                version={self.version}, \
-                type={self.type}, \
-                amount={self.amount}, \
-                yield_={self.yield_}, \
-                color={self.color}, \
-                add_after_boil={self.add_after_boil}, \
-                origin={self.origin}, \
-                supplier={self.supplier}, \
-                notes={self.notes}, \
-                coarse_fine_diff={self.coarse_fine_diff}, \
-                moisture={self.moisture}, \
-                diastatic_power={self.diastatic_power}, \
-                protein={self.protein}, \
-                max_in_batch={self.max_in_batch}, \
-                recommend_mash={self.recommend_mash}, \
-                ibu_gal_per_lb={self.ibu_gal_per_lb}, \
-                display_amount={self.display_amount}, \
-                inventory={self.inventory}, \
-                potential={self.potential}, \
-                display_color={self.display_color}"
+            name={self.name}, \
+            amount={self.amount}, \
+            cost_per_unit={self.cost_per_unit}, \
+            supplier={self.supplier}, \
+            origin={self.origin}, \
+            type={self.type}, \
+            color={self.color}, \
+            potential={self.potential}, \
+            yield_={self.yield_}, \
+            manufacturing_date={self.manufacturing_date}, \
+            expiry_date={self.expiry_date}, \
+            lot_number={self.lot_number}, \
+            exclude_from_total={self.exclude_from_total}, \
+            not_fermentable={self.not_fermentable}, \
+            notes={self.notes}, \
+            description={self.description}, \
+            substitutes={self.substitutes}, \
+            used_in={self.used_in})"

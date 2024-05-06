@@ -10,57 +10,49 @@ class Fermentable(BaseModel):
 
     Attributes:
         id (UUID): The unique identifier for the fermentable.
-        created_at (DateTime): The timestamp when the fermentable was created.
-        updated_at (DateTime): The timestamp when the fermentable was last updated.
+        created_at (datetime): The date and time the fermentable was created.
+        updated_at (datetime): The date and time the fermentable was last updated.
         name (str): The name of the fermentable.
-        version (int): The version number of the fermentable.
-        type (str): The type of fermentable.
-        amount (int): The amount of fermentable used.
-        yield_ (int): The yield of the fermentable.
-        color (int): The color of the fermentable.
-        add_after_boil (bool): Whether to add the fermentable after the boil.
-        origin (str): The origin of the fermentable.
+        amount (int): The amount of the fermentable in kilograms.
+        cost_per_unit (float): The cost per unit in Euros.
         supplier (str): The supplier of the fermentable.
+        origin (str): The origin of the fermentable.
+        type (str): The type of the fermentable.
+        color (int): The color of the fermentable in EBC.
+        potential (int): The potential of the fermentable in PPG (Points Per Gallon).
+        yield_ (float): The yield of the fermentable as a percentage.
+        manufacturing_date (str): The manufacturing date of the fermentable.
+        expiry_date (str): The expiry date of the fermentable.
+        lot_number (str): The lot number of the fermentable.
+        exclude_from_total (bool): Indicates whether to exclude the fermentable from the total.
+        not_fermentable (bool): Indicates whether the fermentable is not fermentable.
         notes (str): Additional notes about the fermentable.
-        coarse_fine_diff (int): The difference between coarse and fine grind of the fermentable.
-        moisture (int): The moisture content of the fermentable.
-        diastatic_power (int): The diastatic power of the fermentable.
-        protein (int): The protein content of the fermentable.
-        max_in_batch (int): The maximum amount of fermentable in a batch.
-        recommend_mash (bool): Whether to recommend mashing the fermentable.
-        ibu_gal_per_lb (int): The IBU per gallon per pound of fermentable.
-        display_amount (str): Formatted amount of fermentable.
-        inventory (int): The amount of fermentable in inventory.
-        potential (int): The potential of the fermentable.
-        display_color (str): Formatted color of the fermentable.
-        recipe_id (UUID): The unique identifier for the recipe.
-        recipe (relationship): Relationship to the Recipe table.
+        description (str): Description of the fermentable.
+        substitutes (str): Substitutes for the fermentable.
+        used_in (str): Where the fermentable is used.
     """
 
     id: uuid.UUID
     created_at: datetime
     updated_at: datetime
     name: str
-    version: int
-    type: str
     amount: int
-    yield_: int
-    color: int
-    add_after_boil: bool
-    origin: str
+    cost_per_unit: float
     supplier: str
-    notes: str
-    coarse_fine_diff: int
-    moisture: int
-    diastatic_power: int
-    protein: int
-    max_in_batch: int
-    recommend_mash: bool
-    ibu_gal_per_lb: int
-    display_amount: str
-    inventory: int
+    origin: str
+    type: str
+    color: int
     potential: int
-    display_color: str
+    yield_: float
+    manufacturing_date: date
+    expiry_date: date
+    lot_number: str
+    exclude_from_total: bool
+    not_fermentable: bool
+    notes: str
+    description: str
+    substitutes: str
+    used_in: str
 
     class Config:
         orm_mode = True
