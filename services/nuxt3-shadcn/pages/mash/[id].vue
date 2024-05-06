@@ -64,10 +64,11 @@ export default {
       axios.put('http://localhost:8000/mash/' + this.id, this.mash)
         .then(res => {
           console.log(res, 'res');
-          alert(res.data.message);
+          //alert(res.data.message);
 
           myThis.isloading = false;
           this.isLoadingTitle = 'Loading mash profile';
+          this.$router.back();
         })
         .catch(function (error) {
           console.log(error, 'error');
@@ -83,6 +84,7 @@ export default {
     cancel() {
       // Cancel the operation
       console.log('Operation canceled');
+      this.$router.back();
     }
   }
 

@@ -41,8 +41,25 @@ async function fetchMashProfiles() {
   }
 }
 
-function openEditDialog(mashProfile: MashProfile) {
-  selectedMashProfile.value = mashProfile;
+function deleteMashProfile(id: string) {
+  if (!confirm('Are you sure you want to delete this mash profile?')) {
+    return;
+  }
+
+  // Delete the mash profile
+  fetch(`http://localhost:8000/mash/${id}`, {
+    method: 'DELETE',
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to delete mash profile');
+      }
+      // Remove the deleted mash profile from the list
+      mashProfiles.value = mashProfiles.value.filter((mashProfile) => mashProfile.id !== id);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 onMounted(fetchMashProfiles);
@@ -82,10 +99,12 @@ onMounted(fetchMashProfiles);
             <TableCell>{{ mashProfile.tun_temp }}</TableCell>
             <TableCell class="text-right">
               <!-- Add buttons for actions like edit or delete -->
-              <Button asChild>
+              <Button asChild class="mr-2">
                 <NuxtLink :href="`/mash/${mashProfile.id}`">Edit</NuxtLink>
               </Button>
-              <!-- Add more action buttons if needed -->
+
+              <!-- Delete button -->
+              <Button @click="deleteMashProfile(mashProfile.id)">Delete</Button>
             </TableCell>
           </TableRow>
         </template>
