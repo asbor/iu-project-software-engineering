@@ -1,0 +1,11 @@
+@startuml
+enum "Mash_Sparge_Water_Calc_Method" {
+    Default
+    Batch_Sparge
+    No_Sparge
+    Ignore_Boil_Expansion
+    Custom
+}
+Mash_Sparge_Water -- Mash_Sparge_Water_Calc_Method
+
+@enduml

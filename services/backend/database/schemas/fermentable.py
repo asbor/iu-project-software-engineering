@@ -36,7 +36,7 @@ class Fermentable(BaseModel):
     created_at: datetime
     updated_at: datetime
     name: str
-    amount: int
+    amount: float
     cost_per_unit: float
     supplier: str
     origin: str

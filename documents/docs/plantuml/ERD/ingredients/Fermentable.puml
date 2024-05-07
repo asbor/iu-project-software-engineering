@@ -1,0 +1,41 @@
+@startuml
+
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/Adjunct.puml
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/DryExtract.puml
+'!include documents/docs/plantuml/ERD/ingredients/Fermentable/Fermentable_Category.puml
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/Grain.puml
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/LiquidExtract.puml
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/Other.puml
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/Sugar.puml
+
+abstract class "Fermentable" as Fermentable {
+    + id : int
+    --
+    ..General..
+    name : string
+    supplier : string
+    origin : string
+    type : string
+    ..Common Properties..
+    color : decimal
+    potential : decimal
+    yield : decimal
+    manufacturing_date : date
+    expiration_date : date
+    lot_number : string
+    exclude_from_total : boolean
+    not_fermentable : boolean
+    notes : string
+    description : string
+    substitutes : string
+    used_in : string
+}
+
+Fermentable <|-- Adjunct 
+Fermentable <|-- DryExtract 
+Fermentable <|-- Grain
+Fermentable <|-- LiquidExtract 
+Fermentable <|-- Other 
+Fermentable <|-- Sugar 
+
+@enduml

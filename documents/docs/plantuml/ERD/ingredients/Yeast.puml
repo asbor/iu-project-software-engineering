@@ -1,0 +1,38 @@
+@startuml
+'!include documents/docs/plantuml/ERD/ingredients/Yeast/YeastFlocculation.puml 
+'!include documents/docs/plantuml/ERD/ingredients/Yeast/YeastForm.puml 
+'!include documents/docs/plantuml/ERD/ingredients/Yeast/YeastType.puml 
+'!include documents/docs/plantuml/ERD/ingredients/Yeast/YeastUnit.puml
+
+
+class "Yeast" as Yeast {
+    + id : int
+    --
+    ..General..
+    name : string
+    supplier : string
+    ..Properties..
+    laboratory : string
+    id : string                                     /' Example: US-05, WLP001, etc. '/
+    unit : Enum[YeastUnit]
+    attenuation : decimal
+    type : YeastType
+    form : YeastForm
+    manufacturing_date : date
+    best_before : date
+    lot_number : string
+    atteunates_complex_sugars : boolean
+    inventory : string
+    notes : string
+    min_temperature : decimal
+    max_temperature : decimal
+    min_attenuation : decimal
+    max_attenuation : decimal
+    max_alcohol : decimal /' EngUnit: %, Max Alcohol By Volume '/
+    flocculation : YeastFlocculation
+}
+
+
+
+
+@enduml

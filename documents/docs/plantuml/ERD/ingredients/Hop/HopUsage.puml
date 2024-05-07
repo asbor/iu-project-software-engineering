@@ -1,0 +1,9 @@
+@startuml
+Enum "HopUsage" {
+    aroma
+    bitter
+    both
+}
+
+Hops -- HopUsage
+@enduml

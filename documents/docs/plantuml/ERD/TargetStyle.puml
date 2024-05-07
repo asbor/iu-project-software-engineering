@@ -1,0 +1,24 @@
+@startuml
+class "TargetStyle" as TargetStyle {
+    + id : int
+    --
+    name : string
+    category : string
+    style_letter : string
+    style_guide : string
+    type : string
+    og_min : decimal
+    og_max : decimal
+    fg_min : decimal
+    fg_max : decimal
+    ibu_min : decimal
+    ibu_max : decimal
+    color_min : decimal
+    color_max : decimal
+    carb_min : decimal
+    carb_max : decimal
+    abv_min : decimal
+    abv_max : decimal
+    notes : string
+}
+@enduml

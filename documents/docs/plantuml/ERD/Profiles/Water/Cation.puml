@@ -1,0 +1,11 @@
+@startuml
+class "Cation" as Cation {
+    + id : int
+    --
+    calcium : decimal /' EngUnit: ppm, Calcium Ca2+ '/
+    magnesium : decimal /' EngUnit: ppm, Magnesium Mg2+ '/
+    sodium : decimal /' EngUnit: ppm, Sodium Na+ '/
+}
+
+WaterProfile -- Cation
+@enduml

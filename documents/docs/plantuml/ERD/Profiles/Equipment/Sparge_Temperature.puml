@@ -1,0 +1,10 @@
+@startuml
+
+class "Sparge_Temperature" as Sparge_Temperature {
+    + id : int
+    --
+    sparge_temp : decimal
+}
+
+EquipmentProfile -- Sparge_Temperature
+@enduml

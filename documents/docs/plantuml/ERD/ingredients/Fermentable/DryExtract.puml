@@ -1,0 +1,8 @@
+@startuml
+class "DryExtract" as DryExtract {
+    + id : int
+    --
+}
+
+
+@enduml

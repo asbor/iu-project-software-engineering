@@ -1,0 +1,11 @@
+@startuml
+class "Anion" as Anion {
+    + id : int
+    --
+    sulfate : decimal /' EngUnit: ppm, Sulfate SO4- '/
+    chloride : decimal /' EngUnit: ppm, Chloride Cl- '/
+    bicarbonate : decimal /' EngUnit: ppm, Bicarbonate HCO3- '/
+}
+
+WaterProfile -- Anion
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+enum "Fermentable_Category" {
+    Base
+    Base_6_Row
+    Base_Maris_Otter
+    Base_Munich
+    Base_Pilsner
+    Base_Wheat
+    Base_Vienna
+    Crystal_Caramel
+    Roasted
+    Acidulated
+}
+
+Grain -- Fermentable_Category
+@enduml

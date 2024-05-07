@@ -1,0 +1,13 @@
+@startuml
+class "Advanced" as Advanced {
+    + id : int
+    --
+    hop_utilization_multiplier : decimal
+    aroma_hop_utilization : decimal
+    calc_aroma_hop_utilization : boolean
+    hopstand_temp : decimal
+    whirlbool_time : decimal
+}
+
+EquipmentProfile -- Advanced
+@enduml

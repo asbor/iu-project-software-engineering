@@ -1,0 +1,13 @@
+@startuml
+class "Mash_Sparge_Water" as Mash_Sparge_Water {
+    + id : int
+    --
+    grain_absorption_rate : decimal /' EngUnit: L/kg, Grain Absorption Rate '/
+    water_grain_ratio : decimal /' EngUnit: L/kg, Water Grain Ratio '/
+    mash_sparge_water_calc_method : Mash_Sparge_Water_Calc_Method
+    sparge_water_reminder : boolean
+    time_left_of_mash : decimal
+}
+
+EquipmentProfile -- Mash_Sparge_Water
+@enduml

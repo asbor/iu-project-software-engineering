@@ -8,7 +8,7 @@
     <main class="px-4 grow">
       <div class="grid gap-2">
         <DropDownCreate />
-        <NuxtLink :href="item.path" v-for='(item, index) in items' :key='index' @click="handleLinkClick"
+        <NuxtLink :href="item.path" v-for='(item, index) in items' :key='index'
           class="flex items-center gap-2 px-2 py-1 transition rounded cursor-pointer hover:bg-neutral-100 hover:text-neutral-900">
           <Icon size="20" :name="item.icon" />
           <span>{{ item.title }}</span>
@@ -39,13 +39,6 @@ props: {
 import { defineEmits } from 'vue';
 
 defineEmits(['linkClicked']);
-
-const handleLinkClick = () => {
-  console.log('Link clicked');
-  emit('linkClicked');
-};
-
-
 
 import Button from '../ui/button/Button.vue';
 

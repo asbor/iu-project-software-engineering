@@ -1,0 +1,13 @@
+@startuml
+
+class "Boil_Temperature" as Boil_Temperature {
+    + id : int
+    --
+    altitude_adjustment : boolean
+    altitude : decimal
+    boil_temp : decimal
+    cooling_shrinkage : decimal
+}
+
+EquipmentProfile -- Boil_Temperature
+@enduml

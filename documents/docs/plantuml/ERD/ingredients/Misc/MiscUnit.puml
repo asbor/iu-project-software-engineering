@@ -1,0 +1,23 @@
+@startuml
+Enum "MiscUnit" {
+    g
+    mg
+    kg
+    ml
+    l
+    pkg
+    items
+    drops
+    tsp
+    tbsp
+    cup
+    pt
+    qt
+    oz
+    lb
+    gal
+}
+
+Misc -- MiscUnit
+@enduml
+

@@ -1,0 +1,8 @@
+@startuml
+class "Sugar" as Sugar {
+    + id : int
+    --
+}
+
+
+@enduml

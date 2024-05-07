@@ -1,0 +1,8 @@
+@startuml
+Enum "VolumeType" {
+    Kettle
+    Fermenter
+}
+
+EquipmentProfile -- VolumeType
+@enduml

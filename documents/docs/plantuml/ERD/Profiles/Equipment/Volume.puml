@@ -1,0 +1,20 @@
+@startuml
+abstract class "Volume" as Volume {
+    + id : int
+    --
+    batch_volume : decimal                  /' EngUnit: L, Batch Volume '/
+    calculated_boil_volume : decimal        /' EngUnit: L, Calculated Boil Volume '/
+    pre_boil_volume : decimal               /' EngUnit: L, Pre Boil Volume '/
+    boil_off : decimal                      /' EngUnit: L/hr, Boil Off '/
+    trub_chiller_loss : decimal             /' EngUnit: L, Trub/Chiller Loss '/
+    mash_tun_deadspace : decimal            /' EngUnit: L, Mash Tun Deadspace '/
+    mash_tun_loss : decimal                 /' EngUnit: L, Mash Tun Loss '/
+    hlt_deadspace : decimal                 /' EngUnit: L, HLT Deadspace '/
+    fermenter_loss : decimal                /' EngUnit: L, Fermenter Loss '/
+    fermenter_top_up : decimal              /' EngUnit: L, Fermenter Top Up '/
+}
+
+Kettle --|> Volume
+Fermenter --|> Volume
+
+@enduml

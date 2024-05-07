@@ -1,0 +1,12 @@
+@startuml
+class "Stats" as Stats {
+    + id : int
+    --
+    hardness : decimal /' EngUnit: ppm, Hardness '/
+    alkalinity : decimal /' EngUnit: ppm, Alkalinity '/
+    residual_alkalinity : decimal /' EngUnit: ppm, Residual Alkalinity '/
+    sodium_to_chloride_ratio : decimal /' EngUnit: ppm, Sodium to Chloride Ratio '/ 
+}
+
+WaterProfile -- Stats
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class "Other" as Other {
+    + id : int
+    --
+    total_IBU_per_kg : decimal
+}
+
+
+@enduml

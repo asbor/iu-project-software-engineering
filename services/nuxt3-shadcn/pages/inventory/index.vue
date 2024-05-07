@@ -7,7 +7,7 @@
 <template>
     <div>
         <Fermentable>
-            <NuxtLink href="/fermentable"
+            <NuxtLink href="/inventory/fermentable"
                 class="flex items-center hover:bg-neutral-300 rounded cursor-pointer p-2 gap-2 w-full">
                 <Icon size="40" name="mdi:wheat" />
                 <div class="flex flex-col gap-1">
@@ -17,7 +17,7 @@
             </NuxtLink>
         </Fermentable>
         <Hop>
-            <NuxtLink href="/hop"
+            <NuxtLink href="/inventory/hop"
                 class="flex items-center hover:bg-neutral-300 rounded cursor-pointer p-2 gap-2 w-full">
                 <Icon size="40" name="mdi:hops" />
                 <div class="flex flex-col gap-1">
@@ -27,7 +27,7 @@
             </NuxtLink>
         </Hop>
         <Misc>
-            <NuxtLink href="/misc"
+            <NuxtLink href="/inventory/misc"
                 class="flex items-center hover:bg-neutral-300 rounded cursor-pointer p-2 gap-2 w-full">
                 <Icon size="40" name="healthicons:sugar-alt" />
                 <div class="flex flex-col gap-1">
@@ -37,7 +37,7 @@
             </NuxtLink>
         </Misc>
         <Yeast>
-            <NuxtLink href="/yeast"
+            <NuxtLink href="/inventory/yeast"
                 class="flex items-center hover:bg-neutral-300 rounded cursor-pointer p-2 gap-2 w-full">
                 <Icon size="40" name="mdi:yeast" />
                 <div class="flex flex-col gap-1">

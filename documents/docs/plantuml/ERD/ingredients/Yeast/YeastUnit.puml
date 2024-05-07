@@ -1,0 +1,11 @@
+@startuml
+Enum "YeastUnit" {
+    g
+    ml
+    pkg
+    billion_cells
+    oz
+}
+
+Yeast -- YeastUnit
+@enduml

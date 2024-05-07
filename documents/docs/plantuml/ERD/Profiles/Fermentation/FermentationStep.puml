@@ -1,0 +1,13 @@
+@startuml
+class "FermentationStep" as FermentationStep {
+    + id : int
+    --
+    name : string                           /' Fermentation Step Name '/
+    type : FermentationStepType             /' FermentationStepType id '/
+    temperature : decimal                   /' EngUnit: C, Temperature '/
+    time : decimal                          /' EngUnit: min, Time '/
+    ramp_time : decimal                     /' EngUnit: min, Ramp Time '/
+}
+
+FermentationProfile --{ FermentationStep
+@enduml

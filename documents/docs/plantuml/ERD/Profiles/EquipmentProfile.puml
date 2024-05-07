@@ -1,0 +1,35 @@
+@startuml
+
+class "EquipmentProfile" as EquipmentProfile {
+    + id : int
+    --
+    name : string
+    boil_time : decimal
+    description : string
+    Volume : Volume                         /' Volume id '/
+    Advanced : Advanced                     /' Advanced id '/
+    Boil_Temperature : Boil_Temperature     /' Boil_Temperature id '/
+    Mash_Sparge_Water : Mash_Sparge_Water   /' Mash_Sparge_Water id '/
+    Mash_Volume_limit : Mash_Volume_limit   /' Mash_Volume_limit id '/
+    Sparge_Water_limit : Sparge_Water_limit /' Sparge_Water_limit id '/
+    HTL_Water_Limit : HTL_Water_Limit       /' HTL_Water_Limit id '/
+    Strike_Water_Temp : Strike_Water_Temp   /' Strike_Water_Temp id '/
+    Sparge_Temperature : Sparge_Temperature /' Sparge_Temperature id '/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml

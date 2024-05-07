@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime, timezone
-from sqlalchemy import Column, String, Integer, Boolean, DateTime, ForeignKey
+from sqlalchemy import Column, String, Integer, Boolean, DateTime, Float, Date
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
 from .base import Base
@@ -38,16 +38,16 @@ class Fermentable(Base):
     created_at = Column(DateTime, default=datetime.now(timezone.utc))
     updated_at = Column(DateTime, default=datetime.now(timezone.utc))
     name = Column(String, nullable=False)
-    amount = Column(Integer, nullable=False)
-    cost_per_unit = Column(Integer, nullable=False)
+    amount = Column(Float, nullable=False)
+    cost_per_unit = Column(Float, nullable=False)
     supplier = Column(String, nullable=False)
     origin = Column(String, nullable=False)
     type = Column(String, nullable=False)
     color = Column(Integer, nullable=False)
     potential = Column(Integer, nullable=False)
-    yield_ = Column(Integer, nullable=False)
-    manufacturing_date = Column(DateTime, default=datetime.now(timezone.utc))
-    expiry_date = Column(DateTime, default=datetime.now(timezone.utc))
+    yield_ = Column(Float, nullable=False)
+    manufacturing_date = Column(Date, nullable=True)
+    expiry_date = Column(Date, nullable=True)
     lot_number = Column(String, nullable=False)
     exclude_from_total = Column(Boolean, nullable=False)
     not_fermentable = Column(Boolean, nullable=False)

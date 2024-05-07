@@ -1,0 +1,12 @@
+@startuml
+class "Mash_Volume_limit" as Mash_Volume_limit {
+    + id : int
+    --
+    Include_Grain_Volume_in_Mash_Limit : boolean
+    min_mash_volume : decimal /' EngUnit: L, Min Mash Volume '/
+    max_mash_volume : decimal /' EngUnit: L, Max Mash Volume '/
+}
+
+EquipmentProfile -- Mash_Volume_limit
+
+@enduml

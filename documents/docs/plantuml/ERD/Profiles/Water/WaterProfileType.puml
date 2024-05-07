@@ -1,0 +1,9 @@
+@startuml
+Enum "WaterProfileType" {
+    Source
+    Target
+    }
+
+
+WaterProfile -- WaterProfileType
+@enduml

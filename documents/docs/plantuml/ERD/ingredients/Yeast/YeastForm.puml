@@ -1,0 +1,10 @@
+@startuml
+Enum "YeastForm" {
+    Liquid
+    Dry
+    Slant
+    Culture
+}
+
+Yeast -- YeastForm
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+Enum "MashStepType" {
+    Infusion
+    Temperature
+    Decoction
+}
+MashStep -- MashStepType
+@enduml

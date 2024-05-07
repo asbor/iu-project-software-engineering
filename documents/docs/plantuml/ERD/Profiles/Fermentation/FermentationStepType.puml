@@ -1,0 +1,11 @@
+@startuml
+Enum "FermentationStepType" {
+    Primary
+    Secondary
+    Tertiary
+    Cold_Crash
+    Carbonation
+    Conditioning
+}
+FermentationStep -- FermentationStepType
+@enduml

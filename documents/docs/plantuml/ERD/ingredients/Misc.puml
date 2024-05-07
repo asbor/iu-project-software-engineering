@@ -1,0 +1,21 @@
+@startuml
+class "Misc" as Misc {
+    + id : int
+    --
+    name : string
+    supplier : string
+    Recommended_amount : decimal /' EngUnit: g/L, Recommended Amount '/
+    unit : MiscUnit
+    type : MiscType
+    use : MiscUse
+    manufacturing_date : date
+    best_before : date
+    lot_number : string
+    inventory : string
+    notes : string
+    description : string
+    substitutes : string
+    used_for : string
+}
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+Enum "YeastType" {
+    Ale
+    Lager
+    Hybrid
+    Wheat
+    Wine
+    Champagne
+    Other
+}
+
+
+Yeast -- YeastType
+@enduml

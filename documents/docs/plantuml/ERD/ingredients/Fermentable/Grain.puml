@@ -1,0 +1,17 @@
+@startuml
+class "Grain" as Grain {
+    + id : int
+    --
+    diastatic_power : decimal
+    moisture : decimal
+    protein : decimal
+    coarse_fine_diff : decimal
+    extract : decimal
+    acidity : decimal
+    friability : decimal
+    free_amino_nitrogen : decimal
+    max_in_batch : decimal
+}
+
+
+@enduml

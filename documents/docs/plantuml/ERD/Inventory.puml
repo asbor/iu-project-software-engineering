@@ -1,0 +1,47 @@
+@startuml
+
+!include documents/docs/plantuml/ERD/ingredients/Hop.puml
+!include documents/docs/plantuml/ERD/ingredients/Misc.puml
+!include documents/docs/plantuml/ERD/ingredients/Yeast.puml
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/Adjunct.puml 
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/DryExtract.puml 
+'!include documents/docs/plantuml/ERD/ingredients/Fermentable/Fermentable_Category.puml 
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/Grain.puml 
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/LiquidExtract.puml 
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/Other.puml 
+!include documents/docs/plantuml/ERD/ingredients/Fermentable/Sugar.puml
+
+!include documents/docs/plantuml/ERD/ingredients/Fermentable.puml
+
+class "Inventory" as Inventory {
+    + id : int
+    --
+    ..General..
+    name : string
+    created_at : datetime
+    updated_at : datetime
+    ..Inventory..
+    quantity : decimal
+    cost : decimal
+    ==Relations==
+    {static} hop_id : int
+    {static} yeast_id : int
+    {static} misc_id : int
+    {static} fermentable_id : int
+    {static} adjunct_id : int
+    {static} dry_extract_id : int
+    {static} liquid_extract_id : int
+    {static} sugar_id : int
+    {static} other_id : int
+}
+
+Inventory --{ Grain
+Inventory --{ Sugar 
+Inventory --{ LiquidExtract 
+Inventory --{ DryExtract 
+Inventory --{ Adjunct 
+Inventory --{ Other 
+Inventory --{ Hops
+Inventory --{ Yeast
+Inventory --{ Misc
+@enduml

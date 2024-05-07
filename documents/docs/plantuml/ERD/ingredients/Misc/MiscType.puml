@@ -1,0 +1,12 @@
+@startuml
+Enum "MiscType" {
+    Spice
+    Fining
+    Water_Agent
+    Herb
+    Flavor
+    Other
+}
+
+Misc -- MiscType
+@enduml

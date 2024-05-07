@@ -1,0 +1,11 @@
+@startuml
+class "Efficiency" as Efficiency {
+    + id : int
+    --
+    brewhouse_efficiency : decimal
+    mash_efficiency : decimal
+    calc_mash_efficiency : boolean
+}
+
+EquipmentProfile -- Efficiency
+@enduml

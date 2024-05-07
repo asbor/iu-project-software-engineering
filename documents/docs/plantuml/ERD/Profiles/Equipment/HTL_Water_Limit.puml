@@ -1,0 +1,9 @@
+@startuml
+class "HTL_Water_Limit" as HTL_Water_Limit {
+    + id : int
+    --
+    min_hlt_volume : decimal /' EngUnit: L, Min HLT Volume '/
+    max_hlt_volume : decimal /' EngUnit: L, Max HLT Volume '/
+}
+EquipmentProfile -- HTL_Water_Limit
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class "Fermenter" as Fermenter {
+    + id : int
+    --
+    brewhouse_efficiency : decimal          /' EngUnit: %, Brewhouse Efficiency '/
+    calc_mash_efficiency : boolean          /' Calculate Mash Efficiency '/
+}
+
+EquipmentProfile -- Fermenter
+@enduml

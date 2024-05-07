@@ -1,0 +1,12 @@
+@startuml
+Enum "YeastFlocculation" {
+    Low
+    Medium-Low
+    Medium
+    Medium-High
+    High
+    Very-High
+}
+
+Yeast -- YeastFlocculation
+@enduml

@@ -1,0 +1,59 @@
+
+@startuml
+!include documents/docs/plantuml/ERD/ingredients/Fermentable.puml
+!include documents/docs/plantuml/ERD/ingredients/Hop.puml
+!include documents/docs/plantuml/ERD/ingredients/Misc.puml
+!include documents/docs/plantuml/ERD/ingredients/Yeast.puml
+
+!include documents/docs/plantuml/ERD/Profiles/EquipmentProfile.puml
+!include documents/docs/plantuml/ERD/Profiles/FermentationProfile.puml
+!include documents/docs/plantuml/ERD/Profiles/MashProfile.puml
+!include documents/docs/plantuml/ERD/Profiles/WaterProfile.puml
+
+class "Recepie" as Recepie {
+    + id : int
+    --
+    ..General..
+    name : string
+    version : int
+    author : string
+    asst_brewer : string
+    type : RecipeType
+    ..Properties..
+    notes : string
+    ..Relations..
+    {static} style_id : string /' TargetStyle id '/
+    {static} fermentable_id : string /' Fermentable id '/
+    {static} hop_id : string /' Hops id '/
+    {static} miscs_id : string /' Misc id '/
+    {static} yeast_id : string /' Yeast id '/
+    {static} equipment_profile_id : string /' EquipmentProfile id '/
+    {static} mash_profile_id : string /' MashProfile id '/
+    {static} fermentation_profile_id : string /' FermentationProfile id '/
+    {static} water_profile_id : string /' WaterProfile id '/
+    
+}
+
+Enum "RecipeType" {
+    All_Grain
+    Extract
+    Partial_Mash
+    Cider
+    Mead
+    Wine
+    Kombucha
+    Soda
+    Other
+}
+
+Recepie -- RecipeType
+Recepie -- EquipmentProfile
+Recepie -- TargetStyle
+Recepie --{ Fermentable
+Recepie --{ Hops
+Recepie --{ Misc
+Recepie --{ Yeast
+Recepie -- MashProfile
+Recepie -- FermentationProfile
+Recepie -- WaterProfile
+@enduml

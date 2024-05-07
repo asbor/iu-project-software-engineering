@@ -1,0 +1,13 @@
+@startuml
+class "MashStep" as MashStep {
+    + id : int
+    --
+    name : string                           /' Mash Step Name '/
+    type : MashStepType                     /' MashStepType id '/
+    temperature : decimal                   /' EngUnit: C, Temperature '/
+    time : decimal                          /' EngUnit: min, Time '/
+    ramp_time : decimal                     /' EngUnit: min, Ramp Time '/
+}
+
+MashProfile --{ MashStep
+@enduml

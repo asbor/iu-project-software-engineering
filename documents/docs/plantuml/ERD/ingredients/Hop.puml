@@ -1,0 +1,32 @@
+@startuml
+
+class "Hops" as Hops {
+    + id : int
+    --
+    name : string
+    supplier : string
+    origin : string
+    alpha : decimal
+    type : HopType
+    year : int
+    loss_factor : decimal /' % of alpha acids lost after 6 months '/
+    best_before : date
+    harvest : date
+    lot_number : string
+    inventory : string /' Inventory id '/
+    notes : string
+    description : string
+    substitutes : string
+    used_in : string
+    usage : HopUsage 
+    beta : decimal /' EngUnit: %, Beta acids '/
+    co_humulone : decimal /' EngUnit: %, Cohumulone '/
+    hop_storage_index : decimal /' EngUnit: %, Hop Storage Index '/
+    total_oil_ml_per_100g : decimal /' EngUnit: ml/100g, Total Oil '/
+    myrcene : decimal /' EngUnit: %, Myrcene '/
+    humulene : decimal /' EngUnit: %, Humulene '/
+    caryophyllene : decimal /' EngUnit: %, Caryophyllene '/
+    farnesene : decimal /' EngUnit: %, Farnesene '/
+}
+
+@enduml

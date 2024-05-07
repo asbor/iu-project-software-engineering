@@ -1,0 +1,13 @@
+@startuml
+Enum "MiscUse" {
+    Mash
+    Sparge
+    Boil
+    Flameout
+    Primary
+    Secondary
+    Bottling
+}
+
+Misc -- MiscUse
+@enduml

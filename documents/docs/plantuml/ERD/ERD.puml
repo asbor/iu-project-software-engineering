@@ -1,0 +1,5 @@
+@startuml ERD HoppyBrew
+!include documents/docs/plantuml/ERD/Inventory.puml
+!include documents/docs/plantuml/ERD/Recipie.puml
+!include documents/docs/plantuml/ERD/TargetStyle.puml
+@enduml

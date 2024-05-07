@@ -1,0 +1,13 @@
+@startuml
+
+class "WaterProfile" as WaterProfile {
+    + id : int
+    --
+    name : string
+    water_profile_type : WaterProfileType
+    water_ph : decimal /' EngUnit: pH, Water pH '/
+    cation : Cation
+    anion : Anion
+}
+
+@enduml

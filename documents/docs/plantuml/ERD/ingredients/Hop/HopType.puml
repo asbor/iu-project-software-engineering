@@ -1,0 +1,9 @@
+@startuml
+Enum "HopType" {
+    Pellet
+    Whole
+    Cryo
+    CO2Extract
+}
+Hops -- HopType
+@enduml

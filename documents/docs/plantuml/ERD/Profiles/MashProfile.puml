@@ -1,0 +1,11 @@
+@startuml
+class "MashProfile" as MashProfile {
+    + id : int
+    --
+    name : string
+    mash_steps : List[MashStep]             /' Mash Step id '/
+}
+
+
+
+@enduml

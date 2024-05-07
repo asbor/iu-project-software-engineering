@@ -1,0 +1,11 @@
+@startuml
+
+class "Kettle" as Kettle {
+    + id : int
+    --
+    mash_efficiency : decimal
+}
+
+EquipmentProfile -- Kettle 
+
+@enduml
