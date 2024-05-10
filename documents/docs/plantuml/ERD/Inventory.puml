@@ -14,25 +14,23 @@
 !include documents/docs/plantuml/ERD/ingredients/Fermentable.puml
 
 class "Inventory" as Inventory {
-    + id : int
+    + id : uuid
     --
     ..General..
-    name : string
-    created_at : datetime
-    updated_at : datetime
+
     ..Inventory..
     quantity : decimal
     cost : decimal
     ==Relations==
-    {static} hop_id : int
-    {static} yeast_id : int
-    {static} misc_id : int
-    {static} fermentable_id : int
-    {static} adjunct_id : int
-    {static} dry_extract_id : int
-    {static} liquid_extract_id : int
-    {static} sugar_id : int
-    {static} other_id : int
+    {static} hop_id : uuid
+    {static} yeast_id : uuid
+    {static} misc_id : uuid
+    {static} fermentable_id : uuid
+    {static} adjunct_id : uuid
+    {static} dry_extract_id : uuid
+    {static} liquid_extract_id : uuid
+    {static} sugar_id : uuid
+    {static} other_id : uuid
 }
 
 Inventory --{ Grain

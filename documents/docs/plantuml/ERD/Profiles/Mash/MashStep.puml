@@ -1,6 +1,6 @@
 @startuml
 class "MashStep" as MashStep {
-    + id : int
+    + id : uuid
     --
     name : string                           /' Mash Step Name '/
     type : MashStepType                     /' MashStepType id '/

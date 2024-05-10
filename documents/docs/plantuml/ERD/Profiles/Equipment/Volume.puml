@@ -1,6 +1,6 @@
 @startuml
 abstract class "Volume" as Volume {
-    + id : int
+    + id : uuid
     --
     batch_volume : decimal                  /' EngUnit: L, Batch Volume '/
     calculated_boil_volume : decimal        /' EngUnit: L, Calculated Boil Volume '/

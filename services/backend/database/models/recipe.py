@@ -29,7 +29,7 @@ class Recipe(Base):
         hop (relationship): Relationship to the Hop table.
         fermentable (relationship): Relationship to the fermentable table.
         misc (relationship): Relationship to the Misc table.
-        yeasts (relationship): Relationship to the Yeasts table.
+        yeast (relationship): Relationship to the Yeast table.
         water (relationship): Relationship to the Water table.
         style (relationship): Relationship to the Style table.
         equipment (relationship): Relationship to the Equipment table.
@@ -87,7 +87,7 @@ class Recipe(Base):
     hop = Column(String(255), nullable=False)
     fermentable = Column(String(255), nullable=False)
     misc = Column(String(255), nullable=False)
-    yeasts = Column(String(255), nullable=False)
+    yeast = Column(String(255), nullable=False)
     water = Column(String(255), nullable=False)
     style = Column(String(255), nullable=False)
     equipment = Column(String(255), nullable=False)
@@ -126,6 +126,15 @@ class Recipe(Base):
     display_tertiary_temp = Column(String(255), nullable=False)
     display_age_temp = Column(String(255), nullable=False)
 
+    # Relationships
+    hop = relationship("Hop", back_populates="recipe")
+    fermentable = relationship("Fermentable", back_populates="recipe")
+    misc = relationship("Misc", back_populates="recipe")
+    yeast = relationship("Yeast", back_populates="recipe")
+    water = relationship("Water", back_populates="recipe")
+    # style = relationship("Style", back_populates="recipe")
+    equipment = relationship("Equipment", back_populates="recipe")
+
     def __repr__(self):
         return f"Recipe(id={self.id}, \
                 created_at={self.created_at}, \
@@ -142,7 +151,7 @@ class Recipe(Base):
                 hop={self.hop}, \
                 fermentable={self.fermentable}, \
                 misc={self.misc}, \
-                yeasts={self.yeasts}, \
+                yeast={self.yeast}, \
                 water={self.water}, \
                 style={self.style}, \
                 equipment={self.equipment}, \

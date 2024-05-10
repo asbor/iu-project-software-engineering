@@ -1,7 +1,7 @@
 @startuml
 
 class "Boil_Temperature" as Boil_Temperature {
-    + id : int
+    + id : uuid
     --
     altitude_adjustment : boolean
     altitude : decimal

@@ -1,6 +1,6 @@
 @startuml
 class "Advanced" as Advanced {
-    + id : int
+    + id : uuid
     --
     hop_utilization_multiplier : decimal
     aroma_hop_utilization : decimal

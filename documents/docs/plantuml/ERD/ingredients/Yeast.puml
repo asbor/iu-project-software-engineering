@@ -6,7 +6,7 @@
 
 
 class "Yeast" as Yeast {
-    + id : int
+    + id : uuid
     --
     ..General..
     name : string

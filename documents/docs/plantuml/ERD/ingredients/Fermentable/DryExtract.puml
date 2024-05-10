@@ -1,7 +1,9 @@
 @startuml
 class "DryExtract" as DryExtract {
-    + id : int
+    + id : uuid
     --
+    ..Relation..
+    {static} Fermentable : uuid
 }
 
 

@@ -1,7 +1,7 @@
 @startuml
 
 class "WaterProfile" as WaterProfile {
-    + id : int
+    + id : uuid
     --
     name : string
     water_profile_type : WaterProfileType

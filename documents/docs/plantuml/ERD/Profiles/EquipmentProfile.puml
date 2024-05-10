@@ -1,7 +1,7 @@
 @startuml
 
 class "EquipmentProfile" as EquipmentProfile {
-    + id : int
+    + id : uuid
     --
     name : string
     boil_time : decimal

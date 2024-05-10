@@ -1,9 +1,11 @@
 @startuml
 
 class "LiquidExtract" as LiquidExtract {
-    + id : int
+    + id : uuid
     --
     total_IBU_per_kg : decimal
+    ..Relation..
+    {static} Fermentable : uuid
 }
 
 

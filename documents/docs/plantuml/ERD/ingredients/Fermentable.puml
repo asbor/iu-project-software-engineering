@@ -8,8 +8,8 @@
 !include documents/docs/plantuml/ERD/ingredients/Fermentable/Other.puml
 !include documents/docs/plantuml/ERD/ingredients/Fermentable/Sugar.puml
 
-abstract class "Fermentable" as Fermentable {
-    + id : int
+class "Fermentable" as Fermentable {
+    + id : uuid
     --
     ..General..
     name : string
@@ -29,13 +29,16 @@ abstract class "Fermentable" as Fermentable {
     description : string
     substitutes : string
     used_in : string
+    ..Relation..
+    {static} recipe_id : uuid
+    {static} inventory_id : uuid
 }
 
-Fermentable <|-- Adjunct 
-Fermentable <|-- DryExtract 
-Fermentable <|-- Grain
-Fermentable <|-- LiquidExtract 
-Fermentable <|-- Other 
-Fermentable <|-- Sugar 
+Fermentable -- Adjunct 
+Fermentable -- DryExtract 
+Fermentable -- Grain
+Fermentable -- LiquidExtract 
+Fermentable -- Other 
+Fermentable -- Sugar 
 
 @enduml

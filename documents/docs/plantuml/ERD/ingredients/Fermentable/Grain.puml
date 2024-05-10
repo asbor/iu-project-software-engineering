@@ -1,6 +1,6 @@
 @startuml
 class "Grain" as Grain {
-    + id : int
+    + id : uuid
     --
     diastatic_power : decimal
     moisture : decimal
@@ -11,6 +11,8 @@ class "Grain" as Grain {
     friability : decimal
     free_amino_nitrogen : decimal
     max_in_batch : decimal
+    ..Relation..
+    {static} Fermentable_id : uuid
 }
 
 

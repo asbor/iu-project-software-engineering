@@ -1,6 +1,6 @@
 @startuml
 class "Cation" as Cation {
-    + id : int
+    + id : uuid
     --
     calcium : decimal /' EngUnit: ppm, Calcium Ca2+ '/
     magnesium : decimal /' EngUnit: ppm, Magnesium Mg2+ '/

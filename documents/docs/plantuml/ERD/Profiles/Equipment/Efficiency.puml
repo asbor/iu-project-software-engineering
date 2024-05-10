@@ -1,6 +1,6 @@
 @startuml
 class "Efficiency" as Efficiency {
-    + id : int
+    + id : uuid
     --
     brewhouse_efficiency : decimal
     mash_efficiency : decimal

@@ -3,7 +3,7 @@ from datetime import datetime, timezone, date
 from sqlalchemy import Column, String, Integer, Boolean, DateTime, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
-from .base import Base
+from ..base import Base
 
 
 class Yeast(Base):
@@ -39,7 +39,7 @@ class Yeast(Base):
         recipe_id (UUID): The unique identifier for the recipe.
         recipe (relationship): Relationship to the Recipe table.
     """
-    __tablename__ = "yeasts"
+    __tablename__ = "yeast"
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     created_at = Column(DateTime, default=datetime.now(
         timezone.utc), nullable=False)
@@ -67,6 +67,11 @@ class Yeast(Base):
     display_max_temp = Column(String(255), nullable=False)
     inventory = Column(Integer, nullable=False)
     culture_date = Column(Date, default=date.today, nullable=False)
+
+    # Relationships
+    recipe_id = Column(UUID(as_uuid=True), ForeignKey('recipe.id'))
+    recipe = relationship("Recipe", back_populates="yeast")
+    inventory = relationship("Inventory", back_populates="yeast")
 
     def __repr__(self):
         return f"Yeast(id={self.id}, \

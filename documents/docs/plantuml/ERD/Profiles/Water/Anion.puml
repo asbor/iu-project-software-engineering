@@ -1,6 +1,6 @@
 @startuml
 class "Anion" as Anion {
-    + id : int
+    + id : uuid
     --
     sulfate : decimal /' EngUnit: ppm, Sulfate SO4- '/
     chloride : decimal /' EngUnit: ppm, Chloride Cl- '/

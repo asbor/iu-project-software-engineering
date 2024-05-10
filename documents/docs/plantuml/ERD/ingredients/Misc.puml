@@ -1,6 +1,6 @@
 @startuml
 class "Misc" as Misc {
-    + id : int
+    + id : uuid
     --
     name : string
     supplier : string

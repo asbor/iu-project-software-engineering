@@ -1,6 +1,6 @@
 @startuml
 class "Strike_Water_Temp" as Strike_Water_Temp {
-    + id : int
+    + id : uuid
     --
     calc_strike_water_temp : boolean
     mash_tune_heat_capacity : decimal

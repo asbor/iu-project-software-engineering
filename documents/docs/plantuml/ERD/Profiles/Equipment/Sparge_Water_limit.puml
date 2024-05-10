@@ -1,6 +1,6 @@
 @startuml
 class "Sparge_Water_limit" as Sparge_Water_limit {
-    + id : int
+    + id : uuid
     --
     min_sparge_volume : decimal /' EngUnit: L, Min Sparge Volume '/
     max_sparge_volume : decimal /' EngUnit: L, Max Sparge Volume '/

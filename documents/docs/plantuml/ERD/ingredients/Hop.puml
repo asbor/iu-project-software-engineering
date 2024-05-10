@@ -1,11 +1,13 @@
 @startuml
 
 class "Hops" as Hops {
-    + id : int
+    + id : uuid
     --
+    ..General..
     name : string
     supplier : string
     origin : string
+    ..Hop Characteristics..
     alpha : decimal
     type : HopType
     year : int

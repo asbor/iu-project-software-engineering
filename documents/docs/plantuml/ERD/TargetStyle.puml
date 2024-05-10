@@ -1,6 +1,6 @@
 @startuml
 class "TargetStyle" as TargetStyle {
-    + id : int
+    + id : uuid
     --
     name : string
     category : string

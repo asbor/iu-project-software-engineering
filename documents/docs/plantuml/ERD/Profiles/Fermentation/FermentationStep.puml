@@ -1,6 +1,6 @@
 @startuml
 class "FermentationStep" as FermentationStep {
-    + id : int
+    + id : uuid
     --
     name : string                           /' Fermentation Step Name '/
     type : FermentationStepType             /' FermentationStepType id '/

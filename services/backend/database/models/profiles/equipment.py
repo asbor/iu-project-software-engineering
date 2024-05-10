@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 import uuid
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
-from .base import Base
+from ..base import Base
 
 
 class Equipment(Base):
@@ -72,6 +72,10 @@ class Equipment(Base):
     display_trub_chiller_loss = Column(String(255), nullable=False)
     display_lauter_deadspace = Column(String(255), nullable=False)
     display_top_up_kettle = Column(String(255), nullable=False)
+
+    # Relationships
+    recipe_id = Column(UUID(as_uuid=True), ForeignKey('recipe.id'))
+    recipe = relationship("Recipe", back_populates="equipment")
 
     def __repr__(self):
         return f"Equipment(id={self.id}, \

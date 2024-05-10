@@ -1,6 +1,6 @@
 @startuml
 class "Stats" as Stats {
-    + id : int
+    + id : uuid
     --
     hardness : decimal /' EngUnit: ppm, Hardness '/
     alkalinity : decimal /' EngUnit: ppm, Alkalinity '/

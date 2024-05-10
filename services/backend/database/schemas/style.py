@@ -9,7 +9,7 @@ class Style(BaseModel):
     Represents the style table in the database.
 
     Attributes:
-        id (UUID): The unique identifier for the style.
+        id (int): The unique identifier for the style.
         created_at (DateTime): The timestamp when the style was created.
         updated_at (DateTime): The timestamp when the style was last updated.
         name (str): The name of the style.
@@ -49,44 +49,28 @@ class Style(BaseModel):
         abv_range (str): The range of ABV of the style.
     """
 
-    id: uuid.UUID
-    created_at: datetime
-    updated_at: datetime
-    name: str
-    version: int
+    id: int
     category: str
-    category_number: int
-    style_letter: str
-    style_guide: str
-    type: str
-    og_min: int
-    og_max: int
-    fg_min: int
-    fg_max: int
-    ibu_min: int
-    ibu_max: int
-    color_min: int
-    color_max: int
-    carb_min: int
-    carb_max: int
-    abv_min: int
-    abv_max: int
-    notes: str
-    profile: str
-    ingredients: str
-    examples: str
-    display_og_min: str
-    display_og_max: str
-    display_fg_min: str
-    display_fg_max: str
-    display_color_min: str
-    display_color_max: str
-    og_range: str
-    fg_range: str
-    ibu_range: str
-    carb_range: str
-    color_range: str
-    abv_range: str
+    color: str
+    clarity: str
+    perceived_malt_and_aroma: str
+    perceived_hop_and_aroma: str
+    perceived_bitterness: str
+    fermentation_characteristics: str
+    body: str
+    additional_notes: str
+
+    # Vitals
+    og: str
+    fg: str
+    abv: str
+    ibu: str
+    ebc: str
+
+    # Calculated
+
+    # Relationships
+    # recipe_id: UUID
 
     class Config:
         orm_mode = True

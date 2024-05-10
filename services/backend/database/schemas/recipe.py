@@ -27,7 +27,7 @@ class Recipe(BaseModel):
         hop (relationship): Relationship to the Hop table.
         fermentable (relationship): Relationship to the Fermentable table.
         misc (relationship): Relationship to the Misc table.
-        yeasts (relationship): Relationship to the Yeasts table.
+        yeast (relationship): Relationship to the Yeast table.
         water (relationship): Relationship to the Water table.
         style (relationship): Relationship to the Style table.
         equipment (relationship): Relationship to the Equipment table.
@@ -81,7 +81,7 @@ class Recipe(BaseModel):
     hop: List[uuid.UUID]
     fermentable: List[uuid.UUID]
     misc: List[uuid.UUID]
-    yeasts: List[uuid.UUID]
+    yeast: List[uuid.UUID]
     water: List[uuid.UUID]
     style: List[uuid.UUID]
     equipment: List[uuid.UUID]

@@ -3,7 +3,7 @@ from setup import engine
 from api.router import router
 from database.models.base import Base
 from fastapi.middleware.cors import CORSMiddleware
-
+from beer_styles_processing import main
 
 # Connect to the database (bind the engine)
 # Create the tables in the database (create_all)
@@ -26,6 +26,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+main()
 
 
 @app.get("/")

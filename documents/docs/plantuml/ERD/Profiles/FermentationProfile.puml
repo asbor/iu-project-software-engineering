@@ -1,6 +1,6 @@
 @startuml
 class "FermentationProfile" as FermentationProfile {
-    + id : int
+    + id : uuid
     --
     name : string
     fermentation_steps : List[FermentationStep] /' Fermentation Step id '/

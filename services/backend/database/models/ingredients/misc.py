@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from sqlalchemy import Column, String, Integer, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
-from .base import Base
+from ..base import Base
 
 
 class Misc(Base):
@@ -50,6 +50,11 @@ class Misc(Base):
     inventory = Column(Integer, nullable=False)
     display_time = Column(String(255), nullable=False)
     batch_size = Column(Integer, nullable=False)
+
+    # Relationships
+    recipe_id = Column(UUID(as_uuid=True), ForeignKey('recipe.id'))
+    recipe = relationship("Recipe", back_populates="misc")
+    inventory = relationship("Inventory", back_populates="misc")
 
     def __repr__(self):
         return f"Misc(id={self.id}, \

@@ -24,3 +24,6 @@ alembic
 # Install config
 config~=0.5.1
 python-dotenv
+pandas
+requests
+bs4

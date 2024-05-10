@@ -1,6 +1,6 @@
 @startuml
 class "Mash_Sparge_Water" as Mash_Sparge_Water {
-    + id : int
+    + id : uuid
     --
     grain_absorption_rate : decimal /' EngUnit: L/kg, Grain Absorption Rate '/
     water_grain_ratio : decimal /' EngUnit: L/kg, Water Grain Ratio '/

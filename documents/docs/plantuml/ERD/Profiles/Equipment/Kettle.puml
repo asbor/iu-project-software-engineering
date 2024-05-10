@@ -1,7 +1,7 @@
 @startuml
 
 class "Kettle" as Kettle {
-    + id : int
+    + id : uuid
     --
     mash_efficiency : decimal
 }

@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
-from .base import Base
+from ..base import Base
 
 
 class Hop(Base):
@@ -35,16 +35,17 @@ class Hop(Base):
         recipe (relationship): Relationship to the Recipe table.
     """
     __tablename__ = "hop"
+
+    # Metadata
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    created_at = Column(DateTime, default=datetime.now(
-        timezone.utc), nullable=False)
-    updated_at = Column(DateTime, default=datetime.now(
-        timezone.utc), nullable=False)
     name = Column(String(255), nullable=False)
-    version = Column(Integer, nullable=False)
+
+    # Specific attributes for hop
     origin = Column(String(255), nullable=False)
     alpha = Column(Integer, nullable=False)
     amount = Column(Integer, nullable=False)
+
+    # General attributes
     use = Column(String(255), nullable=False)
     time = Column(Integer, nullable=False)
     notes = Column(String(255), nullable=False)
@@ -55,6 +56,11 @@ class Hop(Base):
     display_amount = Column(String(255), nullable=False)
     inventory = Column(Integer, nullable=False)
     display_time = Column(String(255), nullable=False)
+
+    # Relationships
+    recipe_id = Column(UUID(as_uuid=True), ForeignKey("recipe.id"))
+    recipe = relationship("Recipe", back_populates="hop")
+    inventory = relationship("Inventory", back_populates="hop")
 
     def __repr__(self):
         return f"Hop(id={self.id}, \

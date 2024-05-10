@@ -1,9 +1,9 @@
 import uuid
 from datetime import datetime, timezone
-from sqlalchemy import Column, String, Integer, Boolean, DateTime, Float, Date
+from sqlalchemy import Column, String, Integer, Boolean, DateTime, Float, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
-from .base import Base
+from ..base import Base
 
 
 class Fermentable(Base):
@@ -34,14 +34,23 @@ class Fermentable(Base):
         used_in (str): Where the fermentable is used.
     """
     __tablename__ = "fermentable"
+
+    # Metadata
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     created_at = Column(DateTime, default=datetime.now(timezone.utc))
     updated_at = Column(DateTime, default=datetime.now(timezone.utc))
     name = Column(String, nullable=False)
+
+    # Specific attributes for fermentable
+    # The amount for this fermentable in kilograms
     amount = Column(Float, nullable=False)
     cost_per_unit = Column(Float, nullable=False)
+
+    # General attributes
     supplier = Column(String, nullable=False)
     origin = Column(String, nullable=False)
+
+    # Details
     type = Column(String, nullable=False)
     color = Column(Integer, nullable=False)
     potential = Column(Integer, nullable=False)
@@ -55,6 +64,23 @@ class Fermentable(Base):
     description = Column(String, nullable=False)
     substitutes = Column(String, nullable=False)
     used_in = Column(String, nullable=False)
+    recipe_id = Column(UUID(as_uuid=True), ForeignKey("recipe.id"))
+
+    # Relationships
+    recipe = relationship("Recipe", uselist=True, back_populates="fermentable")
+    inventory = relationship("Inventory", uselist=True,
+                             back_populates="fermentable")
+
+    # Relationships for the fermentable types 1:1
+    grain = relationship("Grain", uselist=False, back_populates="fermentable")
+    adjunct = relationship("Adjunct", uselist=False,
+                           back_populates="fermentable")
+    dry_extract = relationship(
+        "DryExtract", uselist=False, back_populates="fermentable")
+    liquid_extract = relationship(
+        "LiquidExtract", uselist=False, back_populates="fermentable")
+    other = relationship("Other", uselist=False, back_populates="fermentable")
+    sugar = relationship("Sugar", uselist=False, back_populates="fermentable")
 
     def __repr__(self):
         return f"Fermentable(id={self.id}, \
@@ -75,4 +101,4 @@ class Fermentable(Base):
             notes={self.notes}, \
             description={self.description}, \
             substitutes={self.substitutes}, \
-            used_in={self.used_in})"
+            used_in={self.used_in}"

@@ -1,7 +1,7 @@
 @startuml
 
 class "Sparge_Temperature" as Sparge_Temperature {
-    + id : int
+    + id : uuid
     --
     sparge_temp : decimal
 }

@@ -1,7 +1,9 @@
 @startuml
 class "Sugar" as Sugar {
-    + id : int
+    + id : uuid
     --
+    ..Relation..
+    {static} Fermentable : uuid
 }
 
 
