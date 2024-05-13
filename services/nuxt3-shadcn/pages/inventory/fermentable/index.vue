@@ -10,7 +10,7 @@
             <NuxtLink href="/inventory/fermentable/newFermentable">New fermentable</NuxtLink>
           </Button>
           <Button asChild>
-            <NuxtLink href="/inventory/fermentable/import">Import fermentable</NuxtLink>
+            <BeerXMLImportFermentableDialog />
           </Button>
         </div>
       </div>
@@ -34,11 +34,23 @@
         <template v-for="fermentable in fermentables" :key="fermentable.id">
           <TableRow>
             <TableCell>{{ fermentable.name }}</TableCell>
-            <TableCell>{{ fermentable.lot_number }}</TableCell>
+            <TableCell>{{ fermentable.amount }}</TableCell>
+            <TableCell>{{ fermentable.cost_per_unit }}</TableCell>
             <TableCell>{{ fermentable.supplier }}</TableCell>
-            <TableCell>{{ fermentable.color }}</TableCell>
-            <TableCell>{{ fermentable.ppg }}</TableCell>
+            <TableCell>{{ fermentable.origin }}</TableCell>
             <TableCell>{{ fermentable.type }}</TableCell>
+            <TableCell>{{ fermentable.color }}</TableCell>
+            <TableCell>{{ fermentable.potential }}</TableCell>
+            <TableCell>{{ fermentable.yield_ }}</TableCell>
+            <TableCell>{{ fermentable.manufacturing_date }}</TableCell>
+            <TableCell>{{ fermentable.expiry_date }}</TableCell>
+            <TableCell>{{ fermentable.lot_number }}</TableCell>
+            <TableCell>{{ fermentable.exclude_from_total }}</TableCell>
+            <TableCell>{{ fermentable.not_fermentable }}</TableCell>
+            <TableCell>{{ fermentable.notes }}</TableCell>
+            <TableCell>{{ fermentable.description }}</TableCell>
+            <TableCell>{{ fermentable.substitutes }}</TableCell>
+            <TableCell>{{ fermentable.used_in }}</TableCell>
             <TableCell class="text-right">
               <!-- Add buttons for actions like edit or delete -->
               <Button asChild class="mr-2">

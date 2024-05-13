@@ -3,7 +3,6 @@ from uuid import UUID
 from setup import SessionLocal
 import database.models as models
 import database.schemas as schemas
-from api.validation.fermentable_validation import FermentableCreate
 
 from typing import List
 from uuid import uuid4
@@ -41,12 +40,12 @@ Attributes:
 
 
 @router.post("/fermentable", response_model=dict, status_code=status.HTTP_201_CREATED)
-async def create_fermentable(fermentable: FermentableCreate):
+async def create_fermentable(fermentable: schemas.Fermentable):
     """
     Create a new fermentable entry in the database.
 
     Args:
-        fermentable (FermentableCreate): The fermentable data to be created.
+        fermentable (schemas.Fermentable): The fermentable data to be created.
 
     Returns:
         dict: A message indicating the fermentable was created successfully and the unique identifier for the fermentable.
@@ -67,21 +66,19 @@ async def create_fermentable(fermentable: FermentableCreate):
     # Create new fermentable profile
     new_fermentable = models.Fermentable(
         id=fermentable_id,
-        created_at=datetime.now(timezone.utc),
-        updated_at=datetime.now(timezone.utc),
         name=fermentable.name,
-        amount=fermentable.amount,
-        cost_per_unit=fermentable.cost_per_unit,
-        supplier=fermentable.supplier,
-        origin=fermentable.origin,
-        type=fermentable.type,
-        color=fermentable.color,
-        potential=fermentable.potential,
-        yield_=fermentable.yield_,
-        manufacturing_date=fermentable.manufacturing_date,
-        expiry_date=fermentable.expiry_date,
-        lot_number=fermentable.lot_number,
-        exclude_from_total=fermentable.exclude_from_total,
+        amount=fermentable.amount if fermentable.amount else 0,
+        cost_per_unit=fermentable.cost_per_unit if fermentable.cost_per_unit else 0,
+        supplier=fermentable.supplier if fermentable.supplier else "",
+        origin=fermentable.origin if fermentable.origin else "",
+        type=fermentable.type if fermentable.type else "",
+        color=fermentable.color if fermentable.color else 0,
+        potential=fermentable.potential if fermentable.potential else 0,
+        yield_=fermentable.yield_ if fermentable.yield_ else 0,
+        manufacturing_date=None,
+        expiry_date=None,
+        lot_number=fermentable.lot_number if fermentable.lot_number else "",
+        exclude_from_total=fermentable.exclude_from_total if fermentable.exclude_from_total else False,
         not_fermentable=fermentable.not_fermentable,
         notes=fermentable.notes if fermentable.notes else "",
         description=fermentable.description,
@@ -135,7 +132,7 @@ def read_fermentable(fermentable_id: UUID):
 
 
 @router.put("/fermentable/{fermentable_id}", response_model=dict)
-async def update_fermentable(fermentable_id: UUID, fermentable: FermentableCreate):
+async def update_fermentable(fermentable_id: UUID, fermentable: schemas.Fermentable):
     # Check if fermentable exists
     existing_fermentable = db.query(models.Fermentable).filter(
         models.Fermentable.id == fermentable_id).first()

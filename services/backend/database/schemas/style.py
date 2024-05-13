@@ -2,6 +2,7 @@ from .base import BaseModel
 from typing import List
 import uuid
 from datetime import datetime, date
+from sqlalchemy import Text
 
 
 class Style(BaseModel):

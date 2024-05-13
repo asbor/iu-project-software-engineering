@@ -3,10 +3,26 @@ from uuid import UUID
 from setup import SessionLocal
 import database.models as models
 import database.schemas as schemas
+from typing import List
 
 router = APIRouter()
 
 db = SessionLocal()
+
+
+@router.get("/hop", response_model=List[schemas.Hop])
+def get_all_hop():
+    """
+    Retrieve all hop entries from the database.
+
+    Returns:
+        List[hop]: The list of all hop entries retrieved from the database.
+
+    Raises:
+        HTTPException: If an error occurs while trying to retrieve hop data from the database.
+    """
+    hop = db.query(models.Hop).all()
+    return hop
 
 
 @router.post("/hop", response_model=schemas.Hop)
@@ -39,15 +55,16 @@ def read_hop(hop_id: UUID):
         hop_id (UUID): The unique identifier for the hop.
 
     Returns:
-        Hop: The hop data retrieved from the database.
+        hop: The hop data retrieved from the database.
 
     Raises:
         HTTPException: If the hop data with the specified ID does not exist in the database.
     """
-    hop = db.query(models.Hop).filter(models.Hop.id == hop_id).first()
+    hop = db.query(models.Hop).filter(
+        models.Hop.id == hop_id).first()
     if hop is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Hop not found")
+            status_code=status.HTTP_404_NOT_FOUND, detail="hop not found")
     return hop
 
 

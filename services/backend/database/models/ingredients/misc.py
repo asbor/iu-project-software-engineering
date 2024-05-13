@@ -53,7 +53,7 @@ class Misc(Base):
 
     # Relationships
     recipe_id = Column(UUID(as_uuid=True), ForeignKey('recipe.id'))
-    recipe = relationship("Recipe", back_populates="misc")
+    # recipe = relationship("Recipe", back_populates="misc")
     inventory = relationship("Inventory", back_populates="misc")
 
     def __repr__(self):

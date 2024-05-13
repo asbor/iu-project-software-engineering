@@ -1,14 +1,14 @@
 from fastapi import APIRouter, HTTPException, status
-from uuid import UUID
 from setup import SessionLocal
 import database.models as models
 import database.schemas as schemas
+from typing import List
 
 router = APIRouter()
 db = SessionLocal()
 
 
-@router.post("/styles", response_model=schemas.Style)
+@router.post("/style", response_model=schemas.Style)
 def create_style(style: schemas.Style):
     """
     Create a new style entry in the database.
@@ -29,13 +29,28 @@ def create_style(style: schemas.Style):
     return new_style
 
 
-@router.get("/styles/{style_id}", response_model=schemas.Style)
-def read_style(style_id: UUID):
+@router.get("/style", response_model=List[schemas.Style])
+def get_all_style():
+    """
+    Retrieve all style entries from the database.
+
+    Returns:
+        List[style]: The list of all style entries retrieved from the database.
+
+    Raises:
+        HTTPException: If an error occurs while trying to retrieve style data from the database.
+    """
+    style = db.query(models.Style).all()
+    return style
+
+
+@router.get("/style/{style_id}", response_model=schemas.Style)
+def read_style(style_id: int):
     """
     Retrieve a style entry from the database.
 
     Args:
-        style_id (UUID): The unique identifier for the style.
+        style_id (int): The unique identifier for the style.
 
     Returns:
         Style: The style data retrieved from the database.
@@ -50,13 +65,13 @@ def read_style(style_id: UUID):
     return style
 
 
-@router.put("/styles/{style_id}", response_model=schemas.Style)
-def update_style(style_id: UUID, style: schemas.Style):
+@router.put("/style/{style_id}", response_model=schemas.Style)
+def update_style(style_id: int, style: schemas.Style):
     """
     Update a style entry in the database.
 
     Args:
-        style_id (UUID): The unique identifier for the style.
+        style_id (int): The unique identifier for the style.
         style (Style): The style data to be added to the database.
 
     Returns:
@@ -77,13 +92,13 @@ def update_style(style_id: UUID, style: schemas.Style):
     return style_data
 
 
-@router.delete("/styles/{style_id}")
-def delete_style(style_id: UUID):
+@router.delete("/style/{style_id}")
+def delete_style(style_id: int):
     """
     Delete a style entry from the database.
 
     Args:
-        style_id (UUID): The unique identifier for the style.
+        style_id (int): The unique identifier for the style.
 
     Returns:
         None

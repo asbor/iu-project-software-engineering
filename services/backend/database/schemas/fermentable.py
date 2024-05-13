@@ -2,6 +2,7 @@ from .base import BaseModel
 from typing import List
 import uuid
 from datetime import datetime, date
+from typing import Optional
 
 
 class Fermentable(BaseModel):
@@ -33,23 +34,21 @@ class Fermentable(BaseModel):
     """
 
     id: uuid.UUID
-    created_at: datetime
-    updated_at: datetime
     name: str
-    amount: float
-    cost_per_unit: float
-    supplier: str
-    origin: str
-    type: str
-    color: int
-    potential: int
-    yield_: float
-    manufacturing_date: date
-    expiry_date: date
-    lot_number: str
+    amount: Optional[int] = None
+    cost_per_unit: Optional[float] = None
+    supplier: Optional[str] = None
+    origin: Optional[str] = None
+    type: Optional[str] = None
+    color: Optional[int] = None
+    potential: Optional[int] = None
+    yield_: Optional[float] = None
+    manufacturing_date: Optional[date] = None
+    expiry_date: Optional[date] = None
+    lot_number: Optional[str] = None
     exclude_from_total: bool
     not_fermentable: bool
-    notes: str
+    notes: Optional[str] = None
     description: str
     substitutes: str
     used_in: str

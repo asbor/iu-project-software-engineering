@@ -1,4 +1,3 @@
-import uuid
 from datetime import datetime, timezone, date
 from sqlalchemy import Column, Integer, String, Date, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
@@ -18,7 +17,6 @@ class Recipe(Base):
         created_at (DateTime): The timestamp when the recipe was created.
         updated_at (DateTime): The timestamp when the recipe was last updated.
         name (str): The name of the recipe.
-        version (int): The version number of the recipe.
         type (str): The type or style of the recipe.
         brewer (str): The name of the primary brewer.
         asst_brewer (str): The name of the assistant brewer.
@@ -28,9 +26,9 @@ class Recipe(Base):
         efficiency (int): The brewing efficiency as a percentage.
         hop (relationship): Relationship to the Hop table.
         fermentable (relationship): Relationship to the fermentable table.
-        misc (relationship): Relationship to the Misc table.
+        # misc (relationship): Relationship to the Misc table.
         yeast (relationship): Relationship to the Yeast table.
-        water (relationship): Relationship to the Water table.
+        #water (relationship): Relationship to the Water table.
         style (relationship): Relationship to the Style table.
         equipment (relationship): Relationship to the Equipment table.
         mash (str): Details about the mashing process.
@@ -70,77 +68,69 @@ class Recipe(Base):
 
     __tablename__ = "recipe"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(UUID, primary_key=True, unique=True)
     created_at = Column(DateTime, default=datetime.now(
-        timezone.utc), nullable=False)
+        timezone.utc), nullable=True)
     updated_at = Column(DateTime, default=datetime.now(
-        timezone.utc), nullable=False)
-    name = Column(String(255), nullable=False)
-    version = Column(Integer, nullable=False)
-    type = Column(String(255), nullable=False)
-    brewer = Column(String(255), nullable=False)
-    asst_brewer = Column(String(255), nullable=False)
-    batch_size = Column(Integer, nullable=False)
-    boil_size = Column(Integer, nullable=False)
-    boil_time = Column(Integer, nullable=False)
-    efficiency = Column(Integer, nullable=False)
-    hop = Column(String(255), nullable=False)
-    fermentable = Column(String(255), nullable=False)
-    misc = Column(String(255), nullable=False)
-    yeast = Column(String(255), nullable=False)
-    water = Column(String(255), nullable=False)
-    style = Column(String(255), nullable=False)
-    equipment = Column(String(255), nullable=False)
-    mash = Column(String(255), nullable=False)
-    notes = Column(String(255), nullable=False)
-    taste_notes = Column(String(255), nullable=False)
-    taste_rating = Column(Integer, nullable=False)
-    og = Column(Integer, nullable=False)
-    fg = Column(Integer, nullable=False)
-    carbonation = Column(Integer, nullable=False)
-    fermentation_stages = Column(Integer, nullable=False)
-    primary_age = Column(Integer, nullable=False)
-    primary_temp = Column(Integer, nullable=False)
-    secondary_age = Column(Integer, nullable=False)
-    secondary_temp = Column(Integer, nullable=False)
-    tertiary_age = Column(Integer, nullable=False)
-    age = Column(Integer, nullable=False)
-    age_temp = Column(Integer, nullable=False)
-    carbonation_used = Column(String(255), nullable=False)
-    date = Column(Date, default=date.today, nullable=False)
-    est_og = Column(Integer, nullable=False)
-    est_fg = Column(Integer, nullable=False)
-    est_color = Column(Integer, nullable=False)
-    ibu = Column(Integer, nullable=False)
-    ibu_method = Column(String(255), nullable=False)
-    est_abv = Column(Integer, nullable=False)
-    abv = Column(Integer, nullable=False)
-    actual_efficiency = Column(Integer, nullable=False)
-    calories = Column(Integer, nullable=False)
-    display_batch_size = Column(String(255), nullable=False)
-    display_boil_size = Column(String(255), nullable=False)
-    display_og = Column(String(255), nullable=False)
-    display_fg = Column(String(255), nullable=False)
-    display_primary_temp = Column(String(255), nullable=False)
-    display_secondary_temp = Column(String(255), nullable=False)
-    display_tertiary_temp = Column(String(255), nullable=False)
-    display_age_temp = Column(String(255), nullable=False)
+        timezone.utc), nullable=True)
+    name = Column(String(255), nullable=True)
+    type = Column(String(255), nullable=True)
+    brewer = Column(String(255), nullable=True)
+    asst_brewer = Column(String(255), nullable=True)
+    batch_size = Column(Integer, nullable=True)
+    boil_size = Column(Integer, nullable=True)
+    boil_time = Column(Integer, nullable=True)
+    efficiency = Column(Integer, nullable=True)
+
+    mash = Column(String(255), nullable=True)
+    notes = Column(String(255), nullable=True)
+    taste_notes = Column(String(255), nullable=True)
+    taste_rating = Column(Integer, nullable=True)
+    og = Column(Integer, nullable=True)
+    fg = Column(Integer, nullable=True)
+    carbonation = Column(Integer, nullable=True)
+    fermentation_stages = Column(Integer, nullable=True)
+    primary_age = Column(Integer, nullable=True)
+    primary_temp = Column(Integer, nullable=True)
+    secondary_age = Column(Integer, nullable=True)
+    secondary_temp = Column(Integer, nullable=True)
+    tertiary_age = Column(Integer, nullable=True)
+    age = Column(Integer, nullable=True)
+    age_temp = Column(Integer, nullable=True)
+    carbonation_used = Column(String(255), nullable=True)
+    date = Column(Date, default=date.today, nullable=True)
+    est_og = Column(Integer, nullable=True)
+    est_fg = Column(Integer, nullable=True)
+    est_color = Column(Integer, nullable=True)
+    ibu = Column(Integer, nullable=True)
+    ibu_method = Column(String(255), nullable=True)
+    est_abv = Column(Integer, nullable=True)
+    abv = Column(Integer, nullable=True)
+    actual_efficiency = Column(Integer, nullable=True)
+    calories = Column(Integer, nullable=True)
+    display_batch_size = Column(String(255), nullable=True)
+    display_boil_size = Column(String(255), nullable=True)
+    display_og = Column(String(255), nullable=True)
+    display_fg = Column(String(255), nullable=True)
+    display_primary_temp = Column(String(255), nullable=True)
+    display_secondary_temp = Column(String(255), nullable=True)
+    display_tertiary_temp = Column(String(255), nullable=True)
+    display_age_temp = Column(String(255), nullable=True)
 
     # Relationships
-    hop = relationship("Hop", back_populates="recipe")
-    fermentable = relationship("Fermentable", back_populates="recipe")
-    misc = relationship("Misc", back_populates="recipe")
-    yeast = relationship("Yeast", back_populates="recipe")
-    water = relationship("Water", back_populates="recipe")
+    # hop = relationship("Hop", back_populates="recipe")
+    # fermentable = relationship("Fermentable", back_populates="recipe")
+    # yeast = relationship("Yeast", back_populates="recipe")
+    # misc = relationship("Misc", back_populates="recipe")
+    # water = relationship("Water", back_populates="recipe")
     # style = relationship("Style", back_populates="recipe")
-    equipment = relationship("Equipment", back_populates="recipe")
+    # equipment = relationship("Equipment", back_populates="recipe")
 
     def __repr__(self):
         return f"Recipe(id={self.id}, \
                 created_at={self.created_at}, \
                 updated_at={self.updated_at}, \
                 name={self.name}, \
-                version={self.version}, \
                 type={self.type}, \
                 brewer={self.brewer}, \
                 asst_brewer={self.asst_brewer}, \
@@ -148,13 +138,6 @@ class Recipe(Base):
                 boil_size={self.boil_size}, \
                 boil_time={self.boil_time}, \
                 efficiency={self.efficiency}, \
-                hop={self.hop}, \
-                fermentable={self.fermentable}, \
-                misc={self.misc}, \
-                yeast={self.yeast}, \
-                water={self.water}, \
-                style={self.style}, \
-                equipment={self.equipment}, \
                 mash={self.mash}, \
                 notes={self.notes}, \
                 taste_notes={self.taste_notes}, \
@@ -187,4 +170,5 @@ class Recipe(Base):
                 display_fg={self.display_fg}, \
                 display_primary_temp={self.display_primary_temp}, \
                 display_secondary_temp={self.display_secondary_temp}, \
-                display_tertiary_temp={self.display_tertiary_temp})"
+                display_tertiary_temp={self.display_tertiary_temp}, \
+                display_age_temp={self.display_age_temp}"

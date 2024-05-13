@@ -92,7 +92,7 @@ const cards = [
                 <h1>Recipe</h1>
             </div>
             <ProductNewDialog />
-            <UserAccountLoginDialog />
+            <BeerXMLImportRecipeDialog />
         </header>
         <main class="grid w-full gap-4">
             <div>

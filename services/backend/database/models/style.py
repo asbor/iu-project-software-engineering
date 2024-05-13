@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime, timezone
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
 from .base import Base
@@ -38,23 +38,23 @@ class Style(Base):
         recipe_id (UUID): The unique identifier for the recipe.
     """
     __tablename__ = "style"
-    id = Column(Integer, nullable=False, primary_key=True)
-    category = Column(String(255), nullable=False)
-    color = Column(String(255), nullable=False)
-    clarity = Column(String(255), nullable=False)
-    perceived_malt_and_aroma = Column(String(255), nullable=False)
-    perceived_hop_and_aroma = Column(String(255), nullable=False)
-    perceived_bitterness = Column(String(255), nullable=False)
-    fermentation_characteristics = Column(String(255), nullable=False)
-    body = Column(String(255), nullable=False)
-    additional_notes = Column(String(255), nullable=False)
+    id = Column(Integer, nullable=True, primary_key=True)
+    category = Column(String(255), nullable=True)
+    color = Column(String(255), nullable=True)
+    clarity = Column(String(255), nullable=True)
+    perceived_malt_and_aroma = Column(Text, nullable=True)
+    perceived_hop_and_aroma = Column(Text, nullable=True)
+    perceived_bitterness = Column(Text, nullable=True)
+    fermentation_characteristics = Column(Text, nullable=True)
+    body = Column(String(255), nullable=True)
+    additional_notes = Column(Text, nullable=True)
 
     # Vitals
-    og = Column(String(255), nullable=False)
-    fg = Column(String(255), nullable=False)
-    abv = Column(String(255), nullable=False)
-    ibu = Column(String(255), nullable=False)
-    ebc = Column(String(255), nullable=False)
+    og = Column(String(255), nullable=True)
+    fg = Column(String(255), nullable=True)
+    abv = Column(String(255), nullable=True)
+    ibu = Column(String(255), nullable=True)
+    ebc = Column(String(255), nullable=True)
 
     # Calculated
     # og_min = Column(Integer, nullable=True)

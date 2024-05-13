@@ -18,11 +18,32 @@ const isConnectedToDatabase = ref(false); // Define a reactive boolean property
 const checkDatabaseConnection = () => {
     // make an API request to check the database connection status
 
+    fetch('http://localhost:8000/style', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+        },
+    })
+        .then(response => {
+            if (response.ok) {
+                isConnectedToDatabase.value = true;
+            } else {
+                isConnectedToDatabase.value = false;
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            isConnectedToDatabase.value = false;
+        });
+
+
 }
 
 // Call the method to check the database connection status periodically or on demand
 checkDatabaseConnection();
+
 </script>
+
 
 <style scoped>
 /* Define styling for the indicator */

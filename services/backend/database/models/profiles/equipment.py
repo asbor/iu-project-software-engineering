@@ -75,7 +75,7 @@ class Equipment(Base):
 
     # Relationships
     recipe_id = Column(UUID(as_uuid=True), ForeignKey('recipe.id'))
-    recipe = relationship("Recipe", back_populates="equipment")
+    # recipe = relationship("Recipe", back_populates="equipment")
 
     def __repr__(self):
         return f"Equipment(id={self.id}, \

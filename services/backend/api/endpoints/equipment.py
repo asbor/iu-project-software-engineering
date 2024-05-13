@@ -4,7 +4,7 @@ from uuid import UUID
 from setup import SessionLocal
 import database.models as models
 import database.schemas as schemas
-from api.validation.equipment_validation import EquipmentCreate
+
 from typing import List
 import logging
 
@@ -20,7 +20,7 @@ router = APIRouter()
 
 
 @router.post("/equipment", response_model=dict, status_code=status.HTTP_201_CREATED)
-async def create_equipment(equipment: EquipmentCreate):
+async def create_equipment(equipment: schemas.Equipment):
     # Check if equipment name already exists
     existing_equipment = db.query(models.Equipment).filter(
         models.Equipment.name == equipment.name).first()

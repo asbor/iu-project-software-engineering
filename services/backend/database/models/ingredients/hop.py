@@ -37,7 +37,7 @@ class Hop(Base):
     __tablename__ = "hop"
 
     # Metadata
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(UUID(as_uuid=True), primary_key=True)
     name = Column(String(255), nullable=False)
 
     # Specific attributes for hop
@@ -58,26 +58,23 @@ class Hop(Base):
     display_time = Column(String(255), nullable=False)
 
     # Relationships
-    recipe_id = Column(UUID(as_uuid=True), ForeignKey("recipe.id"))
-    recipe = relationship("Recipe", back_populates="hop")
-    inventory = relationship("Inventory", back_populates="hop")
+    # recipe_id = Column(UUID(as_uuid=True), ForeignKey("recipe.id"))
+    # recipe = relationship("Recipe", back_populates="hop")
+    # inventory = relationship("Inventory", back_populates="hop")
 
     def __repr__(self):
         return f"Hop(id={self.id}, \
-                created_at={self.created_at}, \
-                updated_at={self.updated_at}, \
-                name={self.name}, \
-                version={self.version}, \
-                origin={self.origin}, \
-                alpha={self.alpha}, \
-                amount={self.amount}, \
-                use={self.use}, \
-                time={self.time}, \
-                notes={self.notes}, \
-                type={self.type}, \
-                form={self.form}, \
-                beta={self.beta}, \
-                hsi={self.hsi}, \
-                display_amount={self.display_amount}, \
-                inventory={self.inventory}, \
-                display_time={self.display_time}"
+            name={self.name}, \
+            origin={self.origin}, \
+            alpha={self.alpha}, \
+            amount={self.amount}, \
+            use={self.use}, \
+            time={self.time}, \
+            notes={self.notes}, \
+            type={self.type}, \
+            form={self.form}, \
+            beta={self.beta}, \
+            hsi={self.hsi}, \
+            display_amount={self.display_amount}, \
+            inventory={self.inventory}, \
+            display_time={self.display_time})"

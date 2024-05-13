@@ -52,7 +52,7 @@ class Water(Base):
 
     # Relationships
     recipe_id = Column(UUID(as_uuid=True), ForeignKey('recipe.id'))
-    recipe = relationship("Recipe", back_populates="water")
+    # recipe = relationship("Recipe", back_populates="water")
 
     def __repr__(self):
         return f"Water(id={self.id}, \

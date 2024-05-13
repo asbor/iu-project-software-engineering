@@ -70,7 +70,7 @@ class Yeast(Base):
 
     # Relationships
     recipe_id = Column(UUID(as_uuid=True), ForeignKey('recipe.id'))
-    recipe = relationship("Recipe", back_populates="yeast")
+    # recipe = relationship("Recipe", back_populates="yeast")
     inventory = relationship("Inventory", back_populates="yeast")
 
     def __repr__(self):

@@ -37,8 +37,6 @@ class Fermentable(Base):
 
     # Metadata
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    created_at = Column(DateTime, default=datetime.now(timezone.utc))
-    updated_at = Column(DateTime, default=datetime.now(timezone.utc))
     name = Column(String, nullable=False)
 
     # Specific attributes for fermentable
@@ -67,7 +65,7 @@ class Fermentable(Base):
     recipe_id = Column(UUID(as_uuid=True), ForeignKey("recipe.id"))
 
     # Relationships
-    recipe = relationship("Recipe", uselist=True, back_populates="fermentable")
+    # recipe = relationship("Recipe", uselist=True, back_populates="fermentable")
     inventory = relationship("Inventory", uselist=True,
                              back_populates="fermentable")
 

@@ -13,10 +13,7 @@ class Hop(BaseModel):
 
     Attributes:
         id (UUID): The unique identifier for the hop.
-        created_at (DateTime): The timestamp when the hop was created.
-        updated_at (DateTime): The timestamp when the hop was last updated.
         name (str): The name of the hop.
-        version (int): The version number of the hop.
         origin (str): The origin of the hop.
         alpha (int): The alpha acid content of the hop.
         amount (int): The amount of hop used.
@@ -30,14 +27,10 @@ class Hop(BaseModel):
         display_amount (str): Formatted amount of hop.
         inventory (int): The amount of hop in inventory.
         display_time (str): Formatted time the hop is added.
-        recipe (relationship): Relationship to the Recipe table.
     """
 
     id: uuid.UUID
-    created_at: datetime
-    updated_at: datetime
     name: str
-    version: int
     origin: str
     alpha: int
     amount: int

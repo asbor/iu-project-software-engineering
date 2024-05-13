@@ -1,0 +1,59 @@
+<HOPS>
+<HOP>
+<NAME>Goldings, East Kent</NAME>
+<VERSION>1</VERSION>
+<ORIGIN>United Kingdom</ORIGIN>
+<ALPHA>5.50</ALPHA>
+<AMOUNT>0.0283500</AMOUNT>
+<USE>Boil</USE>
+<TIME>60.000</TIME>
+<NOTES>
+Used For: General purpose hops for bittering/finishing all British Ales Aroma: Floral, aromatic, earthy, slightly sweet spicy flavor Substitutes: Fuggles, BC Goldings Examples: Bass Pale Ale, Fullers ESB, Samual Smith's Pale Ale
+</NOTES>
+<TYPE>Aroma</TYPE>
+<FORM>Pellet</FORM>
+<BETA>3.50</BETA>
+<HSI>35.0</HSI>
+<DISPLAY_AMOUNT>1.00 oz</DISPLAY_AMOUNT>
+<INVENTORY>1.00 oz</INVENTORY>
+<DISPLAY_TIME>60 min</DISPLAY_TIME>
+</HOP>
+<HOP>
+<NAME>Northern Brewer</NAME>
+<VERSION>1</VERSION>
+<ORIGIN>Germany</ORIGIN>
+<ALPHA>7.50</ALPHA>
+<AMOUNT>0.0141750</AMOUNT>
+<USE>Boil</USE>
+<TIME>60.000</TIME>
+<NOTES>
+Also called Hallertauer Northern Brewers Use for: Bittering and finishing both ales and lagers of all kinds Aroma: Fine, dry, clean bittering hop. Unique flavor. Substitute: Hallertauer Mittelfrueh, Hallertauer Examples: Anchor Steam, Old Peculiar,
+</NOTES>
+<TYPE>Both</TYPE>
+<FORM>Pellet</FORM>
+<BETA>4.00</BETA>
+<HSI>35.0</HSI>
+<DISPLAY_AMOUNT>0.50 oz</DISPLAY_AMOUNT>
+<INVENTORY>0.50 oz</INVENTORY>
+<DISPLAY_TIME>60 min</DISPLAY_TIME>
+</HOP>
+<HOP>
+<NAME>Fuggles</NAME>
+<VERSION>1</VERSION>
+<ORIGIN>United Kingdom</ORIGIN>
+<ALPHA>5.00</ALPHA>
+<AMOUNT>0.0141750</AMOUNT>
+<USE>Boil</USE>
+<TIME>2.000</TIME>
+<NOTES>
+Used For: General purpose bittering/aroma for English Ales, Dark Lagers Aroma: Mild, soft, grassy, floral aroma Substitute: East Kent Goldings, Williamette Examples: Samuel Smith's Pale Ale, Old Peculiar, Thomas Hardy's Ale
+</NOTES>
+<TYPE>Aroma</TYPE>
+<FORM>Pellet</FORM>
+<BETA>2.00</BETA>
+<HSI>35.0</HSI>
+<DISPLAY_AMOUNT>0.50 oz</DISPLAY_AMOUNT>
+<INVENTORY>0.50 oz</INVENTORY>
+<DISPLAY_TIME>2 min</DISPLAY_TIME>
+</HOP>
+</HOPS>

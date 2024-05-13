@@ -42,7 +42,7 @@ class Inventory(Base):
     misc_id = Column(UUID(as_uuid=True), ForeignKey("misc.id"))
     fermentable = relationship(
         "Fermentable", uselist=False, back_populates="inventory")
-    hop = relationship("Hop", uselist=False, back_populates="inventory")
+    # hop = relationship("Hop", uselist=False, back_populates="inventory")
     yeast = relationship("Yeast", uselist=False, back_populates="inventory")
     misc = relationship("Misc", uselist=False, back_populates="inventory")
 

@@ -3,7 +3,8 @@ from uuid import UUID
 from setup import SessionLocal
 import database.models as models
 import database.schemas as schemas
-from api.validation.mash_validation import MashCreate
+
+
 from typing import List
 from uuid import uuid4
 
@@ -12,7 +13,7 @@ db = SessionLocal()
 
 
 @router.post("/mash", response_model=dict, status_code=status.HTTP_201_CREATED)
-async def create_mash(mash: MashCreate):
+async def create_mash(mash: schemas.Mash):
     # Check if mash name already exists
     existing_mash = db.query(models.Mash).filter(
         models.Mash.name == mash.name).first()
@@ -89,7 +90,7 @@ def read_mash(mash_id: UUID):
 
 
 @router.put("/mash/{mash_id}", response_model=dict)
-async def update_mash(mash_id: UUID, mash: MashCreate):
+async def update_mash(mash_id: UUID, mash: schemas.Mash):
     # Check if mash exists
     existing_mash = db.query(models.Mash).filter(
         models.Mash.id == mash_id).first()
