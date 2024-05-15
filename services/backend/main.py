@@ -1,33 +1,48 @@
-from fastapi import FastAPI
-from setup import engine
+from fastapi import FastAPI, HTTPException, Depends
+
+from typing import List, Annotated
+
+
+from database import engine, Base, SessionLocal
 from api.router import router
-from database.models.base import Base
 from fastapi.middleware.cors import CORSMiddleware
 from beer_styles_processing import main
+from logger_config import get_logger
+
+# Get logger instance
+logger = get_logger('Main')
 
 # Connect to the database (bind the engine)
 # Create the tables in the database (create_all)
+logger.info("Connecting to the database and creating tables")
 Base.metadata.create_all(bind=engine)
 
+# Create a dependency to get the database session
+
+
 # create the FastAPI app and include the router from the endpoints folder
+logger.info("Creating FastAPI app and including the router")
 app = FastAPI(title="PostgreSQL and FastAPI")
 app.include_router(router)
 
-# create a root endpoint
-
+# Add CORS middleware to allow requests from the frontend
+logger.info("Adding CORS middleware")
 origins = [
     "http://localhost:3000",
+    "http://localhost:8000",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    # allow_origins=origins,
+    allow_origins=["*"],  # Adjust this to allow requests from specific origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# main()
+# Run the beer styles processing script
+main()
 
 
 @app.get("/")

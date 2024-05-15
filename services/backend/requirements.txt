@@ -1,9 +1,9 @@
 
 # Install the FastAPI framework
-fastapi==0.89.1
+fastapi
 
 # Install the Uvicorn server
-uvicorn==0.20.0
+uvicorn
 
 # Install the SQLAlchemy ORM
 SQLAlchemy

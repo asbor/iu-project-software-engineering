@@ -4,8 +4,12 @@ import requests
 import csv
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import IntegrityError
-from setup import engine
-from database.models import Style
+from database import engine
+from Database.Models import Style
+from logger_config import get_logger
+
+# Get logger instance
+logger = get_logger('WebScraper')
 
 
 class CsvFile:
@@ -137,17 +141,22 @@ def import_csv_to_db(input_csv):
 
 
 def main():
+    logger.info(
+        "WebScraper: Scraping beer styles from Brewers Association website")
     csv_filename = 'beer_styles.csv'
     scrape_beer_styles(csv_filename)
 
+    logger.info("WebScraper: Data cleaning and feature extraction")
     input_csv = 'beer_styles.csv'
     intermediate_csv = 'beer_styles_features.csv'
     extract_features(input_csv, intermediate_csv)
 
+    logger.info("WebScraper: Pivoting the data")
     input_features_csv = 'beer_styles_features.csv'
     output_csv = 'output.csv'
     pivot_csv(input_features_csv, output_csv)
 
+    logger.info("WebScraper: Importing the data to the database")
     import_csv_to_db(output_csv)
 
 

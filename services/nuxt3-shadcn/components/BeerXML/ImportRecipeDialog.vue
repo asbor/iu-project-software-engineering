@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, version } from 'vue';
 import { parseString } from 'xml2js';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -31,6 +31,10 @@ function handleFileChange(event) {
   reader.readAsText(file);
 }
 
+function getValueOrDefault(field) {
+  return field ? field[0] : '';
+}
+
 function parseBeerXML(beerXMLContent) {
   parseString(beerXMLContent, (err, result) => {
     if (err) {
@@ -50,60 +54,83 @@ function parseBeerXML(beerXMLContent) {
     importedRecipes.value = recipes.map((recipe) => ({
       id: uuidv4(), // Generate UUID for each recipe
       name: recipe.NAME[0],
-      version: parseInt(recipe.VERSION[0]), // Convert version to integer
-      type: recipe.TYPE[0],
-      brewer: recipe.BREWER[0],
-      asst_brewer: '', // Add asst_brewer if needed, currently empty string
-      batch_size: parseInt(recipe.BATCH_SIZE[0]), // Assuming BATCH_SIZE is available in BeerXML
-      boil_size: parseInt(recipe.BOIL_SIZE[0]), // Assuming BOIL_SIZE is available in BeerXML
-      boil_time: parseInt(recipe.BOIL_TIME[0]), // Assuming BOIL_TIME is available in BeerXML
-      efficiency: parseInt(recipe.EFFICIENCY[0]), // Assuming EFFICIENCY is available in BeerXML
-      hop: '', // Add hop field if needed, currently empty string
-      fermentable: '', // Add fermentable field if needed, currently empty string
-      misc: '', // Add misc field if needed, currently empty string
-      yeast: '', // Add yeast field if needed, currently empty string
-      water: '', // Add water field if needed, currently empty string
-      style: '', // Add style field if needed, currently empty string
-      equipment: '', // Add equipment field if needed, currently empty string
-      mash: '', // Add mash field if needed, currently empty string
-      notes: '', // Add notes field if needed, currently empty string
-      taste_notes: '', // Add taste_notes field if needed, currently empty string
-      taste_rating: 0, // Add taste_rating field if needed, currently 0
-      og: 0, // Add og field if needed, currently 0
-      fg: 0, // Add fg field if needed, currently 0
-      carbonation: 0, // Add carbonation field if needed, currently 0
-      fermentation_stages: 0, // Add fermentation_stages field if needed, currently 0
-      primary_age: 0, // Add primary_age field if needed, currently 0
-      primary_temp: 0, // Add primary_temp field if needed, currently 0
-      secondary_age: 0, // Add secondary_age field if needed, currently 0
-      secondary_temp: 0, // Add secondary_temp field if needed, currently 0
-      tertiary_age: 0, // Add tertiary_age field if needed, currently 0
-      age: 0, // Add age field if needed, currently 0
-      age_temp: 0, // Add age_temp field if needed, currently 0
-      carbonation_used: '', // Add carbonation_used field if needed, currently empty string
-      date: new Date(), // Assuming date is available in BeerXML, set to current date for now
-      est_og: 0, // Add est_og field if needed, currently 0
-      est_fg: 0, // Add est_fg field if needed, currently 0
-      est_color: 0, // Add est_color field if needed, currently 0
-      ibu: 0, // Add ibu field if needed, currently 0
-      ibu_method: '', // Add ibu_method field if needed, currently empty string
-      est_abv: 0, // Add est_abv field if needed, currently 0
-      abv: 0, // Add abv field if needed, currently 0
-      actual_efficiency: 0, // Add actual_efficiency field if needed, currently 0
-      calories: 0, // Add calories field if needed, currently 0
-      display_batch_size: '', // Add display_batch_size field if needed, currently empty string
-      display_boil_size: '', // Add display_boil_size field if needed, currently empty string
-      display_og: '', // Add display_og field if needed, currently empty string
-      display_fg: '', // Add display_fg field if needed, currently empty string
-      display_primary_temp: '', // Add display_primary_temp field if needed, currently empty string
-      display_secondary_temp: '', // Add display_secondary_temp field if needed, currently empty string
-      display_tertiary_temp: '', // Add display_tertiary_temp field if needed, currently empty string
+      type: getValueOrDefault(recipe.TYPE),
+      version: parseFloat(getValueOrDefault(recipe.VERSION)),
+      brewer: getValueOrDefault(recipe.BREWER),
+      asst_brewer: getValueOrDefault(recipe.ASST_BREWER),
+      batch_size: parseFloat(getValueOrDefault(recipe.BATCH_SIZE)),
+      boil_size: parseFloat(getValueOrDefault(recipe.BOIL_SIZE)),
+      boil_time: parseInt(getValueOrDefault(recipe.BOIL_TIME)),
+      efficiency: parseFloat(getValueOrDefault(recipe.EFFICIENCY)),
+      //mash: getValueOrDefault(recipe.MASH),
+      notes: getValueOrDefault(recipe.NOTES),
+      taste_notes: getValueOrDefault(recipe.TASTE_NOTES),
+      taste_rating: parseFloat(getValueOrDefault(recipe.TASTE_RATING)),
+      og: parseFloat(getValueOrDefault(recipe.OG)),
+      fg: parseFloat(getValueOrDefault(recipe.FG)),
+      fermentation_stages: parseInt(getValueOrDefault(recipe.FERMENTATION_STAGES)),
+      primary_age: parseInt(getValueOrDefault(recipe.PRIMARY_AGE)),
+      primary_temp: parseFloat(getValueOrDefault(recipe.PRIMARY_TEMP)),
+      secondary_age: parseInt(getValueOrDefault(recipe.SECONDARY_AGE)),
+      secondary_temp: parseFloat(getValueOrDefault(recipe.SECONDARY_TEMP)),
+      tertiary_age: parseInt(getValueOrDefault(recipe.TERTIARY_AGE)),
+      age: parseInt(getValueOrDefault(recipe.AGE)),
+      age_temp: parseFloat(getValueOrDefault(recipe.AGE_TEMP)),
+      carbonation_used: getValueOrDefault(recipe.CARBONATION_USED),
+      //carbonation_date: getValueOrDefault(recipe.DATE),
+      est_og: parseFloat(getValueOrDefault(recipe.EST_OG)),
+      est_fg: parseFloat(getValueOrDefault(recipe.EST_FG)),
+      est_color: parseFloat(getValueOrDefault(recipe.EST_COLOR)),
+      ibu: parseFloat(getValueOrDefault(recipe.IBU)),
+      ibu_method: getValueOrDefault(recipe.IBU_METHOD),
+      est_abv: parseFloat(getValueOrDefault(recipe.EST_ABV)),
+      abv: parseFloat(getValueOrDefault(recipe.ABV)),
+      actual_efficiency: parseFloat(getValueOrDefault(recipe.ACTUAL_EFFICIENCY)),
+      calories: parseFloat(getValueOrDefault(recipe.CALORIES)),
+      display_batch_size: getValueOrDefault(recipe.DISPLAY_BATCH_SIZE),
+      display_boil_size: getValueOrDefault(recipe.DISPLAY_BOIL_SIZE),
+      display_og: getValueOrDefault(recipe.DISPLAY_OG),
+      display_fg: getValueOrDefault(recipe.DISPLAY_FG),
+      display_primary_temp: getValueOrDefault(recipe.DISPLAY_PRIMARY_TEMP),
+      display_secondary_temp: getValueOrDefault(recipe.DISPLAY_SECONDARY_TEMP),
+      display_tertiary_temp: getValueOrDefault(recipe.DISPLAY_TERTIARY_TEMP),
+      display_age_temp: getValueOrDefault(recipe.DISPLAY_AGE_TEMP),
+
+      // Map hops if present
+      hops: recipe.HOPS && recipe.HOPS[0].HOP ? recipe.HOPS[0].HOP.map((hop) => ({
+        id: uuidv4(), // Generate UUID for each hop
+        name: getValueOrDefault(hop.NAME),
+        origin: getValueOrDefault(hop.ORIGIN),
+        alpha: parseFloat(getValueOrDefault(hop.ALPHA)),
+        amount: parseFloat(getValueOrDefault(hop.AMOUNT)),
+        use: getValueOrDefault(hop.USE),
+        time: parseInt(getValueOrDefault(hop.TIME)),
+        notes: getValueOrDefault(hop.NOTES),
+        type: getValueOrDefault(hop.TYPE),
+        form: getValueOrDefault(hop.FORM),
+        beta: parseFloat(getValueOrDefault(hop.BETA)),
+        hsi: parseFloat(getValueOrDefault(hop.HSI)),
+        display_amount: getValueOrDefault(hop.DISPLAY_AMOUNT),
+        inventory: parseFloat(getValueOrDefault(hop.INVENTORY)),
+        display_time: getValueOrDefault(hop.DISPLAY_TIME),
+      })) : [],
     }));
+
   });
 }
 async function importRecipes() {
   for (const recipe of importedRecipes.value) {
     try {
+      // Log the request details before making the request
+      console.log('Request:', {
+        url: 'http://localhost:8000/recipe',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(recipe),
+      });
+
       const response = await fetch('http://localhost:8000/recipe', {
         method: 'POST',
         headers: {
@@ -111,15 +138,22 @@ async function importRecipes() {
         },
         body: JSON.stringify(recipe),
       });
+
       if (!response.ok) {
         throw new Error('Failed to create recipe');
       }
+      // close the dialog
+      open.value = false;
+      window.location.reload(); // refresh the parent page
+
       console.log(`Recipe "${recipe.name}" imported successfully.`);
+      console.log('recipe:', recipe);
     } catch (error) {
       console.error(error);
     }
   }
 }
+
 </script>
 
 <template>

@@ -63,6 +63,8 @@ const items = ref([
   { title: "Tools", path: "/tools", icon: "ri:tools-line" },
   // Settings
   { title: "Settings", path: "/settings", icon: "ri:settings-3-line" },
+  // Log
+  { title: "Log", path: "/log", icon: "ri:file-list-3-line" },
 ])
 
 import { useDark, useToggle } from "@vueuse/core";

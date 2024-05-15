@@ -22,6 +22,7 @@
         <TableRow>
           <TableHead>id</TableHead>
           <TableHead>Name</TableHead>
+          <TableHead>Version</TableHead>
           <TableHead>Origin</TableHead>
           <TableHead>Alpha</TableHead>
           <TableHead>Amount</TableHead>
@@ -44,6 +45,7 @@
           <TableRow>
             <TableCell>{{ hop.id }}</TableCell>
             <TableCell>{{ hop.name }}</TableCell>
+            <TableCell>{{ hop.version }}</TableCell>
             <TableCell>{{ hop.origin }}</TableCell>
             <TableCell>{{ hop.alpha }}</TableCell>
             <TableCell>{{ hop.amount }}</TableCell>
@@ -90,6 +92,7 @@ import { ref, onMounted } from 'vue';
 interface Hop {
   id: string;
   name: string;
+  version: string;
   origin: string;
   alpha: number;
   amount: number;

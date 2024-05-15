@@ -3,11 +3,14 @@ from . import fermentable
 from . import hop
 from . import mash
 from . import misc
-from . import recipe
 from . import style
 from . import user
 from . import water
-from . import yeast
+# from . import yeast
+from . import logs
+from . import questions
+
+from . import recipes
 
 __all__ = [
     "equipment",
@@ -15,13 +18,11 @@ __all__ = [
     "hop",
     "mash",
     "misc",
-    "recipe",
     "style",
     "user",
     "water",
-    "yeast"
+    # "yeast",
+    "logs",
+    "questions",
+    "recipes",
 ]
-
-# This will make all the routers available when importing the package
-# from services.backend.api.endpoints import *
-# instead of importing each router separately

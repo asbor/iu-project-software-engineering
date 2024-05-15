@@ -50,6 +50,7 @@ function parseBeerXML(beerXMLContent) {
     importedHops.value = hops.map((hop) => ({
       id: uuidv4(), // Generate UUID for each hop
       name: hop.NAME[0],
+      version: parseFloat(hop.VERSION[0]),
       origin: hop.ORIGIN[0],
       alpha: parseFloat(hop.ALPHA[0]),
       amount: parseFloat(hop.AMOUNT[0]),
