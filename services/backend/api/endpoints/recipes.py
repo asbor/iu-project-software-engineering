@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from database import get_db
 import Database.Models as models
 import Database.Schemas as schemas
@@ -9,7 +9,13 @@ router = APIRouter()
 
 @router.get("/recipes")
 async def get_all_recipes(db: Session = Depends(get_db)):
-    return db.query(models.Recipes).all()
+    recipes = db.query(models.Recipes).options(
+        joinedload(models.Recipes.hops),
+        # joinedload(models.Recipes.fermentables),
+        # joinedload(models.Recipes.yeasts),
+        # joinedload(models.Recipes.miscs)
+    ).all()
+    return recipes
 
 
 @router.post("/recipes")

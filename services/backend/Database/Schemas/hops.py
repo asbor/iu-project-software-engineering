@@ -18,5 +18,5 @@ class HopBase(BaseModel):
     inventory: Optional[str] = None
     display_time: Optional[str] = None
 
-    # class Config:
-    #    from_attributes = True  # Use from_attributes for Pydantic v2
+    class Config:
+        orm_mode = True
