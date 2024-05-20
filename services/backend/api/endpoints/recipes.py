@@ -7,6 +7,11 @@ import Database.Schemas as schemas
 router = APIRouter()
 
 
+@router.get("/recipes")
+async def get_all_recipes(db: Session = Depends(get_db)):
+    return db.query(models.Recipes).all()
+
+
 @router.post("/recipes")
 async def create_recipe(recipe: schemas.RecipeBase, db: Session = Depends(get_db)):
     # Exclude the related fields when creating the Recipes instance
