@@ -9,14 +9,9 @@ from . import questions
 from . import water_profiles
 from . import mash_profiles
 from . import equipment_profiles
-
-
-# TODO: The following imports will be built at a later time
-
-# from . import miscs
-# from . import users
-# from . import yeasts
-
+from . import miscs
+from . import users
+from . import yeasts
 
 __all__ = [
     'recipes',
@@ -27,5 +22,8 @@ __all__ = [
     'questions',
     'water_profiles',
     'mash_profiles',
-    'equipment_profiles'
+    'equipment_profiles',
+    'miscs',
+    'users',
+    'yeasts'
 ]

@@ -24,33 +24,29 @@ from .Ingredients.Fermentables.sugar import Sugar
 from .Profiles.equipment_profiles import EquipmentProfiles
 from .Profiles.mash_profiles import MashProfiles
 from .Profiles.water_profiles import WaterProfiles
-from .Ingredients.fermentables import MasterFermentables, RecipeFermentables
-from .Ingredients.hops import MasterHops, RecipeHops
-from .Ingredients.miscs import MasterMiscs, RecipeMiscs
-from .Ingredients.yeasts import MasterYeasts, RecipeYeasts
+from .Ingredients.fermentables import Fermentables
+from .Ingredients.hops import Hops
+from .Ingredients.miscs import Miscs
+from .Ingredients.yeasts import Yeasts
 
 __all__ = [
-    "Recipes",
-    "StyleGuidelines",
-    "Styles",
-    "Questions",
-    "Choices",
-    "Inventory",
-    "Grain",
-    "Adjunct",
-    "DryExtract",
-    "LiquidExtract",
-    "Other",
-    "Sugar",
-    "EquipmentProfiles",
-    "MashProfiles",
-    "WaterProfiles",
-    "MasterFermentables",
-    "RecipeFermentables",
-    "MasterHops",
-    "RecipeHops",
-    "MasterMiscs",
-    "RecipeMiscs",
-    "MasterYeasts",
-    "RecipeYeasts",
+    'Recipes',
+    'StyleGuidelines',
+    'Styles',
+    'Questions',
+    'Choices',
+    'Inventory',
+    'Grain',
+    'Adjunct',
+    'DryExtract',
+    'LiquidExtract',
+    'Other',
+    'Sugar',
+    'EquipmentProfiles',
+    'MashProfiles',
+    'WaterProfiles',
+    'Fermentables',
+    'Hops',
+    'Miscs',
+    'Yeasts',
 ]

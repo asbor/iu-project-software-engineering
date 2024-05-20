@@ -1,9 +1,10 @@
 from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey, Boolean
 from database import Base
+from sqlalchemy.orm import relationship
 
 
-class MasterYeasts(Base):
-    __tablename__ = "master_yeasts"
+class Yeasts(Base):
+    __tablename__ = "yeasts"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
@@ -18,16 +19,13 @@ class MasterYeasts(Base):
     notes = Column(String, nullable=True)
     best_for = Column(String, nullable=True)
     max_reuse = Column(Integer, nullable=True)
-
-
-class RecipeYeasts(Base):
-    __tablename__ = "recipe_yeasts"
-
-    id = Column(Integer, primary_key=True, index=True)
-    recipe_id = Column(Integer, ForeignKey('recipes.id'), nullable=False)
-    master_yeast_id = Column(Integer, ForeignKey(
-        'master_yeasts.id'), nullable=False)
     amount = Column(Float, nullable=False)
     amount_is_weight = Column(Boolean, nullable=True)
     inventory = Column(Float, nullable=True)
     display_amount = Column(String, nullable=True)
+
+    # Foreign key to Recipes
+    recipe_id = Column(Integer, ForeignKey('recipes.id'))
+
+    # Many-to-one relationship with Recipes
+    # recipe = relationship("Recipes", back_populates="yeasts")

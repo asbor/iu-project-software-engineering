@@ -1,11 +1,14 @@
 from pydantic import BaseModel
-from typing import Optional, List
-from .hops import HopInput
+from typing import List, Optional
+from .hops import HopBase
+from .fermentables import FermentableBase
+from .miscs import MiscBase
+from .yeasts import YeastBase
 
 
 class RecipeBase(BaseModel):
     name: str
-    version: int
+    version: Optional[int]
     type: Optional[str]
     brewer: Optional[str]
     asst_brewer: Optional[str]
@@ -45,7 +48,14 @@ class RecipeBase(BaseModel):
     display_tertiary_temp: Optional[str]
     display_age_temp: Optional[str]
 
-    hops: Optional[List[HopInput]] = None
+    # List of objects for each ingredient type
+    hops: Optional[List[HopBase]] = None
+    fermentables: Optional[List[FermentableBase]] = None
+    miscs: Optional[List[MiscBase]] = None
+    yeasts: Optional[List[YeastBase]] = None
 
-    class Config:
-        orm_mode = True
+    # Specific obects like style, equipment, mash, etc.
+    # style: Optional[str] = None
+
+    # class Config:
+    #    from_attributes = True  # Use from_attributes for Pydantic v2

@@ -14,11 +14,10 @@ from .styles import StyleBase
 from .equipment_profiles import EquipmentProfileBase
 from .water_profiles import WaterProfileBase
 from .mash_profiles import MashProfileBase
-from .fermentables import MasterFermentableBase, RecipeFermentableBase
-from .hops import MasterHopBase, RecipeHopBase
-from .miscs import MasterMiscBase, RecipeMiscBase
-from .yeasts import MasterYeastBase, RecipeYeastBase
-
+from .fermentables import FermentableBase
+from .hops import HopBase
+from .miscs import MiscBase
+from .yeasts import YeastBase
 
 # TODO: The following imports will be built at a later time
 # from .mash import Mash
@@ -26,24 +25,20 @@ from .yeasts import MasterYeastBase, RecipeYeastBase
 # from .user import User
 
 __all__ = [
-    "SugarBase",
-    "OtherBase",
-    "LiquidExtractBase",
-    "DryExtractBase",
-    "AdjunctBase",
-    "GrainBase",
-    "RecipeBase",
-    "StyleGuidelineBase",
-    "StyleBase",
-    "EquipmentProfileBase",
-    "WaterProfileBase",
-    "MashProfileBase",
-    "MasterFermentableBase",
-    "RecipeFermentableBase",
-    "MasterHopBase",
-    "RecipeHopBase",
-    "MasterMiscBase",
-    "RecipeMiscBase",
-    "MasterYeastBase",
-    "RecipeYeastBase",
+    'SugarBase',
+    'OtherBase',
+    'LiquidExtractBase',
+    'DryExtractBase',
+    'AdjunctBase',
+    'GrainBase',
+    'RecipeBase',
+    'StyleGuidelineBase',
+    'StyleBase',
+    'EquipmentProfileBase',
+    'WaterProfileBase',
+    'MashProfileBase',
+    'FermentableBase',
+    'HopBase',
+    'MiscBase',
+    'YeastBase',
 ]

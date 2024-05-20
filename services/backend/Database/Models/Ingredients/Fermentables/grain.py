@@ -28,4 +28,4 @@ class Grain(Base):
     max_in_batch = Column(Float, nullable=True)
 
     # Relationships for the fermentable types 1:1
-    fermentable_id = Column(Integer, ForeignKey('master_fermentables.id'))
+    fermentable_id = Column(Integer, ForeignKey('fermentables.id'))

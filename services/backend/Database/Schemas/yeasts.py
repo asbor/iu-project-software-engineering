@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 
 
-class MasterYeastBase(BaseModel):
+class YeastBase(BaseModel):
     name: str
     type: Optional[str]
     form: Optional[str]
@@ -15,17 +15,10 @@ class MasterYeastBase(BaseModel):
     notes: Optional[str]
     best_for: Optional[str]
     max_reuse: Optional[int]
-
-    class Config:
-        orm_mode = True
-
-
-class RecipeYeastBase(BaseModel):
-    master_yeast_id: Optional[int] = None
     amount: float
     amount_is_weight: Optional[bool]
     inventory: Optional[float]
     display_amount: Optional[str]
 
-    class Config:
-        orm_mode = True
+    # class Config:
+    #    from_attributes = True  # Use from_attributes for Pydantic v2

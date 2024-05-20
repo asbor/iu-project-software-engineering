@@ -42,7 +42,7 @@ app.add_middleware(
 )
 
 # Run the beer styles processing script
-main()
+# main()
 
 
 @app.get("/")

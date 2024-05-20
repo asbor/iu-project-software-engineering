@@ -1,8 +1,9 @@
 from pydantic import BaseModel
 from typing import Optional
+from datetime import date
 
 
-class MasterFermentableBase(BaseModel):
+class FermentableBase(BaseModel):
     name: str
     type: Optional[str]
     yield_: Optional[float]
@@ -11,17 +12,10 @@ class MasterFermentableBase(BaseModel):
     supplier: Optional[str]
     notes: Optional[str]
     potential: Optional[int]
-
-    class Config:
-        orm_mode = True
-
-
-class RecipeFermentableBase(BaseModel):
-    master_fermentable_id: Optional[int] = None
-    amount: float
+    amount: Optional[float]
     cost_per_unit: Optional[float]
-    manufacturing_date: Optional[str]
-    expiry_date: Optional[str]
+    manufacturing_date: Optional[date]
+    expiry_date: Optional[date]
     lot_number: Optional[str]
     exclude_from_total: Optional[bool]
     not_fermentable: Optional[bool]
@@ -29,5 +23,5 @@ class RecipeFermentableBase(BaseModel):
     substitutes: Optional[str]
     used_in: Optional[str]
 
-    class Config:
-        orm_mode = True
+    # class Config:
+    #    from_attributes = True  # Use from_attributes for Pydantic v2

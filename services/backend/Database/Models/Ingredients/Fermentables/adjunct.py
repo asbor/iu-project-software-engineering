@@ -19,4 +19,4 @@ class Adjunct(Base):
     # Most fields are inherited from the fermentable table.
 
     # Relationships:
-    fermentable_id = Column(Integer, ForeignKey('master_fermentables.id'))
+    fermentable_id = Column(Integer, ForeignKey('fermentables.id'))
