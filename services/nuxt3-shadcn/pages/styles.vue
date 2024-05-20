@@ -2,45 +2,45 @@
 import { ref, onMounted } from 'vue';
 
 const loading = ref(false);
-const styles = ref([]);
+const style_guidelines = ref([]);
 const searchQuery = ref('');
 const suggestions = ref([]);
 const selectedSuggestionIndex = ref(-1);
 const suggestionsDropdown = ref(null);
 
-async function fetchStyles() {
+async function fetchStyleGuidelines() {
     try {
         loading.value = true;
-        const response = await fetch('http://localhost:8000/style', {
+        const response = await fetch('http://localhost:8000/style_guidelines', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
             },
         });
         if (!response.ok) {
-            throw new Error('Failed to fetch styles');
+            throw new Error('Failed to fetch style_guidelines');
         }
-        styles.value = await response.json();
+        style_guidelines.value = await response.json();
         loading.value = false;
     } catch (error) {
         console.error(error);
     }
 }
 
-onMounted(fetchStyles);
+onMounted(fetchStyleGuidelines);
 
-function searchStyles() {
+function searchStyleGuidelines() {
     const query = searchQuery.value.toLowerCase();
-    return styles.value.filter(style => {
-        // Filter styles based on the search query
+    return style_guidelines.value.filter(style => {
+        // Filter style_guidelines based on the search query
         return style.category.toLowerCase().includes(query);
     });
 }
 
 function updateSuggestions() {
     const query = searchQuery.value.toLowerCase();
-    const filteredSuggestions = styles.value.filter(style => {
-        // Filter styles based on the search query
+    const filteredSuggestions = style_guidelines.value.filter(style => {
+        // Filter style_guidelines based on the search query
         return style.category.toLowerCase().includes(query);
     }).map(style => style.category);
     suggestions.value = filteredSuggestions.slice(0, 3); // Limit to top 3 suggestions
@@ -91,7 +91,7 @@ onUnmounted(() => {
     <div class="grid w-full gap-4">
         <header class="flex items-start justify-between">
             <div class="grow">
-                <h1>Beer Styles</h1>
+                <h1>Beer Style Guidelines</h1>
             </div>
             <ProductNewDialog />
             <UserAccountLoginDialog />
@@ -100,7 +100,7 @@ onUnmounted(() => {
             <div>
                 <input type="text" v-model="searchQuery" @input="updateSuggestions"
                     @keydown.enter.prevent="handleEnterKey" @keydown="handleArrowKeys"
-                    placeholder="Search for styles..."
+                    placeholder="Search for style guidelines..."
                     class="w-full p-2 border border-neutral-200 rounded bg-neutral-200" />
                 <ul ref="suggestionsDropdown" v-if="suggestions.length > 0"
                     class="absolute bg-white border border-gray-300 rounded mt-1 w-full">
@@ -114,7 +114,7 @@ onUnmounted(() => {
             <div class="grid gap-4 lg:grid-cols-2">
                 <div v-if="loading">Loading...</div>
                 <template v-else>
-                    <StyleCard v-for="(style, index) in searchStyles()" :key="index" :style="style" />
+                    <StyleCard v-for="(style, index) in searchStyleGuidelines()" :key="index" :style="style" />
                 </template>
             </div>
         </main>

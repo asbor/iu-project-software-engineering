@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException, status
-from uuid import UUID
 from database import SessionLocal
 from typing import Annotated
 from fastapi import Depends

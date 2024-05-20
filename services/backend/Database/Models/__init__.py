@@ -1,14 +1,13 @@
-# database/models/__init__.py
-from .Profiles.equipment import Equipment
-from .Ingredients.fermentable import Fermentable
 
-from .Profiles.mash import Mash
-from .Ingredients.misc import Misc
 
-from .style import Style
-from .user import User
-from .Profiles.water import Water
-from .Ingredients.yeast import Yeast
+from .recipes import Recipes
+from .style_guidlines import StyleGuidelines
+from .styles import Styles
+
+
+from .questions import Questions
+from .choices import Choices
+
 from .inventory import Inventory
 from .Ingredients.Fermentables.grain import Grain
 from .Ingredients.Fermentables.adjunct import Adjunct
@@ -17,22 +16,25 @@ from .Ingredients.Fermentables.liquid_extract import LiquidExtract
 from .Ingredients.Fermentables.other import Other
 from .Ingredients.Fermentables.sugar import Sugar
 
-from .choices import Choices
-from .questions import Questions
-from .recipes import Recipes
-from .Ingredients.hops import Hops
+# TODO: The following imports will be built at a later time
+# from .users import Users
+
+
+# Profile routers
+from .Profiles.equipment_profiles import EquipmentProfiles
+from .Profiles.mash_profiles import MashProfiles
+from .Profiles.water_profiles import WaterProfiles
+from .Ingredients.fermentables import MasterFermentables, RecipeFermentables
+from .Ingredients.hops import MasterHops, RecipeHops
+from .Ingredients.miscs import MasterMiscs, RecipeMiscs
+from .Ingredients.yeasts import MasterYeasts, RecipeYeasts
 
 __all__ = [
-    "Equipment",
-    "Fermentable",
-    "Hops",
-    "Mash",
-    "Misc",
     "Recipes",
-    "Style",
-    "User",
-    "Water",
-    "Yeast",
+    "StyleGuidelines",
+    "Styles",
+    "Questions",
+    "Choices",
     "Inventory",
     "Grain",
     "Adjunct",
@@ -40,6 +42,15 @@ __all__ = [
     "LiquidExtract",
     "Other",
     "Sugar",
-    "Choices",
-    "Questions",
+    "EquipmentProfiles",
+    "MashProfiles",
+    "WaterProfiles",
+    "MasterFermentables",
+    "RecipeFermentables",
+    "MasterHops",
+    "RecipeHops",
+    "MasterMiscs",
+    "RecipeMiscs",
+    "MasterYeasts",
+    "RecipeYeasts",
 ]

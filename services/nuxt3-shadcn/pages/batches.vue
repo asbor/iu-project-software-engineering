@@ -5,8 +5,6 @@
             <li v-for="author in authors" :key="author.id">
                 <strong>Name:</strong> {{ author.name }}<br>
                 <strong>Surname:</strong> {{ author.surname }}<br>
-                <strong>Created At:</strong> {{ author.created_at }}<br>
-                <strong>Updated At:</strong> {{ author.updated_at }}<br>
                 <button @click="deleteAuthor(author.id)">Delete</button>
             </li>
         </ul>
@@ -61,8 +59,6 @@ export default {
                         id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
                         name: this.newAuthorName,
                         surname: this.newAuthorSurname,
-                        created_at: new Date().toISOString(), // format: 2024-04-29T13:00:00.158Z
-                        updated_at: new Date().toISOString() // format: 2024-04-29T13:00:00.158Z
 
                     })
                 });

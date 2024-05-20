@@ -1,163 +1,122 @@
 import re
 from bs4 import BeautifulSoup
 import requests
-import csv
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import IntegrityError
 from database import engine
-from Database.Models import Style
+from Database.Models import StyleGuidelines
 from logger_config import get_logger
 
 # Get logger instance
 logger = get_logger('WebScraper')
 
 
-class CsvFile:
-    def __init__(self, filename):
-        self.filename = filename
+def scrape_and_process_beer_styles():
+    logger.info("Scraping data from Brewers Association website")
+    page_to_scrape = requests.get(
+        'https://www.brewersassociation.org/resources/brewers-association-beer-style-guidelines/')
+    soup = BeautifulSoup(page_to_scrape.text, 'html.parser')
 
-    def exists(self):
-        try:
-            with open(self.filename, 'r') as file:
-                return True
-        except FileNotFoundError:
-            return False
+    beer_styles_section = soup.find('section', id='beer-styles')
+    beer_style_groups = beer_styles_section.findAll(
+        'div', class_='beer-style-group')
+    styles_data = []
 
+    for beer_style_group in beer_style_groups:
+        block_heading = "Unknown"
+        circle_image = None
 
-def scrape_beer_styles(csv_filename):
-    csv_file = CsvFile(csv_filename)
+        for element in beer_style_group.children:
+            if element.name == 'h2' and 'origin' in element.get('class', []):
+                origin_heading = element
+                block_heading = origin_heading.text.strip()
+                circle_image = origin_heading.find(
+                    'img')['src'] if origin_heading.find('img') else None
+            elif element.name == 'div' and 'beer-style' in element.get('class', []):
+                style_data = parse_beer_style(element)
+                if style_data:
+                    style_data['block_heading'] = block_heading
+                    style_data['circle_image'] = circle_image
+                    styles_data.append(style_data)
 
-    if csv_file.exists():
-        print('CSV file already exists')
+    if styles_data:
+        logger.info("Storing data in the database")
+        store_in_db(styles_data)
     else:
-        print('Scraping data from Brewers Association website')
-        # Scrape the data
-        page_to_scrape = requests.get(
-            'https://www.brewersassociation.org/resources/brewers-association-beer-style-guidelines/')
-        soup = BeautifulSoup(page_to_scrape.text, 'html.parser')
-
-        beer_styles = soup.findAll('div', attrs={'class': 'beer-style'})
-
-        with open(csv_filename, 'w') as file:
-            writer = csv.writer(file)
-
-            for beer_style in beer_styles:
-                print(beer_style.text)
-                writer.writerow([beer_style.text])
+        logger.warning("No data to store")
 
 
-def extract_features(input_csv, output_csv):
-    with open(input_csv, 'r') as file:
-        with open(output_csv, 'w') as outfile:
-            writer = csv.writer(outfile)
-            writer.writerow(['Feature', 'value'])
+def parse_beer_style(beer_style):
+    style_data = {}
 
-            reader = csv.reader(file)
-            for row in reader:
-                entry = ' '.join(row)
-                entry = entry.replace('\n\n\n', '\n\n')
-                entry = entry.replace('\n\n', '\n')
-                entry = entry.replace(':\n', ': ')
-                entry = entry.replace(':\t', '')
-                match = re.search(
-                    r'^\n([a-zA-Zéüöêåøè\s\&\-\\/0-9.,!?]+)\n', entry)
-                category_name = match.group(1) if match else None
-                writer.writerow(['Category', category_name])
-                lines = entry.split('\n')
-                for line in lines:
-                    parts = re.split(r':\s', line, 1)
-                    if len(parts) == 2:
-                        column = parts[0].strip()
-                        value = parts[1].strip()
-                        writer.writerow([column, value])
-                    else:
-                        if any(key in line for key in ["Original Gravity (°Plato)", "Apparent Extract/Final Gravity", "Alcohol by Weight (Volume)", "Bitterness (IBU)", "Color SRM (EBC)"]):
-                            column = line.split(') ')[0].strip() + ')'
-                            value = line.split(') ')[1].strip()
-                            writer.writerow([column, value])
+    # Extract the name of the beer style
+    style_name_tag = beer_style.find('li')
+    if style_name_tag:
+        style_data['category'] = style_name_tag.text.strip()
 
+    # Extract other attributes
+    details = beer_style.findAll('li')
+    for detail in details[1:]:  # Skip the first item since it's the name
+        strong_tag = detail.find('strong')
+        if strong_tag:
+            key = strong_tag.text.strip().replace(':', '').replace(' ', '_').lower()
+            value = strong_tag.next_sibling.strip() if strong_tag.next_sibling else ''
+            style_data[key] = value
 
-def pivot_csv(input_file, output_file):
-    pivoted_data = {}
+    # Extract horizontal details
+    horizontal_details = beer_style.find('ul', class_='horizontal wider')
+    if horizontal_details:
+        horizontal_items = horizontal_details.findAll('li')
+        for item in horizontal_items:
+            strong_tag = item.find('strong')
+            if strong_tag:
+                key = strong_tag.text.strip().replace(':', '').replace(' ', '_').lower()
+                value = strong_tag.next_sibling.strip() if strong_tag.next_sibling else ''
+                style_data[key] = value
 
-    with open(input_file, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            feature = row['Feature']
-            value = row['value']
-
-            if feature in pivoted_data:
-                pivoted_data[feature].append(value)
-            else:
-                pivoted_data[feature] = [value]
-
-    with open(output_file, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(['Id'] + list(pivoted_data.keys()))
-
-        max_values = max(len(values) for values in pivoted_data.values())
-
-        for i in range(max_values):
-            row_values = []
-            for feature_values in pivoted_data.values():
-                if i < len(feature_values):
-                    row_values.append(feature_values[i])
-                else:
-                    row_values.append('')
-            writer.writerow([i+1] + row_values)
+    return style_data
 
 
-def import_csv_to_db(input_csv):
+def store_in_db(styles_data):
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    session = SessionLocal()
 
-    with open(input_csv, 'r') as file:
-        reader = csv.DictReader(file)
-        session = SessionLocal()
-        for row in reader:
-            style = Style(
-                id=row['Id'],
-                category=row['Category'],
-                color=row['Color'],
-                clarity=row['Clarity'],
-                perceived_malt_and_aroma=row['Perceived Malt Aroma & Flavor'],
-                perceived_hop_and_aroma=row['Perceived Hop Aroma & Flavor'],
-                perceived_bitterness=row['Perceived Bitterness'],
-                fermentation_characteristics=row['Fermentation Characteristics'],
-                body=row['Body'],
-                additional_notes=row['Additional notes'],
-                og=row['Original Gravity (°Plato)'],
-                fg=row['Apparent Extract/Final Gravity (°Plato)'],
-                abv=row['Alcohol by Weight (Volume)'],
-                ibu=row['Bitterness (IBU)'],
-                ebc=row['Color SRM (EBC)']
-            )
+    for style in styles_data:
+        style_obj = StyleGuidelines(
+            category=style.get('category'),
+            color=style.get('color'),
+            clarity=style.get('clarity'),
+            perceived_malt_and_aroma=style.get(
+                'perceived_malt_aroma_&_flavor'),
+            perceived_hop_and_aroma=style.get('perceived_hop_aroma_&_flavor'),
+            perceived_bitterness=style.get('perceived_bitterness'),
+            fermentation_characteristics=style.get(
+                'fermentation_characteristics'),
+            body=style.get('body'),
+            additional_notes=style.get('additional_notes'),
+            og=style.get('original_gravity_(°plato)'),
+            fg=style.get('apparent_extract/final_gravity_(°plato)'),
+            abv=style.get('alcohol_by_weight_(volume)'),
+            ibu=style.get('bitterness_(ibu)'),
+            ebc=style.get('color_srm_(ebc)'),
+            block_heading=style.get('block_heading'),
+            circle_image=style.get('circle_image')
+        )
 
-            session.add(style)
-            try:
-                session.commit()
-            except IntegrityError:
-                session.rollback()
-        session.close()
+        session.add(style_obj)
+        try:
+            session.commit()
+        except IntegrityError:
+            session.rollback()
+            logger.error(f"IntegrityError for style: {style}")
+
+    session.close()
 
 
 def main():
-    logger.info(
-        "WebScraper: Scraping beer styles from Brewers Association website")
-    csv_filename = 'beer_styles.csv'
-    scrape_beer_styles(csv_filename)
-
-    logger.info("WebScraper: Data cleaning and feature extraction")
-    input_csv = 'beer_styles.csv'
-    intermediate_csv = 'beer_styles_features.csv'
-    extract_features(input_csv, intermediate_csv)
-
-    logger.info("WebScraper: Pivoting the data")
-    input_features_csv = 'beer_styles_features.csv'
-    output_csv = 'output.csv'
-    pivot_csv(input_features_csv, output_csv)
-
-    logger.info("WebScraper: Importing the data to the database")
-    import_csv_to_db(output_csv)
+    logger.info("WebScraper: Starting the process")
+    scrape_and_process_beer_styles()
+    logger.info("WebScraper: Process completed")
 
 
 if __name__ == "__main__":

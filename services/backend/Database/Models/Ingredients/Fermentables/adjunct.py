@@ -1,32 +1,22 @@
-import uuid
-from datetime import datetime, timezone
-from sqlalchemy import Column, Float, ForeignKey, String, DateTime
-from sqlalchemy.orm import relationship
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 from database import Base
 
 
 class Adjunct(Base):
     """
-    Adjunct model
+    Description:
+    This class represents the Adjunct table in the database.
 
-    Attributes:
-        id (UUID): The unique identifier for the adjunct.
-        total_ibu_per_kg (decimal): The total IBU per kg of the adjunct.
+    Note:
+    The Adjunct is a type of fermentable, which is why it is a subclass of fermentable.
 
     Relationships:
-        fermentable_id (uuid): The fermentable relationship.
+    - ONE Adjunct can have ZERO or MANY fermentables
     """
+
     __tablename__ = 'adjunct'
+    id = Column(Integer, primary_key=True, index=True)
+    # Most fields are inherited from the fermentable table.
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    total_ibu_per_kg = Column(Float)
-
-    # Relationships for the fermentable types 1:1
-    fermentable_id = Column(UUID, ForeignKey("fermentable.id"))
-    fermentable = relationship(
-        "Fermentable", uselist=False, back_populates="adjunct")
-
-    def __repr__(self):
-        return f"<Adjunct {self.id}, \
-                total_ibu_per_kg={self.total_ibu_per_kg}>"
+    # Relationships:
+    fermentable_id = Column(Integer, ForeignKey('master_fermentables.id'))

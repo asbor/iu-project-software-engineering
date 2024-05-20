@@ -13,9 +13,10 @@ const props = defineProps(["style"]);
 
 <template>
     <Card>
-        <CardHeader class="px-4 pt-4 pb-1">
-            <div class="flex gap-2">
-                <strong>{{ style.category }}</strong>
+        <CardHeader class="px-4 pt-4 pb-1 border-b bg-neutral-200">
+            <div class="flex items-center gap-4">
+                <img :src="style.circle_image" alt="Beer Style Image" class="w-20 h-20 rounded-full" />
+                <CardTitle>{{ style.category }}</CardTitle>
             </div>
         </CardHeader>
         <CardContent class="px-4 pt-4 pb-1">

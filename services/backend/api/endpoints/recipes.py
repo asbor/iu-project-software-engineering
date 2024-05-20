@@ -1,21 +1,21 @@
-from fastapi import APIRouter, HTTPException, status
-from uuid import UUID
-from database import SessionLocal
-from typing import Annotated
-from fastapi import Depends
+from fastapi import APIRouter, HTTPException, Depends
+from sqlalchemy.orm import Session
 from database import get_db
 import Database.Models as models
-
 from Database.Schemas.recipes import RecipeBase
 
-db_dependency = Annotated[SessionLocal, Depends(get_db)]
-
 router = APIRouter()
-db = SessionLocal()
+
+
+@router.get("/recipes", response_model=list[RecipeBase])
+async def get_all_recipes(db: Session = Depends(get_db)):
+    recipes = db.query(models.Recipes).all()
+    return recipes
 
 
 @router.post("/recipes")
-async def create_recipes(recipe: RecipeBase, db: db_dependency):
+async def create_recipe(recipe: RecipeBase, db: Session = Depends(get_db)):
+    # Create the main recipe entry
     db_recipe = models.Recipes(
         name=recipe.name,
         version=recipe.version,
@@ -37,7 +37,6 @@ async def create_recipes(recipe: RecipeBase, db: db_dependency):
         secondary_age=recipe.secondary_age,
         secondary_temp=recipe.secondary_temp,
         tertiary_age=recipe.tertiary_age,
-        tertiary_temp=recipe.tertiary_temp,
         age=recipe.age,
         age_temp=recipe.age_temp,
         carbonation_used=recipe.carbonation_used,
@@ -57,31 +56,47 @@ async def create_recipes(recipe: RecipeBase, db: db_dependency):
         display_primary_temp=recipe.display_primary_temp,
         display_secondary_temp=recipe.display_secondary_temp,
         display_tertiary_temp=recipe.display_tertiary_temp,
+        display_age_temp=recipe.display_age_temp
     )
 
     db.add(db_recipe)
     db.commit()
     db.refresh(db_recipe)
+
+    # Handle hops
     for hop in recipe.hops:
-        db_hop = models.Hops(
-            recipe_id=db_recipe.id,
-            name=hop.name,
-            version=hop.version,
-            origin=hop.origin,
-            alpha=hop.alpha,
+        # Check if the master hop already exists
+        master_hop = db.query(models.MasterHops).filter_by(
+            name=hop.name).first()
+        if not master_hop:
+            # If not, create a new master hop entry
+            master_hop = models.MasterHops(
+                name=hop.name,
+                origin=hop.origin,
+                alpha=hop.alpha,
+                type=hop.type,
+                form=hop.form,
+                beta=hop.beta,
+                hsi=hop.hsi
+            )
+            db.add(master_hop)
+            db.commit()
+            db.refresh(master_hop)
+
+        # Now use the master_hop_id for the recipe hop
+        db_recipe_hop = models.RecipeHops(
+            master_hop_id=master_hop.id,
             amount=hop.amount,
             use=hop.use,
             time=hop.time,
             notes=hop.notes,
-            type=hop.type,
-            form=hop.form,
-            beta=hop.beta,
-            hsi=hop.hsi,
             display_amount=hop.display_amount,
             inventory=hop.inventory,
             display_time=hop.display_time,
+            recipe_id=db_recipe.id
         )
+        db.add(db_recipe_hop)
 
-        db.add(db_hop)
-        db.commit()
-        db.refresh(db_hop)
+    db.commit()
+
+    return db_recipe

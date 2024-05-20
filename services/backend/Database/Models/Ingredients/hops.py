@@ -1,42 +1,32 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, UUID
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, Float, String, ForeignKey
 from database import Base
 
 
-class Hops(Base):
-    """
-    Description:
-    This class represents the Hops table in the database.
-
-    Relationships:
-    - ONE hop can have only ONE recipe
-    - ONE hop can have only ONE inventory
-    """
-    __tablename__ = "hops"
-
-    # Metadata
-    # id = Column(UUID(as_uuid=True), primary_key=True)
+class MasterHops(Base):
+    __tablename__ = "master_hops"
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(255), nullable=False)
-    version = Column(Integer, nullable=False)
+    name = Column(String, unique=True, nullable=False)
+    origin = Column(String, nullable=True)
+    alpha = Column(Float, nullable=True)
+    type = Column(String, nullable=True)
+    form = Column(String, nullable=True)
+    beta = Column(Float, nullable=True)
+    hsi = Column(Float, nullable=True)
 
-    # Specific attributes for hop
-    origin = Column(String(255), nullable=False)
-    alpha = Column(Integer, nullable=False)
-    amount = Column(Integer, nullable=False)
 
-    # General attributes
-    use = Column(String(255), nullable=False)
-    time = Column(Integer, nullable=False)
-    notes = Column(String(255), nullable=False)
-    type = Column(String(255), nullable=False)
-    form = Column(String(255), nullable=False)
-    beta = Column(Integer, nullable=False)
-    hsi = Column(Integer, nullable=False)
-    display_amount = Column(String(255), nullable=False)
-    inventory = Column(Integer, nullable=False)
-    display_time = Column(String(255), nullable=False)
-
-    # Relationships
+class RecipeHops(Base):
+    __tablename__ = "recipe_hops"
+    id = Column(Integer, primary_key=True, index=True)
+    master_hop_id = Column(Integer, ForeignKey("master_hops.id"))
+    amount = Column(Float, nullable=False)
+    use = Column(String, nullable=True)
+    time = Column(Integer, nullable=True)
+    notes = Column(String, nullable=True)
+    display_amount = Column(String, nullable=True)
+    inventory = Column(Float, nullable=True)
+    display_time = Column(String, nullable=True)
     recipe_id = Column(Integer, ForeignKey("recipes.id"))
 
-    # inventory = relationship("Inventory", back_populates="hop")
+    master_hop = relationship("MasterHops")
+    recipe = relationship("Recipes", back_populates="hops")

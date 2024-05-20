@@ -1,29 +1,22 @@
-import uuid
-from datetime import datetime, timezone
-from sqlalchemy import Column, Float, ForeignKey, String, DateTime
-from sqlalchemy.orm import relationship
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 from database import Base
 
 
 class LiquidExtract(Base):
     """
-    Liquid Extract model
+    Description:
+    This class represents the LiquidExtract table in the database.
 
-    Attributes:
-        id (UUID): The unique identifier for the liquid extract.
+    Note:
+    The LiquidExtract is a type of fermentable, which is why it is a subclass of fermentable.
 
     Relationships:
-        fermentable_id (uuid): The fermentable relationship.
+    - ONE LiquidExtract can have ZERO or MANY fermentables
     """
-    __tablename__ = 'liquid_extracts'
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    __tablename__ = "liquid_extract"
+    id = Column(Integer, primary_key=True, index=True)
+    # Most fields are inherited from the fermentable table.
 
-    # Relationships for the fermentable types 1:1
-    fermentable_id = Column(UUID(as_uuid=True), ForeignKey('fermentable.id'))
-    fermentable = relationship(
-        "Fermentable", uselist=False, back_populates="liquid_extract")
-
-    def __repr__(self):
-        return f"<LiquidExtract {self.id}>"
+    # Relationships:
+    fermentable_id = Column(Integer, ForeignKey('master_fermentables.id'))
