@@ -6,7 +6,7 @@ from .Ingredients.Fermentable.adjunct import AdjunctBase
 from .Ingredients.Fermentable.grain import GrainBase
 
 from .recipes import RecipeBase
-
+from .batches import BatchBase
 
 from .style_guidelines import StyleGuidelineBase
 from .styles import StyleBase
@@ -18,6 +18,7 @@ from .fermentables import FermentableBase
 from .hops import HopBase
 from .miscs import MiscBase
 from .yeasts import YeastBase
+
 
 # TODO: The following imports will be built at a later time
 # from .mash import Mash
@@ -32,6 +33,7 @@ __all__ = [
     'AdjunctBase',
     'GrainBase',
     'RecipeBase',
+    'BatchBase',
     'StyleGuidelineBase',
     'StyleBase',
     'EquipmentProfileBase',

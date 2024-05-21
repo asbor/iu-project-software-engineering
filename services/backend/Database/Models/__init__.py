@@ -1,6 +1,7 @@
 
 
 from .recipes import Recipes
+from .batches import Batches
 from .style_guidlines import StyleGuidelines
 from .styles import Styles
 
@@ -31,6 +32,7 @@ from .Ingredients.yeasts import Yeasts
 
 __all__ = [
     'Recipes',
+    'Batches',
     'StyleGuidelines',
     'Styles',
     'Questions',

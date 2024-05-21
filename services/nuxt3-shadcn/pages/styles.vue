@@ -94,7 +94,6 @@ onUnmounted(() => {
                 <h1>Beer Style Guidelines</h1>
             </div>
             <ProductNewDialog />
-
             <ButtonsScriptTrigger />
         </header>
         <main class="grid w-full gap-4">

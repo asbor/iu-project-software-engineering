@@ -1,4 +1,4 @@
-# api/scripts/beer_styles_processing.py
+# scripts/beer_styles_processing.py
 
 import re
 from bs4 import BeautifulSoup
@@ -119,7 +119,3 @@ def main():
     logger.info("WebScraper: Starting the process")
     scrape_and_process_beer_styles()
     logger.info("WebScraper: Process completed")
-
-
-if __name__ == "__main__":
-    main()

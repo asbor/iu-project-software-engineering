@@ -53,3 +53,4 @@ class Recipes(Base):
     fermentables = relationship("Fermentables", back_populates="recipe")
     yeasts = relationship("Yeasts", back_populates="recipe")
     miscs = relationship("Miscs", back_populates="recipe")
+    batches = relationship("Batches", back_populates="recipe")

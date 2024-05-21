@@ -1,4 +1,5 @@
 from . import recipes
+from . import batches
 from . import hops
 from . import fermentables
 from . import style_guidelines
@@ -12,9 +13,11 @@ from . import equipment_profiles
 from . import miscs
 from . import users
 from . import yeasts
+from . import trigger_beer_styles_processing
 
 __all__ = [
     'recipes',
+    'batches',
     'hops',
     'fermentables',
     'style_guidelines',
@@ -25,5 +28,6 @@ __all__ = [
     'equipment_profiles',
     'miscs',
     'users',
-    'yeasts'
+    'yeasts',
+    'trigger_beer_styles_processing'
 ]
