@@ -11,9 +11,9 @@ router = APIRouter()
 async def get_all_recipes(db: Session = Depends(get_db)):
     recipes = db.query(models.Recipes).options(
         joinedload(models.Recipes.hops),
-        # joinedload(models.Recipes.fermentables),
-        # joinedload(models.Recipes.yeasts),
-        # joinedload(models.Recipes.miscs)
+        joinedload(models.Recipes.fermentables),
+        joinedload(models.Recipes.yeasts),
+        joinedload(models.Recipes.miscs)
     ).all()
     return recipes
 

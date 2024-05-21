@@ -28,4 +28,4 @@ class Yeasts(Base):
     recipe_id = Column(Integer, ForeignKey('recipes.id'))
 
     # Many-to-one relationship with Recipes
-    # recipe = relationship("Recipes", back_populates="yeasts")
+    recipe = relationship("Recipes", back_populates="yeasts")

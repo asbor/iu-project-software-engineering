@@ -116,7 +116,7 @@ function parseBeerXML(beerXMLContent) {
           time: hop.TIME ? parseInt(hop.TIME[0]) : 0, // Integer (RecipeHopBase)
           notes: hop.NOTES ? hop.NOTES[0] : '', // String (RecipeHopBase)
           display_amount: hop.DISPLAY_AMOUNT ? hop.DISPLAY_AMOUNT[0] : '', // String (RecipeHopBase)
-          inventory: hop.INVENTORY ? parseFloat(hop.INVENTORY[0]) : 0, // Float (RecipeHopBase)
+          inventory: hop.INVENTORY ? hop.INVENTORY[0] : '', // String (RecipeHopBase)
           display_time: hop.DISPLAY_TIME ? hop.DISPLAY_TIME[0] : '', // String (RecipeHopBase)
         })) : [],
 
