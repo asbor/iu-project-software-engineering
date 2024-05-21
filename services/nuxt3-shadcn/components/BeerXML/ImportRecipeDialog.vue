@@ -293,41 +293,79 @@ function parseBeerXML(beerXMLContent) {
     console.log('Imported Recipes:', importedRecipes.value);
   });
 }
-async function importRecipes() {
-  for (const recipe of importedRecipes.value) {
-    try {
-      // Log the request details before making the request
-      console.log('Request:', {
-        url: 'http://localhost:8000/recipes',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(recipe),
-      });
 
-      const response = await fetch('http://localhost:8000/recipes', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(recipe),
-      });
+const existingRecipeNames = ref([]);
 
-      if (!response.ok) {
-        throw new Error('Failed to create recipe');
-      }
-      // close the dialog
-      open.value = false;
-      window.location.reload(); // refresh the parent page
-
-      console.log(`Recipe "${recipe.name}" imported successfully.`);
-      console.log('recipe:', recipe);
-    } catch (error) {
-      console.error(error);
+async function fetchExistingRecipeNames() {
+  try {
+    const response = await fetch('http://localhost:8000/recipes');
+    if (response.ok) {
+      const data = await response.json();
+      existingRecipeNames.value = data.map(recipe => recipe.name);
+    } else {
+      throw new Error('Failed to fetch existing recipes');
     }
+  } catch (error) {
+    console.error('Error fetching existing recipes:', error);
   }
 }
+
+
+
+
+async function importRecipes() {
+  await fetchExistingRecipeNames();  // Fetch existing recipe names
+  const maxRetries = 3;
+
+  for (const recipe of importedRecipes.value) {
+    if (existingRecipeNames.value.includes(recipe.name)) {
+      console.log(`Recipe "${recipe.name}" already exists. Skipping.`);
+      continue;  // Skip if the recipe name already exists
+    }
+
+    let attempts = 0;
+    let success = false;
+
+    while (attempts < maxRetries && !success) {
+      try {
+        attempts++;
+        const response = await fetch('http://localhost:8000/recipes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(recipe),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          if (errorData.detail === "Recipe with this name already exists") {
+            console.log(`Recipe "${recipe.name}" already exists. Skipping.`);
+            success = true;
+            continue;
+          }
+          throw new Error('Failed to create recipe');
+        }
+
+        success = true;
+        console.log(`Recipe "${recipe.name}" imported successfully.`);
+      } catch (error) {
+        console.error(`Attempt ${attempts} failed for recipe "${recipe.name}": ${error}`);
+        if (attempts >= maxRetries) {
+          console.error(`Failed to import recipe "${recipe.name}" after ${attempts} attempts.`);
+        }
+      }
+    }
+  }
+
+  open.value = false;
+  window.location.reload();
+}
+
+
+
+
+
 
 </script>
 
@@ -336,19 +374,22 @@ async function importRecipes() {
     <AlertDialogTrigger>
       <button @click="open = true">Import Recipes</button>
     </AlertDialogTrigger>
-    <AlertDialogContent>
+    <AlertDialogContent aria-describedby="dialog-description">
       <AlertDialogHeader>
         <AlertDialogTitle>Import Recipes from BeerXML</AlertDialogTitle>
-        <input type="file" @change="handleFileChange" accept=".xml" />
-        <div v-if="importedRecipes.length > 0">
-          <h2>Imported Recipes:</h2>
-          <ul>
-            <li v-for="recipe in importedRecipes" :key="recipe.id">
-              {{ recipe.name }}
-            </li>
-          </ul>
-        </div>
+        <AlertDialogDescription id="dialog-description">
+          Choose a BeerXML file to import recipes.
+        </AlertDialogDescription>
       </AlertDialogHeader>
+      <input type="file" @change="handleFileChange" accept=".xml" />
+      <div v-if="importedRecipes.length > 0">
+        <h2>Imported Recipes:</h2>
+        <ul>
+          <li v-for="recipe in importedRecipes" :key="recipe.id">
+            {{ recipe.name }}
+          </li>
+        </ul>
+      </div>
       <AlertDialogFooter>
         <AlertDialogCancel @click="open = false">Cancel</AlertDialogCancel>
         <AlertDialogAction @click="importRecipes">Import</AlertDialogAction>

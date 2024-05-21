@@ -22,6 +22,3 @@ class FermentableBase(BaseModel):
     description: Optional[str]
     substitutes: Optional[str]
     used_in: Optional[str]
-
-    # class Config:
-    #    from_attributes = True  # Use from_attributes for Pydantic v2

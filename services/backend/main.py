@@ -6,7 +6,6 @@ from typing import List, Annotated
 from database import engine, Base, SessionLocal
 from api.router import router
 from fastapi.middleware.cors import CORSMiddleware
-from beer_styles_processing import main
 from logger_config import get_logger
 
 # Get logger instance
@@ -26,7 +25,6 @@ app = FastAPI(title="PostgreSQL and FastAPI")
 app.include_router(router)
 
 # Add CORS middleware to allow requests from the frontend
-logger.info("Adding CORS middleware")
 origins = [
     "http://localhost:3000",
     "http://localhost:8000",
@@ -34,15 +32,11 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    # allow_origins=origins,
-    allow_origins=["*"],  # Adjust this to allow requests from specific origins
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Run the beer styles processing script
-# main()
 
 
 @app.get("/")

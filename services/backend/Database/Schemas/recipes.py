@@ -53,9 +53,3 @@ class RecipeBase(BaseModel):
     fermentables: Optional[List[FermentableBase]] = None
     miscs: Optional[List[MiscBase]] = None
     yeasts: Optional[List[YeastBase]] = None
-
-    # Specific obects like style, equipment, mash, etc.
-    # style: Optional[str] = None
-
-    # class Config:
-    #    from_attributes = True  # Use from_attributes for Pydantic v2

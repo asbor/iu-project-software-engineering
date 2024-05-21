@@ -15,6 +15,3 @@ class MiscBase(BaseModel):
     inventory: Optional[float]
     display_time: Optional[str]
     batch_size: Optional[float]
-
-    # class Config:
-    #    from_attributes = True  # Use from_attributes for Pydantic v2

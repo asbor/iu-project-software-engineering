@@ -19,6 +19,3 @@ class YeastBase(BaseModel):
     amount_is_weight: Optional[bool]
     inventory: Optional[float]
     display_amount: Optional[str]
-
-    # class Config:
-    #    from_attributes = True  # Use from_attributes for Pydantic v2
