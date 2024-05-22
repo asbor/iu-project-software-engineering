@@ -146,8 +146,8 @@ export default {
         potential: 0,
         amount: 0,
         cost_per_unit: 0,
-        manufacturing_date: '',
-        expiry_date: '',
+        manufacturing_date: null,
+        expiry_date: null,
         lot_number: '',
         exclude_from_total: false,
         not_fermentable: false,
@@ -163,7 +163,7 @@ export default {
     saveFermentable() {
       this.isLoading = true;
       this.isLoadingTitle = 'Saving...';
-      axios.post('http://localhost:8000/fermentables/', this.fermentable)
+      axios.post('http://localhost:8000/inventory/fermentables', this.fermentable)
         .then(res => {
           this.$router.back();
         })

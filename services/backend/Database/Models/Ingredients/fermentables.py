@@ -1,13 +1,11 @@
+# Database/Models/Ingredients/fermentables.py
+
 from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey, Boolean
-from database import Base
 from sqlalchemy.orm import relationship
+from database import Base
 
 
 class RecipeFermentable(Base):
-    """
-    Recipe-specific fermentables table.
-    """
-
     __tablename__ = "recipe_fermentables"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -29,19 +27,12 @@ class RecipeFermentable(Base):
     description = Column(String, nullable=True)
     substitutes = Column(String, nullable=True)
     used_in = Column(String, nullable=True)
-
-    # Foreign key to Recipes
     recipe_id = Column(Integer, ForeignKey('recipes.id'))
 
-    # Many-to-one relationship with Recipes
     recipe = relationship("Recipes", back_populates="fermentables")
 
 
 class InventoryFermentable(Base):
-    """
-    Inventory-specific fermentables table.
-    """
-
     __tablename__ = "inventory_fermentables"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -63,3 +54,21 @@ class InventoryFermentable(Base):
     description = Column(String, nullable=True)
     substitutes = Column(String, nullable=True)
     used_in = Column(String, nullable=True)
+    alpha = Column(Float, nullable=True)
+    beta = Column(Float, nullable=True)
+    form = Column(String, nullable=True)
+    use = Column(String, nullable=True)
+    amount_is_weight = Column(Boolean, nullable=True)
+    product_id = Column(String, nullable=True)
+    min_temperature = Column(Float, nullable=True)
+    max_temperature = Column(Float, nullable=True)
+    flocculation = Column(String, nullable=True)
+    attenuation = Column(Float, nullable=True)
+    max_reuse = Column(Integer, nullable=True)
+    inventory = Column(Float, nullable=True)
+    display_amount = Column(String, nullable=True)
+    display_time = Column(String, nullable=True)
+    batch_size = Column(Float, nullable=True)
+    batch_id = Column(Integer, ForeignKey('batches.id'), nullable=True)
+
+    batch = relationship("Batches", back_populates="inventory_fermentables")

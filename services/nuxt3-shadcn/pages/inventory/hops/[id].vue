@@ -236,7 +236,7 @@ export default {
     getHopProfile(id) {
       this.isLoading = true;
       this.isLoadingTitle = 'Loading hop...';
-      axios.get('http://localhost:8000/hop/' + id)
+      axios.get('http://localhost:8000/inventory/hops/' + id)
         .then(res => {
           this.hop = res.data;
         })
@@ -248,7 +248,7 @@ export default {
     updateHop() {
       this.isLoading = true;
       this.isLoadingTitle = 'Updating hop...';
-      axios.put('http://localhost:8000/hop/' + this.id, this.hop)
+      axios.put('http://localhost:8000/inventory/hops/' + this.id, this.hop)
         .then(res => {
           this.$router.back();
         })

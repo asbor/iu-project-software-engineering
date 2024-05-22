@@ -38,7 +38,7 @@ export default {
       this.isLoading = true;
       this.isLoadingTitle = 'Loading yeast...';
       // Get the yeast profile
-      axios.get('http://localhost:8000/yeasts/' + id)
+      axios.get('http://localhost:8000/inventory/yeasts/' + id)
         .then(res => {
           this.yeast = res.data;
         })
@@ -51,7 +51,7 @@ export default {
       this.isLoading = true;
       this.isLoadingTitle = 'Updating yeast...';
       // Update the yeast profile
-      axios.put('http://localhost:8000/yeasts/' + this.id, this.yeast)
+      axios.put('http://localhost:8000/inventory/yeasts/' + this.id, this.yeast)
         .then(res => {
           this.$router.back();
         })

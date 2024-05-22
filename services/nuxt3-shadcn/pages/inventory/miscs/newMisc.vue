@@ -117,7 +117,7 @@ export default {
         saveMisc() {
             this.isLoading = true;
             this.isLoadingTitle = 'Saving...';
-            axios.post('http://localhost:8000/miscs/', this.misc)
+            axios.post('http://localhost:8000/inventory/miscs/', this.misc)
                 .then(res => {
                     this.$router.back();
                 })

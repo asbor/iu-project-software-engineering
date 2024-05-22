@@ -14,10 +14,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+} from '@/components/ui/alert-dialog';
 
-const { loading, open } = useHelpers();
+const open = ref(false);
 const importedHops = ref([]);
+const isLoading = ref(false);
 
 function handleFileChange(event) {
   const file = event.target.files[0];
@@ -38,7 +39,6 @@ function parseBeerXML(beerXMLContent) {
       return;
     }
 
-    // Check if the XML contains hops
     if (!result.HOPS || !result.HOPS.HOP) {
       console.error('No hops found in BeerXML');
       return;
@@ -46,31 +46,52 @@ function parseBeerXML(beerXMLContent) {
 
     const hops = result.HOPS.HOP;
 
-    // Map each hop to the format expected by importedHops
     importedHops.value = hops.map((hop) => ({
-      id: uuidv4(), // Generate UUID for each hop
-      name: hop.NAME[0],
-      version: parseFloat(hop.VERSION[0]),
-      origin: hop.ORIGIN[0],
-      alpha: parseFloat(hop.ALPHA[0]),
-      amount: parseFloat(hop.AMOUNT[0]),
-      use: hop.USE[0],
-      time: parseFloat(hop.TIME[0]),
-      notes: hop.NOTES[0],
-      type: hop.TYPE[0],
-      form: hop.FORM[0],
-      beta: parseFloat(hop.BETA[0]),
-      hsi: parseFloat(hop.HSI[0]),
-      display_amount: hop.DISPLAY_AMOUNT[0],
-      inventory: parseFloat(hop.INVENTORY[0]),
-      display_time: hop.DISPLAY_TIME[0],
+      id: uuidv4(),
+      name: hop.NAME ? hop.NAME[0] : '',
+      amount: hop.AMOUNT ? parseFloat(hop.AMOUNT[0]) : 0,
+      cost_per_unit: 0,
+      supplier: hop.SUPPLIER ? hop.SUPPLIER[0] : '',
+      origin: hop.ORIGIN ? hop.ORIGIN[0] : '',
+      type: hop.TYPE ? hop.TYPE[0] : '',
+      color: hop.COLOR ? parseFloat(hop.COLOR[0]) : 0,
+      potential: hop.POTENTIAL ? parseFloat(hop.POTENTIAL[0]) : 0,
+      yield_: hop.YIELD ? parseFloat(hop.YIELD[0]) : 0,
+      manufacturing_date: "2024-12-31",
+      expiry_date: "2024-12-31",
+      lot_number: '',
+      exclude_from_total: false,
+      not_hop: false,
+      notes: hop.NOTES ? hop.NOTES[0] : '',
+      description: '',
+      substitutes: '',
+      used_in: '',
+      alpha: hop.ALPHA ? parseFloat(hop.ALPHA[0]) : 0,
+      beta: hop.BETA ? parseFloat(hop.BETA[0]) : 0,
+      form: hop.FORM ? hop.FORM[0] : '',
+      use: hop.USE ? hop.USE[0] : '',
+      amount_is_weight: false,
+      product_id: '',
+      min_temperature: null,
+      max_temperature: null,
+      flocculation: '',
+      attenuation: null,
+      max_reuse: null,
+      inventory: hop.INVENTORY ? hop.INVENTORY[0] : '',
+      display_amount: '',
+      display_time: '',
+      batch_size: null,
+      hsi: hop.HSI ? parseFloat(hop.HSI[0]) : 0,  // Ensure hsi field is present
+      time: hop.TIME ? parseInt(hop.TIME[0]) : 0,  // Ensure time field is present
     }));
   });
 }
+
 async function importHops() {
+  isLoading.value = true;
   for (const hop of importedHops.value) {
     try {
-      const response = await fetch('http://localhost:8000/hop', {
+      const response = await fetch('http://localhost:8000/inventory/hops', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,16 +99,17 @@ async function importHops() {
         body: JSON.stringify(hop),
       });
       if (!response.ok) {
-        throw new Error('Failed to create hop');
+        const errorData = await response.json();
+        throw new Error(`Failed to create hop "${hop.name}": ${JSON.stringify(errorData)}`);
       }
       console.log(`Hop "${hop.name}" imported successfully.`);
-      // close the dialog
-      open.value = false;
-      window.location.reload(); // refresh the parent page
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
     }
   }
+  isLoading.value = false;
+  open.value = false;
+  window.location.reload();
 }
 </script>
 

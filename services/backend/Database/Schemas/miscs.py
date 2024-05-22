@@ -1,7 +1,6 @@
-# Database/Schemas/recipes_miscs.py
-
 from pydantic import BaseModel
 from typing import Optional
+from datetime import date
 
 
 class MiscBase(BaseModel):
@@ -11,17 +10,32 @@ class MiscBase(BaseModel):
     amount_is_weight: Optional[bool]
     use_for: Optional[str]
     notes: Optional[str]
-    amount: float
+    amount: Optional[int]
     time: Optional[int]
     display_amount: Optional[str]
-    inventory: Optional[float]
+    inventory: Optional[int]
     display_time: Optional[str]
-    batch_size: Optional[float]
+    batch_size: Optional[int]
 
 
 class RecipeMisc(MiscBase):
+    recipe_id: int
+
+    class Config:
+        orm_mode: bool = True
+
+
+class InventoryMiscBase(MiscBase):
     pass
 
 
-class InventoryMisc(MiscBase):
+class InventoryMiscCreate(InventoryMiscBase):
     pass
+
+
+class InventoryMisc(InventoryMiscBase):
+    id: int
+    batch_id: Optional[int] = None  # Allow batch_id to be None
+
+    class Config:
+        orm_mode: bool = True

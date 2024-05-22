@@ -1,13 +1,14 @@
-# Database/Schemas/recipes_yeasts.py
-
 from pydantic import BaseModel
 from typing import Optional
+from datetime import date
 
 
 class YeastBase(BaseModel):
     name: str
     type: Optional[str]
     form: Optional[str]
+    amount: Optional[float]
+    amount_is_weight: Optional[bool]
     laboratory: Optional[str]
     product_id: Optional[str]
     min_temperature: Optional[float]
@@ -16,16 +17,29 @@ class YeastBase(BaseModel):
     attenuation: Optional[float]
     notes: Optional[str]
     best_for: Optional[str]
+    times_cultured: Optional[int]
     max_reuse: Optional[int]
-    amount: float
-    amount_is_weight: Optional[bool]
-    inventory: Optional[float]
-    display_amount: Optional[str]
+    add_to_secondary: Optional[bool]
 
 
 class RecipeYeast(YeastBase):
+    recipe_id: int
+
+    class Config:
+        orm_mode: bool = True
+
+
+class InventoryYeastBase(YeastBase):
     pass
 
 
-class InventoryYeast(YeastBase):
+class InventoryYeastCreate(InventoryYeastBase):
     pass
+
+
+class InventoryYeast(InventoryYeastBase):
+    id: int
+    batch_id: Optional[int] = None  # Allow batch_id to be None
+
+    class Config:
+        orm_mode: bool = True

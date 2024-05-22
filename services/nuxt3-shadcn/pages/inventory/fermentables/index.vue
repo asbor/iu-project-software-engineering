@@ -42,7 +42,6 @@
         </TableRow>
       </TableHeader>
       <TableBody>
-        <!-- Loop through fermentables and display each fermentable -->
         <template v-for="fermentable in fermentables" :key="fermentable.id">
           <TableRow>
             <TableCell>{{ fermentable.name }}</TableCell>
@@ -64,12 +63,9 @@
             <TableCell>{{ fermentable.substitutes }}</TableCell>
             <TableCell>{{ fermentable.used_in }}</TableCell>
             <TableCell class="text-right">
-              <!-- Add buttons for actions like edit or delete -->
               <Button asChild class="mr-2">
                 <NuxtLink :href="`/inventory/fermentables/${fermentable.id}`">Edit</NuxtLink>
               </Button>
-
-              <!-- Delete button -->
               <Button @click="deleteFermentable(fermentable.id)">Delete</Button>
             </TableCell>
           </TableRow>
@@ -91,7 +87,6 @@ import {
 } from '@/components/ui/table';
 import { ref, onMounted } from 'vue';
 
-// Define interface for fermentable 
 interface Fermentable {
   id: string;
   name: string;
@@ -115,11 +110,10 @@ interface Fermentable {
 }
 
 const fermentables = ref<Fermentable[]>([]);
-const selectedFermentable = ref<Fermentable | null>(null);
 
 async function fetchFermentables() {
   try {
-    const response = await fetch('http://localhost:8000/fermentables', {
+    const response = await fetch('http://localhost:8000/inventory/fermentables', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -140,15 +134,13 @@ function deleteFermentable(id: string) {
     return;
   }
 
-  // Delete the fermentable
-  fetch(`http://localhost:8000/fermentables/${id}`, {
+  fetch(`http://localhost:8000/inventory/fermentables/${id}`, {
     method: 'DELETE',
   })
     .then((response) => {
       if (!response.ok) {
         throw new Error('Failed to delete fermentable');
       }
-      // Remove the deleted fermentable from the list
       fermentables.value = fermentables.value.filter((fermentable) => fermentable.id !== id);
     })
     .catch((error) => {

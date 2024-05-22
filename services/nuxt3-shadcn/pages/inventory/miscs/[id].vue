@@ -121,7 +121,7 @@ export default {
     getMiscProfile(id) {
       this.isLoading = true;
       this.isLoadingTitle = 'Loading misc...';
-      axios.get('http://localhost:8000/miscs/' + id)
+      axios.get('http://localhost:8000/inventory/miscs/' + id)
         .then(res => {
           this.misc = res.data;
         })
@@ -133,7 +133,7 @@ export default {
     updateMisc() {
       this.isLoading = true;
       this.isLoadingTitle = 'Updating misc...';
-      axios.put('http://localhost:8000/miscs/' + this.id, this.misc)
+      axios.put('http://localhost:8000/inventory/miscs/' + this.id, this.misc)
         .then(res => {
           this.$router.back();
         })

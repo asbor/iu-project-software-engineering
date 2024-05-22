@@ -103,14 +103,14 @@ interface Yeast {
   display_amount: string;
 }
 
-const yeasts = ref < Yeast[] > ([]);
-const selectedYeast = ref < Yeast | null > (null);
+const yeasts = ref<Yeast[]>([]);
+const selectedYeast = ref<Yeast | null>(null);
 const loading = ref(false);
 
 async function fetchYeasts() {
   try {
     loading.value = true;
-    const response = await fetch('http://localhost:8000/yeasts', {
+    const response = await fetch('http://localhost:8000/inventory/yeasts', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -133,7 +133,7 @@ function deleteYeast(id: string) {
     return;
   }
 
-  fetch(`http://localhost:8000/yeasts/${id}`, {
+  fetch(`http://localhost:8000/inventory/yeasts/${id}`, {
     method: 'DELETE',
   })
     .then((response) => {

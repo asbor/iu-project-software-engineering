@@ -75,6 +75,16 @@
                             <input type="checkbox" id="amount_is_weight" v-model="yeast.amount_is_weight"
                                 class="border-2 border-gray-300 rounded-lg p-2 w-full">
                         </div>
+                        <div>
+                            <label for="times_cultured">Times Cultured:</label>
+                            <input type="number" id="times_cultured" v-model="yeast.times_cultured" required
+                                placeholder="Optional" class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                        </div>
+                        <div>
+                            <label for="add_to_secondary">Add to Secondary:</label>
+                            <input type="checkbox" id="add_to_secondary" v-model="yeast.add_to_secondary"
+                                class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                        </div>
                     </div>
                     <div>
                         <label for="notes">Notes:</label>
@@ -132,6 +142,8 @@ export default {
                 amount_is_weight: false,
                 inventory: 0,
                 display_amount: '',
+                times_cultured: 0,
+                add_to_secondary: false,
             },
             isLoading: false,
             isLoadingTitle: 'Loading...',
@@ -141,7 +153,7 @@ export default {
         saveYeast() {
             this.isLoading = true;
             this.isLoadingTitle = 'Saving...';
-            axios.post('http://localhost:8000/yeasts/', this.yeast)
+            axios.post('http://localhost:8000/inventory/yeasts', this.yeast)
                 .then(res => {
                     this.$router.back();
                 })

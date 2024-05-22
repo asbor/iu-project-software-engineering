@@ -1,4 +1,4 @@
-# Database/Schemas/recipes_fermentables.py
+# Database/Schemas/fermentables.py
 
 from pydantic import BaseModel
 from typing import Optional
@@ -27,8 +27,37 @@ class FermentableBase(BaseModel):
 
 
 class RecipeFermentable(FermentableBase):
+    recipe_id: int
+
+    class Config:
+        orm_mode: bool = True
+
+
+class InventoryFermentableBase(FermentableBase):
+    alpha: Optional[float] = None  # Specific to hops
+    beta: Optional[float] = None  # Specific to hops
+    form: Optional[str] = None  # Specific to hops
+    use: Optional[str] = None  # Specific to hops and miscs
+    amount_is_weight: Optional[bool] = None  # Specific to miscs and yeasts
+    product_id: Optional[str] = None  # Specific to yeasts
+    min_temperature: Optional[float] = None  # Specific to yeasts
+    max_temperature: Optional[float] = None  # Specific to yeasts
+    flocculation: Optional[str] = None  # Specific to yeasts
+    attenuation: Optional[float] = None  # Specific to yeasts
+    max_reuse: Optional[int] = None  # Specific to yeasts
+    inventory: Optional[float] = None  # Specific to all
+    display_amount: Optional[str] = None  # Specific to all
+    display_time: Optional[str] = None  # Specific to all
+    batch_size: Optional[float] = None  # Specific to miscs
+
+
+class InventoryFermentableCreate(InventoryFermentableBase):
     pass
 
 
-class InventoryFermentable(FermentableBase):
-    pass
+class InventoryFermentable(InventoryFermentableBase):
+    id: int
+    batch_id: Optional[int] = None  # Allow batch_id to be None
+
+    class Config:
+        orm_mode: bool = True

@@ -114,7 +114,7 @@ const loading = ref(false);
 async function fetchHops() {
   try {
     loading.value = true;
-    const response = await fetch('http://localhost:8000/hops', {
+    const response = await fetch('http://localhost:8000/inventory/hops', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -138,7 +138,7 @@ function deleteHop(id: string) {
   }
 
   // Delete the hop
-  fetch(`http://localhost:8000/hops/${id}`, {
+  fetch(`http://localhost:8000/inventory/hops/${id}`, {
     method: 'DELETE',
   })
     .then((response) => {

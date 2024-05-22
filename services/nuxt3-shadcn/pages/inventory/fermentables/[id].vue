@@ -1,13 +1,11 @@
 <template>
   <div>
-    <!-- Header -->
     <header>
       <div>
         <h1 class="text-2xl font-semibold">Edit Fermentable Item</h1>
       </div>
     </header>
 
-    <!-- Main section -->
     <main>
       <div v-if="isLoading">
         <Loading :title="isLoadingTitle" />
@@ -120,7 +118,6 @@
       </div>
     </main>
 
-    <!-- Footer -->
     <footer class="flex justify-end gap-4 mt-8">
       <Button @click="updateFermentable">Save</Button>
       <Button @click="cancel">Cancel</Button>
@@ -160,7 +157,6 @@ export default {
     };
   },
   mounted() {
-    // Get the id of the fermentable profile
     this.id = this.$route.params.id;
     this.getFermentableProfile(this.id);
   },
@@ -168,7 +164,7 @@ export default {
     getFermentableProfile(id) {
       this.isLoading = true;
       this.isLoadingTitle = 'Loading fermentable...';
-      axios.get('http://localhost:8000/fermentables/' + id)
+      axios.get('http://localhost:8000/inventory/fermentables/' + id)
         .then(res => {
           this.fermentable = res.data;
         })
@@ -180,7 +176,7 @@ export default {
     updateFermentable() {
       this.isLoading = true;
       this.isLoadingTitle = 'Updating fermentable...';
-      axios.put('http://localhost:8000/fermentables/' + this.id, this.fermentable)
+      axios.put('http://localhost:8000/inventory/fermentables/' + this.id, this.fermentable)
         .then(res => {
           this.$router.back();
         })

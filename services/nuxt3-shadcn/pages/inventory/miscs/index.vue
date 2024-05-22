@@ -91,14 +91,14 @@ interface Misc {
   batch_size: number;
 }
 
-const miscs = ref < Misc[] > ([]);
-const selectedMisc = ref < Misc | null > (null);
+const miscs = ref<Misc[]>([]);
+const selectedMisc = ref<Misc | null>(null);
 const loading = ref(false);
 
 async function fetchMiscs() {
   try {
     loading.value = true;
-    const response = await fetch('http://localhost:8000/miscs', {
+    const response = await fetch('http://localhost:8000/inventory/miscs', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -116,12 +116,12 @@ async function fetchMiscs() {
   }
 }
 
-function deleteMisc(id: string) {
+function deleteMisc(id: int) {
   if (!confirm('Are you sure you want to delete this misc?')) {
     return;
   }
 
-  fetch(`http://localhost:8000/miscs/${id}`, {
+  fetch(`http://localhost:8000/inventory/miscs/${id}`, {
     method: 'DELETE',
   })
     .then((response) => {

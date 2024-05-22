@@ -1,10 +1,10 @@
-from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey, Boolean
-from database import Base
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
+from database import Base
 
 
 class RecipeMisc(Base):
-    __tablename__ = "recipe_miscs"
+    __tablename__ = 'recipe_miscs'
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=True)
@@ -19,19 +19,16 @@ class RecipeMisc(Base):
     inventory = Column(Integer, nullable=True)
     display_time = Column(String, nullable=True)
     batch_size = Column(Integer, nullable=True)
-
-    # Foreign key to Recipes
     recipe_id = Column(Integer, ForeignKey('recipes.id'))
 
-    # Many-to-one relationship with Recipes
     recipe = relationship("Recipes", back_populates="miscs")
 
 
 class InventoryMisc(Base):
-    __tablename__ = "inventory_miscs"
+    __tablename__ = 'inventory_miscs'
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=True)
+    name = Column(String, nullable=True, unique=True)
     type = Column(String, nullable=True)
     use = Column(String, nullable=True)
     amount_is_weight = Column(Boolean, nullable=True)
@@ -43,3 +40,6 @@ class InventoryMisc(Base):
     inventory = Column(Integer, nullable=True)
     display_time = Column(String, nullable=True)
     batch_size = Column(Integer, nullable=True)
+    batch_id = Column(Integer, ForeignKey('batches.id'))
+
+    batch = relationship("Batches", back_populates="inventory_miscs")
