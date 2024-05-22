@@ -25,49 +25,48 @@
           <TableCaption>A list of your recipes.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>id</TableHead>
-              <TableHead>name</TableHead>
-              <TableHead>type</TableHead>
-              <TableHead>brewer</TableHead>
-              <TableHead>asst_brewer</TableHead>
-              <TableHead>batch_size</TableHead>
-              <TableHead>boil_size</TableHead>
-              <TableHead>boil_time</TableHead>
-              <TableHead>efficiency</TableHead>
-              <TableHead>mash</TableHead>
-              <TableHead>notes</TableHead>
-              <TableHead>taste_notes</TableHead>
-              <TableHead>taste_rating</TableHead>
-              <TableHead>og</TableHead>
-              <TableHead>fg</TableHead>
-              <TableHead>carbonation</TableHead>
-              <TableHead>fermentation_stages</TableHead>
-              <TableHead>primary_age</TableHead>
-              <TableHead>primary_temp</TableHead>
-              <TableHead>secondary_age</TableHead>
-              <TableHead>secondary_temp</TableHead>
-              <TableHead>tertiary_age</TableHead>
-              <TableHead>age</TableHead>
-              <TableHead>age_temp</TableHead>
-              <TableHead>carbonation_used</TableHead>
-              <TableHead>date</TableHead>
-              <TableHead>est_og</TableHead>
-              <TableHead>est_fg</TableHead>
-              <TableHead>est_color</TableHead>
-              <TableHead>ibu</TableHead>
-              <TableHead>ibu_method</TableHead>
-              <TableHead>est_abv</TableHead>
-              <TableHead>abv</TableHead>
-              <TableHead>actual_efficiency</TableHead>
-              <TableHead>calories</TableHead>
-              <TableHead>display_batch_size</TableHead>
-              <TableHead>display_boil_size</TableHead>
-              <TableHead>display_og</TableHead>
-              <TableHead>display_fg</TableHead>
-              <TableHead>display_primary_temp</TableHead>
-              <TableHead>display_secondary_temp</TableHead>
-              <TableHead>display_tertiary_temp</TableHead>
-              <TableHead>display_age_temp</TableHead>
+              <TableHead>ID</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Type</TableHead>
+              <TableHead>Brewer</TableHead>
+              <TableHead>Asst Brewer</TableHead>
+              <TableHead>Batch Size</TableHead>
+              <TableHead>Boil Size</TableHead>
+              <TableHead>Boil Time</TableHead>
+              <TableHead>Efficiency</TableHead>
+              <TableHead>Notes</TableHead>
+              <TableHead>Taste Notes</TableHead>
+              <TableHead>Taste Rating</TableHead>
+              <TableHead>OG</TableHead>
+              <TableHead>FG</TableHead>
+              <TableHead>Fermentation Stages</TableHead>
+              <TableHead>Primary Age</TableHead>
+              <TableHead>Primary Temp</TableHead>
+              <TableHead>Secondary Age</TableHead>
+              <TableHead>Secondary Temp</TableHead>
+              <TableHead>Tertiary Age</TableHead>
+              <TableHead>Age</TableHead>
+              <TableHead>Age Temp</TableHead>
+              <TableHead>Carbonation Used</TableHead>
+              <TableHead>Carbonation Date</TableHead>
+              <TableHead>Est OG</TableHead>
+              <TableHead>Est FG</TableHead>
+              <TableHead>Est Color</TableHead>
+              <TableHead>IBU</TableHead>
+              <TableHead>IBU Method</TableHead>
+              <TableHead>Est ABV</TableHead>
+              <TableHead>ABV</TableHead>
+              <TableHead>Actual Efficiency</TableHead>
+              <TableHead>Calories</TableHead>
+              <TableHead>Display Batch Size</TableHead>
+              <TableHead>Display Boil Size</TableHead>
+              <TableHead>Display OG</TableHead>
+              <TableHead>Display FG</TableHead>
+              <TableHead>Display Primary Temp</TableHead>
+              <TableHead>Display Secondary Temp</TableHead>
+              <TableHead>Display Tertiary Temp</TableHead>
+              <TableHead>Display Age Temp</TableHead>
+              <TableHead class="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -83,13 +82,11 @@
                 <TableCell>{{ recipe.boil_size }}</TableCell>
                 <TableCell>{{ recipe.boil_time }}</TableCell>
                 <TableCell>{{ recipe.efficiency }}</TableCell>
-                <TableCell>{{ recipe.mash }}</TableCell>
                 <TableCell>{{ recipe.notes }}</TableCell>
                 <TableCell>{{ recipe.taste_notes }}</TableCell>
                 <TableCell>{{ recipe.taste_rating }}</TableCell>
                 <TableCell>{{ recipe.og }}</TableCell>
                 <TableCell>{{ recipe.fg }}</TableCell>
-                <TableCell>{{ recipe.carbonation }}</TableCell>
                 <TableCell>{{ recipe.fermentation_stages }}</TableCell>
                 <TableCell>{{ recipe.primary_age }}</TableCell>
                 <TableCell>{{ recipe.primary_temp }}</TableCell>
@@ -122,7 +119,6 @@
                   <Button asChild class="mr-2">
                     <NuxtLink :href="`/recipes/${recipe.id}`">Edit</NuxtLink>
                   </Button>
-
                   <!-- Delete button -->
                   <Button @click="deleteRecipe(recipe.id)">Delete</Button>
                 </TableCell>
@@ -134,7 +130,6 @@
     </div>
   </div>
 </template>
-
 
 <script setup lang="ts">
 import {
@@ -159,13 +154,11 @@ interface Recipe {
   boil_size: number;
   boil_time: number;
   efficiency: number;
-  mash: string;
   notes: string;
   taste_notes: string;
   taste_rating: number;
   og: number;
   fg: number;
-  carbonation: string;
   fermentation_stages: number;
   primary_age: number;
   primary_temp: number;
@@ -193,10 +186,6 @@ interface Recipe {
   display_secondary_temp: string;
   display_tertiary_temp: string;
   display_age_temp: string;
-  hops: [];
-  fermentables: [];
-  style: [];
-
 }
 
 const recipes = ref<Recipe[]>([]);

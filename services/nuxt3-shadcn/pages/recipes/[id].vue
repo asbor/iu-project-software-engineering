@@ -1,9 +1,179 @@
+<template>
+  <div>
+    <!-- Header -->
+    <header>
+      <div>
+        <h1 class="text-2xl font-semibold">Edit Recipe</h1>
+      </div>
+    </header>
+
+    <!-- Main section -->
+    <main>
+      <div v-if="isLoading">
+        <Loading :title="isLoadingTitle" />
+      </div>
+      <div v-if="!isLoading">
+        <form @submit.prevent="updateRecipe">
+          <!-- Three columns -->
+          <div class="grid grid-cols-3 gap-4">
+            <RecipeBlock class="border-2 p-4">
+              <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" v-model="recipe.name" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="brewer">Brewer:</label>
+                <input type="text" id="brewer" v-model="recipe.brewer" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="type">Type:</label>
+                <input type="text" id="type" v-model="recipe.type" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </RecipeBlock>
+
+            <EquipmentBlock class="border-2 p-4">
+              <div>
+                <label for="batch_size">Batch Size:</label>
+                <input type="number" id="batch_size" v-model="recipe.batch_size" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="boil_size">Boil Size:</label>
+                <input type="number" id="boil_size" v-model="recipe.boil_size" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="boil_time">Boil Time:</label>
+                <input type="number" id="boil_time" v-model="recipe.boil_time" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="efficiency">Efficiency:</label>
+                <input type="number" id="efficiency" v-model="recipe.efficiency" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </EquipmentBlock>
+
+            <StyleBlock class="border-2 p-4">
+              <div>
+                <label for="abv">ABV:</label>
+                <input type="number" id="abv" v-model="recipe.abv" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="og">OG:</label>
+                <input type="number" id="og" v-model="recipe.og" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="fg">FG:</label>
+                <input type="number" id="fg" v-model="recipe.fg" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="ibu">IBU:</label>
+                <input type="number" id="ibu" v-model="recipe.ibu" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="est_color">EBC:</label>
+                <input type="number" id="est_color" v-model="recipe.est_color" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </StyleBlock>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <FermentablesBlock class="border-2 p-4">
+              <div>
+                <label for="fermentables">Fermentables:</label>
+                <div v-for="fermentable in recipe.fermentables" :key="fermentable.id">
+                  <input type="text" v-model="fermentable.name" required placeholder="Optional"
+                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                </div>
+              </div>
+            </FermentablesBlock>
+
+            <HopsBlock class="border-2 p-4">
+              <div>
+                <label for="hops">Hops:</label>
+                <div v-for="hop in recipe.hops" :key="hop.id">
+                  <input type="text" v-model="hop.name" required placeholder="Optional"
+                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                </div>
+              </div>
+            </HopsBlock>
+
+            <MiscsBlock class="border-2 p-4">
+              <div>
+                <label for="miscs">Miscs:</label>
+                <div v-for="misc in recipe.miscs" :key="misc.id">
+                  <input type="text" v-model="misc.name" required placeholder="Optional"
+                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                </div>
+              </div>
+            </MiscsBlock>
+
+            <YeastBlock class="border-2 p-4">
+              <div>
+                <label for="yeasts">Yeasts:</label>
+                <div v-for="yeast in recipe.yeasts" :key="yeast.id">
+                  <input type="text" v-model="yeast.name" required placeholder="Optional"
+                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                </div>
+              </div>
+            </YeastBlock>
+
+            <MashBlock class="border-2 p-4">
+              <div>
+                <label for="mash">Mash:</label>
+                <input type="text" id="mash" v-model="recipe.mash" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </MashBlock>
+
+            <FermentationBlock class="border-2 p-4">
+              <div>
+                <label for="fermentation">Fermentation:</label>
+                <input type="text" id="fermentation" v-model="recipe.fermentation" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </FermentationBlock>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4">
+            <WaterBlock class="border-2 p-4">
+              <div>
+                <label for="water">Water:</label>
+                <input type="text" id="water" v-model="recipe.water" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </WaterBlock>
+
+            <NotesBlock class="border-2 p-4">
+              <div>
+                <label for="notes">Notes:</label>
+                <textarea id="notes" v-model="recipe.notes" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full"></textarea>
+              </div>
+            </NotesBlock>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="flex justify-end gap-4 mt-8">
+      <Button @click="updateRecipe">Save</Button>
+      <Button @click="cancel">Cancel</Button>
+    </footer>
+  </div>
+</template>
+
 <script>
-/*
-Recipe creation schema
-
-
-*/
 import { ref } from 'vue';
 import axios from 'axios';
 
@@ -32,7 +202,6 @@ export default {
         secondary_age: 0,
         secondary_temp: 0,
         tertiary_age: 0,
-        tertiary_temp: 0,
         age: 0,
         age_temp: 0,
         carbonation_used: '',
@@ -55,6 +224,9 @@ export default {
         display_tertiary_temp: '',
         display_age_temp: '',
         hops: [],
+        fermentables: [],
+        miscs: [],
+        yeasts: [],
       },
       isLoading: false,
       isLoadingTitle: 'Loading...',
@@ -105,182 +277,3 @@ export default {
   }
 };
 </script>
-
-<template>
-  <div>
-    <!-- Header -->
-    <header>
-      <div>
-        <h1 class="text-2xl font-semibold">Edit item</h1>
-      </div>
-    </header>
-
-    <!-- Main section -->
-    <main>
-      <div v-if="isLoading">
-        <Loading :title="isLoadingTitle" />
-      </div>
-      <div v-if="!isLoading">
-        <form @submit.prevent="updateRecipe">
-          <!-- Three columns -->
-          <div class="grid grid-cols-3 gap-4">
-            <RecipeBlock class="border-2 flex">
-              <div class="gap-2">
-                <Icon size="40" name="mdi:beer" color="yellow" />
-              </div>
-              <div class="w-full">
-                <div>
-                  <label for="name">Name:</label>
-                  <input type="text" id="name" v-model="recipe.name" required placeholder="Optional"
-                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
-                </div>
-                <div>
-                  <label for="brewer">Brewer:</label>
-                  <input type="text" id="brewer" v-model="recipe.brewer" required placeholder="Optional"
-                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
-                </div>
-
-                <div>
-                  <label for="type">Type:</label>
-                  <input type="text" id="type" v-model="recipe.type" required placeholder="Optional"
-                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
-                </div>
-              </div>
-            </RecipeBlock>
-            <EquipmentBlock class="border-2">
-              <div>
-                <label for="batch_size">Batch size:</label>
-                <input type="number" id="batch_size" v-model="recipe.batch_size" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-              <div>
-                <label for="boil_size">Boil size:</label>
-                <input type="number" id="boil_size" v-model="recipe.boil_size" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-              <div>
-                <label for="boil_time">Boil time:</label>
-                <input type="number" id="boil_time" v-model="recipe.boil_time" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-              <div>
-                <label for="efficiency">Efficiency:</label>
-                <input type="number" id="efficiency" v-model="recipe.efficiency" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-
-            </EquipmentBlock>
-
-            <StyleBlock class="border-2">
-              <!-- Style [ABV, OG, FG, EBC, IBU, BU/GU ratio] -->
-              <!-- Radar chart -->
-              <div>
-                <label for="abv">ABV:</label>
-                <input type="number" id="abv" v-model="recipe.abv" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-              <div>
-                <label for="og">OG:</label>
-                <input type="number" id="og" v-model="recipe.og" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-              <div>
-                <label for="fg">FG:</label>
-                <input type="number" id="fg" v-model="recipe.fg" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-              <div>
-                <label for="ibu">IBU:</label>
-                <input type="number" id="ibu" v-model="recipe.ibu" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-              <div>
-                <label for="est_color">EBC:</label>
-                <input type="number" id="est_color" v-model="recipe.est_color" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-
-            </StyleBlock>
-
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <FermentablesBlock class="border-2">
-              <div>
-                <label for="fermentables">Fermentables:</label>
-                <input type="text" id="fermentables" v-model="recipe.fermentables" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-
-            </FermentablesBlock>
-
-            <HopsBlock class="border-2">
-              <div>
-                <label for="hops">Hops:</label>
-                <div v-for="hop in recipe.hops">
-                  <input type="text" id="hops" v-model="hop.name" required placeholder="Optional"
-                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
-                </div>
-              </div>
-            </HopsBlock>
-            <MiscsBlock>
-              <div>
-                <label for="miscs">Miscs:</label>
-                <input type="text" id="miscs" v-model="recipe.miscs" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-
-            </MiscsBlock>
-
-            <YeastBlock>
-              <div>
-                <label for="yeast">Yeast:</label>
-                <input type="text" id="yeast" v-model="recipe.yeast" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-            </YeastBlock>
-
-            <MashBlock>
-              <div>
-                <label for="mash">Mash:</label>
-                <input type="text" id="mash" v-model="recipe.mash" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-            </MashBlock>
-
-            <FermentationBlock>
-              <div>
-                <label for="fermentation">Fermentation:</label>
-                <input type="text" id="fermentation" v-model="recipe.fermentation" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-            </FermentationBlock>
-
-          </div>
-          <div class="grid grid-cols-1 gap-4">
-            <WaterBlock>
-              <div>
-                <label for="water">Water:</label>
-                <input type="text" id="water" v-model="recipe.water" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-            </WaterBlock>
-            <NotesBlock>
-              <div>
-                <label for="notes">Notes:</label>
-                <input type="text" id="notes" v-model="recipe.notes" required placeholder="Optional"
-                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
-              </div>
-            </NotesBlock>
-          </div>
-        </form>
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="flex justify-end gap-4 mt-8">
-      <Button @click="updateRecipe">Save</Button>
-      <Button @click="cancel">Cancel</Button>
-    </footer>
-  </div>
-</template>

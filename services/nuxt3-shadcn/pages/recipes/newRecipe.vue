@@ -3,7 +3,7 @@
     <!-- Header -->
     <header>
       <div>
-        <h1 class="text-2xl font-semibold">Create a new recipe item</h1>
+        <h1 class="text-2xl font-semibold">Create a New Recipe</h1>
       </div>
     </header>
 
@@ -13,67 +13,154 @@
         <Loading :title="isLoadingTitle" />
       </div>
       <div v-if="!isLoading">
-
-
-
         <form @submit.prevent="saveRecipe">
-          <!-- Input fields 
-        name (str): The name of the recipe.
-        type (str): The type or style of the recipe.
-        brewer (str): The name of the primary brewer.
-        asst_brewer (str): The name of the assistant brewer.
-        batch_size (int): The size of the batch in liters.
-        boil_size (int): The size of the boil in liters.
-        boil_time (int): The duration of the boil in minutes.
-        efficiency (int): The brewing efficiency as a percentage.
-        hop (relationship): Relationship to the Hop table.
-        fermentable (relationship): Relationship to the fermentable table.
-        # misc (relationship): Relationship to the Misc table.
-        yeast (relationship): Relationship to the Yeast table.
-        #water (relationship): Relationship to the Water table.
-        style (relationship): Relationship to the Style table.
-        equipment (relationship): Relationship to the Equipment table.
-        mash (str): Details about the mashing process.
-        notes (str): General notes about the recipe.
-        taste_notes (str): Notes about the taste of the final product.
-        taste_rating (int): A rating for the taste of the final product.
-        og (int): Original gravity of the beer.
-        fg (int): Final gravity of the beer.
-        carbonation (int): Level of carbonation.
-        fermentation_stages (int): Number of fermentation stages.
-        primary_age (int): Age of the beer during primary fermentation.
-        primary_temp (int): Temperature during primary fermentation.
-        secondary_age (int): Age of the beer during secondary fermentation.
-        secondary_temp (int): Temperature during secondary fermentation.
-        tertiary_age (int): Age of the beer during tertiary fermentation.
-        age (int): Age of the beer in days.
-        age_temp (int): Temperature during aging.
-        carbonation_used (str): Details about carbonation used.
-        date (Date): The date when the recipe was created.
-        est_og (int): Estimated original gravity.
-        est_fg (int): Estimated final gravity.
-        est_color (int): Estimated color of the beer.
-        ibu (int): International Bitterness Units.
-        ibu_method (str): Method used to calculate IBU.
-        est_abv (int): Estimated alcohol by volume.
-        abv (int): Actual alcohol by volume.
-        actual_efficiency (int): Actual brewing efficiency.
-        calories (int): Estimated calories per serving.
-        display_batch_size (str): Formatted batch size.
-        display_boil_size (str): Formatted boil size.
-        display_og (str): Formatted original gravity.
-        display_fg (str): Formatted final gravity.
-        display_primary_temp (str): Formatted primary fermentation temperature.
-        display_secondary_temp (str): Formatted secondary fermentation temperature.
-        display_tertiary_temp (str): Formatted tertiary fermentation temperature.
-          -->
-          <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" v-model="recipe.name" required placeholder="Optional"
-              class="border-2 border-gray-300 rounded-lg p-2 w-full">
+          <!-- Three columns -->
+          <div class="grid grid-cols-3 gap-4">
+            <RecipeBlock class="border-2 p-4">
+              <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" v-model="recipe.name" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="brewer">Brewer:</label>
+                <input type="text" id="brewer" v-model="recipe.brewer" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="type">Type:</label>
+                <input type="text" id="type" v-model="recipe.type" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </RecipeBlock>
+
+            <EquipmentBlock class="border-2 p-4">
+              <div>
+                <label for="batch_size">Batch Size:</label>
+                <input type="number" id="batch_size" v-model="recipe.batch_size" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="boil_size">Boil Size:</label>
+                <input type="number" id="boil_size" v-model="recipe.boil_size" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="boil_time">Boil Time:</label>
+                <input type="number" id="boil_time" v-model="recipe.boil_time" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="efficiency">Efficiency:</label>
+                <input type="number" id="efficiency" v-model="recipe.efficiency" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </EquipmentBlock>
+
+            <StyleBlock class="border-2 p-4">
+              <div>
+                <label for="abv">ABV:</label>
+                <input type="number" id="abv" v-model="recipe.abv" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="og">OG:</label>
+                <input type="number" id="og" v-model="recipe.og" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="fg">FG:</label>
+                <input type="number" id="fg" v-model="recipe.fg" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="ibu">IBU:</label>
+                <input type="number" id="ibu" v-model="recipe.ibu" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+              <div>
+                <label for="est_color">EBC:</label>
+                <input type="number" id="est_color" v-model="recipe.est_color" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </StyleBlock>
           </div>
 
+          <div class="grid grid-cols-2 gap-4">
+            <FermentablesBlock class="border-2 p-4">
+              <div>
+                <label for="fermentables">Fermentables:</label>
+                <div v-for="(fermentable, index) in recipe.fermentables" :key="index">
+                  <input type="text" v-model="fermentable.name" required placeholder="Optional"
+                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                </div>
+              </div>
+            </FermentablesBlock>
 
+            <HopsBlock class="border-2 p-4">
+              <div>
+                <label for="hops">Hops:</label>
+                <div v-for="(hop, index) in recipe.hops" :key="index">
+                  <input type="text" v-model="hop.name" required placeholder="Optional"
+                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                </div>
+              </div>
+            </HopsBlock>
+
+            <MiscsBlock class="border-2 p-4">
+              <div>
+                <label for="miscs">Miscs:</label>
+                <div v-for="(misc, index) in recipe.miscs" :key="index">
+                  <input type="text" v-model="misc.name" required placeholder="Optional"
+                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                </div>
+              </div>
+            </MiscsBlock>
+
+            <YeastBlock class="border-2 p-4">
+              <div>
+                <label for="yeasts">Yeasts:</label>
+                <div v-for="(yeast, index) in recipe.yeasts" :key="index">
+                  <input type="text" v-model="yeast.name" required placeholder="Optional"
+                    class="border-2 border-gray-300 rounded-lg p-2 w-full">
+                </div>
+              </div>
+            </YeastBlock>
+
+            <MashBlock class="border-2 p-4">
+              <div>
+                <label for="mash">Mash:</label>
+                <input type="text" id="mash" v-model="recipe.mash" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </MashBlock>
+
+            <FermentationBlock class="border-2 p-4">
+              <div>
+                <label for="fermentation">Fermentation:</label>
+                <input type="text" id="fermentation" v-model="recipe.fermentation" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </FermentationBlock>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4">
+            <WaterBlock class="border-2 p-4">
+              <div>
+                <label for="water">Water:</label>
+                <input type="text" id="water" v-model="recipe.water" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full">
+              </div>
+            </WaterBlock>
+
+            <NotesBlock class="border-2 p-4">
+              <div>
+                <label for="notes">Notes:</label>
+                <textarea id="notes" v-model="recipe.notes" required placeholder="Optional"
+                  class="border-2 border-gray-300 rounded-lg p-2 w-full"></textarea>
+              </div>
+            </NotesBlock>
+          </div>
         </form>
       </div>
     </main>
@@ -87,11 +174,6 @@
 </template>
 
 <script>
-/*
-  Attributes:
-
-*/
-
 import { ref } from 'vue';
 import axios from 'axios';
 
@@ -100,41 +182,50 @@ export default {
     return {
       recipe: {
         name: '',
+        version: 0,
         type: '',
         brewer: '',
         asst_brewer: '',
-
         batch_size: 0,
         boil_size: 0,
         boil_time: 0,
         efficiency: 0,
-
-        // Relationships
-        hops: [
-          {
-            name: '',
-            alpha: 0,
-            amount: 0,
-            use: '',
-            time: 0,
-            notes: '',
-          },
-        ],
-        fermentables: [], // List of fermentable objects (relationship)
-        //misc: [],         // List of misc objects (relationship)
-        //yeass: [],        // List of yeast objects (relationship)
-        style: {},        // Style object (relationship)
-        //equipment: {},    // Equipment object (relationship)
-        mash: '',
         notes: '',
         taste_notes: '',
         taste_rating: 0,
         og: 0,
         fg: 0,
-        carbonation: 0,
         fermentation_stages: 0,
         primary_age: 0,
-
+        primary_temp: 0,
+        secondary_age: 0,
+        secondary_temp: 0,
+        tertiary_age: 0,
+        age: 0,
+        age_temp: 0,
+        carbonation_used: '',
+        carbonation_date: '',
+        est_og: 0,
+        est_fg: 0,
+        est_color: 0,
+        ibu: 0,
+        ibu_method: '',
+        est_abv: 0,
+        abv: 0,
+        actual_efficiency: 0,
+        calories: 0,
+        display_batch_size: '',
+        display_boil_size: '',
+        display_og: '',
+        display_fg: '',
+        display_primary_temp: '',
+        display_secondary_temp: '',
+        display_tertiary_temp: '',
+        display_age_temp: '',
+        hops: [],
+        fermentables: [],
+        miscs: [],
+        yeasts: [],
       },
       isLoading: false,
       isLoadingTitle: 'Loading...',
@@ -144,9 +235,8 @@ export default {
     saveRecipe() {
       this.isLoading = true;
       this.isLoadingTitle = 'Saving...';
-      // Save the recipe profile
-      console.log(this.recipe);
-      axios.post('http://localhost:8000/recipe/', this.recipe)
+      // Save the recipe
+      axios.post('http://localhost:8000/recipes', this.recipe)
         .then(res => {
           console.log(res, 'res');
           // Redirect to the previous page or perform any other action after saving
@@ -162,7 +252,7 @@ export default {
       // Cancel the operation
       console.log('Operation canceled');
       this.$router.back();
-    },
-  },
+    }
+  }
 };
 </script>
