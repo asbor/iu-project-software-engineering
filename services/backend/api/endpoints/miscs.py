@@ -11,7 +11,16 @@ router = APIRouter()
 db = SessionLocal()
 
 
-@router.get("/miscs")
-async def get_all_miscs(db: db_dependency):
-    miscs = db.query(models.Miscs).all()
+# Recipe Miscs Endpoints
+@router.get("/recipes/miscs")
+async def get_all_recipe_miscs(db: db_dependency):
+    miscs = db.query(models.RecipeMisc).all()
+    return miscs
+
+# Inventory Miscs Endpoints
+
+
+@router.get("/inventory/miscs")
+async def get_all_inventory_miscs(db: db_dependency):
+    miscs = db.query(models.InventoryMisc).all()
     return miscs

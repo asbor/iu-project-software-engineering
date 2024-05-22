@@ -11,7 +11,16 @@ router = APIRouter()
 db = SessionLocal()
 
 
-@router.get("/yeasts")
-async def get_all_yeasts(db: db_dependency):
-    yeasts = db.query(models.Yeasts).all()
+# Recipe Yeasts Endpoints
+@router.get("/recipes/yeasts")
+async def get_all_recipe_yeasts(db: db_dependency):
+    yeasts = db.query(models.RecipeYeast).all()
+    return yeasts
+
+# Inventory Yeasts Endpoints
+
+
+@router.get("/inventory/yeasts")
+async def get_all_inventory_yeasts(db: db_dependency):
+    yeasts = db.query(models.InventoryYeast).all()
     return yeasts

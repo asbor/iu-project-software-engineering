@@ -1,3 +1,5 @@
+# Database/Schemas/recipes_yeasts.py
+
 from pydantic import BaseModel
 from typing import Optional
 
@@ -19,3 +21,11 @@ class YeastBase(BaseModel):
     amount_is_weight: Optional[bool]
     inventory: Optional[float]
     display_amount: Optional[str]
+
+
+class RecipeYeast(YeastBase):
+    pass
+
+
+class InventoryYeast(YeastBase):
+    pass

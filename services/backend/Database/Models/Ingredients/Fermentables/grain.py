@@ -1,22 +1,14 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Float
+from sqlalchemy import Column, Integer, Float, ForeignKey
 from database import Base
 
 
-class Grain(Base):
+class RecipeGrain(Base):
     """
-    Description:
-    This class represents the Grain table in the database.
-
-    Note:
-    The Grain is a type of fermentable, which is why it is a subclass of fermentable.
-
-    Relationships:
-    - ONE Grain can have ZERO or MANY fermentables (entries in the fermentable table)
+    Recipe-specific Grain table.
     """
 
-    __tablename__ = "grain"
+    __tablename__ = "recipe_grain"
     id = Column(Integer, primary_key=True, index=True)
-    # Most fields are inherited from the fermentable table.
     diastatic_power = Column(Float, nullable=True)
     moisture = Column(Float, nullable=True)
     protein = Column(Float, nullable=True)
@@ -26,6 +18,23 @@ class Grain(Base):
     friability = Column(Float, nullable=True)
     free_amino_nitrogen = Column(Float, nullable=True)
     max_in_batch = Column(Float, nullable=True)
+    fermentable_id = Column(Integer, ForeignKey('recipe_fermentables.id'))
 
-    # Relationships for the fermentable types 1:1
-    fermentable_id = Column(Integer, ForeignKey('fermentables.id'))
+
+class InventoryGrain(Base):
+    """
+    Inventory-specific Grain table.
+    """
+
+    __tablename__ = "inventory_grain"
+    id = Column(Integer, primary_key=True, index=True)
+    diastatic_power = Column(Float, nullable=True)
+    moisture = Column(Float, nullable=True)
+    protein = Column(Float, nullable=True)
+    coarse_fine_diff = Column(Float, nullable=True)
+    extract = Column(Float, nullable=True)
+    acidity = Column(Float, nullable=True)
+    friability = Column(Float, nullable=True)
+    free_amino_nitrogen = Column(Float, nullable=True)
+    max_in_batch = Column(Float, nullable=True)
+    fermentable_id = Column(Integer, ForeignKey('inventory_fermentables.id'))

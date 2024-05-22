@@ -49,8 +49,8 @@ class Recipes(Base):
     display_age_temp = Column(String)
 
     # Many-to-one relationship with Hops
-    hops = relationship("Hops", back_populates="recipe")
-    fermentables = relationship("Fermentables", back_populates="recipe")
-    yeasts = relationship("Yeasts", back_populates="recipe")
-    miscs = relationship("Miscs", back_populates="recipe")
+    hops = relationship("RecipeHop", back_populates="recipe")
+    fermentables = relationship("RecipeFermentable", back_populates="recipe")
+    yeasts = relationship("RecipeYeast", back_populates="recipe")
+    miscs = relationship("RecipeMisc", back_populates="recipe")
     batches = relationship("Batches", back_populates="recipe")

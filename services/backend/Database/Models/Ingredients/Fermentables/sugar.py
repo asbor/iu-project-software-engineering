@@ -2,21 +2,21 @@ from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 from database import Base
 
 
-class Sugar(Base):
+class RecipeSugar(Base):
     """
-    Description:
-    This class represents the Sugar table in the database.
-
-    Note:
-    The sugar is a type of fermentable, which is why it is a subclass of fermentable.
-
-    Relationships:
-    - ONE sugar can have ZERO or MANY fermentables
+    Recipe-specific sugar table.
     """
 
-    __tablename__ = "sugar"
+    __tablename__ = "recipe_sugar"
     id = Column(Integer, primary_key=True, index=True)
-    # Most fields are inherited from the fermentable table.
+    fermentable_id = Column(Integer, ForeignKey('recipe_fermentables.id'))
 
-    # Relationships:
-    fermentable_id = Column(Integer, ForeignKey('fermentables.id'))
+
+class InventorySugar(Base):
+    """
+    Inventory-specific sugar table.
+    """
+
+    __tablename__ = "inventory_sugar"
+    id = Column(Integer, primary_key=True, index=True)
+    fermentable_id = Column(Integer, ForeignKey('inventory_fermentables.id'))

@@ -1,3 +1,5 @@
+# Database/Schemas/recipes_miscs.py
+
 from pydantic import BaseModel
 from typing import Optional
 
@@ -15,3 +17,11 @@ class MiscBase(BaseModel):
     inventory: Optional[float]
     display_time: Optional[str]
     batch_size: Optional[float]
+
+
+class RecipeMisc(MiscBase):
+    pass
+
+
+class InventoryMisc(MiscBase):
+    pass

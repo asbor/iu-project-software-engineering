@@ -1,22 +1,22 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, ForeignKey
 from database import Base
 
 
-class LiquidExtract(Base):
+class RecipeLiquidExtract(Base):
     """
-    Description:
-    This class represents the LiquidExtract table in the database.
-
-    Note:
-    The LiquidExtract is a type of fermentable, which is why it is a subclass of fermentable.
-
-    Relationships:
-    - ONE LiquidExtract can have ZERO or MANY fermentables
+    Recipe-specific LiquidExtract table.
     """
 
-    __tablename__ = "liquid_extract"
+    __tablename__ = "recipe_liquid_extract"
     id = Column(Integer, primary_key=True, index=True)
-    # Most fields are inherited from the fermentable table.
+    fermentable_id = Column(Integer, ForeignKey('recipe_fermentables.id'))
 
-    # Relationships:
-    fermentable_id = Column(Integer, ForeignKey('fermentables.id'))
+
+class InventoryLiquidExtract(Base):
+    """
+    Inventory-specific LiquidExtract table.
+    """
+
+    __tablename__ = "inventory_liquid_extract"
+    id = Column(Integer, primary_key=True, index=True)
+    fermentable_id = Column(Integer, ForeignKey('inventory_fermentables.id'))

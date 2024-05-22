@@ -1,3 +1,5 @@
+# Database/Schemas/recipes_hops.py
+
 from pydantic import BaseModel
 from typing import Optional
 
@@ -20,3 +22,11 @@ class HopBase(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class RecipeHop(HopBase):
+    pass
+
+
+class InventoryHop(HopBase):
+    pass

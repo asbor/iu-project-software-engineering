@@ -6,6 +6,8 @@ import Database.Schemas as schemas
 
 router = APIRouter()
 
+# Get all recipes
+
 
 @router.get("/recipes")
 async def get_all_recipes(db: Session = Depends(get_db)):
@@ -19,6 +21,8 @@ async def get_all_recipes(db: Session = Depends(get_db)):
         joinedload(models.Recipes.miscs)
     ).all()
     return recipes
+
+# Get a recipe by ID
 
 
 @router.get("/recipes/{recipe_id}")
@@ -35,6 +39,8 @@ async def get_recipe_by_id(recipe_id: int, db: Session = Depends(get_db)):
     if not recipe:
         raise HTTPException(status_code=404, detail="Recipe not found")
     return recipe
+
+# Create a new recipe
 
 
 @router.post("/recipes")
@@ -59,28 +65,31 @@ async def create_recipe(recipe: schemas.RecipeBase, db: Session = Depends(get_db
 
     # Add hops to the recipe
     for hop_data in recipe.hops:
-        db_hop = models.Hops(**hop_data.dict(), recipe_id=db_recipe.id)
+        db_hop = models.RecipeHop(**hop_data.dict(), recipe_id=db_recipe.id)
         db.add(db_hop)
 
     # Add fermentables to the recipe
     for fermentable_data in recipe.fermentables:
-        db_fermentable = models.Fermentables(
+        db_fermentable = models.RecipeFermentable(
             **fermentable_data.dict(), recipe_id=db_recipe.id)
         db.add(db_fermentable)
 
     # Add miscs to the recipe
     for misc_data in recipe.miscs:
-        db_misc = models.Miscs(**misc_data.dict(), recipe_id=db_recipe.id)
+        db_misc = models.RecipeMisc(**misc_data.dict(), recipe_id=db_recipe.id)
         db.add(db_misc)
 
     # Add yeasts to the recipe
     for yeast_data in recipe.yeasts:
-        db_yeast = models.Yeasts(**yeast_data.dict(), recipe_id=db_recipe.id)
+        db_yeast = models.RecipeYeast(
+            **yeast_data.dict(), recipe_id=db_recipe.id)
         db.add(db_yeast)
 
     db.commit()
 
     return db_recipe
+
+# Update a recipe by ID
 
 
 @router.put("/recipes/{recipe_id}")
@@ -98,34 +107,38 @@ async def update_recipe(recipe_id: int, recipe: schemas.RecipeBase, db: Session 
         setattr(db_recipe, key, value)
 
     # Update hops
-    db.query(models.Hops).filter(models.Hops.recipe_id == recipe_id).delete()
+    db.query(models.RecipeHop).filter(
+        models.RecipeHop.recipe_id == recipe_id).delete()
     for hop_data in recipe.hops:
-        db_hop = models.Hops(**hop_data.dict(), recipe_id=recipe_id)
+        db_hop = models.RecipeHop(**hop_data.dict(), recipe_id=recipe_id)
         db.add(db_hop)
 
     # Update fermentables
-    db.query(models.Fermentables).filter(
-        models.Fermentables.recipe_id == recipe_id).delete()
+    db.query(models.RecipeFermentable).filter(
+        models.RecipeFermentable.recipe_id == recipe_id).delete()
     for fermentable_data in recipe.fermentables:
-        db_fermentable = models.Fermentables(
+        db_fermentable = models.RecipeFermentable(
             **fermentable_data.dict(), recipe_id=recipe_id)
         db.add(db_fermentable)
 
     # Update miscs
-    db.query(models.Miscs).filter(models.Miscs.recipe_id == recipe_id).delete()
+    db.query(models.RecipeMisc).filter(
+        models.RecipeMisc.recipe_id == recipe_id).delete()
     for misc_data in recipe.miscs:
-        db_misc = models.Miscs(**misc_data.dict(), recipe_id=recipe_id)
+        db_misc = models.RecipeMisc(**misc_data.dict(), recipe_id=recipe_id)
         db.add(db_misc)
 
     # Update yeasts
-    db.query(models.Yeasts).filter(
-        models.Yeasts.recipe_id == recipe_id).delete()
+    db.query(models.RecipeYeast).filter(
+        models.RecipeYeast.recipe_id == recipe_id).delete()
     for yeast_data in recipe.yeasts:
-        db_yeast = models.Yeasts(**yeast_data.dict(), recipe_id=recipe_id)
+        db_yeast = models.RecipeYeast(**yeast_data.dict(), recipe_id=recipe_id)
         db.add(db_yeast)
 
     db.commit()
     return db_recipe
+
+# Delete a recipe by ID
 
 
 @router.delete("/recipes/{recipe_id}")
@@ -138,12 +151,14 @@ async def delete_recipe(recipe_id: int, db: Session = Depends(get_db)):
     if not db_recipe:
         raise HTTPException(status_code=404, detail="Recipe not found")
 
-    db.query(models.Hops).filter(models.Hops.recipe_id == recipe_id).delete()
-    db.query(models.Fermentables).filter(
-        models.Fermentables.recipe_id == recipe_id).delete()
-    db.query(models.Miscs).filter(models.Miscs.recipe_id == recipe_id).delete()
-    db.query(models.Yeasts).filter(
-        models.Yeasts.recipe_id == recipe_id).delete()
+    db.query(models.RecipeHop).filter(
+        models.RecipeHop.recipe_id == recipe_id).delete()
+    db.query(models.RecipeFermentable).filter(
+        models.RecipeFermentable.recipe_id == recipe_id).delete()
+    db.query(models.RecipeMisc).filter(
+        models.RecipeMisc.recipe_id == recipe_id).delete()
+    db.query(models.RecipeYeast).filter(
+        models.RecipeYeast.recipe_id == recipe_id).delete()
     db.delete(db_recipe)
     db.commit()
     return {"message": "Recipe deleted successfully"}

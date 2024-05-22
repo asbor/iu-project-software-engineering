@@ -1,22 +1,22 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, ForeignKey
 from database import Base
 
 
-class Adjunct(Base):
+class RecipeAdjunct(Base):
     """
-    Description:
-    This class represents the Adjunct table in the database.
-
-    Note:
-    The Adjunct is a type of fermentable, which is why it is a subclass of fermentable.
-
-    Relationships:
-    - ONE Adjunct can have ZERO or MANY fermentables
+    Recipe-specific Adjunct table.
     """
 
-    __tablename__ = 'adjunct'
+    __tablename__ = 'recipe_adjunct'
     id = Column(Integer, primary_key=True, index=True)
-    # Most fields are inherited from the fermentable table.
+    fermentable_id = Column(Integer, ForeignKey('recipe_fermentables.id'))
 
-    # Relationships:
-    fermentable_id = Column(Integer, ForeignKey('fermentables.id'))
+
+class InventoryAdjunct(Base):
+    """
+    Inventory-specific Adjunct table.
+    """
+
+    __tablename__ = 'inventory_adjunct'
+    id = Column(Integer, primary_key=True, index=True)
+    fermentable_id = Column(Integer, ForeignKey('inventory_fermentables.id'))
