@@ -1,9 +1,7 @@
-from fastapi import FastAPI, HTTPException, Depends
+# main.py
 
-from typing import List, Annotated
-
-
-from database import engine, Base, SessionLocal
+from fastapi import FastAPI
+from database import engine, Base
 from api.router import router
 from fastapi.middleware.cors import CORSMiddleware
 from logger_config import get_logger

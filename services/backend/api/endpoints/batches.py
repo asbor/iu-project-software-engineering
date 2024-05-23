@@ -1,24 +1,80 @@
 from fastapi import APIRouter, HTTPException, Depends
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from database import get_db
 import Database.Models as models
 import Database.Schemas as schemas
 from datetime import datetime
+from typing import List
 
 router = APIRouter()
+
+# Create a new batch
 
 
 @router.post("/batches", response_model=schemas.Batch)
 async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)):
     # Fetch the recipe to copy
-    recipe = db.query(models.Recipes).filter(
-        models.Recipes.id == batch.recipe_id).first()
+    recipe = db.query(models.Recipes).options(
+        joinedload(models.Recipes.hops),
+        joinedload(models.Recipes.fermentables),
+        joinedload(models.Recipes.yeasts),
+        joinedload(models.Recipes.miscs)
+    ).filter(models.Recipes.id == batch.recipe_id).first()
     if not recipe:
         raise HTTPException(status_code=404, detail="Recipe not found")
 
+    # Create a copy of the recipe with the is_batch flag set to true
+    batch_recipe = models.Recipes(
+        name=recipe.name,
+        is_batch=True,
+        origin_recipe_id=recipe.id,
+        version=recipe.version,
+        type=recipe.type,
+        brewer=recipe.brewer,
+        asst_brewer=recipe.asst_brewer,
+        batch_size=recipe.batch_size,
+        boil_size=recipe.boil_size,
+        boil_time=recipe.boil_time,
+        efficiency=recipe.efficiency,
+        notes=recipe.notes,
+        taste_notes=recipe.taste_notes,
+        taste_rating=recipe.taste_rating,
+        og=recipe.og,
+        fg=recipe.fg,
+        fermentation_stages=recipe.fermentation_stages,
+        primary_age=recipe.primary_age,
+        primary_temp=recipe.primary_temp,
+        secondary_age=recipe.secondary_age,
+        secondary_temp=recipe.secondary_temp,
+        tertiary_age=recipe.tertiary_age,
+        age=recipe.age,
+        age_temp=recipe.age_temp,
+        carbonation_used=recipe.carbonation_used,
+        est_og=recipe.est_og,
+        est_fg=recipe.est_fg,
+        est_color=recipe.est_color,
+        ibu=recipe.ibu,
+        ibu_method=recipe.ibu_method,
+        est_abv=recipe.est_abv,
+        abv=recipe.abv,
+        actual_efficiency=recipe.actual_efficiency,
+        calories=recipe.calories,
+        display_batch_size=recipe.display_batch_size,
+        display_boil_size=recipe.display_boil_size,
+        display_og=recipe.display_og,
+        display_fg=recipe.display_fg,
+        display_primary_temp=recipe.display_primary_temp,
+        display_secondary_temp=recipe.display_secondary_temp,
+        display_tertiary_temp=recipe.display_tertiary_temp,
+        display_age_temp=recipe.display_age_temp,
+    )
+    db.add(batch_recipe)
+    db.commit()
+    db.refresh(batch_recipe)
+
     # Create a new batch
     db_batch = models.Batches(
-        recipe_id=batch.recipe_id,
+        recipe_id=batch_recipe.id,
         batch_name=batch.batch_name,
         batch_number=batch.batch_number,
         batch_size=batch.batch_size,
@@ -45,9 +101,10 @@ async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)
             use=hop.use,
             time=hop.time,
             notes=hop.notes,
-            display_amount=hop.display_amount,
-            inventory=hop.inventory,
-            display_time=hop.display_time,
+            display_amount=hop.display_amount if hop.display_amount else '',
+            # Setting a default value if inventory is None
+            inventory=hop.inventory if hop.inventory else 0.0,
+            display_time=hop.display_time if hop.display_time else '',
             batch_id=db_batch.id
         )
         db.add(db_inventory_hop)
@@ -86,9 +143,10 @@ async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)
             notes=misc.notes,
             amount=misc.amount,
             time=misc.time,
-            display_amount=misc.display_amount,
-            inventory=misc.inventory,
-            display_time=misc.display_time,
+            display_amount=misc.display_amount if misc.display_amount else '',
+            # Setting a default value if inventory is None
+            inventory=misc.inventory if misc.inventory else 0.0,
+            display_time=misc.display_time if misc.display_time else '',
             batch_size=misc.batch_size,
             batch_id=db_batch.id
         )
@@ -110,11 +168,74 @@ async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)
             max_reuse=yeast.max_reuse,
             amount=yeast.amount,
             amount_is_weight=yeast.amount_is_weight,
-            inventory=yeast.inventory,
-            display_amount=yeast.display_amount,
             batch_id=db_batch.id
         )
         db.add(db_inventory_yeast)
 
     db.commit()
     return db_batch
+
+# Get all batches
+
+
+@router.get("/batches", response_model=List[schemas.Batch])
+async def get_all_batches(db: Session = Depends(get_db)):
+    batches = db.query(models.Batches).options(
+        joinedload(models.Batches.recipe)
+    ).all()
+    return batches
+
+# Get a batch by ID
+
+
+@router.get("/batches/{batch_id}", response_model=schemas.Batch)
+async def get_batch_by_id(batch_id: int, db: Session = Depends(get_db)):
+    batch = db.query(models.Batches).options(
+        joinedload(models.Batches.recipe)
+    ).filter(models.Batches.id == batch_id).first()
+    if not batch:
+        raise HTTPException(status_code=404, detail="Batch not found")
+    return batch
+
+# Update a batch by ID
+
+
+@router.put("/batches/{batch_id}", response_model=schemas.Batch)
+async def update_batch(batch_id: int, batch: schemas.BatchBase, db: Session = Depends(get_db)):
+    db_batch = db.query(models.Batches).filter(
+        models.Batches.id == batch_id).first()
+    if not db_batch:
+        raise HTTPException(status_code=404, detail="Batch not found")
+
+    # Update the batch
+    for key, value in batch.dict().items():
+        setattr(db_batch, key, value)
+
+    db.commit()
+    db.refresh(db_batch)
+    return db_batch
+
+# Delete a batch by ID
+
+
+@router.delete("/batches/{batch_id}")
+async def delete_batch(batch_id: int, db: Session = Depends(get_db)):
+    db_batch = db.query(models.Batches).filter(
+        models.Batches.id == batch_id).first()
+    if not db_batch:
+        raise HTTPException(status_code=404, detail="Batch not found")
+
+    # Delete related inventory items
+    db.query(models.InventoryHop).filter(
+        models.InventoryHop.batch_id == batch_id).delete()
+    db.query(models.InventoryFermentable).filter(
+        models.InventoryFermentable.batch_id == batch_id).delete()
+    db.query(models.InventoryMisc).filter(
+        models.InventoryMisc.batch_id == batch_id).delete()
+    db.query(models.InventoryYeast).filter(
+        models.InventoryYeast.batch_id == batch_id).delete()
+
+    # Delete the batch
+    db.delete(db_batch)
+    db.commit()
+    return {"message": "Batch deleted successfully"}

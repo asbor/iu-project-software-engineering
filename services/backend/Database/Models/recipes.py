@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
+# services/backend/Database/Models/recipes.py
+
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from database import Base
 
@@ -8,6 +10,9 @@ class Recipes(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
+    is_batch = Column(Boolean, default=False)
+    origin_recipe_id = Column(Integer, ForeignKey('recipes.id'), nullable=True)
+    origin_recipe = relationship('Recipes', remote_side=[id])
     version = Column(Integer)
     type = Column(String)
     brewer = Column(String)
@@ -48,7 +53,6 @@ class Recipes(Base):
     display_tertiary_temp = Column(String)
     display_age_temp = Column(String)
 
-    # Many-to-one relationship with Hops
     hops = relationship("RecipeHop", back_populates="recipe")
     fermentables = relationship("RecipeFermentable", back_populates="recipe")
     yeasts = relationship("RecipeYeast", back_populates="recipe")
