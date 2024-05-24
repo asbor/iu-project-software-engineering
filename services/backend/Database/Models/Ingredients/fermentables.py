@@ -36,7 +36,7 @@ class InventoryFermentable(Base):
     __tablename__ = "inventory_fermentables"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=True, unique=True)
+    name = Column(String, nullable=True)
     type = Column(String, nullable=True)
     yield_ = Column(Float, nullable=True)
     color = Column(Integer, nullable=True)

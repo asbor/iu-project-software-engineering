@@ -14,6 +14,8 @@ from . import miscs
 from . import users
 from . import yeasts
 from . import trigger_beer_styles_processing
+from . import health
+from . import references
 
 __all__ = [
     'recipes',
@@ -29,5 +31,7 @@ __all__ = [
     'miscs',
     'users',
     'yeasts',
-    'trigger_beer_styles_processing'
+    'trigger_beer_styles_processing',
+    'health',
+    'references'
 ]

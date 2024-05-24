@@ -32,7 +32,7 @@ class InventoryHop(Base):
     __tablename__ = 'inventory_hops'
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=True, unique=True)
+    name = Column(String, nullable=True)
     origin = Column(String, nullable=True)
     alpha = Column(Float, nullable=True)
     type = Column(String, nullable=True)

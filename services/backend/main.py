@@ -14,10 +14,7 @@ logger = get_logger('Main')
 logger.info("Connecting to the database and creating tables")
 Base.metadata.create_all(bind=engine)
 
-# Create a dependency to get the database session
-
-
-# create the FastAPI app and include the router from the endpoints folder
+# Create the FastAPI app and include the router from the endpoints folder
 logger.info("Creating FastAPI app and including the router")
 app = FastAPI(title="PostgreSQL and FastAPI")
 app.include_router(router)
@@ -38,5 +35,5 @@ app.add_middleware(
 
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+async def read_main():
+    return {"msg": "Hello World"}

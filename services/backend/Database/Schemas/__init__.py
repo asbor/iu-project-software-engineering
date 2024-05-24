@@ -19,6 +19,7 @@ from .fermentables import FermentableBase, RecipeFermentable, InventoryFermentab
 from .hops import HopBase, RecipeHop, InventoryHopBase, InventoryHopCreate, InventoryHop
 from .miscs import MiscBase, RecipeMisc, InventoryMiscBase, InventoryMiscCreate, InventoryMisc
 from .yeasts import YeastBase, RecipeYeast, InventoryYeastBase, InventoryYeastCreate, InventoryYeast
+from .references import ReferenceBase, ReferenceCreate, ReferenceUpdate, ReferenceInDBBase, Reference
 
 __all__ = [
     "SugarBase",
@@ -57,4 +58,10 @@ __all__ = [
     "InventoryYeastBase",
     "InventoryYeastCreate",
     "InventoryYeast",
+    "ReferenceBase",
+    "ReferenceCreate",
+    "ReferenceUpdate",
+    "ReferenceInDBBase",
+    "Reference",
+
 ]

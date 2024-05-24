@@ -28,7 +28,7 @@ class InventoryMisc(Base):
     __tablename__ = 'inventory_miscs'
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=True, unique=True)
+    name = Column(String, nullable=True)
     type = Column(String, nullable=True)
     use = Column(String, nullable=True)
     amount_is_weight = Column(Boolean, nullable=True)

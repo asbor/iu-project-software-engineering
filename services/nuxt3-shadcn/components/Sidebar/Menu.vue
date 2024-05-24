@@ -51,8 +51,8 @@ const items = ref([
   { title: "Batches", path: "/batches", icon: "lucide:beer" },
   // Inventory
   { title: "Inventory", path: "/inventory", icon: "lucide:clipboard-list" },
-  // Suppliers
-  { title: "Suppliers", path: "/suppliers", icon: "lucide:store" },
+  // References
+  { title: "References", path: "/references", icon: "lucide:store" },
   // Library
   { title: "Library", path: "/library", icon: "lucide:library-big" },
   // Profiles

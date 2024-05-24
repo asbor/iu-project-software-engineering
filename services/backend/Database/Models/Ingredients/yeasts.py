@@ -32,7 +32,7 @@ class InventoryYeast(Base):
     __tablename__ = 'inventory_yeasts'
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=True, unique=True)
+    name = Column(String, nullable=True)
     type = Column(String, nullable=True)
     form = Column(String, nullable=True)
     amount = Column(Float, nullable=True)

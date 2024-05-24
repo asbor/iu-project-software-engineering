@@ -11,10 +11,12 @@ router.include_router(hops.router, tags=["hops"])
 router.include_router(miscs.router, tags=["miscs"])
 router.include_router(yeasts.router, tags=["yeasts"])
 router.include_router(fermentables.router, tags=["fermentables"])
+router.include_router(health.router, tags=["health"])
 
 router.include_router(logs.router, tags=["logs"])
 router.include_router(questions.router, tags=["questions"])
 router.include_router(style_guidelines.router, tags=["style_guidelines"])
+router.include_router(references.router, tags=["references"])
 
 
 # Profile routers
