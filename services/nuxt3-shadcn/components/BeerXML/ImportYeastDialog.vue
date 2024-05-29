@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
-import { parseString } from 'xml2js';
-import { v4 as uuidv4 } from 'uuid';
+import { XMLParser } from 'fast-xml-parser';
 
+// Assuming these components are imported correctly
 import {
     AlertDialog,
     AlertDialogAction,
@@ -18,6 +18,7 @@ import {
 const openYeast = ref(false);
 const importedYeast = ref([]);
 const isLoadingYeast = ref(false);
+let nextId = 1;  // Initialize a counter for IDs
 
 function handleFileChangeYeast(event) {
     const file = event.target.files[0];
@@ -32,38 +33,34 @@ function handleFileChangeYeast(event) {
 }
 
 function parseBeerXMLYeast(beerXMLContent) {
-    parseString(beerXMLContent, (err, result) => {
-        if (err) {
-            console.error('Error parsing BeerXML:', err);
-            return;
-        }
+    const parser = new XMLParser();
+    const result = parser.parse(beerXMLContent);
 
-        if (!result.YEASTS || !result.YEASTS.YEAST) {
-            console.error('No yeast found in BeerXML');
-            return;
-        }
+    if (!result.YEASTS || !result.YEASTS.YEAST) {
+        console.error('No yeast found in BeerXML');
+        return;
+    }
 
-        const yeasts = result.YEASTS.YEAST;
+    const yeasts = result.YEASTS.YEAST;
 
-        importedYeast.value = yeasts.map((yeast) => ({
-            id: uuidv4(),
-            name: yeast.NAME ? yeast.NAME[0] : '',
-            type: yeast.TYPE ? yeast.TYPE[0] : '',
-            form: yeast.FORM ? yeast.FORM[0] : '',
-            amount: yeast.AMOUNT ? parseFloat(yeast.AMOUNT[0]) : 0,
-            amount_is_weight: yeast.AMOUNT_IS_WEIGHT ? yeast.AMOUNT_IS_WEIGHT[0] === 'true' : false,
-            laboratory: yeast.LABORATORY ? yeast.LABORATORY[0] : '',
-            product_id: yeast.PRODUCT_ID ? yeast.PRODUCT_ID[0] : '',
-            min_temperature: yeast.MIN_TEMPERATURE ? parseFloat(yeast.MIN_TEMPERATURE[0]) : null,
-            max_temperature: yeast.MAX_TEMPERATURE ? parseFloat(yeast.MAX_TEMPERATURE[0]) : null,
-            flocculation: yeast.FLOCCULATION ? yeast.FLOCCULATION[0] : '',
-            attenuation: yeast.ATTENUATION ? parseFloat(yeast.ATTENUATION[0]) : null,
-            notes: yeast.NOTES ? yeast.NOTES[0] : '',
-            best_for: yeast.BEST_FOR ? yeast.BEST_FOR[0] : '',
-            times_cultured: yeast.TIMES_CULTURED ? parseInt(yeast.TIMES_CULTURED[0]) : 0,
-            max_reuse: yeast.MAX_REUSE ? parseInt(yeast.MAX_REUSE[0]) : 0,
-        }));
-    });
+    importedYeast.value = yeasts.map((yeast) => ({
+        id: nextId++,  // Use an integer ID
+        name: yeast.NAME || '',
+        type: yeast.TYPE || '',
+        form: yeast.FORM || '',
+        amount: yeast.AMOUNT ? parseFloat(yeast.AMOUNT) : 0,
+        amount_is_weight: yeast.AMOUNT_IS_WEIGHT === 'true',
+        laboratory: yeast.LABORATORY || '',
+        product_id: yeast.PRODUCT_ID || '',
+        min_temperature: yeast.MIN_TEMPERATURE ? parseFloat(yeast.MIN_TEMPERATURE) : null,
+        max_temperature: yeast.MAX_TEMPERATURE ? parseFloat(yeast.MAX_TEMPERATURE) : null,
+        flocculation: yeast.FLOCCULATION || '',
+        attenuation: yeast.ATTENUATION ? parseFloat(yeast.ATTENUATION) : null,
+        notes: yeast.NOTES || '',
+        best_for: yeast.BEST_FOR || '',
+        times_cultured: yeast.TIMES_CULTURED ? parseInt(yeast.TIMES_CULTURED) : 0,
+        max_reuse: yeast.MAX_REUSE ? parseInt(yeast.MAX_REUSE) : 0,
+    }));
 }
 
 async function importYeast() {

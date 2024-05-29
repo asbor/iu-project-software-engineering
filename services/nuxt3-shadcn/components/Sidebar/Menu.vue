@@ -8,11 +8,10 @@
     <main class="px-4 grow">
       <div class="grid gap-2">
         <DropDownCreate />
-        <NuxtLink :href="item.path" v-for='(item, index) in items' :key='index'
+        <NuxtLink :href="item.path" v-for="(item, index) in items" :key="index"
           class="flex items-center gap-2 px-2 py-1 transition rounded cursor-pointer hover:bg-neutral-100 hover:text-neutral-900">
           <Icon size="20" :name="item.icon" />
           <span>{{ item.title }}</span>
-          <!-- Add @click event to call handleLinkClick function -->
         </NuxtLink>
       </div>
     </main>
@@ -32,45 +31,30 @@
 </template>
 
 <script setup>
-props: {
-  closeOverlay: Function
-};
-
-import { defineEmits } from 'vue';
-
-defineEmits(['linkClicked']);
-
-import Button from '../ui/button/Button.vue';
+import { ref } from 'vue';
+import { useDark, useToggle } from '@vueuse/core';
+import Logo from '@/components/Logo.vue';
+import DropDownCreate from '@/components/DropDown/Create.vue';
+import CheckDatabaseConnection from '@/components/checkDatabaseConnection.vue';
+import UserAccountUserItem from '@/components/UserAccount/UserItem.vue';
 
 const items = ref([
-  // Dashboard
-  { title: "Dashboard", path: "/", icon: "ri:dashboard-line" },
-  // Beer brewing recipe
-  { title: "Recipes", path: "/recipes", icon: "lucide:book-open-text" },
-  // Beer brewing batches
-  { title: "Batches", path: "/batches", icon: "lucide:beer" },
-  // Inventory
-  { title: "Inventory", path: "/inventory", icon: "lucide:clipboard-list" },
-  // References
-  { title: "References", path: "/references", icon: "lucide:store" },
-  // Library
-  { title: "Library", path: "/library", icon: "lucide:library-big" },
-  // Profiles
-  { title: "Profiles", path: "/profiles", icon: "ri:contacts-line" },
-  // Styles
-  { title: "Styles", path: "/styles", icon: "ri:file-list-3-line" },
-  // Tools
-  { title: "Tools", path: "/tools", icon: "ri:tools-line" },
-  // Settings
-  { title: "Settings", path: "/settings", icon: "ri:settings-3-line" },
-  // Log
-  { title: "Log", path: "/log", icon: "ri:file-list-3-line" },
-])
+  { title: 'Dashboard', path: '/', icon: 'ri:dashboard-line' },
+  { title: 'Recipes', path: '/recipes', icon: 'lucide:book-open-text' },
+  { title: 'Batches', path: '/batches', icon: 'lucide:beer' },
+  { title: 'Inventory', path: '/inventory', icon: 'lucide:clipboard-list' },
+  { title: 'References', path: '/references', icon: 'lucide:store' },
+  { title: 'Library', path: '/library', icon: 'lucide:library-big' },
+  { title: 'Profiles', path: '/profiles', icon: 'ri:contacts-line' },
+  { title: 'Styles', path: '/styles', icon: 'ri:file-list-3-line' },
+  { title: 'Tools', path: '/tools', icon: 'ri:tools-line' },
+  { title: 'Settings', path: '/settings', icon: 'ri:settings-3-line' },
+  { title: 'Log', path: '/log', icon: 'ri:file-list-3-line' },
+  { title: 'About', path: '/about', icon: 'ri:information-line' },
+]);
 
-import { useDark, useToggle } from "@vueuse/core";
+const emit = defineEmits(['linkClicked']);
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-
-
 </script>

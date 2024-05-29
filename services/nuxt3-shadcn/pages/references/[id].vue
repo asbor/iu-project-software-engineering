@@ -55,7 +55,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import axios from 'axios';
 
 const router = useRouter();
 const route = useRoute();
@@ -74,8 +73,8 @@ async function getReferenceProfile(id: number) {
     isLoading.value = true;
     isLoadingTitle.value = 'Loading reference...';
     try {
-        const response = await axios.get(`http://localhost:8000/references/${id}`);
-        reference.value = response.data;
+        const response = await $fetch(`http://localhost:8000/references/${id}`);
+        reference.value = response;
     } catch (error) {
         console.error(error);
     } finally {
@@ -87,7 +86,10 @@ async function updateReference() {
     isLoading.value = true;
     isLoadingTitle.value = 'Updating reference...';
     try {
-        await axios.put(`http://localhost:8000/references/${reference.value.id}`, reference.value);
+        await $fetch(`http://localhost:8000/references/${reference.value.id}`, {
+            method: 'PUT',
+            body: reference.value,
+        });
         router.back();
     } catch (error) {
         console.error(error);

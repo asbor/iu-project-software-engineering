@@ -175,7 +175,6 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
 
 export default {
   data() {
@@ -232,25 +231,22 @@ export default {
     };
   },
   methods: {
-    saveRecipe() {
+    async saveRecipe() {
       this.isLoading = true;
       this.isLoadingTitle = 'Saving...';
-      // Save the recipe
-      axios.post('http://localhost:8000/recipes', this.recipe)
-        .then(res => {
-          console.log(res, 'res');
-          // Redirect to the previous page or perform any other action after saving
-          this.$router.back();
-        })
-        .catch(error => {
-          console.error(error);
-          // Handle error
+      try {
+        await $fetch('http://localhost:8000/recipes', {
+          method: 'POST',
+          body: this.recipe,
         });
-      this.isLoading = false;
+        this.$router.back();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
     cancel() {
-      // Cancel the operation
-      console.log('Operation canceled');
       this.$router.back();
     }
   }

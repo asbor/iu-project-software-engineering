@@ -68,8 +68,6 @@
             <input type="number" id="tun_specific_heat" v-model="mash.tun_specific_heat" required placeholder="Optional"
               class="border-2 border-gray-300 rounded-lg p-2 w-full">
           </div>
-
-
           <div>
             <label for="display_grain_temp">Display Grain Temp:</label>
             <input type="text" id="display_grain_temp" v-model="mash.display_grain_temp" required placeholder="Optional"
@@ -95,8 +93,6 @@
             <input type="text" id="mash_steps" v-model="mash.mash_steps" required placeholder="Optional"
               class="border-2 border-gray-300 rounded-lg p-2 w-full">
           </div>
-
-
         </div>
         <div class="grid w-full gap-4 mt-4">
           <label for="notes">Notes:</label>
@@ -118,9 +114,8 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
-const isloading = ref(false);
-const isLoadingTitle = ref('');
+import { useRouter } from 'vue-router';
+
 export default {
   data() {
     return {
@@ -141,37 +136,27 @@ export default {
         display_tun_weight: '',
         mash_steps: ''
       },
+      isLoading: false,
+      isLoadingTitle: 'Loading...',
     };
   },
   methods: {
-    saveMash() {
+    async saveMash() {
       // Save the mash profile
       console.log(this.mash);
-      this.isloading = true;
+      this.isLoading = true;
       this.isLoadingTitle = 'Saving mash profile';
-
-      var myThis = this;
-
-      // Correct reference to axios
-      axios.post('http://localhost:8000/mash/', this.mash)
-        .then(res => {
-          console.log(res, 'res');
-          //alert(res.data.message);
-
-          myThis.isloading = false;
-          this.isLoadingTitle = 'Loading mash profile';
-          this.$router.back();
-        })
-        .catch(function (error) {
-          console.log(error, 'error');
-
-          if (error.response) {
-            if (error.response.status === 422) {
-              myThis.errorList = error.response.data.errors;
-            }
-          }
-          myThis.isloading = false;
+      try {
+        await $fetch('http://localhost:8000/mash/', {
+          method: 'POST',
+          body: this.mash,
         });
+        this.$router.back();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
     cancel() {
       // Cancel the operation
@@ -179,6 +164,5 @@ export default {
       this.$router.back();
     }
   }
-
 };
 </script>

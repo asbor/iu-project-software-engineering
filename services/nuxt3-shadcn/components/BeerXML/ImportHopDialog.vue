@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { parseString } from 'xml2js';
-import { v4 as uuidv4 } from 'uuid';
+import { XMLParser } from 'fast-xml-parser';
 
 // Assuming these components are imported correctly
 import {
@@ -19,6 +18,7 @@ import {
 const open = ref(false);
 const importedHops = ref([]);
 const isLoading = ref(false);
+let nextId = 1;  // Initialize a counter for IDs
 
 function handleFileChange(event) {
   const file = event.target.files[0];
@@ -33,58 +33,54 @@ function handleFileChange(event) {
 }
 
 function parseBeerXML(beerXMLContent) {
-  parseString(beerXMLContent, (err, result) => {
-    if (err) {
-      console.error('Error parsing BeerXML:', err);
-      return;
-    }
+  const parser = new XMLParser();
+  const result = parser.parse(beerXMLContent);
 
-    if (!result.HOPS || !result.HOPS.HOP) {
-      console.error('No hops found in BeerXML');
-      return;
-    }
+  if (!result.HOPS || !result.HOPS.HOP) {
+    console.error('No hops found in BeerXML');
+    return;
+  }
 
-    const hops = result.HOPS.HOP;
+  const hops = result.HOPS.HOP;
 
-    importedHops.value = hops.map((hop) => ({
-      id: uuidv4(),
-      name: hop.NAME ? hop.NAME[0] : '',
-      amount: hop.AMOUNT ? parseFloat(hop.AMOUNT[0]) : 0,
-      cost_per_unit: 0,
-      supplier: hop.SUPPLIER ? hop.SUPPLIER[0] : '',
-      origin: hop.ORIGIN ? hop.ORIGIN[0] : '',
-      type: hop.TYPE ? hop.TYPE[0] : '',
-      color: hop.COLOR ? parseFloat(hop.COLOR[0]) : 0,
-      potential: hop.POTENTIAL ? parseFloat(hop.POTENTIAL[0]) : 0,
-      yield_: hop.YIELD ? parseFloat(hop.YIELD[0]) : 0,
-      manufacturing_date: "2024-12-31",
-      expiry_date: "2024-12-31",
-      lot_number: '',
-      exclude_from_total: false,
-      not_hop: false,
-      notes: hop.NOTES ? hop.NOTES[0] : '',
-      description: '',
-      substitutes: '',
-      used_in: '',
-      alpha: hop.ALPHA ? parseFloat(hop.ALPHA[0]) : 0,
-      beta: hop.BETA ? parseFloat(hop.BETA[0]) : 0,
-      form: hop.FORM ? hop.FORM[0] : '',
-      use: hop.USE ? hop.USE[0] : '',
-      amount_is_weight: false,
-      product_id: '',
-      min_temperature: null,
-      max_temperature: null,
-      flocculation: '',
-      attenuation: null,
-      max_reuse: null,
-      inventory: hop.INVENTORY ? hop.INVENTORY[0] : '',
-      display_amount: '',
-      display_time: '',
-      batch_size: null,
-      hsi: hop.HSI ? parseFloat(hop.HSI[0]) : 0,  // Ensure hsi field is present
-      time: hop.TIME ? parseInt(hop.TIME[0]) : 0,  // Ensure time field is present
-    }));
-  });
+  importedHops.value = hops.map((hop) => ({
+    id: nextId++,  // Use an integer ID
+    name: hop.NAME || '',
+    amount: hop.AMOUNT ? parseFloat(hop.AMOUNT) : 0,
+    cost_per_unit: 0,
+    supplier: hop.SUPPLIER || '',
+    origin: hop.ORIGIN || '',
+    type: hop.TYPE || '',
+    color: hop.COLOR ? parseFloat(hop.COLOR) : 0,
+    potential: hop.POTENTIAL ? parseFloat(hop.POTENTIAL) : 0,
+    yield_: hop.YIELD ? parseFloat(hop.YIELD) : 0,
+    manufacturing_date: "2024-12-31",
+    expiry_date: "2024-12-31",
+    lot_number: '',
+    exclude_from_total: false,
+    not_hop: false,
+    notes: hop.NOTES || '',
+    description: '',
+    substitutes: '',
+    used_in: '',
+    alpha: hop.ALPHA ? parseFloat(hop.ALPHA) : 0,
+    beta: hop.BETA ? parseFloat(hop.BETA) : 0,
+    form: hop.FORM || '',
+    use: hop.USE || '',
+    amount_is_weight: false,
+    product_id: '',
+    min_temperature: null,
+    max_temperature: null,
+    flocculation: '',
+    attenuation: null,
+    max_reuse: null,
+    inventory: hop.INVENTORY || '',
+    display_amount: '',
+    display_time: '',
+    batch_size: null,
+    hsi: hop.HSI ? parseFloat(hop.HSI) : 0,
+    time: hop.TIME ? parseInt(hop.TIME) : 0,
+  }));
 }
 
 async function importHops() {

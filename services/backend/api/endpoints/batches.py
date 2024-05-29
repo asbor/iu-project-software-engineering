@@ -29,6 +29,8 @@ def parse_numeric_value(value):
 @router.post("/batches", response_model=schemas.Batch)
 async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)):
     try:
+        logger.info(f"Received request to create batch: {batch}")
+
         # Fetch the recipe to copy
         recipe = db.query(models.Recipes).options(
             joinedload(models.Recipes.hops),
@@ -36,6 +38,9 @@ async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)
             joinedload(models.Recipes.yeasts),
             joinedload(models.Recipes.miscs)
         ).filter(models.Recipes.id == batch.recipe_id).first()
+
+        logger.info(f"Found recipe: {recipe}")
+
         if not recipe:
             raise HTTPException(status_code=404, detail="Recipe not found")
 

@@ -3,7 +3,7 @@
         <CardHeader class="px-4 pt-4 pb-1">
             <div class="flex items-center gap-2">
                 <div class="yellow-400">
-                    <Icon size=" 20" :name="card.icon" :inline="true" />
+                    <Icon size="20" :name="card.icon" :inline="true" />
                 </div>
                 <p>{{ card.name }}</p>
             </div>

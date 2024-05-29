@@ -95,6 +95,7 @@ async function fetchRecipes() {
 
 async function createBatch() {
     try {
+        console.log('Creating new batch with data:', newBatch.value); // Log the data being sent
         const response = await fetch('http://localhost:8000/batches', {
             method: 'POST',
             headers: {

@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { parseString } from 'xml2js';
-import { v4 as uuidv4 } from 'uuid';
+import { XMLParser } from 'fast-xml-parser';
 
 import {
     AlertDialog,
@@ -18,6 +17,7 @@ import {
 const openMisc = ref(false);
 const importedMisc = ref([]);
 const isLoadingMisc = ref(false);
+let nextIdMisc = 1;  // Initialize a counter for IDs
 
 function handleFileChangeMisc(event) {
     const file = event.target.files[0];
@@ -32,29 +32,25 @@ function handleFileChangeMisc(event) {
 }
 
 function parseBeerXMLMisc(beerXMLContent) {
-    parseString(beerXMLContent, (err, result) => {
-        if (err) {
-            console.error('Error parsing BeerXML:', err);
-            return;
-        }
+    const parser = new XMLParser();
+    const result = parser.parse(beerXMLContent);
 
-        if (!result.MISCS || !result.MISCS.MISC) {
-            console.error('No misc found in BeerXML');
-            return;
-        }
+    if (!result.MISCS || !result.MISCS.MISC) {
+        console.error('No misc found in BeerXML');
+        return;
+    }
 
-        const miscs = result.MISCS.MISC;
+    const miscs = result.MISCS.MISC;
 
-        importedMisc.value = miscs.map((misc) => ({
-            id: uuidv4(),
-            name: misc.NAME ? misc.NAME[0] : '',
-            amount: misc.AMOUNT ? parseFloat(misc.AMOUNT[0]) : 0,
-            type: misc.TYPE ? misc.TYPE[0] : '',
-            use: misc.USE ? misc.USE[0] : '',
-            time: misc.TIME ? parseInt(misc.TIME[0]) : 0,
-            notes: misc.NOTES ? misc.NOTES[0] : '',
-        }));
-    });
+    importedMisc.value = miscs.map((misc) => ({
+        id: nextIdMisc++,  // Use an integer ID
+        name: misc.NAME || '',
+        amount: misc.AMOUNT ? parseFloat(misc.AMOUNT) : 0,
+        type: misc.TYPE || '',
+        use: misc.USE || '',
+        time: misc.TIME ? parseInt(misc.TIME) : 0,
+        notes: misc.NOTES || '',
+    }));
 }
 
 async function importMisc() {

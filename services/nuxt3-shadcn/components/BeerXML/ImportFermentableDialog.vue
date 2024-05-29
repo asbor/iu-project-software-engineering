@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
-import { parseString } from 'xml2js';
-import { v4 as uuidv4 } from 'uuid';
+import { XMLParser } from 'fast-xml-parser';
 
+// Assuming these components are imported correctly
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,6 +18,7 @@ import {
 const open = ref(false);
 const importedFermentables = ref([]);
 const isLoading = ref(false);
+let nextId = 1;  // Initialize a counter for IDs
 
 function handleFileChange(event) {
   const file = event.target.files[0];
@@ -32,56 +33,52 @@ function handleFileChange(event) {
 }
 
 function parseBeerXML(beerXMLContent) {
-  parseString(beerXMLContent, (err, result) => {
-    if (err) {
-      console.error('Error parsing BeerXML:', err);
-      return;
-    }
+  const parser = new XMLParser();
+  const result = parser.parse(beerXMLContent);
 
-    if (!result.FERMENTABLES || !result.FERMENTABLES.FERMENTABLE) {
-      console.error('No fermentables found in BeerXML');
-      return;
-    }
+  if (!result.FERMENTABLES || !result.FERMENTABLES.FERMENTABLE) {
+    console.error('No fermentables found in BeerXML');
+    return;
+  }
 
-    const fermentables = result.FERMENTABLES.FERMENTABLE;
+  const fermentables = result.FERMENTABLES.FERMENTABLE;
 
-    importedFermentables.value = fermentables.map((fermentable) => ({
-      id: uuidv4(),
-      name: fermentable.NAME ? fermentable.NAME[0] : '',
-      amount: fermentable.AMOUNT ? parseFloat(fermentable.AMOUNT[0]) : 0,
-      cost_per_unit: 0,
-      supplier: fermentable.SUPPLIER ? fermentable.SUPPLIER[0] : '',
-      origin: fermentable.ORIGIN ? fermentable.ORIGIN[0] : '',
-      type: fermentable.TYPE ? fermentable.TYPE[0] : '',
-      color: fermentable.COLOR ? parseInt(parseFloat(fermentable.COLOR[0])) : 0, // Convert to integer
-      potential: fermentable.POTENTIAL ? parseInt(parseFloat(fermentable.POTENTIAL[0])) : 0, // Convert to integer
-      yield_: fermentable.YIELD ? parseFloat(fermentable.YIELD[0]) : 0,
-      manufacturing_date: "2024-12-31",
-      expiry_date: "2024-12-31",
-      lot_number: '',
-      exclude_from_total: false,
-      not_fermentable: false,
-      notes: fermentable.NOTES ? fermentable.NOTES[0] : '',
-      description: '',
-      substitutes: '',
-      used_in: '',
-      alpha: null,
-      beta: null,
-      form: '',
-      use: '',
-      amount_is_weight: false,
-      product_id: '',
-      min_temperature: null,
-      max_temperature: null,
-      flocculation: '',
-      attenuation: null,
-      max_reuse: null,
-      inventory: 0,
-      display_amount: '',
-      display_time: '',
-      batch_size: null,
-    }));
-  });
+  importedFermentables.value = fermentables.map((fermentable) => ({
+    id: nextId++,  // Use an integer ID
+    name: fermentable.NAME || '',
+    amount: fermentable.AMOUNT ? parseFloat(fermentable.AMOUNT) : 0,
+    cost_per_unit: 0,
+    supplier: fermentable.SUPPLIER || '',
+    origin: fermentable.ORIGIN || '',
+    type: fermentable.TYPE || '',
+    color: fermentable.COLOR ? parseFloat(fermentable.COLOR) : 0,
+    potential: fermentable.POTENTIAL ? parseFloat(fermentable.POTENTIAL) : 0,
+    yield_: fermentable.YIELD ? parseFloat(fermentable.YIELD) : 0,
+    manufacturing_date: "2024-12-31",
+    expiry_date: "2024-12-31",
+    lot_number: '',
+    exclude_from_total: false,
+    not_fermentable: false,
+    notes: fermentable.NOTES || '',
+    description: '',
+    substitutes: '',
+    used_in: '',
+    alpha: null,
+    beta: null,
+    form: '',
+    use: '',
+    amount_is_weight: false,
+    product_id: '',
+    min_temperature: null,
+    max_temperature: null,
+    flocculation: '',
+    attenuation: null,
+    max_reuse: null,
+    inventory: 0,
+    display_amount: '',
+    display_time: '',
+    batch_size: null,
+  }));
 }
 
 async function importFermentables() {

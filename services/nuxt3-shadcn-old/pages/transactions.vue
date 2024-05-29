@@ -1,0 +1,21 @@
+<script setup>
+const loading = ref(false)
+</script>
+
+<template>
+  <div>
+    <header>
+      This is my header
+    </header>
+    <main>
+      This is my main content
+      <section>
+        <h1>Transactions</h1>
+        <p>Here are all your transactions</p>
+      </section>
+    </main>
+    <footer>
+      This is my footer
+    </footer>
+  </div>
+</template>

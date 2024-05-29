@@ -1,5 +1,9 @@
 <script setup>
+import { ref } from 'vue';
+import { useDark } from '@vueuse/core';
+
 const open = ref(true);
+const isDark = useDark();
 
 const toggleOverlay = () => {
   open.value = !open.value;
@@ -9,8 +13,6 @@ const closeOverlay = () => {
   console.log('Overlay closed');
   open.value = false;
 };
-
-
 </script>
 
 <template>
@@ -21,7 +23,6 @@ const closeOverlay = () => {
         <Icon class="z-50 cursor-pointer left-2 top-2" size="30" name="iconamoon:menu-burger-horizontal"
           @click="open = true" />
       </div>
-
 
       <div name="overlay" v-if="open" :class="{ 'bg-white': !isDark, 'bg-gray-800': isDark }"
         class="fixed top-0 left-0 z-[999] w-full h-full h-screen">

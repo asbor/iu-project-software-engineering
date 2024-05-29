@@ -134,7 +134,7 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 export default {
   data() {
@@ -169,17 +169,20 @@ export default {
     };
   },
   methods: {
-    saveHop() {
+    async saveHop() {
       this.isLoading = true;
       this.isLoadingTitle = 'Saving...';
-      axios.post('http://localhost:8000/inventory/hops', this.hop)
-        .then(res => {
-          this.$router.back();
-        })
-        .catch(error => {
-          console.error(error);
+      try {
+        await $fetch('http://localhost:8000/inventory/hops', {
+          method: 'POST',
+          body: this.hop,
         });
-      this.isLoading = false;
+        this.$router.back();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
     cancel() {
       this.$router.back();

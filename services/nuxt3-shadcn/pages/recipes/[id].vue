@@ -175,7 +175,7 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
+import { useRouter, useRoute } from 'vue-router';
 
 export default {
   data() {
@@ -233,45 +233,38 @@ export default {
     };
   },
   mounted() {
-    // Get the id of the recipe profile
     this.id = this.$route.params.id;
     this.getRecipeProfile(this.id);
   },
   methods: {
-    getRecipeProfile(id) {
+    async getRecipeProfile(id) {
       this.isLoading = true;
       this.isLoadingTitle = 'Loading recipe...';
-      // Get the recipe profile
-      axios.get('http://localhost:8000/recipes/' + id)
-        .then(res => {
-          console.log(res, 'res');
-          this.recipe = res.data;
-        })
-        .catch(error => {
-          console.error(error);
-          // Handle error
-        });
-      this.isLoading = false;
+      try {
+        const res = await $fetch(`http://localhost:8000/recipes/${id}`);
+        this.recipe = res;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
-    updateRecipe() {
+    async updateRecipe() {
       this.isLoading = true;
       this.isLoadingTitle = 'Updating recipe...';
-      // Update the recipe profile
-      axios.put('http://localhost:8000/recipes/' + this.id, this.recipe)
-        .then(res => {
-          console.log(res, 'res');
-          // Redirect to the previous page or perform any other action after updating
-          this.$router.back();
-        })
-        .catch(error => {
-          console.error(error);
-          // Handle error
+      try {
+        await $fetch(`http://localhost:8000/recipes/${this.id}`, {
+          method: 'PUT',
+          body: this.recipe,
         });
-      this.isLoading = false;
+        this.$router.back();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
     cancel() {
-      // Cancel the operation
-      console.log('Operation canceled');
       this.$router.back();
     }
   }

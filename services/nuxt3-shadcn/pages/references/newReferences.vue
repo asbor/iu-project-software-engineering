@@ -54,7 +54,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
 
 const router = useRouter();
 
@@ -72,7 +71,10 @@ async function createReference() {
     isLoading.value = true;
     isLoadingTitle.value = 'Saving reference...';
     try {
-        await axios.post('http://localhost:8000/references', reference.value);
+        await $fetch('http://localhost:8000/references', {
+            method: 'POST',
+            body: reference.value,
+        });
         router.push('/references');
     } catch (error) {
         console.error(error);

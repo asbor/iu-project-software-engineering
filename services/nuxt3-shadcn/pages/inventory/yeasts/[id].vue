@@ -1,72 +1,3 @@
-<script>
-import { ref } from 'vue';
-import axios from 'axios';
-
-export default {
-  data() {
-    return {
-      yeast: {
-        id: '',
-        name: '',
-        type: '',
-        form: '',
-        laboratory: '',
-        product_id: '',
-        min_temperature: 0,
-        max_temperature: 0,
-        flocculation: '',
-        attenuation: 0,
-        notes: '',
-        best_for: '',
-        max_reuse: 0,
-        amount: 0,
-        amount_is_weight: false,
-        inventory: 0,
-        display_amount: ''
-      },
-      isLoading: false,
-      isLoadingTitle: 'Loading...',
-    };
-  },
-  mounted() {
-    // Get the id of the yeast profile
-    this.id = this.$route.params.id;
-    this.getYeastProfile(this.id);
-  },
-  methods: {
-    getYeastProfile(id) {
-      this.isLoading = true;
-      this.isLoadingTitle = 'Loading yeast...';
-      // Get the yeast profile
-      axios.get('http://localhost:8000/inventory/yeasts/' + id)
-        .then(res => {
-          this.yeast = res.data;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      this.isLoading = false;
-    },
-    updateYeast() {
-      this.isLoading = true;
-      this.isLoadingTitle = 'Updating yeast...';
-      // Update the yeast profile
-      axios.put('http://localhost:8000/inventory/yeasts/' + this.id, this.yeast)
-        .then(res => {
-          this.$router.back();
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      this.isLoading = false;
-    },
-    cancel() {
-      this.$router.back();
-    }
-  }
-};
-</script>
-
 <template>
   <div>
     <!-- Header -->
@@ -176,3 +107,72 @@ export default {
     </footer>
   </div>
 </template>
+
+<script>
+import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+
+export default {
+  data() {
+    return {
+      yeast: {
+        id: '',
+        name: '',
+        type: '',
+        form: '',
+        laboratory: '',
+        product_id: '',
+        min_temperature: 0,
+        max_temperature: 0,
+        flocculation: '',
+        attenuation: 0,
+        notes: '',
+        best_for: '',
+        max_reuse: 0,
+        amount: 0,
+        amount_is_weight: false,
+        inventory: 0,
+        display_amount: ''
+      },
+      isLoading: false,
+      isLoadingTitle: 'Loading...',
+    };
+  },
+  async mounted() {
+    this.id = this.$route.params.id;
+    await this.getYeastProfile(this.id);
+  },
+  methods: {
+    async getYeastProfile(id) {
+      this.isLoading = true;
+      this.isLoadingTitle = 'Loading yeast...';
+      try {
+        const data = await $fetch(`http://localhost:8000/inventory/yeasts/${id}`);
+        this.yeast = data;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    async updateYeast() {
+      this.isLoading = true;
+      this.isLoadingTitle = 'Updating yeast...';
+      try {
+        await $fetch(`http://localhost:8000/inventory/yeasts/${this.id}`, {
+          method: 'PUT',
+          body: this.yeast,
+        });
+        this.$router.back();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    cancel() {
+      this.$router.back();
+    }
+  }
+};
+</script>

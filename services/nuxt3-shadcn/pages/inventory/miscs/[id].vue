@@ -89,7 +89,7 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
+import { useRouter, useRoute } from 'vue-router';
 
 export default {
   data() {
@@ -112,35 +112,37 @@ export default {
       isLoadingTitle: 'Loading...',
     };
   },
-  mounted() {
-    // Get the id of the misc profile
+  async mounted() {
     this.id = this.$route.params.id;
-    this.getMiscProfile(this.id);
+    await this.getMiscProfile(this.id);
   },
   methods: {
-    getMiscProfile(id) {
+    async getMiscProfile(id) {
       this.isLoading = true;
       this.isLoadingTitle = 'Loading misc...';
-      axios.get('http://localhost:8000/inventory/miscs/' + id)
-        .then(res => {
-          this.misc = res.data;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      this.isLoading = false;
+      try {
+        const data = await $fetch(`http://localhost:8000/inventory/miscs/${id}`);
+        this.misc = data;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
-    updateMisc() {
+    async updateMisc() {
       this.isLoading = true;
       this.isLoadingTitle = 'Updating misc...';
-      axios.put('http://localhost:8000/inventory/miscs/' + this.id, this.misc)
-        .then(res => {
-          this.$router.back();
-        })
-        .catch(error => {
-          console.error(error);
+      try {
+        await $fetch(`http://localhost:8000/inventory/miscs/${this.id}`, {
+          method: 'PUT',
+          body: this.misc,
         });
-      this.isLoading = false;
+        this.$router.back();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
     cancel() {
       this.$router.back();

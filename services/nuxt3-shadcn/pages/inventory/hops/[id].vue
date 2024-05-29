@@ -198,7 +198,7 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
+import { useRouter, useRoute } from 'vue-router';
 
 export default {
   data() {
@@ -227,35 +227,37 @@ export default {
       isLoadingTitle: 'Loading...',
     };
   },
-  mounted() {
-    // Get the id of the hop profile
+  async mounted() {
     this.id = this.$route.params.id;
-    this.getHopProfile(this.id);
+    await this.getHopProfile(this.id);
   },
   methods: {
-    getHopProfile(id) {
+    async getHopProfile(id) {
       this.isLoading = true;
       this.isLoadingTitle = 'Loading hop...';
-      axios.get('http://localhost:8000/inventory/hops/' + id)
-        .then(res => {
-          this.hop = res.data;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      this.isLoading = false;
+      try {
+        const data = await $fetch(`http://localhost:8000/inventory/hops/${id}`);
+        this.hop = data;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
-    updateHop() {
+    async updateHop() {
       this.isLoading = true;
       this.isLoadingTitle = 'Updating hop...';
-      axios.put('http://localhost:8000/inventory/hops/' + this.id, this.hop)
-        .then(res => {
-          this.$router.back();
-        })
-        .catch(error => {
-          console.error(error);
+      try {
+        await $fetch(`http://localhost:8000/inventory/hops/${this.id}`, {
+          method: 'PUT',
+          body: this.hop,
         });
-      this.isLoading = false;
+        this.$router.back();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
     cancel() {
       this.$router.back();

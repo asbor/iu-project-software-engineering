@@ -130,7 +130,7 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 export default {
   data() {
@@ -160,17 +160,20 @@ export default {
     };
   },
   methods: {
-    saveFermentable() {
+    async saveFermentable() {
       this.isLoading = true;
       this.isLoadingTitle = 'Saving...';
-      axios.post('http://localhost:8000/inventory/fermentables', this.fermentable)
-        .then(res => {
-          this.$router.back();
-        })
-        .catch(error => {
-          console.error(error);
+      try {
+        await $fetch('http://localhost:8000/inventory/fermentables', {
+          method: 'POST',
+          body: this.fermentable,
         });
-      this.isLoading = false;
+        this.$router.back();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
     },
     cancel() {
       this.$router.back();
