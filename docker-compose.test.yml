@@ -18,9 +18,8 @@ services:
       - .:/home/app
     environment:
       DATABASE_URL: postgres://user:password@db:5432/test_db
-    command:
-      [
-        "sh",
-        "-c",
-        "export PATH=$PATH:/home/app/.local/bin && flake8 /home/app && pytest tests",
-      ]
+    entrypoint: ["/bin/sh", "-c"]
+    command: |
+      export PATH=$PATH:/home/app/.local/bin && 
+      flake8 /home/app && 
+      pytest tests
