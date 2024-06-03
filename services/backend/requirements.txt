@@ -1,4 +1,3 @@
-
 # Install the FastAPI framework
 fastapi
 
@@ -11,7 +10,7 @@ SQLAlchemy
 # Install fastapi-utils
 sqlalchemy-utils
 
-#install pydantic
+# Install pydantic
 pydantic
 pydantic[email]
 
@@ -27,3 +26,9 @@ python-dotenv
 pandas
 requests
 beautifulsoup4
+
+# Install flake8 for linting
+flake8
+
+# Install pytest for testing
+pytest
