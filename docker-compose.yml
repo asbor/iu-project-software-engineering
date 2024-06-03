@@ -1,67 +1,39 @@
-default:
-  image: docker:20.10.16
-  services:
-    - docker:20.10.16-dind
+version: "3.8"
 
-variables:
-  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
+services:
+  backend:
+    container_name: iu-project-software-engineering-backend-1
+    build:
+      context: ./services/backend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./services/backend:/app
+    command: /home/app/.local/bin/uvicorn main:app --reload --host 0.0.0.0 --port 8000
+    depends_on:
+      - db
+    env_file:
+      - .env
+    networks:
+      - my-network
 
-stages:
-  - build
-  - test
-  - release
-  - deploy
+  db:
+    container_name: iu-project-software-engineering-db-1
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=hoppybrew_db
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+      - my-network
 
-before_script:
-  - docker info
-  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
+networks:
+  my-network:
+    driver: bridge
 
-build:
-  stage: build
-  script:
-    - docker-compose -f docker-compose.yml build
-    - docker-compose -f docker-compose.yml push
-  only:
-    - master
-    - main
-    - tags
-
-unit-test-job:
-  stage: test
-  script:
-    - docker-compose -f docker-compose.yml -f docker-compose.test.yml up -d db
-    - docker-compose -f docker-compose.yml -f docker-compose.test.yml run backend pytest tests
-    - docker-compose -f docker-compose.yml -f docker-compose.test.yml down
-  artifacts:
-    when: always
-    reports:
-      junit: test-results.xml
-    paths:
-      - test-results.xml
-
-lint-test-job:
-  stage: test
-  script:
-    - docker-compose -f docker-compose.yml run backend flake8 /app
-    - docker-compose -f docker-compose.yml down
-
-release-image:
-  stage: release
-  script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
-    - docker push $CONTAINER_RELEASE_IMAGE
-  only:
-    - master
-    - main
-    - tags
-
-deploy-job:
-  stage: deploy
-  environment: production
-  script:
-    - docker-compose -f docker-compose.yml up -d
-  only:
-    - master
-    - main
+volumes:
+  postgres_data:

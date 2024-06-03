@@ -3,7 +3,9 @@ version: "3.8"
 services:
   backend:
     container_name: iu-project-software-engineering-backend-test
-    build: ./services/backend
+    build:
+      context: ./services/backend
+      dockerfile: Dockerfile
     volumes:
       - ./services/backend:/app
     command: pytest tests
