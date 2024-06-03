@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  backend:
+    container_name: iu-project-software-engineering-backend-test
+    build: ./services/backend
+    volumes:
+      - ./services/backend:/app
+    command: pytest tests
+    depends_on:
+      - db
+    env_file:
+      - .env
+    networks:
+      - my-network
+
+  db:
+    container_name: iu-project-software-engineering-db-test
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=hoppybrew_db
+    ports:
+      - "5432:5432"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

@@ -1,70 +1,67 @@
-version: '3.8'
+default:
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
 
-services:
-#  nuxt3-shadcn:
-#    container_name: my-nuxt3-app
-#    build: 
-#      context: ./services/nuxt3-shadcn
-#      dockerfile: Dockerfile
-#    ports:
-#      - "3000:3000"
-#    environment:
-#      - NODE_ENV=production
-#    networks:
-#      - my-network
-  
-  pgadmin:
-    container_name: my-pgadmin
-    image: dpage/pgadmin4
-    ports:
-      - "5050:80"
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=name@example.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
-    restart: always
+variables:
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
 
-#  frontend:
-#    container_name: iu-project-software-engineering-frontend-1
-#    build: ./services/frontend
-#    volumes:
-#      - './services/frontend:/app'
-#      - '/app/node_modules'
-#    ports:
-#      - 8080:8080
-#    networks:
-#      - my-network
+stages:
+  - build
+  - test
+  - release
+  - deploy
 
-  backend:
-    container_name: iu-project-software-engineering-backend-1
-    build: ./services/backend
-    ports:
-      - 8000:8000
-    volumes:
-      - ./services/backend:/app
-    command: /home/app/.local/bin/uvicorn main:app --reload --host 0.0.0.0 --port 8000
-    depends_on:
-      - db
-    env_file:
-      - .env
-    networks:
-      - my-network
+before_script:
+  - docker info
+  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
 
-  db:
-    container_name: iu-project-software-engineering-db-1
-    image: postgres:latest
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=hoppybrew_db
-    ports:
-      - "5432:5432"
-    restart: always
-    networks:
-      - my-network
+build:
+  stage: build
+  script:
+    - docker-compose -f docker-compose.yml build
+    - docker-compose -f docker-compose.yml push
+  only:
+    - master
+    - main
+    - tags
 
-networks:
-  my-network:
-    driver: bridge
+unit-test-job:
+  stage: test
+  script:
+    - docker-compose -f docker-compose.yml -f docker-compose.test.yml up -d db
+    - docker-compose -f docker-compose.yml -f docker-compose.test.yml run backend pytest tests
+    - docker-compose -f docker-compose.yml -f docker-compose.test.yml down
+  artifacts:
+    when: always
+    reports:
+      junit: test-results.xml
+    paths:
+      - test-results.xml
 
-volumes:
-  postgres_data:
+lint-test-job:
+  stage: test
+  script:
+    - docker-compose -f docker-compose.yml run backend flake8 /app
+    - docker-compose -f docker-compose.yml down
+
+release-image:
+  stage: release
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+  only:
+    - master
+    - main
+    - tags
+
+deploy-job:
+  stage: deploy
+  environment: production
+  script:
+    - docker-compose -f docker-compose.yml up -d
+  only:
+    - master
+    - main
