@@ -1,3 +1,5 @@
+# api/endpoints/references.py
+
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urljoin
 from fastapi import APIRouter, HTTPException, Depends, UploadFile, File
@@ -5,22 +7,19 @@ from sqlalchemy.orm import Session
 from database import get_db
 import Database.Models as models
 import Database.Schemas as schemas
-from typing import List, Annotated
+from typing import List
 import xml.etree.ElementTree as ET
 from fastapi.responses import StreamingResponse
 import io
 import requests
-from urllib.parse import urlparse
 
 router = APIRouter()
 
-db_dependency = Annotated[Session, Depends(get_db)]
-
-# Import and Export Endpoints
+# References Endpoints
 
 
 @router.post("/references/import", response_model=dict)
-async def import_references(db: db_dependency, file: UploadFile = File(...)):
+async def import_references(db: Session = Depends(get_db), file: UploadFile = File(...)):
     contents = await file.read()
     tree = ET.ElementTree(ET.fromstring(contents))
     root = tree.getroot()
@@ -46,7 +45,7 @@ async def import_references(db: db_dependency, file: UploadFile = File(...)):
 
 
 @router.get("/references/export")
-async def export_references(db: db_dependency):
+async def export_references(db: Session = Depends(get_db)):
     references = db.query(models.References).all()
     root = ET.Element("references")
 
@@ -72,17 +71,15 @@ async def export_references(db: db_dependency):
 
     return StreamingResponse(xml_io, media_type="application/xml", headers={"Content-Disposition": "attachment; filename=references.xml"})
 
-# References Endpoints
-
 
 @router.get("/references", response_model=List[schemas.Reference])
-async def get_all_references(db: db_dependency):
+async def get_all_references(db: Session = Depends(get_db)):
     references = db.query(models.References).all()
     return references
 
 
 @router.get("/references/{reference_id}", response_model=schemas.Reference)
-async def get_reference(reference_id: int, db: db_dependency):
+async def get_reference(reference_id: int, db: Session = Depends(get_db)):
     reference = db.query(models.References).filter(
         models.References.id == reference_id).first()
     if not reference:
@@ -90,9 +87,44 @@ async def get_reference(reference_id: int, db: db_dependency):
     return reference
 
 
+@router.post("/references", response_model=schemas.Reference)
+async def create_reference(reference: schemas.ReferenceCreate, db: Session = Depends(get_db)):
+    favicon_url = fetch_favicon(reference.url)
+    db_reference = models.References(
+        **reference.dict(),
+        favicon_url=favicon_url
+    )
+    db.add(db_reference)
+    db.commit()
+    db.refresh(db_reference)
+    return db_reference
+
+
+@router.delete("/references/{reference_id}", response_model=schemas.Reference)
+async def delete_reference(reference_id: int, db: Session = Depends(get_db)):
+    reference = db.query(models.References).filter(
+        models.References.id == reference_id).first()
+    if not reference:
+        raise HTTPException(status_code=404, detail="Reference not found")
+    db.delete(reference)
+    db.commit()
+    return reference
+
+
+@router.put("/references/{reference_id}", response_model=schemas.Reference)
+async def update_reference(reference_id: int, reference: schemas.ReferenceUpdate, db: Session = Depends(get_db)):
+    db_reference = db.query(models.References).filter(
+        models.References.id == reference_id).first()
+    if not db_reference:
+        raise HTTPException(status_code=404, detail="Reference not found")
+    for key, value in reference.dict().items():
+        setattr(db_reference, key, value)
+    db.commit()
+    db.refresh(db_reference)
+    return db_reference
+
+
 # Helper function to fetch favicon URL
-
-
 def fetch_favicon(url: str) -> str:
     parsed_url = urlparse(url)
     base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
@@ -124,43 +156,3 @@ def fetch_favicon(url: str) -> str:
     # Fallback to Google's favicon service
     google_favicon_url = f"http://www.google.com/s2/favicons?domain={parsed_url.netloc}"
     return google_favicon_url
-
-
-# References Endpoints
-
-
-@router.post("/references", response_model=schemas.Reference)
-async def create_reference(reference: schemas.ReferenceCreate, db: db_dependency):
-    favicon_url = fetch_favicon(reference.url)
-    db_reference = models.References(
-        **reference.dict(),
-        favicon_url=favicon_url
-    )
-    db.add(db_reference)
-    db.commit()
-    db.refresh(db_reference)
-    return db_reference
-
-
-@router.delete("/references/{reference_id}", response_model=schemas.Reference)
-async def delete_reference(reference_id: int, db: db_dependency):
-    reference = db.query(models.References).filter(
-        models.References.id == reference_id).first()
-    if not reference:
-        raise HTTPException(status_code=404, detail="Reference not found")
-    db.delete(reference)
-    db.commit()
-    return reference
-
-
-@router.put("/references/{reference_id}", response_model=schemas.Reference)
-async def update_reference(reference_id: int, reference: schemas.ReferenceUpdate, db: db_dependency):
-    db_reference = db.query(models.References).filter(
-        models.References.id == reference_id).first()
-    if not db_reference:
-        raise HTTPException(status_code=404, detail="Reference not found")
-    for key, value in reference.dict().items():
-        setattr(db_reference, key, value)
-    db.commit()
-    db.refresh(db_reference)
-    return db_reference

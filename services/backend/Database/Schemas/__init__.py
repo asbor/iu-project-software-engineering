@@ -4,12 +4,14 @@ from .Ingredients.Fermentable.liquid_extract import LiquidExtractBase
 from .Ingredients.Fermentable.dry_extract import DryExtractBase
 from .Ingredients.Fermentable.adjunct import AdjunctBase
 from .Ingredients.Fermentable.grain import GrainBase
+from .questions import QuestionBase
+from .choices import ChoiceBase
 
 from .recipes import RecipeBase
 from .batches import Batch, BatchCreate, BatchBase
 from .batch_logs import BatchLogBase
 
-from .style_guidelines import StyleGuidelineBase
+from .style_guidelines import StyleGuidelineBase, StyleGuidelineBaseCreate
 from .styles import StyleBase
 
 from .equipment_profiles import EquipmentProfileBase
@@ -34,6 +36,7 @@ __all__ = [
     "BatchBase",
     "BatchLogBase",
     "StyleGuidelineBase",
+    "StyleGuidelineBaseCreate",
     "StyleBase",
     "EquipmentProfileBase",
     "WaterProfileBase",
@@ -63,5 +66,6 @@ __all__ = [
     "ReferenceUpdate",
     "ReferenceInDBBase",
     "Reference",
-
+    "QuestionBase",
+    "ChoiceBase",
 ]

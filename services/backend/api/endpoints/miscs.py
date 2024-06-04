@@ -5,17 +5,15 @@ from sqlalchemy.orm import Session
 from database import get_db
 import Database.Models as models
 import Database.Schemas as schemas
-from typing import List, Annotated
+from typing import List
 
 router = APIRouter()
-
-db_dependency = Annotated[Session, Depends(get_db)]
 
 # Recipe Miscs Endpoints
 
 
 @router.get("/recipes/miscs", response_model=List[schemas.RecipeMisc])
-async def get_all_recipe_miscs(db: db_dependency):
+async def get_all_recipe_miscs(db: Session = Depends(get_db)):
     miscs = db.query(models.RecipeMisc).all()
     return miscs
 
@@ -23,13 +21,13 @@ async def get_all_recipe_miscs(db: db_dependency):
 
 
 @router.get("/inventory/miscs", response_model=List[schemas.InventoryMisc])
-async def get_all_inventory_miscs(db: db_dependency):
+async def get_all_inventory_miscs(db: Session = Depends(get_db)):
     miscs = db.query(models.InventoryMisc).all()
     return miscs
 
 
 @router.get("/inventory/miscs/{misc_id}", response_model=schemas.InventoryMisc)
-async def get_inventory_misc(misc_id: int, db: db_dependency):
+async def get_inventory_misc(misc_id: int, db: Session = Depends(get_db)):
     misc = db.query(models.InventoryMisc).filter(
         models.InventoryMisc.id == misc_id).first()
     if not misc:
@@ -38,8 +36,7 @@ async def get_inventory_misc(misc_id: int, db: db_dependency):
 
 
 @router.post("/inventory/miscs", response_model=schemas.InventoryMisc)
-async def create_inventory_misc(
-        misc: schemas.InventoryMiscCreate, db: db_dependency):
+async def create_inventory_misc(misc: schemas.InventoryMiscCreate, db: Session = Depends(get_db)):
     try:
         db_misc = models.InventoryMisc(**misc.dict())
         db.add(db_misc)
@@ -51,7 +48,7 @@ async def create_inventory_misc(
 
 
 @router.delete("/inventory/miscs/{id}", response_model=schemas.InventoryMisc)
-async def delete_inventory_misc(id: int, db: db_dependency):
+async def delete_inventory_misc(id: int, db: Session = Depends(get_db)):
     misc = db.query(models.InventoryMisc).filter(
         models.InventoryMisc.id == id).first()
     if not misc:
@@ -62,7 +59,7 @@ async def delete_inventory_misc(id: int, db: db_dependency):
 
 
 @router.put("/inventory/miscs/{id}", response_model=schemas.InventoryMisc)
-async def update_inventory_misc(id: int, misc: schemas.InventoryMiscCreate, db: db_dependency):
+async def update_inventory_misc(id: int, misc: schemas.InventoryMiscCreate, db: Session = Depends(get_db)):
     db_misc = db.query(models.InventoryMisc).filter(
         models.InventoryMisc.id == id).first()
     if not db_misc:

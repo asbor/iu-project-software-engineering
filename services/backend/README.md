@@ -15,3 +15,23 @@ docker build -t dbs-python-example .
 ```bash
 docker run -p 127.0.0.1:8000:8000 --env NAME=Dexter --name dbs-python-example-container dbs-python-example
 ```
+
+# Unit Test
+
+## Create a .venv
+
+```bash
+python3 -m venv .venv
+```
+
+## Activate the .venv
+
+```bash
+source .venv/bin/activate
+```
+
+## Install the requirements
+
+```bash
+pip install -r requirements.txt
+```

@@ -1,16 +1,13 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
+# Database/Models/questions.py
+
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
+from sqlalchemy.orm import relationship
 from database import Base
 
 
 class Questions(Base):
-    """
-    Description:
-    This class represents the Question table in the database.
-
-    Relationships:
-    - ONE question can have ONE or MANY choices
-    """
-    __tablename__ = 'questions'
+    __tablename__ = "questions"
 
     id = Column(Integer, primary_key=True, index=True)
     question_text = Column(String, index=True)
+    choices = relationship("Choices", back_populates="question")

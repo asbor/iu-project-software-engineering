@@ -1,12 +1,10 @@
+# database.py
+
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-
-from sqlalchemy_utils import database_exists, create_database
-
-import time
-import os
+from sqlalchemy.orm import sessionmaker, declarative_base
 from dotenv import load_dotenv
+import os
+import time
 from logger_config import get_logger
 
 # Get logger instance
@@ -16,15 +14,25 @@ logger = get_logger('Setup')
 logger.info("Loading environment variables")
 load_dotenv()
 
+# Determine if we are in testing mode
+IS_TESTING = os.getenv("TESTING", "0") == "1"
+logger.info(f"IS_TESTING: {IS_TESTING}")
+
+if IS_TESTING:
+    SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
+else:
+    SQLALCHEMY_DATABASE_URL = f"postgresql://{os.getenv('DATABASE_USER')}:{os.getenv('DATABASE_PASSWORD')}@{os.getenv('DATABASE_HOST')}:{os.getenv('DATABASE_PORT')}/{os.getenv('DATABASE_NAME')}"
+
 # Connect to the database
-logger.info("Connecting to the database")
-SQLALCHEMY_DATABASE_URL = f"postgresql://{os.environ['DATABASE_USER']}:{os.environ['DATABASE_PASSWORD']}@{os.environ['DATABASE_HOST']}/{os.environ['DATABASE_NAME']}"
+logger.info(f"Connecting to the database: {SQLALCHEMY_DATABASE_URL}")
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
-# wait for the database to be available before connecting
-logger.info("Waiting for the database to be available")
-while not database_exists(SQLALCHEMY_DATABASE_URL):
-    time.sleep(1)
+if not IS_TESTING:
+    from sqlalchemy_utils import database_exists, create_database
+    # Wait for the database to be available before connecting
+    logger.info("Waiting for the database to be available")
+    while not database_exists(SQLALCHEMY_DATABASE_URL):
+        time.sleep(1)
 
     # Create the database if it does not exist
     if not database_exists(engine.url):

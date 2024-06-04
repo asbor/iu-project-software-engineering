@@ -1,21 +1,16 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
+# Database/Models/choices.py
+
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
+from sqlalchemy.orm import relationship
 from database import Base
 
 
 class Choices(Base):
-    """
-    Description:
-    This class represents the Choice table in the database.
-
-    Relationships:
-    - ONE choice can have only ONE question
-    """
-
-    __tablename__ = 'choices'
+    __tablename__ = "choices"
 
     id = Column(Integer, primary_key=True, index=True)
     choice_text = Column(String, index=True)
     is_correct = Column(Boolean, default=False)
+    question_id = Column(Integer, ForeignKey("questions.id"))
 
-    # Relationships
-    question_id = Column(Integer, ForeignKey('questions.id'))
+    question = relationship("Questions", back_populates="choices")
