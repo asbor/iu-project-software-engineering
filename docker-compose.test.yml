@@ -10,16 +10,16 @@ services:
 
   backend:
     build:
-      context: .
+      context: ./services/backend
       dockerfile: Dockerfile
     depends_on:
       - db
     volumes:
-      - .:/home/app
+      - ./services/backend:/home/app
     environment:
       DATABASE_URL: postgres://user:password@db:5432/test_db
     entrypoint: ["/bin/sh", "-c"]
     command: |
       export PATH=$PATH:/home/app/.local/bin && 
       flake8 /home/app && 
-      pytest tests
+      pytest --junitxml=/home/app/test-results.xml tests
