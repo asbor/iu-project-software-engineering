@@ -22,4 +22,4 @@ services:
     command: |
       export PATH=$PATH:/home/app/.local/bin && 
       flake8 /home/app && 
-      pytest --junitxml=/home/app/test-results.xml tests
+      pytest tests

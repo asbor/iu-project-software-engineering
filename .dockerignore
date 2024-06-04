@@ -1,12 +1,7 @@
-# Ignore files and directories commonly excluded in Docker builds
-
-# Ignore build artifacts
-*.o
-*.obj
-*.exe
-*.dll
-*.so
-*.dylib
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
 
 # Ignore development and system files
 node_modules/
