@@ -31,19 +31,19 @@ unit-test-job:
   stage: test
   script:
     - docker-compose -f docker-compose.yml -f docker-compose.test.yml up -d db
-    - docker-compose -f docker-compose.yml -f docker-compose.test.yml run backend pytest tests
+    - docker-compose -f docker-compose.yml -f docker-compose.test.yml run backend /home/app/.local/bin/pytest tests
     - docker-compose -f docker-compose.yml -f docker-compose.test.yml down
   artifacts:
     when: always
     reports:
       junit: test-results.xml
     paths:
-      - services/backend/test-results.xml
+      - test-results.xml
 
 lint-test-job:
   stage: test
   script:
-    - docker-compose -f docker-compose.yml run backend flake8 /app
+    - docker-compose -f docker-compose.yml run backend /home/app/.local/bin/flake8 /app
     - docker-compose -f docker-compose.yml down
 
 release-image:
