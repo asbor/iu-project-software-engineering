@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
 
-
 class StyleGuidelineBase(BaseModel):
     block_heading: str
     circle_image: str
@@ -19,7 +18,6 @@ class StyleGuidelineBase(BaseModel):
     abv: Optional[str]
     ibu: Optional[str]
     ebc: Optional[str]
-
 
 class StyleGuidelineBaseCreate(StyleGuidelineBase):
     pass

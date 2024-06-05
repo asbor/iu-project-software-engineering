@@ -1,10 +1,8 @@
 # Database/Schemas/fermentables.py
 
-
 from pydantic import BaseModel
 from typing import Optional
 from datetime import date
-
 
 class FermentableBase(BaseModel):
     name: str
@@ -26,13 +24,11 @@ class FermentableBase(BaseModel):
     substitutes: Optional[str]
     used_in: Optional[str]
 
-
 class RecipeFermentable(FermentableBase):
     recipe_id: int
 
     class Config:
         orm_mode: bool = True
-
 
 class InventoryFermentableBase(FermentableBase):
     alpha: Optional[float] = None  # Specific to hops
@@ -51,10 +47,8 @@ class InventoryFermentableBase(FermentableBase):
     display_time: Optional[str] = None  # Specific to all
     batch_size: Optional[float] = None  # Specific to miscs
 
-
 class InventoryFermentableCreate(InventoryFermentableBase):
     pass
-
 
 class InventoryFermentable(InventoryFermentableBase):
     id: int

@@ -2,7 +2,6 @@ from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from database import Base
 
-
 class RecipeMisc(Base):
     __tablename__ = "recipe_miscs"
     id = Column(Integer, primary_key=True, index=True)
@@ -20,7 +19,6 @@ class RecipeMisc(Base):
     batch_size = Column(Integer, nullable=True)
     recipe_id = Column(Integer, ForeignKey("recipes.id"))
     recipe = relationship("Recipes", back_populates="miscs")
-
 
 class InventoryMisc(Base):
     __tablename__ = "inventory_miscs"

@@ -1,13 +1,11 @@
 # Database/Schemas/recipes_hops.py
 
-
 from pydantic import BaseModel
 from typing import List, Optional
 from .hops import HopBase
 from .fermentables import FermentableBase
 from .miscs import MiscBase
 from .yeasts import YeastBase
-
 
 class RecipeBase(BaseModel):
     name: str
@@ -50,8 +48,7 @@ class RecipeBase(BaseModel):
     display_secondary_temp: Optional[str]
     display_tertiary_temp: Optional[str]
     display_age_temp: Optional[str]
-# List of objects for each ingredient type
-
+    # List of objects for each ingredient type
 
     hops: Optional[List[HopBase]] = None
     fermentables: Optional[List[FermentableBase]] = None

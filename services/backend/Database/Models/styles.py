@@ -1,16 +1,15 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Text
 from database import Base
 
-
 class Styles(Base):
     """
-Description:
+    Description:
 
-This class represents the actual target style of a recipe.
+    This class represents the actual target style of a recipe.
 
-Relationships:
+    Relationships:
 
-- ONE style can have ZERO or MANY recipes
+    - ONE style can have ZERO or MANY recipes
 
     """
 
@@ -51,10 +50,8 @@ Relationships:
     carb_range = Column(String(255), nullable=True)
     color_range = Column(String(255), nullable=True)
     abv_range = Column(String(255), nullable=True)
-# Relationships
-
+    # Relationships
 
     recipe_id = Column(Integer, ForeignKey("recipes.id"))
-
 
 # TODO: batch_id = Column(Integer, ForeignKey('batches.id'))

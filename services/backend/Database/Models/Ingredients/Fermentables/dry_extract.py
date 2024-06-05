@@ -1,10 +1,9 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from database import Base
 
-
 class RecipeDryExtract(Base):
     """
-Recipe-specific DryExtract table.
+    Recipe-specific DryExtract table.
 
     """
 
@@ -12,10 +11,9 @@ Recipe-specific DryExtract table.
     id = Column(Integer, primary_key=True, index=True)
     fermentable_id = Column(Integer, ForeignKey("recipe_fermentables.id"))
 
-
 class InventoryDryExtract(Base):
     """
-Inventory-specific DryExtract table.
+    Inventory-specific DryExtract table.
 
     """
 

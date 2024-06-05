@@ -1,10 +1,9 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from database import Base
 
-
 class RecipeAdjunct(Base):
     """
-Recipe-specific Adjunct table.
+    Recipe-specific Adjunct table.
 
     """
 
@@ -12,10 +11,9 @@ Recipe-specific Adjunct table.
     id = Column(Integer, primary_key=True, index=True)
     fermentable_id = Column(Integer, ForeignKey("recipe_fermentables.id"))
 
-
 class InventoryAdjunct(Base):
     """
-Inventory-specific Adjunct table.
+    Inventory-specific Adjunct table.
 
     """
 

@@ -1,6 +1,5 @@
 # api/endpoints/recipes.py
 
-
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session, joinedload
 from database import get_db
@@ -11,12 +10,10 @@ router = APIRouter()
 
 # Get all recipes
 
-
-
 @router.get("/recipes")
 async def get_all_recipes(db: Session = Depends(get_db)):
     """
-This endpoint returns all the recipes stored in the database.
+    This endpoint returns all the recipes stored in the database.
 
     """
     recipes = (
@@ -31,15 +28,12 @@ This endpoint returns all the recipes stored in the database.
     )
     return recipes
 
-
 # Get a recipe by ID
-
-
 
 @router.get("/recipes/{recipe_id}")
 async def get_recipe_by_id(recipe_id: int, db: Session = Depends(get_db)):
     """
-This endpoint returns a recipe by its ID.
+    This endpoint returns a recipe by its ID.
 
     """
     recipe = (
@@ -57,21 +51,17 @@ This endpoint returns a recipe by its ID.
         raise HTTPException(status_code=404, detail="Recipe not found")
     return recipe
 
-
 # Create a new recipe
-
-
 
 @router.post("/recipes")
 async def create_recipe(
     recipe: schemas.RecipeBase, db: Session = Depends(get_db)
 ):
     """
-This endpoint creates a new recipe in the database.
+    This endpoint creates a new recipe in the database.
 
     """
-# Check if the recipe already exists
-
+    # Check if the recipe already exists
 
     existing_recipe = (
         db.query(models.Recipes)
@@ -82,8 +72,7 @@ This endpoint creates a new recipe in the database.
         raise HTTPException(
             status_code=400, detail="Recipe with this name already exists"
         )
-# Exclude the related fields when creating the Recipes instance
-
+    # Exclude the related fields when creating the Recipes instance
 
     db_recipe = models.Recipes(
         **recipe.dict(exclude={"hops", "fermentables", "yeasts", "miscs"})
@@ -91,28 +80,24 @@ This endpoint creates a new recipe in the database.
     db.add(db_recipe)
     db.commit()
     db.refresh(db_recipe)
-# Add hops to the recipe
-
+    # Add hops to the recipe
 
     for hop_data in recipe.hops:
         db_hop = models.RecipeHop(**hop_data.dict(), recipe_id=db_recipe.id)
         db.add(db_hop)
-# Add fermentables to the recipe
-
+    # Add fermentables to the recipe
 
     for fermentable_data in recipe.fermentables:
         db_fermentable = models.RecipeFermentable(
             **fermentable_data.dict(), recipe_id=db_recipe.id
         )
         db.add(db_fermentable)
-# Add miscs to the recipe
-
+    # Add miscs to the recipe
 
     for misc_data in recipe.miscs:
         db_misc = models.RecipeMisc(**misc_data.dict(), recipe_id=db_recipe.id)
         db.add(db_misc)
-# Add yeasts to the recipe
-
+    # Add yeasts to the recipe
 
     for yeast_data in recipe.yeasts:
         db_yeast = models.RecipeYeast(
@@ -122,17 +107,14 @@ This endpoint creates a new recipe in the database.
     db.commit()
     return db_recipe
 
-
 # Update a recipe by ID
-
-
 
 @router.put("/recipes/{recipe_id}")
 async def update_recipe(
     recipe_id: int, recipe: schemas.RecipeBase, db: Session = Depends(get_db)
 ):
     """
-This endpoint updates a recipe by its ID.
+    This endpoint updates a recipe by its ID.
 
     """
     db_recipe = (
@@ -140,15 +122,13 @@ This endpoint updates a recipe by its ID.
     )
     if not db_recipe:
         raise HTTPException(status_code=404, detail="Recipe not found")
-# Update the recipe
-
+    # Update the recipe
 
     for key, value in recipe.dict(
         exclude={"hops", "fermentables", "yeasts", "miscs"}
     ).items():
         setattr(db_recipe, key, value)
-# Update hops
-
+    # Update hops
 
     db.query(models.RecipeHop).filter(
         models.RecipeHop.recipe_id == recipe_id
@@ -156,8 +136,7 @@ This endpoint updates a recipe by its ID.
     for hop_data in recipe.hops:
         db_hop = models.RecipeHop(**hop_data.dict(), recipe_id=recipe_id)
         db.add(db_hop)
-# Update fermentables
-
+    # Update fermentables
 
     db.query(models.RecipeFermentable).filter(
         models.RecipeFermentable.recipe_id == recipe_id
@@ -167,8 +146,7 @@ This endpoint updates a recipe by its ID.
             **fermentable_data.dict(), recipe_id=recipe_id
         )
         db.add(db_fermentable)
-# Update miscs
-
+    # Update miscs
 
     db.query(models.RecipeMisc).filter(
         models.RecipeMisc.recipe_id == recipe_id
@@ -176,8 +154,7 @@ This endpoint updates a recipe by its ID.
     for misc_data in recipe.miscs:
         db_misc = models.RecipeMisc(**misc_data.dict(), recipe_id=recipe_id)
         db.add(db_misc)
-# Update yeasts
-
+    # Update yeasts
 
     db.query(models.RecipeYeast).filter(
         models.RecipeYeast.recipe_id == recipe_id
@@ -188,15 +165,12 @@ This endpoint updates a recipe by its ID.
     db.commit()
     return db_recipe
 
-
 # Delete a recipe by ID
-
-
 
 @router.delete("/recipes/{recipe_id}")
 async def delete_recipe(recipe_id: int, db: Session = Depends(get_db)):
     """
-This endpoint deletes a recipe by its ID.
+    This endpoint deletes a recipe by its ID.
 
     """
     db_recipe = (

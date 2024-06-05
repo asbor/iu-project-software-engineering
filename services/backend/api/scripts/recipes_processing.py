@@ -1,6 +1,5 @@
 # scripts/recipes_processing.py
 
-
 from bs4 import BeautifulSoup
 import requests
 from sqlalchemy.orm import sessionmaker
@@ -11,9 +10,7 @@ from logger_config import get_logger
 
 # Get logger instance
 
-
 logger = get_logger("RecipeScraper")
-
 
 def scrape_and_process_recipes():
     logger.info("Scraping data from BYO website")
@@ -38,7 +35,6 @@ def scrape_and_process_recipes():
     else:
         logger.warning("No data to store")
 
-
 def store_in_db(recipes_data):
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     session = SessionLocal()
@@ -56,12 +52,10 @@ def store_in_db(recipes_data):
             logger.error(f"IntegrityError for recipe: {recipe}")
     session.close()
 
-
 def main():
     logger.info("RecipeScraper: Starting the process")
     scrape_and_process_recipes()
     logger.info("RecipeScraper: Process completed")
-
 
 if __name__ == "__main__":
     main()

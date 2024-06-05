@@ -7,7 +7,6 @@ from .fermentables import InventoryFermentable
 from .miscs import InventoryMisc
 from .yeasts import InventoryYeast
 
-
 class BatchBase(BaseModel):
     batch_name: str
     batch_number: int
@@ -15,10 +14,8 @@ class BatchBase(BaseModel):
     brewer: str
     brew_date: datetime
 
-
 class BatchCreate(BatchBase):
     recipe_id: int
-
 
 class BatchUpdate(BaseModel):
     batch_name: Optional[str]
@@ -26,7 +23,6 @@ class BatchUpdate(BaseModel):
     batch_size: Optional[float]
     brewer: Optional[str]
     brew_date: Optional[datetime]
-
 
 class Batch(BatchBase):
     id: int

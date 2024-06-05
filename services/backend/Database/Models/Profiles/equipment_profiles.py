@@ -1,20 +1,19 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from database import Base
 
-
 class EquipmentProfiles(Base):
     """
-Description:
+    Description:
 
-This class represents the EquipmentProfile table in the database.
+    This class represents the EquipmentProfile table in the database.
 
-The equipment profile NAME needs to be unique.
+    The equipment profile NAME needs to be unique.
 
-Relationships:
+    Relationships:
 
-- ONE equipment_profile can have ZERO or MANY recipes
+    - ONE equipment_profile can have ZERO or MANY recipes
 
-TODO: - ONE equipment_profile can have ZERO or MANY batches
+    TODO: - ONE equipment_profile can have ZERO or MANY batches
 
     """
 
@@ -44,10 +43,8 @@ TODO: - ONE equipment_profile can have ZERO or MANY batches
     display_trub_chiller_loss = Column(String(255), nullable=True)
     display_lauter_deadspace = Column(String(255), nullable=True)
     display_top_up_kettle = Column(String(255), nullable=True)
-# Relationships
-
+    # Relationships
 
     recipe_id = Column(Integer, ForeignKey("recipes.id"))
-
 
 # TODO: batch_id = Column(Integer, ForeignKey('batches.id'))

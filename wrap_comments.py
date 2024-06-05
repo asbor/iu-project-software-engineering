@@ -16,20 +16,29 @@ def process_file(file_path, width=79):
     wrapped_lines = []
     inside_docstring = False
     for line in lines:
-        stripped_line = line.strip()
+        stripped_line = line.rstrip()
         if stripped_line.startswith('"""') or stripped_line.startswith("'''"):
             inside_docstring = not inside_docstring
             wrapped_lines.append(line.rstrip())
         elif inside_docstring or stripped_line.startswith('#'):
             wrapped_lines.extend(textwrap.wrap(
                 stripped_line, width=width, subsequent_indent='    '))
-            if stripped_line:
-                wrapped_lines.append('')
         else:
             wrapped_lines.append(line.rstrip())
-    wrapped_text = "\n".join(wrapped_lines).strip() + "\n"
+    # Remove unnecessary blank lines
+    cleaned_lines = []
+    previous_blank = False
+    for line in wrapped_lines:
+        if line.strip() == '':
+            if not previous_blank:
+                cleaned_lines.append(line)
+            previous_blank = True
+        else:
+            cleaned_lines.append(line)
+            previous_blank = False
+
     with open(file_path, 'w', encoding='utf-8') as file:
-        file.write(wrapped_text)
+        file.write("\n".join(cleaned_lines).strip() + "\n")
 
 
 def process_directory(directory, width=79):

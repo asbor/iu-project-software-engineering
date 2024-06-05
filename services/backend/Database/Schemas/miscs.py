@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
 
-
 class MiscBase(BaseModel):
     name: str
     type: Optional[str]
@@ -16,21 +15,17 @@ class MiscBase(BaseModel):
     display_time: Optional[str]
     batch_size: Optional[int]
 
-
 class RecipeMisc(MiscBase):
     recipe_id: int
 
     class Config:
         orm_mode: bool = True
 
-
 class InventoryMiscBase(MiscBase):
     pass
 
-
 class InventoryMiscCreate(InventoryMiscBase):
     pass
-
 
 class InventoryMisc(InventoryMiscBase):
     id: int

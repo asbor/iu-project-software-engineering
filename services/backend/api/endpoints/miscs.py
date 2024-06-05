@@ -1,6 +1,5 @@
 # api/endpoints/miscs.py
 
-
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from database import get_db
@@ -12,23 +11,17 @@ router = APIRouter()
 
 # Recipe Miscs Endpoints
 
-
-
 @router.get("/recipes/miscs", response_model=List[schemas.RecipeMisc])
 async def get_all_recipe_miscs(db: Session = Depends(get_db)):
     miscs = db.query(models.RecipeMisc).all()
     return miscs
 
-
 # Inventory Miscs Endpoints
-
-
 
 @router.get("/inventory/miscs", response_model=List[schemas.InventoryMisc])
 async def get_all_inventory_miscs(db: Session = Depends(get_db)):
     miscs = db.query(models.InventoryMisc).all()
     return miscs
-
 
 @router.get("/inventory/miscs/{misc_id}", response_model=schemas.InventoryMisc)
 async def get_inventory_misc(misc_id: int, db: Session = Depends(get_db)):
@@ -40,7 +33,6 @@ async def get_inventory_misc(misc_id: int, db: Session = Depends(get_db)):
     if not misc:
         raise HTTPException(status_code=404, detail="Misc not found")
     return misc
-
 
 @router.post("/inventory/miscs", response_model=schemas.InventoryMisc)
 async def create_inventory_misc(
@@ -55,7 +47,6 @@ async def create_inventory_misc(
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-
 @router.delete("/inventory/miscs/{id}", response_model=schemas.InventoryMisc)
 async def delete_inventory_misc(id: int, db: Session = Depends(get_db)):
     misc = (
@@ -68,7 +59,6 @@ async def delete_inventory_misc(id: int, db: Session = Depends(get_db)):
     db.delete(misc)
     db.commit()
     return misc
-
 
 @router.put("/inventory/miscs/{id}", response_model=schemas.InventoryMisc)
 async def update_inventory_misc(

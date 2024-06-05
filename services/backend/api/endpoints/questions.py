@@ -8,14 +8,12 @@ from typing import List
 
 router = APIRouter()
 
-
 @router.post("/questions", response_model=question_schemas.QuestionWithID)
 async def create_questions(
     question: question_schemas.QuestionBase, db: Session = Depends(get_db)
 ):
     try:
-# Create the main question entry
-
+        # Create the main question entry
 
         db_question = question_models.Questions(
             question_text=question.question_text
@@ -23,8 +21,7 @@ async def create_questions(
         db.add(db_question)
         db.commit()
         db.refresh(db_question)
-# Create associated choices
-
+        # Create associated choices
 
         for choice in question.choices:
             db_choice = choice_models.Choices(
@@ -44,7 +41,6 @@ async def create_questions(
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-
 @router.get("/questions", response_model=List[question_schemas.QuestionWithID])
 async def get_all_questions(db: Session = Depends(get_db)):
     questions = db.query(question_models.Questions).all()
@@ -55,7 +51,6 @@ async def get_all_questions(db: Session = Depends(get_db)):
             .all()
         )
     return questions
-
 
 @router.delete(
     "/questions/{question_id}", response_model=question_schemas.QuestionWithID

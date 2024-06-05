@@ -1,48 +1,47 @@
 from sqlalchemy import Column, Integer, String
 from database import Base
 
-
 class Users(Base):
     """
-Description:
+    Description:
 
-This class represents the User table in the database.
+    This class represents the User table in the database.
 
-The user is also referred to as the brewer.
+    The user is also referred to as the brewer.
 
-Relationships:
+    Relationships:
 
-- ONE user/brewer can have ZERO or MANY recipes
+    - ONE user/brewer can have ZERO or MANY recipes
 
-- ONE user/brewer can have ZERO or MANY equipment_profiles
+    - ONE user/brewer can have ZERO or MANY equipment_profiles
 
-- ONE user/brewer can have ZERO or MANY fermentation_profiles
+    - ONE user/brewer can have ZERO or MANY fermentation_profiles
 
-- ONE user/brewer can have ZERO or MANY mash_profiles
+    - ONE user/brewer can have ZERO or MANY mash_profiles
 
-- ONE user/brewer can have ZERO or MANY water_profiles
+    - ONE user/brewer can have ZERO or MANY water_profiles
 
-Notes:
+    Notes:
 
-- The relationship between the User and Recipe tables is defined in the
+    - The relationship between the User and Recipe tables is defined in the
 
-Recipe table
+    Recipe table
 
-- The relationship between the User and EquipmentProfile tables is defined
+    - The relationship between the User and EquipmentProfile tables is defined
 
-in the EquipmentProfile table
+    in the EquipmentProfile table
 
-- The relationship between the User and FermentationProfile tables is
+    - The relationship between the User and FermentationProfile tables is
 
-defined in the FermentationProfile table
+    defined in the FermentationProfile table
 
-- The relationship between the User and MashProfile tables is defined in
+    - The relationship between the User and MashProfile tables is defined in
 
-the MashProfile table
+    the MashProfile table
 
-- The relationship between the User and WaterProfile tables is defined in
+    - The relationship between the User and WaterProfile tables is defined in
 
-the WaterProfile table
+    the WaterProfile table
 
     """
 

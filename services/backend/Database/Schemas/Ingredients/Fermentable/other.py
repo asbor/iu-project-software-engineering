@@ -1,19 +1,18 @@
 from pydantic import BaseModel
 
-
 class OtherBase(BaseModel):
     """
-Other model
+    Other model
 
-Attributes:
+    Attributes:
 
-id : The unique identifier for the other.
+    id : The unique identifier for the other.
 
-total_ibu_per_kg (decimal): The total IBU per kg of the other.
+    total_ibu_per_kg (decimal): The total IBU per kg of the other.
 
-Relationships:
+    Relationships:
 
-fermentable_id : The fermentable relationship.
+    fermentable_id : The fermentable relationship.
 
     """
 

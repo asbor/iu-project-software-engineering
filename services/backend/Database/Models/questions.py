@@ -1,10 +1,8 @@
 # Database/Models/questions.py
 
-
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from database import Base
-
 
 class Questions(Base):
     __tablename__ = "questions"

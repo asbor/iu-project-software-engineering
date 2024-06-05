@@ -1,10 +1,8 @@
 # services/backend/Database/Models/recipes.py
 
-
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from database import Base
-
 
 class Recipes(Base):
     __tablename__ = "recipes"

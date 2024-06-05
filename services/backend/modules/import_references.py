@@ -8,7 +8,6 @@ engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-
 def import_references(xml_file):
     tree = ET.parse(xml_file)
     root = tree.getroot()
@@ -22,7 +21,6 @@ def import_references(xml_file):
         )
         session.add(reference)
     session.commit()
-
 
 if __name__ == "__main__":
     import_references("references.xml")

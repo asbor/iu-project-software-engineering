@@ -8,7 +8,6 @@ from . import questions
 
 # Profile endpoints
 
-
 from . import water_profiles
 from . import mash_profiles
 from . import equipment_profiles

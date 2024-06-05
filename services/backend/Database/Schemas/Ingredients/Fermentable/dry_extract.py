@@ -1,17 +1,16 @@
 from pydantic import BaseModel
 
-
 class DryExtractBase(BaseModel):
     """
-Dry Extract model
+    Dry Extract model
 
-Attributes:
+    Attributes:
 
-id : The unique identifier for the dry extract.
+    id : The unique identifier for the dry extract.
 
-Relationships:
+    Relationships:
 
-fermentable_id : The fermentable relationship.
+    fermentable_id : The fermentable relationship.
 
     """
 

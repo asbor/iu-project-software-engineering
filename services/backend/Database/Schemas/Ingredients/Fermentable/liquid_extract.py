@@ -1,17 +1,16 @@
 from pydantic import BaseModel
 
-
 class LiquidExtractBase(BaseModel):
     """
-Liquid Extract model
+    Liquid Extract model
 
-Attributes:
+    Attributes:
 
-id : The unique identifier for the liquid extract.
+    id : The unique identifier for the liquid extract.
 
-Relationships:
+    Relationships:
 
-fermentable_id : The fermentable relationship.
+    fermentable_id : The fermentable relationship.
 
     """
 

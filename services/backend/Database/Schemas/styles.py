@@ -1,18 +1,17 @@
 from pydantic import BaseModel
 from typing import Optional
 
-
 class StyleBase(BaseModel):
     """
-Description:
+    Description:
 
-This class represents the actual style of a beer.
+    This class represents the actual style of a beer.
 
-Use cases:
+    Use cases:
 
-- Validate the data of a new Style object
+    - Validate the data of a new Style object
 
-- Validate the data of a Style object to be updated
+    - Validate the data of a Style object to be updated
 
     """
 

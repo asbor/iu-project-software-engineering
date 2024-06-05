@@ -1,20 +1,19 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from database import Base
 
-
 class MashProfiles(Base):
     """
-Description:
+    Description:
 
-This class represents the MashProfile table in the database.
+    This class represents the MashProfile table in the database.
 
-The mash profile NAME needs to be unique.
+    The mash profile NAME needs to be unique.
 
-Relationships:
+    Relationships:
 
-- ONE mash_profile can have ZERO or MANY recipes
+    - ONE mash_profile can have ZERO or MANY recipes
 
-- ONE mash_profile can have ZERO or MANY batches
+    - ONE mash_profile can have ZERO or MANY batches
 
     """
 
@@ -28,8 +27,7 @@ Relationships:
     ph = Column(Integer, nullable=True)
     tun_weight = Column(Integer, nullable=True)
     tun_specific_heat = Column(Integer, nullable=True)
-# equip_adjust = Column(Boolean, nullable=True)
-
+    # equip_adjust = Column(Boolean, nullable=True)
 
     notes = Column(String(255), nullable=True)
     display_grain_temp = Column(String(255), nullable=True)
@@ -37,16 +35,15 @@ Relationships:
     display_sparge_temp = Column(String(255), nullable=True)
     display_tun_weight = Column(String(255), nullable=True)
 
-
 class MashStep(Base):
     """
-Description:
+    Description:
 
-This class represents the MashStep table in the database.
+    This class represents the MashStep table in the database.
 
-Relationships:
+    Relationships:
 
-- ONE mash_step can have ONE mash_profile
+    - ONE mash_step can have ONE mash_profile
 
     """
 
@@ -66,7 +63,6 @@ Relationships:
     infuse_temp = Column(Integer, nullable=True)
     display_step_temp = Column(String(255), nullable=True)
     display_infuse_amt = Column(String(255), nullable=True)
-# Relationships
-
+    # Relationships
 
     mash_id = Column(Integer, ForeignKey("mash.id"))

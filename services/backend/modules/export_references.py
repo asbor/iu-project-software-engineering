@@ -8,7 +8,6 @@ engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-
 def export_references(xml_file):
     references = session.query(References).all()
     root = ET.Element("references")
@@ -32,7 +31,6 @@ def export_references(xml_file):
         )
     tree = ET.ElementTree(root)
     tree.write(xml_file, encoding="utf-8", xml_declaration=True)
-
 
 if __name__ == "__main__":
     export_references("references.xml")

@@ -1,10 +1,9 @@
 from sqlalchemy import Column, Integer, Float, ForeignKey
 from database import Base
 
-
 class RecipeGrain(Base):
     """
-Recipe-specific Grain table.
+    Recipe-specific Grain table.
 
     """
 
@@ -21,10 +20,9 @@ Recipe-specific Grain table.
     max_in_batch = Column(Float, nullable=True)
     fermentable_id = Column(Integer, ForeignKey("recipe_fermentables.id"))
 
-
 class InventoryGrain(Base):
     """
-Inventory-specific Grain table.
+    Inventory-specific Grain table.
 
     """
 

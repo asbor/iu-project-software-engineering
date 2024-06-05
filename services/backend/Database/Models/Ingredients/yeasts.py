@@ -2,7 +2,6 @@ from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from database import Base
 
-
 class RecipeYeast(Base):
     __tablename__ = "recipe_yeasts"
     id = Column(Integer, primary_key=True, index=True)
@@ -24,7 +23,6 @@ class RecipeYeast(Base):
     add_to_secondary = Column(Boolean, nullable=True)
     recipe_id = Column(Integer, ForeignKey("recipes.id"))
     recipe = relationship("Recipes", back_populates="yeasts")
-
 
 class InventoryYeast(Base):
     __tablename__ = "inventory_yeasts"

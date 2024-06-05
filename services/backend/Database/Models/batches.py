@@ -1,11 +1,9 @@
 # services/backend/Database/Models/batches.py
 
-
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, DateTime
 from sqlalchemy.orm import relationship
 from database import Base
 from datetime import datetime
-
 
 class Batches(Base):
     __tablename__ = "batches"
@@ -17,8 +15,7 @@ class Batches(Base):
     updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
     brewer = Column(String, nullable=False)
     brew_date = Column(DateTime, nullable=False)
-# Relationships:
-
+    # Relationships:
 
     recipe_id = Column(Integer, ForeignKey("recipes.id"), nullable=False)
     recipe = relationship("Recipes", back_populates="batches")

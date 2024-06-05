@@ -1,6 +1,5 @@
 # api/endpoints/batches.py
 
-
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session, joinedload
 from database import get_db
@@ -15,10 +14,8 @@ router = APIRouter()
 
 # Configure logging
 
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
 
 def parse_numeric_value(value):
     match = re.match(r"(\d+(\.\d+)?)", value)
@@ -26,18 +23,14 @@ def parse_numeric_value(value):
         return float(match.group(1))
     return 0.0
 
-
 # Create a new batch
-
-
 
 @router.post("/batches", response_model=schemas.Batch)
 async def create_batch(
     batch: schemas.BatchCreate, db: Session = Depends(get_db)
 ):
     try:
-# Fetch the recipe to copy
-
+        # Fetch the recipe to copy
 
         recipe = (
             db.query(models.Recipes)
@@ -52,8 +45,7 @@ async def create_batch(
         )
         if not recipe:
             raise HTTPException(status_code=404, detail="Recipe not found")
-# Create a copy of the recipe with the is_batch flag set to true
-
+        # Create a copy of the recipe with the is_batch flag set to true
 
         batch_recipe = models.Recipes(
             name=recipe.name,
@@ -102,8 +94,7 @@ async def create_batch(
         db.add(batch_recipe)
         db.commit()
         db.refresh(batch_recipe)
-# Create a new batch
-
+        # Create a new batch
 
         db_batch = models.Batches(
             recipe_id=batch_recipe.id,
@@ -118,8 +109,7 @@ async def create_batch(
         db.add(db_batch)
         db.commit()
         db.refresh(db_batch)
-# Copy ingredients to inventory tables
-
+        # Copy ingredients to inventory tables
 
         for hop in recipe.hops:
             db_inventory_hop = models.InventoryHop(
@@ -218,10 +208,7 @@ async def create_batch(
         db.rollback()
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
-
 # Get all batches
-
-
 
 @router.get("/batches", response_model=List[schemas.Batch])
 async def get_all_batches(db: Session = Depends(get_db)):
@@ -232,10 +219,7 @@ async def get_all_batches(db: Session = Depends(get_db)):
     )
     return batches
 
-
 # Get a batch by ID
-
-
 
 @router.get("/batches/{batch_id}", response_model=schemas.Batch)
 async def get_batch_by_id(batch_id: int, db: Session = Depends(get_db)):
@@ -255,10 +239,7 @@ async def get_batch_by_id(batch_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Batch not found")
     return batch
 
-
 # Update a batch by ID
-
-
 
 @router.put("/batches/{batch_id}", response_model=schemas.Batch)
 async def update_batch(
@@ -269,8 +250,7 @@ async def update_batch(
     )
     if not db_batch:
         raise HTTPException(status_code=404, detail="Batch not found")
-# Update the batch
-
+    # Update the batch
 
     for key, value in batch.dict().items():
         setattr(db_batch, key, value)
@@ -278,10 +258,7 @@ async def update_batch(
     db.refresh(db_batch)
     return db_batch
 
-
 # Delete a batch by ID
-
-
 
 @router.delete("/batches/{batch_id}")
 async def delete_batch(batch_id: int, db: Session = Depends(get_db)):
@@ -290,8 +267,7 @@ async def delete_batch(batch_id: int, db: Session = Depends(get_db)):
     )
     if not db_batch:
         raise HTTPException(status_code=404, detail="Batch not found")
-# Delete related inventory items
-
+    # Delete related inventory items
 
     db.query(models.InventoryHop).filter(
         models.InventoryHop.batch_id == batch_id
@@ -305,8 +281,7 @@ async def delete_batch(batch_id: int, db: Session = Depends(get_db)):
     db.query(models.InventoryYeast).filter(
         models.InventoryYeast.batch_id == batch_id
     ).delete()
-# Delete the batch
-
+    # Delete the batch
 
     db.delete(db_batch)
     db.commit()

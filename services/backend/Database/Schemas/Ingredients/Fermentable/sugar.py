@@ -1,17 +1,16 @@
 from pydantic import BaseModel
 
-
 class SugarBase(BaseModel):
     """
-Sugar model
+    Sugar model
 
-Attributes:
+    Attributes:
 
-id : The unique identifier for the sugar.
+    id : The unique identifier for the sugar.
 
-Relationships:
+    Relationships:
 
-fermentable_id : The fermentable relationship.
+    fermentable_id : The fermentable relationship.
 
     """
 

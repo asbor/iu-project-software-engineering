@@ -1,6 +1,5 @@
 # scripts/beer_styles_processing.py
 
-
 from bs4 import BeautifulSoup
 import requests
 from sqlalchemy.orm import sessionmaker
@@ -11,9 +10,7 @@ from logger_config import get_logger
 
 # Get logger instance
 
-
 logger = get_logger("WebScraper")
-
 
 def scrape_and_process_beer_styles():
     logger.info("Scraping data from Brewers Association website")
@@ -52,17 +49,14 @@ def scrape_and_process_beer_styles():
     else:
         logger.warning("No data to store")
 
-
 def parse_beer_style(beer_style):
     style_data = {}
-# Extract the name of the beer style
-
+    # Extract the name of the beer style
 
     style_name_tag = beer_style.find("li")
     if style_name_tag:
         style_data["category"] = style_name_tag.text.strip()
-# Extract other attributes
-
+    # Extract other attributes
 
     details = beer_style.findAll("li")
     for detail in details[1:]:  # Skip the first item since it's the name
@@ -80,8 +74,7 @@ def parse_beer_style(beer_style):
                 else ""
             )
             style_data[key] = value
-# Extract horizontal details
-
+    # Extract horizontal details
 
     horizontal_details = beer_style.find("ul", class_="horizontal wider")
     if horizontal_details:
@@ -102,7 +95,6 @@ def parse_beer_style(beer_style):
                 )
                 style_data[key] = value
     return style_data
-
 
 def store_in_db(styles_data):
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -137,7 +129,6 @@ def store_in_db(styles_data):
             session.rollback()
             logger.error(f"IntegrityError for style: {style}")
     session.close()
-
 
 def main():
     logger.info("WebScraper: Starting the process")

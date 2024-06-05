@@ -6,7 +6,6 @@ from logger_config import get_logger
 
 # Get logger instance
 
-
 logger = get_logger("Main")
 
 # Connect to the database (bind the engine)
@@ -16,13 +15,11 @@ Base.metadata.create_all(bind=engine)
 
 # Create the FastAPI app and include the router from the endpoints folder
 
-
 logger.info("Creating FastAPI app and including the router")
 app = FastAPI(title="PostgreSQL and FastAPI")
 app.include_router(router)
 
 # Add CORS middleware to allow requests from the frontend
-
 
 origins = [
     "http://localhost:3000",
@@ -35,7 +32,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.get("/")
 async def read_main():

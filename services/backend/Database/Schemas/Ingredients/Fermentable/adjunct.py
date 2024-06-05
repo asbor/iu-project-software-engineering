@@ -1,19 +1,18 @@
 from pydantic import BaseModel
 
-
 class AdjunctBase(BaseModel):
     """
-Adjunct model
+    Adjunct model
 
-Attributes:
+    Attributes:
 
-id : The unique identifier for the adjunct.
+    id : The unique identifier for the adjunct.
 
-total_ibu_per_kg (float): The total IBU per kg of the adjunct.
+    total_ibu_per_kg (float): The total IBU per kg of the adjunct.
 
-Relationships:
+    Relationships:
 
-fermentable (Fermentable): The associated fermentable.
+    fermentable (Fermentable): The associated fermentable.
 
     """
 

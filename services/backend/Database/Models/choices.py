@@ -1,10 +1,8 @@
 # Database/Models/choices.py
 
-
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from database import Base
-
 
 class Choices(Base):
     __tablename__ = "choices"

@@ -1,20 +1,19 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from database import Base
 
-
 class WaterProfiles(Base):
     """
-Description:
+    Description:
 
-This class represents the WaterProfile table in the database.
+    This class represents the WaterProfile table in the database.
 
-The water profile NAME needs to be unique.
+    The water profile NAME needs to be unique.
 
-Relationships:
+    Relationships:
 
-- ONE water_profile can have ZERO or MANY recipes
+    - ONE water_profile can have ZERO or MANY recipes
 
-TODO: - ONE water_profile can have ZERO or MANY batches
+    TODO: - ONE water_profile can have ZERO or MANY batches
 
     """
 
@@ -33,10 +32,8 @@ TODO: - ONE water_profile can have ZERO or MANY batches
     notes = Column(String(255), nullable=True)
     display_amount = Column(String(255), nullable=True)
     inventory = Column(Integer, nullable=True)
-# Relationships
-
+    # Relationships
 
     recipe_id = Column(Integer, ForeignKey("recipes.id"))
-
 
 # TODO: batch_id = Column(Integer, ForeignKey('batches.id'))
