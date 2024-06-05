@@ -55,7 +55,9 @@ def test_create_and_get_all_questions():
     )
     assert (
         response.status_code == 200
-    ), f"Unexpected status code: {response.status_code}, response: {response.json()}"
+    ), f"Unexpected status code: {response.status_code},
+    response: {response.json()}"
+
     response.json()["id"]
     # Get all questions
 

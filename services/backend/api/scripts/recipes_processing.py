@@ -16,7 +16,9 @@ logger = get_logger("RecipeScraper")
 def scrape_and_process_recipes():
     logger.info("Scraping data from BYO website")
     base_url = "https://byo.com/"
-    search_url = "https://byo.com/?s=&beer-style%5Bamerican-amber-ale%5D=american-amber-ale&post_type=recipe"
+    search_url = '''https://byo.com/?s=&beer-style%5Bamerican-amber-
+                    ale%5D=american-amber-ale&post_type=recipe'''
+
     page_to_scrape = requests.get(search_url)
     soup = BeautifulSoup(page_to_scrape.text, "html.parser")
     recipes = soup.findAll("div", class_="recipe-summary")

@@ -16,7 +16,8 @@ logger = get_logger("WebScraper")
 def scrape_and_process_beer_styles():
     logger.info("Scraping data from Brewers Association website")
     page_to_scrape = requests.get(
-        "https://www.brewersassociation.org/resources/brewers-association-beer-style-guidelines/"
+        '''https://www.brewersassociation.org/resources
+        /brewers-association-beer-style-guidelines/'''
     )
     soup = BeautifulSoup(page_to_scrape.text, "html.parser")
     beer_styles_section = soup.find("section", id="beer-styles")

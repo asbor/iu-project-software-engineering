@@ -35,7 +35,8 @@ except Exception as e:
 
 logger.info("Scraping data from Brewers Association website")
 driver.get(
-    "https://www.brewersassociation.org/resources/brewers-association-beer-style-guidelines/"
+    '''https://www.brewersassociation.org/resources/
+    brewers-association-beer-style-guidelines/'''
 )
 
 # Give time for JavaScript to load if necessary
@@ -52,7 +53,8 @@ beer_styles = soup.findAll("ul", attrs={"class": "beer-style-origin-toc"})
 styles_data = []
 if not beer_styles:
     logger.error(
-        "No beer styles found. The website structure may have changed or content is dynamically loaded."
+        '''No beer styles found. The website structure 
+        may have changed or content is dynamically loaded.'''
     )
 else:
     for beer_style in beer_styles:
