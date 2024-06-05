@@ -36,7 +36,7 @@ unit-test-job:
   artifacts:
     when: always
     reports:
-      junit: test-results.xml
+      junit: services/backend/test-results.xml
     paths:
       - services/backend/test-results.xml
   after_script:
