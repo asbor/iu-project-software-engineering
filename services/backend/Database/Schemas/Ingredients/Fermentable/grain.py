@@ -2,8 +2,7 @@ from pydantic import BaseModel
 
 
 class GrainBase(BaseModel):
-    """
-    Grain model
+    """Grain model.
 
     Attributes:
         id : The unique identifier for the grain.

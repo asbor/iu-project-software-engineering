@@ -3,9 +3,7 @@ from database import Base
 
 
 class RecipeGrain(Base):
-    """
-    Recipe-specific Grain table.
-    """
+    """Recipe-specific Grain table."""
 
     __tablename__ = "recipe_grain"
     id = Column(Integer, primary_key=True, index=True)
@@ -22,9 +20,7 @@ class RecipeGrain(Base):
 
 
 class InventoryGrain(Base):
-    """
-    Inventory-specific Grain table.
-    """
+    """Inventory-specific Grain table."""
 
     __tablename__ = "inventory_grain"
     id = Column(Integer, primary_key=True, index=True)

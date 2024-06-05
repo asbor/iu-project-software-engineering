@@ -3,9 +3,7 @@ from database import Base
 
 
 class RecipeOther(Base):
-    """
-    Recipe-specific Other table.
-    """
+    """Recipe-specific Other table."""
 
     __tablename__ = "recipe_other"
     id = Column(Integer, primary_key=True, index=True)
@@ -13,9 +11,7 @@ class RecipeOther(Base):
 
 
 class InventoryOther(Base):
-    """
-    Inventory-specific Other table.
-    """
+    """Inventory-specific Other table."""
 
     __tablename__ = "inventory_other"
     id = Column(Integer, primary_key=True, index=True)

@@ -2,8 +2,7 @@ from pydantic import BaseModel
 
 
 class DryExtractBase(BaseModel):
-    """
-    Dry Extract model
+    """Dry Extract model.
 
     Attributes:
         id : The unique identifier for the dry extract.

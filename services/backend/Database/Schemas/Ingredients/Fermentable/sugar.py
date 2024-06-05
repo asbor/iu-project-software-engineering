@@ -2,8 +2,7 @@ from pydantic import BaseModel
 
 
 class SugarBase(BaseModel):
-    """
-    Sugar model
+    """Sugar model.
 
     Attributes:
         id : The unique identifier for the sugar.

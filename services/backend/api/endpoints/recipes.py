@@ -13,9 +13,7 @@ router = APIRouter()
 
 @router.get("/recipes")
 async def get_all_recipes(db: Session = Depends(get_db)):
-    """
-    This endpoint returns all the recipes stored in the database.
-    """
+    """This endpoint returns all the recipes stored in the database."""
     recipes = (
         db.query(models.Recipes)
         .options(
@@ -34,9 +32,7 @@ async def get_all_recipes(db: Session = Depends(get_db)):
 
 @router.get("/recipes/{recipe_id}")
 async def get_recipe_by_id(recipe_id: int, db: Session = Depends(get_db)):
-    """
-    This endpoint returns a recipe by its ID.
-    """
+    """This endpoint returns a recipe by its ID."""
     recipe = (
         db.query(models.Recipes)
         .options(
@@ -60,9 +56,7 @@ async def get_recipe_by_id(recipe_id: int, db: Session = Depends(get_db)):
 async def create_recipe(
     recipe: schemas.RecipeBase, db: Session = Depends(get_db)
 ):
-    """
-    This endpoint creates a new recipe in the database.
-    """
+    """This endpoint creates a new recipe in the database."""
     # Check if the recipe already exists
     existing_recipe = (
         db.query(models.Recipes)
@@ -118,9 +112,7 @@ async def create_recipe(
 async def update_recipe(
     recipe_id: int, recipe: schemas.RecipeBase, db: Session = Depends(get_db)
 ):
-    """
-    This endpoint updates a recipe by its ID.
-    """
+    """This endpoint updates a recipe by its ID."""
     db_recipe = (
         db.query(models.Recipes).filter(models.Recipes.id == recipe_id).first()
     )
@@ -176,9 +168,7 @@ async def update_recipe(
 
 @router.delete("/recipes/{recipe_id}")
 async def delete_recipe(recipe_id: int, db: Session = Depends(get_db)):
-    """
-    This endpoint deletes a recipe by its ID.
-    """
+    """This endpoint deletes a recipe by its ID."""
     db_recipe = (
         db.query(models.Recipes).filter(models.Recipes.id == recipe_id).first()
     )

@@ -2,8 +2,7 @@ from pydantic import BaseModel
 
 
 class OtherBase(BaseModel):
-    """
-    Other model
+    """Other model.
 
     Attributes:
         id : The unique identifier for the other.

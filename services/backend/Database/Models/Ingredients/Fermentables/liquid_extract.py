@@ -3,9 +3,7 @@ from database import Base
 
 
 class RecipeLiquidExtract(Base):
-    """
-    Recipe-specific LiquidExtract table.
-    """
+    """Recipe-specific LiquidExtract table."""
 
     __tablename__ = "recipe_liquid_extract"
     id = Column(Integer, primary_key=True, index=True)
@@ -13,9 +11,7 @@ class RecipeLiquidExtract(Base):
 
 
 class InventoryLiquidExtract(Base):
-    """
-    Inventory-specific LiquidExtract table.
-    """
+    """Inventory-specific LiquidExtract table."""
 
     __tablename__ = "inventory_liquid_extract"
     id = Column(Integer, primary_key=True, index=True)

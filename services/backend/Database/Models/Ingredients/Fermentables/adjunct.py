@@ -3,9 +3,7 @@ from database import Base
 
 
 class RecipeAdjunct(Base):
-    """
-    Recipe-specific Adjunct table.
-    """
+    """Recipe-specific Adjunct table."""
 
     __tablename__ = "recipe_adjunct"
     id = Column(Integer, primary_key=True, index=True)
@@ -13,9 +11,7 @@ class RecipeAdjunct(Base):
 
 
 class InventoryAdjunct(Base):
-    """
-    Inventory-specific Adjunct table.
-    """
+    """Inventory-specific Adjunct table."""
 
     __tablename__ = "inventory_adjunct"
     id = Column(Integer, primary_key=True, index=True)

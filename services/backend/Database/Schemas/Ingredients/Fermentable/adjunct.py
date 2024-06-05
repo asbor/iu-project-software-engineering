@@ -2,8 +2,7 @@ from pydantic import BaseModel
 
 
 class AdjunctBase(BaseModel):
-    """
-    Adjunct model
+    """Adjunct model.
 
     Attributes:
         id : The unique identifier for the adjunct.

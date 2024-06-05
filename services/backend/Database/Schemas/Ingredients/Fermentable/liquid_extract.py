@@ -2,8 +2,7 @@ from pydantic import BaseModel
 
 
 class LiquidExtractBase(BaseModel):
-    """
-    Liquid Extract model
+    """Liquid Extract model.
 
     Attributes:
         id : The unique identifier for the liquid extract.
