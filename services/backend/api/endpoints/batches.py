@@ -1,26 +1,43 @@
 # api/endpoints/batches.py
 
+
 from fastapi import APIRouter, HTTPException, Depends
+
 from sqlalchemy.orm import Session, joinedload
+
 from database import get_db
+
 import Database.Models as models
+
 import Database.Schemas as schemas
+
 from datetime import datetime
+
 from typing import List
+
 import re
+
 import logging
+
 
 router = APIRouter()
 
+
 # Configure logging
+
 logging.basicConfig(level=logging.INFO)
+
 logger = logging.getLogger(__name__)
 
 
 def parse_numeric_value(value):
+
     match = re.match(r"(\d+(\.\d+)?)", value)
+
     if match:
+
         return float(match.group(1))
+
     return 0.0
 
 
@@ -31,8 +48,11 @@ def parse_numeric_value(value):
 async def create_batch(
     batch: schemas.BatchCreate, db: Session = Depends(get_db)
 ):
+
     try:
+
         # Fetch the recipe to copy
+
         recipe = (
             db.query(models.Recipes)
             .options(
@@ -44,10 +64,13 @@ async def create_batch(
             .filter(models.Recipes.id == batch.recipe_id)
             .first()
         )
+
         if not recipe:
+
             raise HTTPException(status_code=404, detail="Recipe not found")
 
         # Create a copy of the recipe with the is_batch flag set to true
+
         batch_recipe = models.Recipes(
             name=recipe.name,
             is_batch=True,
@@ -92,11 +115,15 @@ async def create_batch(
             display_tertiary_temp=recipe.display_tertiary_temp,
             display_age_temp=recipe.display_age_temp,
         )
+
         db.add(batch_recipe)
+
         db.commit()
+
         db.refresh(batch_recipe)
 
         # Create a new batch
+
         db_batch = models.Batches(
             recipe_id=batch_recipe.id,
             batch_name=batch.batch_name,
@@ -107,12 +134,17 @@ async def create_batch(
             created_at=datetime.now(),
             updated_at=datetime.now(),
         )
+
         db.add(db_batch)
+
         db.commit()
+
         db.refresh(db_batch)
 
         # Copy ingredients to inventory tables
+
         for hop in recipe.hops:
+
             db_inventory_hop = models.InventoryHop(
                 name=hop.name,
                 origin=hop.origin,
@@ -134,9 +166,11 @@ async def create_batch(
                 display_time=hop.display_time if hop.display_time else "",
                 batch_id=db_batch.id,
             )
+
             db.add(db_inventory_hop)
 
         for fermentable in recipe.fermentables:
+
             db_inventory_fermentable = models.InventoryFermentable(
                 name=fermentable.name,
                 type=fermentable.type,
@@ -158,9 +192,11 @@ async def create_batch(
                 used_in=fermentable.used_in,
                 batch_id=db_batch.id,
             )
+
             db.add(db_inventory_fermentable)
 
         for misc in recipe.miscs:
+
             db_inventory_misc = models.InventoryMisc(
                 name=misc.name,
                 type=misc.type,
@@ -180,9 +216,11 @@ async def create_batch(
                 batch_size=misc.batch_size,
                 batch_id=db_batch.id,
             )
+
             db.add(db_inventory_misc)
 
         for yeast in recipe.yeasts:
+
             db_inventory_yeast = models.InventoryYeast(
                 name=yeast.name,
                 type=yeast.type,
@@ -200,14 +238,19 @@ async def create_batch(
                 amount_is_weight=yeast.amount_is_weight,
                 batch_id=db_batch.id,
             )
+
             db.add(db_inventory_yeast)
 
         db.commit()
+
         return db_batch
 
     except Exception as e:
+
         logger.error(f"Error creating batch: {e}", exc_info=True)
+
         db.rollback()
+
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
@@ -216,11 +259,13 @@ async def create_batch(
 
 @router.get("/batches", response_model=List[schemas.Batch])
 async def get_all_batches(db: Session = Depends(get_db)):
+
     batches = (
         db.query(models.Batches)
         .options(joinedload(models.Batches.recipe))
         .all()
     )
+
     return batches
 
 
@@ -229,6 +274,7 @@ async def get_all_batches(db: Session = Depends(get_db)):
 
 @router.get("/batches/{batch_id}", response_model=schemas.Batch)
 async def get_batch_by_id(batch_id: int, db: Session = Depends(get_db)):
+
     batch = (
         db.query(models.Batches)
         .options(
@@ -241,8 +287,11 @@ async def get_batch_by_id(batch_id: int, db: Session = Depends(get_db)):
         .filter(models.Batches.id == batch_id)
         .first()
     )
+
     if not batch:
+
         raise HTTPException(status_code=404, detail="Batch not found")
+
     return batch
 
 
@@ -253,18 +302,25 @@ async def get_batch_by_id(batch_id: int, db: Session = Depends(get_db)):
 async def update_batch(
     batch_id: int, batch: schemas.BatchBase, db: Session = Depends(get_db)
 ):
+
     db_batch = (
         db.query(models.Batches).filter(models.Batches.id == batch_id).first()
     )
+
     if not db_batch:
+
         raise HTTPException(status_code=404, detail="Batch not found")
 
     # Update the batch
+
     for key, value in batch.dict().items():
+
         setattr(db_batch, key, value)
 
     db.commit()
+
     db.refresh(db_batch)
+
     return db_batch
 
 
@@ -273,27 +329,37 @@ async def update_batch(
 
 @router.delete("/batches/{batch_id}")
 async def delete_batch(batch_id: int, db: Session = Depends(get_db)):
+
     db_batch = (
         db.query(models.Batches).filter(models.Batches.id == batch_id).first()
     )
+
     if not db_batch:
+
         raise HTTPException(status_code=404, detail="Batch not found")
 
     # Delete related inventory items
+
     db.query(models.InventoryHop).filter(
         models.InventoryHop.batch_id == batch_id
     ).delete()
+
     db.query(models.InventoryFermentable).filter(
         models.InventoryFermentable.batch_id == batch_id
     ).delete()
+
     db.query(models.InventoryMisc).filter(
         models.InventoryMisc.batch_id == batch_id
     ).delete()
+
     db.query(models.InventoryYeast).filter(
         models.InventoryYeast.batch_id == batch_id
     ).delete()
 
     # Delete the batch
+
     db.delete(db_batch)
+
     db.commit()
+
     return {"message": "Batch deleted successfully"}
