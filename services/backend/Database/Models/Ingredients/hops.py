@@ -6,7 +6,7 @@ from database import Base
 
 
 class RecipeHop(Base):
-    __tablename__ = 'recipe_hops'
+    __tablename__ = "recipe_hops"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=True)
@@ -23,13 +23,13 @@ class RecipeHop(Base):
     display_amount = Column(String, nullable=True)
     inventory = Column(String, nullable=True)
     display_time = Column(String, nullable=True)
-    recipe_id = Column(Integer, ForeignKey('recipes.id'))
+    recipe_id = Column(Integer, ForeignKey("recipes.id"))
 
     recipe = relationship("Recipes", back_populates="hops")
 
 
 class InventoryHop(Base):
-    __tablename__ = 'inventory_hops'
+    __tablename__ = "inventory_hops"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=True)
@@ -46,6 +46,6 @@ class InventoryHop(Base):
     display_amount = Column(String, nullable=True)
     inventory = Column(String, nullable=True)
     display_time = Column(String, nullable=True)
-    batch_id = Column(Integer, ForeignKey('batches.id'))
+    batch_id = Column(Integer, ForeignKey("batches.id"))
 
     batch = relationship("Batches", back_populates="inventory_hops")

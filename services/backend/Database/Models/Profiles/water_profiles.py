@@ -30,5 +30,5 @@ class WaterProfiles(Base):
     inventory = Column(Integer, nullable=True)
 
     # Relationships
-    recipe_id = Column(Integer, ForeignKey('recipes.id'))
+    recipe_id = Column(Integer, ForeignKey("recipes.id"))
     # TODO: batch_id = Column(Integer, ForeignKey('batches.id'))

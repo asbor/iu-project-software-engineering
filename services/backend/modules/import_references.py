@@ -14,13 +14,13 @@ def import_references(xml_file):
     tree = ET.parse(xml_file)
     root = tree.getroot()
 
-    for ref_element in root.findall('reference'):
+    for ref_element in root.findall("reference"):
         reference = References(
-            name=ref_element.find('name').text,
-            url=ref_element.find('url').text,
-            description=ref_element.find('description').text,
-            category=ref_element.find('category').text,
-            favicon_url=ref_element.find('favicon_url').text,
+            name=ref_element.find("name").text,
+            url=ref_element.find("url").text,
+            description=ref_element.find("description").text,
+            category=ref_element.find("category").text,
+            favicon_url=ref_element.find("favicon_url").text,
         )
         session.add(reference)
 

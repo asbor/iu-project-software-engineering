@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from logger_config import get_logger
 
 # Get logger instance
-logger = get_logger('Main')
+logger = get_logger("Main")
 
 # Connect to the database (bind the engine)
 # Create the tables in the database (create_all)

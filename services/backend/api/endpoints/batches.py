@@ -23,19 +23,27 @@ def parse_numeric_value(value):
         return float(match.group(1))
     return 0.0
 
+
 # Create a new batch
 
 
 @router.post("/batches", response_model=schemas.Batch)
-async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)):
+async def create_batch(
+    batch: schemas.BatchCreate, db: Session = Depends(get_db)
+):
     try:
         # Fetch the recipe to copy
-        recipe = db.query(models.Recipes).options(
-            joinedload(models.Recipes.hops),
-            joinedload(models.Recipes.fermentables),
-            joinedload(models.Recipes.yeasts),
-            joinedload(models.Recipes.miscs)
-        ).filter(models.Recipes.id == batch.recipe_id).first()
+        recipe = (
+            db.query(models.Recipes)
+            .options(
+                joinedload(models.Recipes.hops),
+                joinedload(models.Recipes.fermentables),
+                joinedload(models.Recipes.yeasts),
+                joinedload(models.Recipes.miscs),
+            )
+            .filter(models.Recipes.id == batch.recipe_id)
+            .first()
+        )
         if not recipe:
             raise HTTPException(status_code=404, detail="Recipe not found")
 
@@ -117,11 +125,14 @@ async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)
                 use=hop.use,
                 time=hop.time,
                 notes=hop.notes,
-                display_amount=hop.display_amount if hop.display_amount else '',
-                inventory=parse_numeric_value(
-                    hop.inventory) if hop.inventory else 0.0,
-                display_time=hop.display_time if hop.display_time else '',
-                batch_id=db_batch.id
+                display_amount=hop.display_amount
+                if hop.display_amount
+                else "",
+                inventory=parse_numeric_value(hop.inventory)
+                if hop.inventory
+                else 0.0,
+                display_time=hop.display_time if hop.display_time else "",
+                batch_id=db_batch.id,
             )
             db.add(db_inventory_hop)
 
@@ -145,7 +156,7 @@ async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)
                 description=fermentable.description,
                 substitutes=fermentable.substitutes,
                 used_in=fermentable.used_in,
-                batch_id=db_batch.id
+                batch_id=db_batch.id,
             )
             db.add(db_inventory_fermentable)
 
@@ -159,12 +170,15 @@ async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)
                 notes=misc.notes,
                 amount=misc.amount,
                 time=misc.time,
-                display_amount=misc.display_amount if misc.display_amount else '',
-                inventory=parse_numeric_value(
-                    misc.inventory) if misc.inventory else 0.0,
-                display_time=misc.display_time if misc.display_time else '',
+                display_amount=misc.display_amount
+                if misc.display_amount
+                else "",
+                inventory=parse_numeric_value(misc.inventory)
+                if misc.inventory
+                else 0.0,
+                display_time=misc.display_time if misc.display_time else "",
                 batch_size=misc.batch_size,
-                batch_id=db_batch.id
+                batch_id=db_batch.id,
             )
             db.add(db_inventory_misc)
 
@@ -184,7 +198,7 @@ async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)
                 max_reuse=yeast.max_reuse,
                 amount=yeast.amount,
                 amount_is_weight=yeast.amount_is_weight,
-                batch_id=db_batch.id
+                batch_id=db_batch.id,
             )
             db.add(db_inventory_yeast)
 
@@ -196,28 +210,37 @@ async def create_batch(batch: schemas.BatchCreate, db: Session = Depends(get_db)
         db.rollback()
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
+
 # Get all batches
 
 
 @router.get("/batches", response_model=List[schemas.Batch])
 async def get_all_batches(db: Session = Depends(get_db)):
-    batches = db.query(models.Batches).options(
-        joinedload(models.Batches.recipe)
-    ).all()
+    batches = (
+        db.query(models.Batches)
+        .options(joinedload(models.Batches.recipe))
+        .all()
+    )
     return batches
+
 
 # Get a batch by ID
 
 
 @router.get("/batches/{batch_id}", response_model=schemas.Batch)
 async def get_batch_by_id(batch_id: int, db: Session = Depends(get_db)):
-    batch = db.query(models.Batches).options(
-        joinedload(models.Batches.recipe),
-        joinedload(models.Batches.fermentables),
-        joinedload(models.Batches.hops),
-        joinedload(models.Batches.miscs),
-        joinedload(models.Batches.yeasts)
-    ).filter(models.Batches.id == batch_id).first()
+    batch = (
+        db.query(models.Batches)
+        .options(
+            joinedload(models.Batches.recipe),
+            joinedload(models.Batches.fermentables),
+            joinedload(models.Batches.hops),
+            joinedload(models.Batches.miscs),
+            joinedload(models.Batches.yeasts),
+        )
+        .filter(models.Batches.id == batch_id)
+        .first()
+    )
     if not batch:
         raise HTTPException(status_code=404, detail="Batch not found")
     return batch
@@ -227,9 +250,12 @@ async def get_batch_by_id(batch_id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/batches/{batch_id}", response_model=schemas.Batch)
-async def update_batch(batch_id: int, batch: schemas.BatchBase, db: Session = Depends(get_db)):
-    db_batch = db.query(models.Batches).filter(
-        models.Batches.id == batch_id).first()
+async def update_batch(
+    batch_id: int, batch: schemas.BatchBase, db: Session = Depends(get_db)
+):
+    db_batch = (
+        db.query(models.Batches).filter(models.Batches.id == batch_id).first()
+    )
     if not db_batch:
         raise HTTPException(status_code=404, detail="Batch not found")
 
@@ -241,25 +267,31 @@ async def update_batch(batch_id: int, batch: schemas.BatchBase, db: Session = De
     db.refresh(db_batch)
     return db_batch
 
+
 # Delete a batch by ID
 
 
 @router.delete("/batches/{batch_id}")
 async def delete_batch(batch_id: int, db: Session = Depends(get_db)):
-    db_batch = db.query(models.Batches).filter(
-        models.Batches.id == batch_id).first()
+    db_batch = (
+        db.query(models.Batches).filter(models.Batches.id == batch_id).first()
+    )
     if not db_batch:
         raise HTTPException(status_code=404, detail="Batch not found")
 
     # Delete related inventory items
     db.query(models.InventoryHop).filter(
-        models.InventoryHop.batch_id == batch_id).delete()
+        models.InventoryHop.batch_id == batch_id
+    ).delete()
     db.query(models.InventoryFermentable).filter(
-        models.InventoryFermentable.batch_id == batch_id).delete()
+        models.InventoryFermentable.batch_id == batch_id
+    ).delete()
     db.query(models.InventoryMisc).filter(
-        models.InventoryMisc.batch_id == batch_id).delete()
+        models.InventoryMisc.batch_id == batch_id
+    ).delete()
     db.query(models.InventoryYeast).filter(
-        models.InventoryYeast.batch_id == batch_id).delete()
+        models.InventoryYeast.batch_id == batch_id
+    ).delete()
 
     # Delete the batch
     db.delete(db_batch)

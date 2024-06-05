@@ -41,5 +41,5 @@ class EquipmentProfiles(Base):
     display_top_up_kettle = Column(String(255), nullable=True)
 
     # Relationships
-    recipe_id = Column(Integer, ForeignKey('recipes.id'))
+    recipe_id = Column(Integer, ForeignKey("recipes.id"))
     # TODO: batch_id = Column(Integer, ForeignKey('batches.id'))

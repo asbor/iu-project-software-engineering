@@ -1,7 +1,24 @@
 # backend/api/router.py
 
 from fastapi import APIRouter
-from .endpoints import *
+from .endpoints import (
+    recipes,
+    batches,
+    hops,
+    miscs,
+    yeasts,
+    fermentables,
+    health,
+    logs,
+    questions,
+    style_guidelines,
+    references,
+    mash_profiles,
+    water_profiles,
+    equipment_profiles,
+    users,
+    trigger_beer_styles_processing,
+)
 
 # create the router and include all the routers from the endpoints folder
 router = APIRouter()
@@ -26,5 +43,6 @@ router.include_router(equipment_profiles.router, tags=["equipment_profiles"])
 router.include_router(users.router, tags=["user"])
 
 # Include the script router
-router.include_router(trigger_beer_styles_processing.router,
-                      tags=["refresh-beer-styles"])
+router.include_router(
+    trigger_beer_styles_processing.router, tags=["refresh-beer-styles"]
+)

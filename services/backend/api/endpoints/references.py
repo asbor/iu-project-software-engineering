@@ -19,16 +19,18 @@ router = APIRouter()
 
 
 @router.post("/references/import", response_model=dict)
-async def import_references(db: Session = Depends(get_db), file: UploadFile = File(...)):
+async def import_references(
+    db: Session = Depends(get_db), file: UploadFile = File(...)
+):
     contents = await file.read()
     tree = ET.ElementTree(ET.fromstring(contents))
     root = tree.getroot()
 
-    for ref_element in root.findall('reference'):
-        name = ref_element.find('name').text
-        url = ref_element.find('url').text
-        description = ref_element.find('description').text
-        category = ref_element.find('category').text
+    for ref_element in root.findall("reference"):
+        name = ref_element.find("name").text
+        url = ref_element.find("url").text
+        description = ref_element.find("description").text
+        category = ref_element.find("category").text
         favicon_url = fetch_favicon(url)
 
         reference = models.References(
@@ -54,22 +56,30 @@ async def export_references(db: Session = Depends(get_db)):
         ET.SubElement(ref_element, "id").text = str(reference.id)
         ET.SubElement(ref_element, "name").text = reference.name
         ET.SubElement(ref_element, "url").text = reference.url
-        ET.SubElement(
-            ref_element, "description").text = reference.description or ""
+        ET.SubElement(ref_element, "description").text = (
+            reference.description or ""
+        )
         ET.SubElement(ref_element, "category").text = reference.category or ""
+        ET.SubElement(ref_element, "favicon_url").text = (
+            reference.favicon_url or ""
+        )
         ET.SubElement(
-            ref_element, "favicon_url").text = reference.favicon_url or ""
-        ET.SubElement(
-            ref_element, "created_at").text = reference.created_at.isoformat()
-        ET.SubElement(ref_element, "updated_at").text = reference.updated_at.isoformat(
-        ) if reference.updated_at else ""
+            ref_element, "created_at"
+        ).text = reference.created_at.isoformat()
+        ET.SubElement(ref_element, "updated_at").text = (
+            reference.updated_at.isoformat() if reference.updated_at else ""
+        )
 
     tree = ET.ElementTree(root)
     xml_io = io.BytesIO()
     tree.write(xml_io, encoding="utf-8", xml_declaration=True)
     xml_io.seek(0)
 
-    return StreamingResponse(xml_io, media_type="application/xml", headers={"Content-Disposition": "attachment; filename=references.xml"})
+    return StreamingResponse(
+        xml_io,
+        media_type="application/xml",
+        headers={"Content-Disposition": "attachment; filename=references.xml"},
+    )
 
 
 @router.get("/references", response_model=List[schemas.Reference])
@@ -80,19 +90,23 @@ async def get_all_references(db: Session = Depends(get_db)):
 
 @router.get("/references/{reference_id}", response_model=schemas.Reference)
 async def get_reference(reference_id: int, db: Session = Depends(get_db)):
-    reference = db.query(models.References).filter(
-        models.References.id == reference_id).first()
+    reference = (
+        db.query(models.References)
+        .filter(models.References.id == reference_id)
+        .first()
+    )
     if not reference:
         raise HTTPException(status_code=404, detail="Reference not found")
     return reference
 
 
 @router.post("/references", response_model=schemas.Reference)
-async def create_reference(reference: schemas.ReferenceCreate, db: Session = Depends(get_db)):
+async def create_reference(
+    reference: schemas.ReferenceCreate, db: Session = Depends(get_db)
+):
     favicon_url = fetch_favicon(reference.url)
     db_reference = models.References(
-        **reference.dict(),
-        favicon_url=favicon_url
+        **reference.dict(), favicon_url=favicon_url
     )
     db.add(db_reference)
     db.commit()
@@ -102,8 +116,11 @@ async def create_reference(reference: schemas.ReferenceCreate, db: Session = Dep
 
 @router.delete("/references/{reference_id}", response_model=schemas.Reference)
 async def delete_reference(reference_id: int, db: Session = Depends(get_db)):
-    reference = db.query(models.References).filter(
-        models.References.id == reference_id).first()
+    reference = (
+        db.query(models.References)
+        .filter(models.References.id == reference_id)
+        .first()
+    )
     if not reference:
         raise HTTPException(status_code=404, detail="Reference not found")
     db.delete(reference)
@@ -112,9 +129,16 @@ async def delete_reference(reference_id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/references/{reference_id}", response_model=schemas.Reference)
-async def update_reference(reference_id: int, reference: schemas.ReferenceUpdate, db: Session = Depends(get_db)):
-    db_reference = db.query(models.References).filter(
-        models.References.id == reference_id).first()
+async def update_reference(
+    reference_id: int,
+    reference: schemas.ReferenceUpdate,
+    db: Session = Depends(get_db),
+):
+    db_reference = (
+        db.query(models.References)
+        .filter(models.References.id == reference_id)
+        .first()
+    )
     if not db_reference:
         raise HTTPException(status_code=404, detail="Reference not found")
     for key, value in reference.dict().items():
@@ -141,8 +165,15 @@ def fetch_favicon(url: str) -> str:
     try:
         response = requests.get(base_url)
         soup = BeautifulSoup(response.content, "html.parser")
-        link_tags = soup.find_all("link", rel=[
-                                  "icon", "shortcut icon", "apple-touch-icon", "apple-touch-icon-precomposed"])
+        link_tags = soup.find_all(
+            "link",
+            rel=[
+                "icon",
+                "shortcut icon",
+                "apple-touch-icon",
+                "apple-touch-icon-precomposed",
+            ],
+        )
         for link in link_tags:
             href = link.get("href")
             if href:
@@ -154,5 +185,7 @@ def fetch_favicon(url: str) -> str:
         print(f"Error parsing HTML for {url}: {e}")
 
     # Fallback to Google's favicon service
-    google_favicon_url = f"http://www.google.com/s2/favicons?domain={parsed_url.netloc}"
+    google_favicon_url = (
+        f"http://www.google.com/s2/favicons?domain={parsed_url.netloc}"
+    )
     return google_favicon_url

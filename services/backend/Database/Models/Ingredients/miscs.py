@@ -4,7 +4,7 @@ from database import Base
 
 
 class RecipeMisc(Base):
-    __tablename__ = 'recipe_miscs'
+    __tablename__ = "recipe_miscs"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=True)
@@ -19,13 +19,13 @@ class RecipeMisc(Base):
     inventory = Column(Integer, nullable=True)
     display_time = Column(String, nullable=True)
     batch_size = Column(Integer, nullable=True)
-    recipe_id = Column(Integer, ForeignKey('recipes.id'))
+    recipe_id = Column(Integer, ForeignKey("recipes.id"))
 
     recipe = relationship("Recipes", back_populates="miscs")
 
 
 class InventoryMisc(Base):
-    __tablename__ = 'inventory_miscs'
+    __tablename__ = "inventory_miscs"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=True)
@@ -40,6 +40,6 @@ class InventoryMisc(Base):
     inventory = Column(Integer, nullable=True)
     display_time = Column(String, nullable=True)
     batch_size = Column(Integer, nullable=True)
-    batch_id = Column(Integer, ForeignKey('batches.id'))
+    batch_id = Column(Integer, ForeignKey("batches.id"))
 
     batch = relationship("Batches", back_populates="inventory_miscs")

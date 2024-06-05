@@ -7,9 +7,9 @@ class RecipeAdjunct(Base):
     Recipe-specific Adjunct table.
     """
 
-    __tablename__ = 'recipe_adjunct'
+    __tablename__ = "recipe_adjunct"
     id = Column(Integer, primary_key=True, index=True)
-    fermentable_id = Column(Integer, ForeignKey('recipe_fermentables.id'))
+    fermentable_id = Column(Integer, ForeignKey("recipe_fermentables.id"))
 
 
 class InventoryAdjunct(Base):
@@ -17,6 +17,6 @@ class InventoryAdjunct(Base):
     Inventory-specific Adjunct table.
     """
 
-    __tablename__ = 'inventory_adjunct'
+    __tablename__ = "inventory_adjunct"
     id = Column(Integer, primary_key=True, index=True)
-    fermentable_id = Column(Integer, ForeignKey('inventory_fermentables.id'))
+    fermentable_id = Column(Integer, ForeignKey("inventory_fermentables.id"))
