@@ -97,3 +97,4 @@ webencodings==0.5.1
 wkhtmltopdf==0.2
 xyzservices==2023.2.0
 pandas
+selenium

@@ -13,35 +13,25 @@ class Users(Base):
     Relationships:
 
     - ONE user/brewer can have ZERO or MANY recipes
-
     - ONE user/brewer can have ZERO or MANY equipment_profiles
-
     - ONE user/brewer can have ZERO or MANY fermentation_profiles
-
     - ONE user/brewer can have ZERO or MANY mash_profiles
-
     - ONE user/brewer can have ZERO or MANY water_profiles
 
     Notes:
-
     - The relationship between the User and Recipe tables is defined in the
-
     Recipe table
 
     - The relationship between the User and EquipmentProfile tables is defined
-
     in the EquipmentProfile table
 
     - The relationship between the User and FermentationProfile tables is
-
     defined in the FermentationProfile table
 
     - The relationship between the User and MashProfile tables is defined in
-
     the MashProfile table
 
     - The relationship between the User and WaterProfile tables is defined in
-
     the WaterProfile table
 
     """

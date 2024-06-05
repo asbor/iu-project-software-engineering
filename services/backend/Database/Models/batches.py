@@ -13,7 +13,9 @@ class Batches(Base):
     batch_number = Column(Integer, nullable=False)
     batch_size = Column(Float, nullable=False)
     created_at = Column(DateTime, default=datetime.now)
-    updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
+    updated_at = Column(DateTime,
+                        default=datetime.now,
+                        onupdate=datetime.now)
     brewer = Column(String, nullable=False)
     brew_date = Column(DateTime, nullable=False)
     # Relationships:

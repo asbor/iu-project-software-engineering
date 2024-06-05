@@ -60,7 +60,8 @@ else:
     for beer_style in beer_styles:
         origin = beer_style.find("li", class_="origin").text.strip()
         styles = [
-            li.text.strip() for li in beer_style.findAll("li", class_="style")
+            li.text.strip() for li in beer_style.findAll("li",
+                                                         class_="style")
         ]
         styles_data.append({"origin": origin, "styles": styles})
 

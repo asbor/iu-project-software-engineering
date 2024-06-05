@@ -10,7 +10,9 @@ class Recipes(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     is_batch = Column(Boolean, default=False)
-    origin_recipe_id = Column(Integer, ForeignKey("recipes.id"), nullable=True)
+    origin_recipe_id = Column(Integer,
+                              ForeignKey("recipes.id"),
+                              nullable=True)
     origin_recipe = relationship("Recipes", remote_side=[id])
     version = Column(Integer)
     type = Column(String)
@@ -52,7 +54,8 @@ class Recipes(Base):
     display_tertiary_temp = Column(String)
     display_age_temp = Column(String)
     hops = relationship("RecipeHop", back_populates="recipe")
-    fermentables = relationship("RecipeFermentable", back_populates="recipe")
+    fermentables = relationship("RecipeFermentable",
+                                back_populates="recipe")
     yeasts = relationship("RecipeYeast", back_populates="recipe")
     miscs = relationship("RecipeMisc", back_populates="recipe")
     batches = relationship("Batches", back_populates="recipe")
