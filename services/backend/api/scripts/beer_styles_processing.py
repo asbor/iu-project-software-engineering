@@ -12,6 +12,7 @@ from logger_config import get_logger
 
 logger = get_logger("WebScraper")
 
+
 def scrape_and_process_beer_styles():
     logger.info("Scraping data from Brewers Association website")
     page_to_scrape = requests.get(
@@ -48,6 +49,7 @@ def scrape_and_process_beer_styles():
         store_in_db(styles_data)
     else:
         logger.warning("No data to store")
+
 
 def parse_beer_style(beer_style):
     style_data = {}
@@ -96,6 +98,7 @@ def parse_beer_style(beer_style):
                 style_data[key] = value
     return style_data
 
+
 def store_in_db(styles_data):
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     session = SessionLocal()
@@ -129,6 +132,7 @@ def store_in_db(styles_data):
             session.rollback()
             logger.error(f"IntegrityError for style: {style}")
     session.close()
+
 
 def main():
     logger.info("WebScraper: Starting the process")

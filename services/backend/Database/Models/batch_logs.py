@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from database import Base
 from datetime import datetime
 
+
 class BatchLogs(Base):
     __tablename__ = "batch_logs"
     id = Column(Integer, primary_key=True, index=True)

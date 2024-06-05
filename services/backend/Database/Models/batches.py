@@ -5,6 +5,7 @@ from sqlalchemy.orm import relationship
 from database import Base
 from datetime import datetime
 
+
 class Batches(Base):
     __tablename__ = "batches"
     id = Column(Integer, primary_key=True, index=True)

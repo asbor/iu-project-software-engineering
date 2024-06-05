@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, Float, ForeignKey
 from database import Base
 
+
 class RecipeGrain(Base):
     """
     Recipe-specific Grain table.
@@ -19,6 +20,7 @@ class RecipeGrain(Base):
     free_amino_nitrogen = Column(Float, nullable=True)
     max_in_batch = Column(Float, nullable=True)
     fermentable_id = Column(Integer, ForeignKey("recipe_fermentables.id"))
+
 
 class InventoryGrain(Base):
     """

@@ -12,6 +12,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import relationship
 from database import Base
 
+
 class RecipeFermentable(Base):
     __tablename__ = "recipe_fermentables"
     id = Column(Integer, primary_key=True, index=True)
@@ -35,6 +36,7 @@ class RecipeFermentable(Base):
     used_in = Column(String, nullable=True)
     recipe_id = Column(Integer, ForeignKey("recipes.id"))
     recipe = relationship("Recipes", back_populates="fermentables")
+
 
 class InventoryFermentable(Base):
     __tablename__ = "inventory_fermentables"

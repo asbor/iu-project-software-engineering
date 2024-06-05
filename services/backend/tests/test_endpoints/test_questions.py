@@ -15,6 +15,7 @@ TestingSessionLocal = sessionmaker(
 
 # Override the get_db function to use the test database
 
+
 def override_get_db():
     try:
         db = TestingSessionLocal()
@@ -22,8 +23,10 @@ def override_get_db():
     finally:
         db.close()
 
+
 app.dependency_overrides[get_db] = override_get_db
 client = TestClient(app)
+
 
 @pytest.fixture(autouse=True)
 def setup_and_teardown():
@@ -34,6 +37,7 @@ def setup_and_teardown():
     # Drop the database tables after the test
 
     Base.metadata.drop_all(bind=engine)
+
 
 def test_create_and_get_all_questions():
     # Create a question and associated choices
@@ -67,6 +71,7 @@ def test_create_and_get_all_questions():
         choice["choice_text"] == "Paris" and choice["is_correct"]
         for choice in question["choices"]
     )
+
 
 def test_delete_question():
     # Create a question and associated choices

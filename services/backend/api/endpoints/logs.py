@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 
 router = APIRouter()
 
+
 @router.get("/api/logs")
 async def get_logs():
     try:

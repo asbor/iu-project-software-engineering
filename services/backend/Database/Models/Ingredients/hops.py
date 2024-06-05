@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from database import Base
 
+
 class RecipeHop(Base):
     __tablename__ = "recipe_hops"
     id = Column(Integer, primary_key=True, index=True)
@@ -23,6 +24,7 @@ class RecipeHop(Base):
     display_time = Column(String, nullable=True)
     recipe_id = Column(Integer, ForeignKey("recipes.id"))
     recipe = relationship("Recipes", back_populates="hops")
+
 
 class InventoryHop(Base):
     __tablename__ = "inventory_hops"

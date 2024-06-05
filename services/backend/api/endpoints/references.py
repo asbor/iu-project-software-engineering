@@ -17,6 +17,7 @@ router = APIRouter()
 
 # References Endpoints
 
+
 @router.post("/references/import", response_model=dict)
 async def import_references(
     db: Session = Depends(get_db), file: UploadFile = File(...)
@@ -40,6 +41,7 @@ async def import_references(
         db.add(reference)
     db.commit()
     return {"message": "References imported successfully"}
+
 
 @router.get("/references/export")
 async def export_references(db: Session = Depends(get_db)):
@@ -73,10 +75,12 @@ async def export_references(db: Session = Depends(get_db)):
         headers={"Content-Disposition": "attachment; filename=references.xml"},
     )
 
+
 @router.get("/references", response_model=List[schemas.Reference])
 async def get_all_references(db: Session = Depends(get_db)):
     references = db.query(models.References).all()
     return references
+
 
 @router.get("/references/{reference_id}", response_model=schemas.Reference)
 async def get_reference(reference_id: int, db: Session = Depends(get_db)):
@@ -88,6 +92,7 @@ async def get_reference(reference_id: int, db: Session = Depends(get_db)):
     if not reference:
         raise HTTPException(status_code=404, detail="Reference not found")
     return reference
+
 
 @router.post("/references", response_model=schemas.Reference)
 async def create_reference(
@@ -102,6 +107,7 @@ async def create_reference(
     db.refresh(db_reference)
     return db_reference
 
+
 @router.delete("/references/{reference_id}", response_model=schemas.Reference)
 async def delete_reference(reference_id: int, db: Session = Depends(get_db)):
     reference = (
@@ -114,6 +120,7 @@ async def delete_reference(reference_id: int, db: Session = Depends(get_db)):
     db.delete(reference)
     db.commit()
     return reference
+
 
 @router.put("/references/{reference_id}", response_model=schemas.Reference)
 async def update_reference(
@@ -135,6 +142,7 @@ async def update_reference(
     return db_reference
 
 # Helper function to fetch favicon URL
+
 
 def fetch_favicon(url: str) -> str:
     parsed_url = urlparse(url)

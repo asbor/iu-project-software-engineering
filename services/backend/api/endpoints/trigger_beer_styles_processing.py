@@ -5,8 +5,10 @@ from api.scripts.beer_styles_processing import scrape_and_process_beer_styles
 
 router = APIRouter()
 
+
 def run_beer_styles_script():
     scrape_and_process_beer_styles()
+
 
 @router.post("/refresh-beer-styles")
 async def trigger_script(background_tasks: BackgroundTasks):

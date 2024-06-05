@@ -17,6 +17,7 @@ router = APIRouter()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 def parse_numeric_value(value):
     match = re.match(r"(\d+(\.\d+)?)", value)
     if match:
@@ -24,6 +25,7 @@ def parse_numeric_value(value):
     return 0.0
 
 # Create a new batch
+
 
 @router.post("/batches", response_model=schemas.Batch)
 async def create_batch(
@@ -210,6 +212,7 @@ async def create_batch(
 
 # Get all batches
 
+
 @router.get("/batches", response_model=List[schemas.Batch])
 async def get_all_batches(db: Session = Depends(get_db)):
     batches = (
@@ -220,6 +223,7 @@ async def get_all_batches(db: Session = Depends(get_db)):
     return batches
 
 # Get a batch by ID
+
 
 @router.get("/batches/{batch_id}", response_model=schemas.Batch)
 async def get_batch_by_id(batch_id: int, db: Session = Depends(get_db)):
@@ -241,6 +245,7 @@ async def get_batch_by_id(batch_id: int, db: Session = Depends(get_db)):
 
 # Update a batch by ID
 
+
 @router.put("/batches/{batch_id}", response_model=schemas.Batch)
 async def update_batch(
     batch_id: int, batch: schemas.BatchBase, db: Session = Depends(get_db)
@@ -259,6 +264,7 @@ async def update_batch(
     return db_batch
 
 # Delete a batch by ID
+
 
 @router.delete("/batches/{batch_id}")
 async def delete_batch(batch_id: int, db: Session = Depends(get_db)):

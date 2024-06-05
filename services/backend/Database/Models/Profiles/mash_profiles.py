@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from database import Base
 
+
 class MashProfiles(Base):
     """
     Description:
@@ -34,6 +35,7 @@ class MashProfiles(Base):
     display_tun_temp = Column(String(255), nullable=True)
     display_sparge_temp = Column(String(255), nullable=True)
     display_tun_weight = Column(String(255), nullable=True)
+
 
 class MashStep(Base):
     """

@@ -10,6 +10,7 @@ router = APIRouter()
 
 # Get all recipes
 
+
 @router.get("/recipes")
 async def get_all_recipes(db: Session = Depends(get_db)):
     """
@@ -29,6 +30,7 @@ async def get_all_recipes(db: Session = Depends(get_db)):
     return recipes
 
 # Get a recipe by ID
+
 
 @router.get("/recipes/{recipe_id}")
 async def get_recipe_by_id(recipe_id: int, db: Session = Depends(get_db)):
@@ -52,6 +54,7 @@ async def get_recipe_by_id(recipe_id: int, db: Session = Depends(get_db)):
     return recipe
 
 # Create a new recipe
+
 
 @router.post("/recipes")
 async def create_recipe(
@@ -108,6 +111,7 @@ async def create_recipe(
     return db_recipe
 
 # Update a recipe by ID
+
 
 @router.put("/recipes/{recipe_id}")
 async def update_recipe(
@@ -166,6 +170,7 @@ async def update_recipe(
     return db_recipe
 
 # Delete a recipe by ID
+
 
 @router.delete("/recipes/{recipe_id}")
 async def delete_recipe(recipe_id: int, db: Session = Depends(get_db)):

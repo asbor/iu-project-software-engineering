@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
+
 class HopBase(BaseModel):
     name: str
     origin: Optional[str]
@@ -17,17 +18,21 @@ class HopBase(BaseModel):
     inventory: Optional[str]
     display_time: Optional[str]
 
+
 class RecipeHop(HopBase):
     recipe_id: int
 
     class Config:
         orm_mode: bool = True
 
+
 class InventoryHopBase(HopBase):
     pass
 
+
 class InventoryHopCreate(InventoryHopBase):
     pass
+
 
 class InventoryHop(InventoryHopBase):
     id: int

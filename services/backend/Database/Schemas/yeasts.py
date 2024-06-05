@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
+
 class YeastBase(BaseModel):
     name: str
     type: Optional[str]
@@ -19,17 +20,21 @@ class YeastBase(BaseModel):
     max_reuse: Optional[int]
     add_to_secondary: Optional[bool]
 
+
 class RecipeYeast(YeastBase):
     recipe_id: int
 
     class Config:
         orm_mode: bool = True
 
+
 class InventoryYeastBase(YeastBase):
     pass
 
+
 class InventoryYeastCreate(InventoryYeastBase):
     pass
+
 
 class InventoryYeast(InventoryYeastBase):
     id: int

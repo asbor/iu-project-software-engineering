@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class OtherBase(BaseModel):
     """
     Other model

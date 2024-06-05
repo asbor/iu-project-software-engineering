@@ -7,6 +7,7 @@ from .fermentables import FermentableBase
 from .miscs import MiscBase
 from .yeasts import YeastBase
 
+
 class RecipeBase(BaseModel):
     name: str
     version: Optional[int]

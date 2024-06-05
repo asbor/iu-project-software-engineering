@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from database import Base
 
+
 class EquipmentProfiles(Base):
     """
     Description:

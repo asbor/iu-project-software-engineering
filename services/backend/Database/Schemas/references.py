@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 
+
 class ReferenceBase(BaseModel):
     name: str
     url: str
@@ -9,11 +10,14 @@ class ReferenceBase(BaseModel):
     category: Optional[str] = None
     favicon_url: Optional[str] = None
 
+
 class ReferenceCreate(ReferenceBase):
     pass
 
+
 class ReferenceUpdate(ReferenceBase):
     pass
+
 
 class ReferenceInDBBase(ReferenceBase):
     id: int
@@ -22,6 +26,7 @@ class ReferenceInDBBase(ReferenceBase):
 
     class Config:
         from_attributes = True
+
 
 class Reference(ReferenceInDBBase):
     pass

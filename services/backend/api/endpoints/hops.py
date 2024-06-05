@@ -11,6 +11,7 @@ router = APIRouter()
 
 # Recipe Hops Endpoints
 
+
 @router.get("/recipes/hops", response_model=List[schemas.RecipeHop])
 async def get_all_recipe_hops(db: Session = Depends(get_db)):
     hops = db.query(models.RecipeHop).all()
@@ -18,10 +19,12 @@ async def get_all_recipe_hops(db: Session = Depends(get_db)):
 
 # Inventory Hops Endpoints
 
+
 @router.get("/inventory/hops", response_model=List[schemas.InventoryHop])
 async def get_all_inventory_hops(db: Session = Depends(get_db)):
     hops = db.query(models.InventoryHop).all()
     return hops
+
 
 @router.get("/inventory/hops/{hop_id}", response_model=schemas.InventoryHop)
 async def get_inventory_hop(hop_id: int, db: Session = Depends(get_db)):
@@ -33,6 +36,7 @@ async def get_inventory_hop(hop_id: int, db: Session = Depends(get_db)):
     if not hop:
         raise HTTPException(status_code=404, detail="Hop not found")
     return hop
+
 
 @router.post("/inventory/hops", response_model=schemas.InventoryHop)
 async def create_inventory_hop(
@@ -47,6 +51,7 @@ async def create_inventory_hop(
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+
 @router.delete("/inventory/hops/{id}", response_model=schemas.InventoryHop)
 async def delete_inventory_hop(id: int, db: Session = Depends(get_db)):
     hop = (
@@ -59,6 +64,7 @@ async def delete_inventory_hop(id: int, db: Session = Depends(get_db)):
     db.delete(hop)
     db.commit()
     return hop
+
 
 @router.put("/inventory/hops/{id}", response_model=schemas.InventoryHop)
 async def update_inventory_hop(

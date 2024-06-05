@@ -22,10 +22,17 @@ def merge_and_convert_to_pdf(directory, outout_file):
                 outfile.write(infile.read())
     # Convert the merged markdown file to PDF
     output_file = os.path.join(directory, outout_file)
-    subprocess.run(["pandoc", merged_file, "-o", output_file,
-                    "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
-                    "--pdf-engine=xelatex", "--include-in-header", "preamble.tex",
-                    "--bibliography=bibliography.bib", "--number-sections"])
+    subprocess.run(["pandoc",
+                    merged_file,
+                    "-o",
+                    output_file,
+                    "--variable=geometry:a4paper",
+                    "--variable=geometry:margin=1in",
+                    "--pdf-engine=xelatex",
+                    "--include-in-header",
+                    "preamble.tex",
+                    "--bibliography=bibliography.bib",
+                    "--number-sections"])
     # Remove the merged markdown file
     os.remove(merged_file)
     print(f"PDF file created: {output_file}")
@@ -34,7 +41,8 @@ def merge_and_convert_to_pdf(directory, outout_file):
 def split_chapters(markdown_file, destination):
     with open(markdown_file, 'r', encoding='utf-8') as file:
         content = file.read()
-    # Change references to images to point to the correct directory (../images/) instead of (images/)
+    # Change references to images to point to the correct directory
+    # (../images/) instead of (images/)
     content = content.replace('](images/', '](../images/')
     # Split content into chapters based on headers
     chapters = re.split(r'\n#\s', content)

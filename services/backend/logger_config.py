@@ -5,6 +5,7 @@ from logging.handlers import RotatingFileHandler
 
 logger = None
 
+
 def get_logger(name=None):
     global logger
     if logger is None:
@@ -12,6 +13,7 @@ def get_logger(name=None):
     if name:
         return logging.getLogger(name)
     return logger
+
 
 def configure_logger():
     logger = logging.getLogger()
