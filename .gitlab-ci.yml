@@ -30,20 +30,23 @@ build:
 unit-test-job:
   stage: test
   script:
+    - docker-compose -f docker-compose.yml -f docker-compose.test.yml build --no-cache
     - docker-compose -f docker-compose.yml -f docker-compose.test.yml up -d db
-    - docker-compose -f docker-compose.yml -f docker-compose.test.yml run backend /home/app/.local/bin/pytest tests
-    - docker-compose -f docker-compose.yml -f docker-compose.test.yml down
+    - docker-compose -f docker-compose.yml -f docker-compose.test.yml run backend /bin/sh -c "export PATH=\$PATH:/home/app/.local/bin && pytest --junitxml=/app/test-results.xml tests"
   artifacts:
     when: always
     reports:
       junit: test-results.xml
     paths:
-      - test-results.xml
+      - services/backend/test-results.xml
+  after_script:
+    - docker-compose -f docker-compose.yml -f docker-compose.test.yml down -v --remove-orphans
 
 lint-test-job:
   stage: test
   script:
     - docker-compose -f docker-compose.yml run backend /home/app/.local/bin/flake8 /app
+  after_script:
     - docker-compose -f docker-compose.yml down
 
 release-image:
