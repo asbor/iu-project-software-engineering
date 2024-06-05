@@ -39,6 +39,7 @@ class MashStep(Base):
     Relationships:
     - ONE mash_step can have ONE mash_profile
     """
+
     __tablename__ = "mash_step"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=True)
@@ -57,4 +58,4 @@ class MashStep(Base):
     display_infuse_amt = Column(String(255), nullable=True)
 
     # Relationships
-    mash_id = Column(Integer, ForeignKey('mash.id'))
+    mash_id = Column(Integer, ForeignKey("mash.id"))

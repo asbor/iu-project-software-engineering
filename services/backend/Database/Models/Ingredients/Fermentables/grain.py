@@ -18,7 +18,7 @@ class RecipeGrain(Base):
     friability = Column(Float, nullable=True)
     free_amino_nitrogen = Column(Float, nullable=True)
     max_in_batch = Column(Float, nullable=True)
-    fermentable_id = Column(Integer, ForeignKey('recipe_fermentables.id'))
+    fermentable_id = Column(Integer, ForeignKey("recipe_fermentables.id"))
 
 
 class InventoryGrain(Base):
@@ -37,4 +37,4 @@ class InventoryGrain(Base):
     friability = Column(Float, nullable=True)
     free_amino_nitrogen = Column(Float, nullable=True)
     max_in_batch = Column(Float, nullable=True)
-    fermentable_id = Column(Integer, ForeignKey('inventory_fermentables.id'))
+    fermentable_id = Column(Integer, ForeignKey("inventory_fermentables.id"))

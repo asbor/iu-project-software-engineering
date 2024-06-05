@@ -8,7 +8,7 @@ import time
 from logger_config import get_logger
 
 # Get logger instance
-logger = get_logger('Setup')
+logger = get_logger("Setup")
 
 # Load environment variables
 logger.info("Loading environment variables")
@@ -29,6 +29,7 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
 if not IS_TESTING:
     from sqlalchemy_utils import database_exists, create_database
+
     # Wait for the database to be available before connecting
     logger.info("Waiting for the database to be available")
     while not database_exists(SQLALCHEMY_DATABASE_URL):

@@ -16,4 +16,5 @@ async def get_logs():
         return JSONResponse(content={"log_content": log_content})
     except Exception as e:
         raise HTTPException(
-            status_code=500, detail=f"Failed to read log file: {e}")
+            status_code=500, detail=f"Failed to read log file: {e}"
+        )

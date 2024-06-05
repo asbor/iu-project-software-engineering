@@ -6,13 +6,13 @@ from database import Base
 
 
 class Recipes(Base):
-    __tablename__ = 'recipes'
+    __tablename__ = "recipes"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     is_batch = Column(Boolean, default=False)
-    origin_recipe_id = Column(Integer, ForeignKey('recipes.id'), nullable=True)
-    origin_recipe = relationship('Recipes', remote_side=[id])
+    origin_recipe_id = Column(Integer, ForeignKey("recipes.id"), nullable=True)
+    origin_recipe = relationship("Recipes", remote_side=[id])
     version = Column(Integer)
     type = Column(String)
     brewer = Column(String)

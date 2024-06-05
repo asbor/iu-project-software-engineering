@@ -43,4 +43,4 @@ class StyleGuidelines(Base):
     # ebc_max = Column(Integer, nullable=True)
 
     # Relationships
-    recipe_id = Column(Integer, ForeignKey('recipes.id'))
+    recipe_id = Column(Integer, ForeignKey("recipes.id"))

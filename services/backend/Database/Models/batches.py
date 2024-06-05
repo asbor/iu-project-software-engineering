@@ -22,9 +22,11 @@ class Batches(Base):
     recipe_id = Column(Integer, ForeignKey("recipes.id"), nullable=False)
     recipe = relationship("Recipes", back_populates="batches")
     batch_log = relationship(
-        "BatchLogs", back_populates="batch", uselist=False)
+        "BatchLogs", back_populates="batch", uselist=False
+    )
     inventory_fermentables = relationship(
-        "InventoryFermentable", back_populates="batch")
+        "InventoryFermentable", back_populates="batch"
+    )
     inventory_hops = relationship("InventoryHop", back_populates="batch")
     inventory_miscs = relationship("InventoryMisc", back_populates="batch")
     inventory_yeasts = relationship("InventoryYeast", back_populates="batch")

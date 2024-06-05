@@ -1,6 +1,14 @@
 # Database/Models/Ingredients/fermentables.py
 
-from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey, Boolean
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Float,
+    Date,
+    ForeignKey,
+    Boolean,
+)
 from sqlalchemy.orm import relationship
 from database import Base
 
@@ -27,7 +35,7 @@ class RecipeFermentable(Base):
     description = Column(String, nullable=True)
     substitutes = Column(String, nullable=True)
     used_in = Column(String, nullable=True)
-    recipe_id = Column(Integer, ForeignKey('recipes.id'))
+    recipe_id = Column(Integer, ForeignKey("recipes.id"))
 
     recipe = relationship("Recipes", back_populates="fermentables")
 
@@ -69,6 +77,6 @@ class InventoryFermentable(Base):
     display_amount = Column(String, nullable=True)
     display_time = Column(String, nullable=True)
     batch_size = Column(Float, nullable=True)
-    batch_id = Column(Integer, ForeignKey('batches.id'), nullable=True)
+    batch_id = Column(Integer, ForeignKey("batches.id"), nullable=True)
 
     batch = relationship("Batches", back_populates="inventory_fermentables")

@@ -9,7 +9,7 @@ class RecipeOther(Base):
 
     __tablename__ = "recipe_other"
     id = Column(Integer, primary_key=True, index=True)
-    fermentable_id = Column(Integer, ForeignKey('recipe_fermentables.id'))
+    fermentable_id = Column(Integer, ForeignKey("recipe_fermentables.id"))
 
 
 class InventoryOther(Base):
@@ -19,4 +19,4 @@ class InventoryOther(Base):
 
     __tablename__ = "inventory_other"
     id = Column(Integer, primary_key=True, index=True)
-    fermentable_id = Column(Integer, ForeignKey('inventory_fermentables.id'))
+    fermentable_id = Column(Integer, ForeignKey("inventory_fermentables.id"))

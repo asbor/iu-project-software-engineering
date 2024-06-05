@@ -20,11 +20,13 @@ def configure_logger():
 
     # Log format
     formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
 
     # File handler
     file_handler = RotatingFileHandler(
-        'logs.log', maxBytes=1024*1024, backupCount=10)
+        "logs.log", maxBytes=1024 * 1024, backupCount=10
+    )
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
 

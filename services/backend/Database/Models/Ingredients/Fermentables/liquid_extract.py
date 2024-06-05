@@ -9,7 +9,7 @@ class RecipeLiquidExtract(Base):
 
     __tablename__ = "recipe_liquid_extract"
     id = Column(Integer, primary_key=True, index=True)
-    fermentable_id = Column(Integer, ForeignKey('recipe_fermentables.id'))
+    fermentable_id = Column(Integer, ForeignKey("recipe_fermentables.id"))
 
 
 class InventoryLiquidExtract(Base):
@@ -19,4 +19,4 @@ class InventoryLiquidExtract(Base):
 
     __tablename__ = "inventory_liquid_extract"
     id = Column(Integer, primary_key=True, index=True)
-    fermentable_id = Column(Integer, ForeignKey('inventory_fermentables.id'))
+    fermentable_id = Column(Integer, ForeignKey("inventory_fermentables.id"))

@@ -17,7 +17,7 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
 # Path to the ChromeDriver, which is now in /usr/local/bin/
-chrome_driver_path = '/usr/local/bin/chromedriver'
+chrome_driver_path = "/usr/local/bin/chromedriver"
 
 try:
     # Set up the service with the ChromeDriver
@@ -30,27 +30,30 @@ except Exception as e:
 # Access the website
 logger.info("Scraping data from Brewers Association website")
 driver.get(
-    'https://www.brewersassociation.org/resources/brewers-association-beer-style-guidelines/')
+    "https://www.brewersassociation.org/resources/brewers-association-beer-style-guidelines/"
+)
 
 # Give time for JavaScript to load if necessary
 driver.implicitly_wait(10)
 
 # Get the page source after JavaScript has rendered
-soup = BeautifulSoup(driver.page_source, 'html.parser')
+soup = BeautifulSoup(driver.page_source, "html.parser")
 
 # Find the beer styles
-beer_styles = soup.findAll('ul', attrs={'class': 'beer-style-origin-toc'})
+beer_styles = soup.findAll("ul", attrs={"class": "beer-style-origin-toc"})
 styles_data = []
 
 if not beer_styles:
     logger.error(
-        "No beer styles found. The website structure may have changed or content is dynamically loaded.")
+        "No beer styles found. The website structure may have changed or content is dynamically loaded."
+    )
 else:
     for beer_style in beer_styles:
-        origin = beer_style.find('li', class_='origin').text.strip()
-        styles = [li.text.strip()
-                  for li in beer_style.findAll('li', class_='style')]
-        styles_data.append({'origin': origin, 'styles': styles})
+        origin = beer_style.find("li", class_="origin").text.strip()
+        styles = [
+            li.text.strip() for li in beer_style.findAll("li", class_="style")
+        ]
+        styles_data.append({"origin": origin, "styles": styles})
 
 # Close the browser
 driver.quit()

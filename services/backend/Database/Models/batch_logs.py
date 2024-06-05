@@ -8,7 +8,7 @@ class BatchLogs(Base):
     __tablename__ = "batch_logs"
 
     id = Column(Integer, primary_key=True, index=True)
-    batch_id = Column(Integer, ForeignKey('batches.id'))
+    batch_id = Column(Integer, ForeignKey("batches.id"))
     timestamp = Column(DateTime, default=datetime.now)
     activity = Column(String, nullable=False)
     notes = Column(String, nullable=True)

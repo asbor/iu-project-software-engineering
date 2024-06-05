@@ -9,8 +9,14 @@ from .choices import Choices
 
 from .Ingredients.Fermentables.grain import RecipeGrain, InventoryGrain
 from .Ingredients.Fermentables.adjunct import RecipeAdjunct, InventoryAdjunct
-from .Ingredients.Fermentables.dry_extract import RecipeDryExtract, InventoryDryExtract
-from .Ingredients.Fermentables.liquid_extract import RecipeLiquidExtract, InventoryLiquidExtract
+from .Ingredients.Fermentables.dry_extract import (
+    RecipeDryExtract,
+    InventoryDryExtract,
+)
+from .Ingredients.Fermentables.liquid_extract import (
+    RecipeLiquidExtract,
+    InventoryLiquidExtract,
+)
 from .Ingredients.Fermentables.other import RecipeOther, InventoryOther
 from .Ingredients.Fermentables.sugar import RecipeSugar, InventorySugar
 

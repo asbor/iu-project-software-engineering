@@ -4,7 +4,7 @@ from database import Base
 
 
 class RecipeYeast(Base):
-    __tablename__ = 'recipe_yeasts'
+    __tablename__ = "recipe_yeasts"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=True)
@@ -23,13 +23,13 @@ class RecipeYeast(Base):
     times_cultured = Column(Integer, nullable=True)
     max_reuse = Column(Integer, nullable=True)
     add_to_secondary = Column(Boolean, nullable=True)
-    recipe_id = Column(Integer, ForeignKey('recipes.id'))
+    recipe_id = Column(Integer, ForeignKey("recipes.id"))
 
     recipe = relationship("Recipes", back_populates="yeasts")
 
 
 class InventoryYeast(Base):
-    __tablename__ = 'inventory_yeasts'
+    __tablename__ = "inventory_yeasts"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=True)
@@ -48,6 +48,6 @@ class InventoryYeast(Base):
     times_cultured = Column(Integer, nullable=True)
     max_reuse = Column(Integer, nullable=True)
     add_to_secondary = Column(Boolean, nullable=True)
-    batch_id = Column(Integer, ForeignKey('batches.id'))
+    batch_id = Column(Integer, ForeignKey("batches.id"))
 
     batch = relationship("Batches", back_populates="inventory_yeasts")
