@@ -9,6 +9,7 @@ variables:
 
 stages:
   - build
+  - format
   - test
   - release
   - deploy
@@ -26,6 +27,19 @@ build:
     - master
     - main
     - tags
+
+format:
+  stage: format
+  image: python:3.10
+  script:
+    - pip install autopep8
+    - autopep8 --in-place --aggressive --aggressive -r .
+    - git diff --exit-code || git commit -am "Auto-formatting by autopep8"
+  only:
+    - merge_requests
+  artifacts:
+    paths:
+      - .
 
 unit-test-job:
   stage: test
