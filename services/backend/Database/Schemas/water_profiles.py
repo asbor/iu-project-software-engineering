@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional, List
-from datetime import datetime, date
+from typing import Optional
 
 
 class WaterProfileBase(BaseModel):

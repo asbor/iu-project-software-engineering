@@ -32,3 +32,5 @@ flake8
 
 # Install pytest for testing
 pytest
+
+selenium
