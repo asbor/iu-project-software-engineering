@@ -53,7 +53,7 @@ beer_styles = soup.findAll("ul", attrs={"class": "beer-style-origin-toc"})
 styles_data = []
 if not beer_styles:
     logger.error(
-        '''No beer styles found. The website structure 
+        '''No beer styles found. The website structure
         may have changed or content is dynamically loaded.'''
     )
 else:

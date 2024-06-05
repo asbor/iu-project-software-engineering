@@ -23,12 +23,12 @@ logger.info(f"IS_TESTING: {IS_TESTING}")
 if IS_TESTING:
     SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 else:
-    SQLALCHEMY_DATABASE_URL = f"postgresql: //
+    SQLALCHEMY_DATABASE_URL = f'''postgresql: //
     {os.getenv('DATABASE_USER')}:
     {os.getenv('DATABASE_PASSWORD')}@
     {os.getenv('DATABASE_HOST')}:
     {os.getenv('DATABASE_PORT')}/
-    {os.getenv('DATABASE_NAME')}"
+    {os.getenv('DATABASE_NAME')}'''
 
 # Connect to the database
 

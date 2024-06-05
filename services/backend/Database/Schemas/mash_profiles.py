@@ -16,7 +16,7 @@ class MashProfileBase(BaseModel):
 
     Notes:
 
-    - The id field is not included in the base model because it is generated 
+    - The id field is not included in the base model because it is generated
     by the database
 
     """
