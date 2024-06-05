@@ -27,10 +27,17 @@ def merge_and_convert_to_pdf(directory, outout_file):
 
     # Convert the merged markdown file to PDF
     output_file = os.path.join(directory, outout_file)
-    subprocess.run(["pandoc", merged_file, "-o", output_file,
-                    "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
-                    "--pdf-engine=xelatex", "--include-in-header", "preamble.tex",
-                    "--bibliography=bibliography.bib", "--number-sections"])
+    subprocess.run(["pandoc",
+                    merged_file,
+                    "-o",
+                    output_file,
+                    "--variable=geometry:a4paper",
+                    "--variable=geometry:margin=1in",
+                    "--pdf-engine=xelatex",
+                    "--include-in-header",
+                    "preamble.tex",
+                    "--bibliography=bibliography.bib",
+                    "--number-sections"])
 
     # Remove the merged markdown file
     os.remove(merged_file)
@@ -42,7 +49,8 @@ def split_chapters(markdown_file, destination):
     with open(markdown_file, 'r', encoding='utf-8') as file:
         content = file.read()
 
-    # Change references to images to point to the correct directory (../images/) instead of (images/)
+    # Change references to images to point to the correct directory
+    # (../images/) instead of (images/)
     content = content.replace('](images/', '](../images/')
 
     # Split content into chapters based on headers
@@ -85,7 +93,8 @@ def main():
         'java -jar tools/plantuml-1.2024.3.jar -tpng documents/docs/00-HoppyBrew.md -o ./images/')
 
     # Note that the markdown files deriving from the main markdown file are not in same directory as the main markdown file (00-HoppyBrew.md)
-    # we will therefore need to change the references in the derived markdown files to point to the correct directory
+    # we will therefore need to change the references in the derived markdown
+    # files to point to the correct directory
 
     # Split the markdown file into chapters
     markdown_file = './documents/docs/00-HoppyBrew.md'
