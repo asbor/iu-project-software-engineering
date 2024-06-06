@@ -70,7 +70,7 @@ def test_create_fermentable():
     print(response.json())
 
     assert response.status_code == 200, f'''
-    Unexpected status code: {response.status_code}, 
+    Unexpected status code: {response.status_code},
     response: {response.json()}'''
 
     fermentable = response.json()
