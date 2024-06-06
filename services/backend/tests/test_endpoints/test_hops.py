@@ -216,7 +216,7 @@ def test_delete_inventory_hop(client):
 
     # Verify the hop was deleted
     response = client.get(f"/inventory/hops/{hop_id}")
-    assert response.status_code == 200, f'''
+    assert response.status_code == 404, f'''
     Unexpected status code: {response.status_code}'''
 
 
