@@ -34,4 +34,3 @@ flake8
 pytest
 
 selenium
-httpx

@@ -4,12 +4,10 @@ from main import app
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database import Base, get_db
-from datetime import datetime
-import Database.Models as models
-import logging
 
 # Use a separate test database
-SQLALCHEMY_DATABASE_URL = "sqlite:///./test_batches.db"
+
+SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 TestingSessionLocal = sessionmaker(
     autocommit=False, autoflush=False, bind=engine
@@ -29,94 +27,90 @@ def override_get_db():
 app.dependency_overrides[get_db] = override_get_db
 client = TestClient(app)
 
-# Configure logging
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
-
 
 @pytest.fixture(autouse=True)
 def setup_and_teardown():
     # Create the database and tables
+
     Base.metadata.create_all(bind=engine)
     yield
     # Drop the database tables after the test
+
     Base.metadata.drop_all(bind=engine)
 
 
-def create_test_recipe(db):
-    recipe = models.Recipes(
-        name="Test Recipe",
-        is_batch=False,
-        version="1.0",
-        type="Ale",
-        brewer="Test Brewer",
-        batch_size=20.0,
-        boil_size=25.0,
-        boil_time=60,
-        efficiency=75.0,
-        notes="Test Notes",
-        taste_notes="Test Taste Notes",
-        taste_rating=5,
-        og=1.050,
-        fg=1.010,
-        fermentation_stages=1,
-        primary_age=7,
-        primary_temp=20.0,
-        secondary_age=7,
-        secondary_temp=20.0,
-        age=14,
-        age_temp=10.0,
-        carbonation_used="CO2",
-        est_og=1.050,
-        est_fg=1.010,
-        est_color=10.0,
-        ibu=40.0,
-        ibu_method="Tinseth",
-        est_abv=5.0,
-    )
-    db.add(recipe)
-    db.commit()
-    db.refresh(recipe)
-    logger.debug(f"Created test recipe with ID: {recipe.id}")
-    return recipe
+def test_create_and_get_all_questions():
+    # Create a question and associated choices
 
-
-def test_create_batch():
-    # Create a test recipe
-    db = TestingSessionLocal()
-    recipe = create_test_recipe(db)
-    db.close()
-
-    # Create a test batch
     response = client.post(
-        "/batches",
+        "/questions",
         json={
-            "recipe_id": recipe.id,
-            "batch_name": "Test Batch",
-            "batch_number": 1,
-            "batch_size": 20.0,
-            "brewer": "Test Brewer",
-            "brew_date": datetime.now().isoformat(),
+            "question_text": "What is the capital of France?",
+            "choices": [
+                {"choice_text": "Paris", "is_correct": True},
+                {"choice_text": "Berlin", "is_correct": False},
+                {"choice_text": "Madrid", "is_correct": False},
+            ],
         },
     )
     assert (
         response.status_code == 200
     ), f'''Unexpected status code: {response.status_code},
     response: {response.json()}'''
-    batch = response.json()
-    logger.debug(f"Created batch: {batch}")
 
-    # Verify the batch creation
-    response = client.get(f"/batches/{batch['id']}")
+    response.json()["id"]
+    # Get all questions
+
+    response = client.get("/questions")
     assert (
         response.status_code == 200
     ), f'''Unexpected status code: {response.status_code},
     response: {response.json()}'''
-    fetched_batch = response.json()
-    assert fetched_batch["id"] == batch["id"]
-    assert fetched_batch["batch_name"] == "Test Batch"
-    logger.debug(f"Fetched batch: {fetched_batch}")
+
+    assert len(response.json()) == 1
+    question = response.json()[0]
+    assert question["question_text"] == "What is the capital of France?"
+    assert len(question["choices"]) == 3
+    assert any(
+        choice["choice_text"] == "Paris" and choice["is_correct"]
+        for choice in question["choices"]
+    )
 
 
-if __name__ == "__main__":
-    pytest.main()
+def test_delete_question():
+    # Create a question and associated choices
+
+    response = client.post(
+        "/questions",
+        json={
+            "question_text": "What is the capital of France?",
+            "choices": [
+                {"choice_text": "Paris", "is_correct": True},
+                {"choice_text": "Berlin", "is_correct": False},
+                {"choice_text": "Madrid", "is_correct": False},
+            ],
+        },
+    )
+    assert (
+        response.status_code == 200
+    ), f'''Unexpected status code: {response.status_code},
+    response: {response.json()}'''
+
+    question_id = response.json()["id"]
+    # Delete the question
+
+    response = client.delete(f"/questions/{question_id}")
+    assert (
+        response.status_code == 200
+    ), f'''Unexpected status code: {response.status_code},
+    response: {response.json()}'''
+
+    # Ensure the question is deleted
+
+    response = client.get("/questions")
+    assert (
+        response.status_code == 200
+    ), f'''Unexpected status code: {response.status_code},
+    response: {response.json()}'''
+
+    assert not any(q["id"] == question_id for q in response.json())

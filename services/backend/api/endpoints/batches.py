@@ -13,6 +13,7 @@ import logging
 router = APIRouter()
 
 # Configure logging
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -32,6 +33,7 @@ async def create_batch(
 ):
     try:
         # Fetch the recipe to copy
+
         recipe = (
             db.query(models.Recipes)
             .options(
@@ -44,10 +46,9 @@ async def create_batch(
             .first()
         )
         if not recipe:
-            logger.error(f"Recipe with id {batch.recipe_id} not found")
             raise HTTPException(status_code=404, detail="Recipe not found")
-
         # Create a copy of the recipe with the is_batch flag set to true
+
         batch_recipe = models.Recipes(
             name=recipe.name,
             is_batch=True,
@@ -95,8 +96,8 @@ async def create_batch(
         db.add(batch_recipe)
         db.commit()
         db.refresh(batch_recipe)
-
         # Create a new batch
+
         db_batch = models.Batches(
             recipe_id=batch_recipe.id,
             batch_name=batch.batch_name,
@@ -110,8 +111,8 @@ async def create_batch(
         db.add(db_batch)
         db.commit()
         db.refresh(db_batch)
-
         # Copy ingredients to inventory tables
+
         for hop in recipe.hops:
             db_inventory_hop = models.InventoryHop(
                 name=hop.name,
@@ -255,6 +256,7 @@ async def update_batch(
     if not db_batch:
         raise HTTPException(status_code=404, detail="Batch not found")
     # Update the batch
+
     for key, value in batch.dict().items():
         setattr(db_batch, key, value)
     db.commit()
@@ -272,6 +274,7 @@ async def delete_batch(batch_id: int, db: Session = Depends(get_db)):
     if not db_batch:
         raise HTTPException(status_code=404, detail="Batch not found")
     # Delete related inventory items
+
     db.query(models.InventoryHop).filter(
         models.InventoryHop.batch_id == batch_id
     ).delete()
@@ -285,6 +288,7 @@ async def delete_batch(batch_id: int, db: Session = Depends(get_db)):
         models.InventoryYeast.batch_id == batch_id
     ).delete()
     # Delete the batch
+
     db.delete(db_batch)
     db.commit()
     return {"message": "Batch deleted successfully"}
