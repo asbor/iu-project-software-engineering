@@ -60,9 +60,11 @@ def test_create_misc(client):
             "batch_size": 20,
         },
     )
-    assert (
-        response.status_code == 200
-    ), f"Unexpected status code: {response.status_code}, response: {response.json()}"
+
+    assert response.status_code == 200, f'''
+    Unexpected status code: {response.status_code}, 
+    response: {response.json()}"'''
+
     misc = response.json()
     assert misc["name"] == "Test Misc"
     assert misc["type"] == "Spice"

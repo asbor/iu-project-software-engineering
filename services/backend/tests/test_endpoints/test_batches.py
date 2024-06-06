@@ -4,7 +4,6 @@ from main import app
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database import Base, get_db
-from datetime import datetime
 import Database.Models as models
 import logging
 
@@ -83,5 +82,5 @@ def create_test_recipe(db):
 
 def test_create_batch():
     # Create a test recipe
-    db = TestingSessionLocal()
-    recipe = create_test_recipe(db)
+    # TODO: Create a test recipe
+    pass

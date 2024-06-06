@@ -4,8 +4,6 @@ from main import app
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database import Base, get_db
-from datetime import datetime
-import Database.Models as models
 import logging
 
 # Use a separate test database
@@ -71,7 +69,9 @@ def test_create_fermentable():
     # Print the response for debugging
     print(response.json())
 
-    assert response.status_code == 200, f"Unexpected status code: {response.status_code}, response: {response.json()}"
+    assert response.status_code == 200, f'''
+    Unexpected status code: {response.status_code}, 
+    response: {response.json()}'''
 
     fermentable = response.json()
     assert fermentable["name"] == "Test Fermentable"
