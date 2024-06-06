@@ -1,5 +1,3 @@
-# Database/Schemas/fermentables.py
-
 from pydantic import BaseModel
 from typing import Optional
 from datetime import date
@@ -13,7 +11,7 @@ class FermentableBase(BaseModel):
     origin: Optional[str]
     supplier: Optional[str]
     notes: Optional[str]
-    potential: Optional[int]
+    potential: Optional[float]  # Change to float
     amount: Optional[float]
     cost_per_unit: Optional[float]
     manufacturing_date: Optional[date]

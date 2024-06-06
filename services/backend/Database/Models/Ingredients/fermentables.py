@@ -23,7 +23,7 @@ class RecipeFermentable(Base):
     origin = Column(String, nullable=True)
     supplier = Column(String, nullable=True)
     notes = Column(String, nullable=True)
-    potential = Column(Integer, nullable=True)
+    potential = Column(Float, nullable=True)  # Corrected to Float
     amount = Column(Float, nullable=True)
     cost_per_unit = Column(Float, nullable=True)
     manufacturing_date = Column(Date, nullable=True)
@@ -48,7 +48,7 @@ class InventoryFermentable(Base):
     origin = Column(String, nullable=True)
     supplier = Column(String, nullable=True)
     notes = Column(String, nullable=True)
-    potential = Column(Integer, nullable=True)
+    potential = Column(Float, nullable=True)  # Corrected to Float
     amount = Column(Float, nullable=True)
     cost_per_unit = Column(Float, nullable=True)
     manufacturing_date = Column(Date, nullable=True)

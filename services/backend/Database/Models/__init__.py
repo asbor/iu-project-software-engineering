@@ -1,3 +1,5 @@
+# services/backend/Database/Models/__init__.py
+
 from .recipes import Recipes
 from .batches import Batches
 from .batch_logs import BatchLogs
@@ -20,7 +22,7 @@ from .Ingredients.Fermentables.sugar import RecipeSugar, InventorySugar
 from .Profiles.equipment_profiles import EquipmentProfiles
 from .Profiles.mash_profiles import MashProfiles
 from .Profiles.water_profiles import WaterProfiles
-from .Ingredients.fermentables import RecipeFermentable, InventoryFermentable
+from .Ingredients.fermentables import InventoryFermentable
 from .Ingredients.hops import RecipeHop, InventoryHop
 from .Ingredients.miscs import RecipeMisc, InventoryMisc
 from .Ingredients.yeasts import RecipeYeast, InventoryYeast
