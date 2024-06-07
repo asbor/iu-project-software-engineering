@@ -1,21 +1,20 @@
 # README
 
-This document describes how to get the project up and running. The document is develloped based on Ubuntu 24.04 LTS.
+This document describes how to get the project up and running. The document is developed based on Ubuntu 24.04 LTS.
 
-## Prerequisites
+## 1. Prerequisites
 
-### Install Git
+### 1.1 Install Git
 
 Install the following tools via the terminal:
 
 ```bash
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install git
 ```
 Here is the reworked set of instructions to include the necessary steps for installing Docker, Docker Compose, and setting appropriate permissions:
 
-### Install Docker and Docker Compose
+### 1.2 Install Docker and Docker Compose
 
 1. **Install necessary dependencies**:
     ```sh
@@ -72,7 +71,7 @@ Here is the reworked set of instructions to include the necessary steps for inst
 
 Following these steps should ensure that Docker and Docker Compose are installed correctly and that you have the necessary permissions to run Docker commands.
 
-### Git clone the project
+## 2. Clone the project
 
 ```bash
 git clone https://gitlab.com/asbor1/iu-project-software-engineering.git
