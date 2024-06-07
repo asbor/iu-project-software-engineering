@@ -73,11 +73,12 @@ Following these steps should ensure that Docker and Docker Compose are installed
 
 ## 2. Clone the project
 
+
 ```bash
 git clone https://gitlab.com/asbor1/iu-project-software-engineering.git
 ```
 
-Yoy will need to enter your username and password to clone the project via HTTPS. And you will also have to get an invitation to the project.
+Yoy will need to enter your **username** and **password** to clone the project via HTTPS. And you will also have to get an invitation to the project.
 
 Once the project is downloaded, you can open it in VS Code or any other IDE of your choice.
 
@@ -85,21 +86,10 @@ Once the project is downloaded, you can open it in VS Code or any other IDE of y
 code iu-project-software-engineering
 ```
 
-### Unit testing
+## 3. The initial setup of the project
 
-To run the unit tests, you will need to install the pytest package. Install the package via the terminal:
+In the initial setup of the project, we will first have to create a virtual environment for the project. The virtual environment is used to isolate the project dependencies from the system dependencies.
 
-```bash
-sudo apt install python3-pytest
-```
-
-
-
-## Running the project locally
-
-To run the project locally, we will appearently first have to install the Python3-venv package. This package is not installed by default in Ubuntu 24.04 LTS. The package is required to create a virtual environment for the project.
-
-Install the package via the terminal:
 Create a virtual environment for the project:
 
 ```bash
@@ -118,19 +108,33 @@ Install the project dependencies:
 pip install -r requirements.txt
 ```
 
-The requirements are:
+
+## 3. Unit testing
+
+To run the unit tests, you can run the following command:
 
 ```bash
-alembic
-beautifulsoup4
-fastapi
-psycopg2-binary
-pydantic
-SQLAlchemy
-SQLAlchemy-Utils
-uvicorn
-pandas
-selenium
+pytest
 ```
 
+## 4. Running the backend services using Docker Compose
+
+
+```bash
+docker-compose up
+```
+
+## 5. Running the frontend services
+
+```bash
+cd services/nuxt3-shadcn/
+yarn && yarn dev
+```
+
+## 6. Accessing the application
+
+You can access the application by visiting the following URL in your browser:
+
+
+[http://localhost:3000/](http://localhost:3000/)
 
