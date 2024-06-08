@@ -3,7 +3,7 @@ import subprocess
 import re
 
 
-def merge_and_convert_to_pdf(directory, outout_file):
+def merge_and_convert_to_pdf(directory, output_file):
     """
     Merge all markdown files in the specified directory into a single file and convert it to PDF.
 
@@ -26,7 +26,7 @@ def merge_and_convert_to_pdf(directory, outout_file):
                 outfile.write(infile.read())
 
     # Convert the merged markdown file to PDF
-    output_file = os.path.join(directory, outout_file)
+    output_file = os.path.join(directory, output_file)
     subprocess.run(["pandoc",
                     merged_file,
                     "-o",
@@ -96,13 +96,12 @@ def main():
 
     # Split the markdown file into chapters
     markdown_file = './documents/docs/00-HoppyBrew.md'
-
     directory = "./documents/docs/chapters/"
     split_chapters(markdown_file, directory)
-    outout_file = "HoppyBrew.pdf"
+    output_file = "HoppyBrew.pdf"
 
     # Call the function to merge and convert the files
-    merge_and_convert_to_pdf(directory, outout_file)
+    merge_and_convert_to_pdf(directory, output_file)
 
 
 if __name__ == "__main__":
