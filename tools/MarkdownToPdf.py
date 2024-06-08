@@ -29,7 +29,7 @@ def merge_and_convert_to_pdf(directory, outout_file):
     output_file = os.path.join(directory, outout_file)
     subprocess.run(["pandoc", merged_file, "-o", output_file,
                     "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
-                    "--pdf-engine=xelatex", "--include-in-header", "preamble.tex",
+                    "--pdf-engine=xelatex", "--include-in-header", "/home/asbjorn/repo/iu-project-software-engineering/documents/docs/chapters/preamble.tex",
                     "--bibliography=bibliography.bib", "--number-sections"])
 
     # Remove the merged markdown file
