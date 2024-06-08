@@ -30,7 +30,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/asbor/iu-project-software-engineering">
+  <a href="https://gitlab.com/asbor/iu-project-software-engineering">
     <img src="documents/images/logo.png" alt="Logo" width="300">
   </a>
 
@@ -39,14 +39,14 @@
   <p align="center">
     This project, part of the Software Engineering course at the Faculty of Informatics, International University of Applied Sciences Bad Honnef - Bonn, is inspired by Brewfather. It aims to develop a web app tailored for home-brewers to efficiently manage brewing processes. Motivated by personal experience as a homebrewer and interest in self-hosting, the creator seeks to provide a self-hosted alternative to subscription-based services like Brewfather. The project will be hosted on a personal server, running within a Docker container, to cater to a specific niche in brewing management.
     <br />
-    <a href="https://github.com/asbor/iu-project-software-engineering"><strong>Explore the docs »</strong></a>
+    <a href="https://gitlab.com/asbor/iu-project-software-engineering"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/asbor/iu-project-software-engineering">View Demo</a>
+    <a href="https://gitlab.com/asbor/iu-project-software-engineering">View Demo</a>
     ·
-    <a href="https://github.com/asbor/iu-project-software-engineering/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://gitlab.com/asbor/iu-project-software-engineering/-/issues/new?issuable_template=bug">Report Bug</a>
     ·
-    <a href="https://github.com/asbor/iu-project-software-engineering/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://gitlab.com/asbor/iu-project-software-engineering/-/issues/new?issuable_template=feature">Request Feature</a>
   </p>
 </div>
 
@@ -99,9 +99,8 @@ The project is built using the following technologies:
 | Frontend | Backend | Database | Containerization |
 | --- | --- | --- | --- |
 | [![Vue.js][Vue.js]][Vue-url] | [![Python][Python.org]][Python-url] | [![PostgreSQL][PostgreSQL.org]][PostgreSQL-url] | [![Docker.com][Docker.com]][Docker-url] |
-| | [![Flask][Flask.pocoo]][Flask-url] | [![SQLite][SQLite]][SQLite-url] | [![Unraid][Unraid]][Unraid-url] |
+| | [![sqlalchemy][sqlalchemy]][sqlalchemy-url] | [![SQLite][SQLite]][SQLite-url] | [![Unraid][Unraid]][Unraid-url] |
 | | [![FastAPI][FastAPI.org]][FastAPI-url] | [![Redis][Redis]][Redis-url] |  |
-| | [![sqlalchemy][sqlalchemy]][sqlalchemy-url] | | |
 | | [![pydantic][pydantic]][pydantic-url] | | |
 | | [![uvicorn][uvicorn]][uvicorn-url] | | |
 

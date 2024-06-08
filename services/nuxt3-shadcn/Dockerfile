@@ -5,20 +5,19 @@ FROM node:lts-alpine
 WORKDIR /app
 
 # Copy package.json and yarn.lock to the container
-COPY package.json .
-COPY package-lock.json .
+COPY package.json yarn.lock ./
 
 # Install dependencies using Yarn
-RUN npm install
+RUN yarn install
 
 # Copy the rest of the application files to the container
 COPY . .
 
 # Build the Nuxt 3 application
-RUN npm run build
+RUN yarn build
 
 # Expose the port that the Nuxt app will run on
 EXPOSE 3000
 
 # Set the command to run the Nuxt app
-CMD ["npm", "run", "start"]
+CMD ["yarn", "start"]

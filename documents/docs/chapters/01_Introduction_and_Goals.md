@@ -1,22 +1,22 @@
-# Introduction and Goals
+# # Introduction and Goals
 
-**This documentation:** is intended to provide a high-level overview of the HoppyBrew application. The document is based on the template provided by [@arc42]. Arc42 is a template for documenting software architectures. It is based on the ISO/IEC/IEEE 42010 standard, which is the international standard for documenting software architectures. The template is designed to be flexible and adaptable, and to be used in a wide range of software development projects. The template is divided into a number of sections, each of which covers a different aspect of the software architecture. The sections are designed to be used in a modular fashion, so that they can be used individually or in combination with other sections. The template is also designed to be easy to use, with a clear and consistent structure, and with a focus on the most important aspects of software architecture.
+**This documentation:** is intended to provide a high-level overview of the HoppyBrew application. The document is based on the template provided by [@arc42](https://arc42.org). Arc42 is a template for documenting software architectures. It is based on the ISO/IEC/IEEE 42010 standard, which is the international standard for documenting software architectures. The template is designed to be flexible and adaptable, and to be used in a wide range of software development projects. The template is divided into a number of sections, each of which covers a different aspect of the software architecture. The sections are designed to be used in a modular fashion, so that they can be used individually or in combination with other sections. The template is also designed to be easy to use, with a clear and consistent structure, and with a focus on the most important aspects of software architecture.
 
 ## Requirements Overview
 
-***What is HoppyBrew?***
+### What is HoppyBrew?
 
-*HoppyBrew* is a web application designed to help beer-brewer enthusiasts manage their brewing recipes and brew logs. The application is intended to provide a user-friendly and intuitive interface for managing brewing recipes and brew logs. The application is designed to be compatible with a wide range of devices and browsers, and to integrate with other brewing tools and services, such as `iSpindel`. The application is targeted at beer brewer enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
+*HoppyBrew* is a web application designed to help beer brewing enthusiasts manage their brewing recipes and brew logs. The application is intended to provide a user-friendly and intuitive interface for managing brewing recipes and brew logs. The application is designed to be compatible with a wide range of devices and browsers, and to integrate with other brewing tools and services, such as `iSpindel`. The application is targeted at beer brewing enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way without the need for overpriced subscription fees like those at [@Brewfather](https://brewfather.app), [@BrewersFriend](https://www.brewersfriend.com), or [@BeerSmith](http://beersmith.com).
 
-***Why HoppyBrew?***
+### Why HoppyBrew?
 
-The thing which sets HoppyBrew apart from other brewing applications is that it is open-source and free to use. This means that users can use the application without having to pay any subscription fees.
+The distinguishing feature of HoppyBrew compared to other brewing applications is that it is open-source and free to use. This means users can utilize the application without having to pay any subscription fees.
 
-***Main Features:***
+### Main Features:
 
 The main features of the application are as follows:
 
-* Store and manage brewing recipes
+* Store and manage brewing recipes.
 * Create and manage batches based on recipes.
 * Define water profiles for brewing recipes.
 * Manage brewing profiles, such as mash profiles, fermentation profiles, equipment profiles, and beer style profiles.
@@ -24,23 +24,24 @@ The main features of the application are as follows:
 * Manage inventory items, such as fermentables, hops, yeast, and miscellaneous items.
 * Import and export recipes based on the BeerXML standard.
 
-***Target Audience:***
+### Target Audience:
 
-The target audience for the application is a surprisingly large group of beer-brewer enthusiasts and self-hosting enthusiasts who want manage their brewing recipes and brew logs in a simple and efficient way. Without the need for overpriced subscriptions fees like at [@Brewfather], [@BrewersFriend]  or [@BeerSmith].
+The target audience for the application includes a large group of beer brewing enthusiasts and self-hosting enthusiasts who want to manage their brewing recipes and brew logs in a simple and efficient way, without the need for overpriced subscription fees like those at [@Brewfather](https://brewfather.app), [@BrewersFriend](https://www.brewersfriend.com), or [@BeerSmith](http://beersmith.com).
 
 ## Quality Goals
 
-The top three quality goals for the architecture and design whose fulfillment is of highest importance to the major stakeholders of HoppyBrew have been identified as follows:
+The top three quality goals for the architecture and design, whose fulfillment is of highest importance to the major stakeholders of HoppyBrew, have been identified as follows:
 
-| **Priority** | **Quality**  | **Motivation** |
-| - | - | ----- |
-| 1 | Usability | The application should be easy to use and intuitive, with a clean and modern user interface. |
-| 2 | Compatibility | The application should be compatible with a wide range of devices and browsers. (mobile, desktop, tablet) |
-| 3 | Integration | The application should integrate with other brewing tools and services, such as iSpindel. |
+| **Priority** | **Quality**     | **Motivation**                                                                 |
+|--------------|-----------------|---------------------------------------------------------------------------------|
+| 1            | Usability       | The application should be easy to use and intuitive, with a clean and modern user interface. |
+| 2            | Compatibility   | The application should be compatible with a wide range of devices and browsers (mobile, desktop, tablet). |
+| 3            | Integration     | The application should integrate with other brewing tools and services, such as iSpindel. |
 
-Table: Quality goals and priorities for the application.
+*Table: Quality goals and priorities for the application.*
 
-These quality goals are based on derived summaries of `ISO/IEC 25010 quality model` in [@arc42]. The quality requirements will be further detailed in section 10 "Quality Requirements" of this document.
+These quality goals are derived from the `ISO/IEC 25010 quality model` as referenced in [@arc42](https://arc42.org). The quality requirements will be further detailed in section 10, "Quality Requirements," of this document.
+
 
 ## Stakeholders
 
