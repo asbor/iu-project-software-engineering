@@ -18,7 +18,7 @@ The project consists of three major phases:
 
 These phases represent major milestones, though not explicitly depicted in the timeline image below. The sprints align with these milestones.
 
-![SCRUM Timeline](file:///home/asbjorn/repo/iu-project-software-engineering/documents/docs/images/hoppybrew_2024-04-15_01.54pm.png)
+![SCRUM Timeline](../images/hoppybrew_2024-04-15_01.54pm.png)
 
 | **Phase** | **Sprint** |
 | - | -- |

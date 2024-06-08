@@ -26,7 +26,7 @@ HoppyBrew --> Brewer : Instructions\nand Notifications
     </code>
 </pre>
 
-![High-level business context diagram for the application.](file:///home/asbjorn/repo/iu-project-software-engineering/documents/docs/images/02-Context-Vew-Business.png)
+![High-level business context diagram for the application.](../images/02-Context-Vew-Business.png)
 
 **Brewer:** The Brewer is responsible for creating new brews, managing existing brews, and monitoring the progress of the brews. The Brewer interacts with the system to create new recipes, manage existing recipes, and monitor the progress of the brews.
 
@@ -97,7 +97,7 @@ rectangle "HoppyBrew" as HoppyBrew {
   </code>
 </pre>
 
-![High-level use case diagram for the application.](file:///home/asbjorn/repo/iu-project-software-engineering/documents/docs/images/01-Use-Case-Diagram.png)
+![High-level use case diagram for the application.](../images/01-Use-Case-Diagram.png)
 
 #### Actors
 
@@ -164,7 +164,7 @@ WebServer -> user : HTTP Response
     </code>
 </pre>
 
-![Technical-Context-Vew](file:///home/asbjorn/repo/iu-project-software-engineering/documents/docs/images/03-Context-View-Technical.png)
+![Technical-Context-Vew](../images/03-Context-View-Technical.png)
 
 **Backend:** The backend of the application is responsible for processing the data and storing it in the database. The backend communicates with the frontend using RESTful APIs. The backend is developed using Python and FastAPI, with PostgreSQL as the database technology.
 
