@@ -19,7 +19,8 @@ def merge_and_convert_to_pdf(directory, output_file):
         "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
         "--pdf-engine=xelatex",
         "--bibliography=bibliography.bib", "--number-sections",
-        "--include-in-header", "preamble.tex"
+        # Corrected path to preamble.tex
+        "--include-in-header", "documents/docs/preamble.tex"
     ]
     print(f"Running command: {' '.join(cmd)}")
     subprocess.run(cmd)
