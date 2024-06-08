@@ -42,7 +42,6 @@ The top three quality goals for the architecture and design, whose fulfillment i
 
 These quality goals are derived from the `ISO/IEC 25010 quality model` as referenced in [@arc42](https://arc42.org). The quality requirements will be further detailed in section 10, "Quality Requirements," of this document.
 
-
 ## Stakeholders
 
 In the architecture and design process of HoppyBrew, stakeholders play a pivotal role, providing essential requirements and constraints. Given that this project is part of a school assignment, the stakeholders are limited to the following individuals and their expectations:

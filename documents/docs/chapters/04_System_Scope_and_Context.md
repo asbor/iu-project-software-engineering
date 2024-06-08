@@ -14,14 +14,14 @@ cloud iSpindle
 actor Brewer
 database "Online Recipe\nDatabase" as RecipeDB
 
-node "HoppiBrew" as HoppiBrew
+node "HoppyBrew" as HoppyBrew
 database "PostgreSQL" as PostgreSQL
 
-RecipeDB --> HoppiBrew : CRUD Recipes
-iSpindle --> HoppiBrew : Transmit Live\nData
-Brewer --> HoppiBrew : CRUD Recipes\nand Brews
-HoppiBrew <..> PostgreSQL : <<flows>>
-HoppiBrew --> Brewer : Instructions\nand Notifications
+RecipeDB --> HoppyBrew : CRUD Recipes
+iSpindle --> HoppyBrew : Transmit Live\nData
+Brewer --> HoppyBrew : CRUD Recipes\nand Brews
+HoppyBrew <..> PostgreSQL : <<flows>>
+HoppyBrew --> Brewer : Instructions\nand Notifications
 @enduml
     </code>
 </pre>
