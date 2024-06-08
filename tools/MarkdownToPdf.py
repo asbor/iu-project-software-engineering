@@ -20,19 +20,22 @@ def merge_and_convert_to_pdf(directory, output_file):
         for file in markdown_files:
             with open(os.path.join(directory, file), "r") as infile:
                 outfile.write(infile.read())
-
-    print(f"Markdown files to merge: {markdown_files}")
-
     # Convert the merged markdown file to PDF
     output_file = os.path.join(directory, output_file)
-    preamble_path = os.path.join(directory, "preamble.tex")
+    preamble_file = os.path.join(directory, "preamble.tex")
+
+    if not os.path.isfile(preamble_file):
+        print(f"Error: {preamble_file} not found")
+        return
+
     cmd = [
         "pandoc", merged_file, "-o", output_file,
         "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
         "--pdf-engine=xelatex",
-        "--bibliography=bibliography.bib", "--number-sections",
-        "--include-in-header", preamble_path
+        "--include-in-header", preamble_file,
+        "--bibliography=bibliography.bib", "--number-sections"
     ]
+
     print(f"Running command: {' '.join(cmd)}")
     subprocess.run(cmd)
     # Remove the merged markdown file
