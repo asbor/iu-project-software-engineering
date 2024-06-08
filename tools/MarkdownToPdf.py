@@ -36,12 +36,9 @@ def merge_and_convert_to_pdf(directory, output_file):
         "--variable=geometry:margin=1in",
         "--pdf-engine=xelatex",
         "--include-in-header", "/home/asbjorn/repo/iu-project-software-engineering/documents/docs/chapters/preamble.tex",
-        "--bibliography=bibliography.bib",
+        "--bibliography=/home/asbjorn/repo/iu-project-software-engineering/documents/docs/bibliography.bib",
         "--number-sections"
     ], cwd=os.path.abspath(directory))
-
-    # Remove the merged markdown file
-    os.remove(merged_file)
 
     print(f"PDF file created: {output_file}")
 
