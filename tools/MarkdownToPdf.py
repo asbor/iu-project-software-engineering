@@ -14,6 +14,7 @@ def merge_and_convert_to_pdf(directory, output_file):
         directory) if file.endswith(".md")]
     # Sort the files alphabetically
     markdown_files.sort()
+    print("Markdown files to merge:", markdown_files)
     # Merge the markdown files into a single file
     merged_file = os.path.join(directory, "merged.md")
     with open(merged_file, "w") as outfile:
@@ -35,6 +36,7 @@ def merge_and_convert_to_pdf(directory, output_file):
     ]
     if os.path.exists(preamble_path):
         command.extend(["--include-in-header", preamble_path])
+    print("Running command:", " ".join(command))
     subprocess.run(command)
     # Remove the merged markdown file
     os.remove(merged_file)
