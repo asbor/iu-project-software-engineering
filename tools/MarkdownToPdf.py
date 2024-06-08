@@ -35,7 +35,7 @@ def merge_and_convert_to_pdf(directory, output_file):
         "--variable=geometry:a4paper",
         "--variable=geometry:margin=1in",
         "--pdf-engine=xelatex",
-        "--include-in-header", "./documents/docs/chapters/preamble.tex",
+        "--include-in-header", "/home/asbjorn/repo/iu-project-software-engineering/documents/docs/chapters/preamble.tex",
         "--bibliography=bibliography.bib",
         "--number-sections"
     ], cwd=os.path.abspath(directory))
@@ -50,8 +50,9 @@ def split_chapters(markdown_file, destination):
     with open(markdown_file, 'r', encoding='utf-8') as file:
         content = file.read()
 
-    # Change references to images to point to the correct directory (../images/) instead of (images/)
-    content = content.replace('](images/', '](../images/')
+    # Change references to images to point to the correct directory using absolute paths
+    content = content.replace(
+        '](images/', '](file:///home/asbjorn/repo/iu-project-software-engineering/documents/docs/images/')
 
     # Split content into chapters based on headers
     chapters = re.split(r'\n#\s', content)

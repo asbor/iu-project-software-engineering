@@ -60,6 +60,6 @@ databaseImage --|> postgres : Download Update
     </code>
 </pre>
 
-![Deployment Diagram](../images/08-Deployment-View.png)
+![Deployment Diagram](file:///home/asbjorn/repo/iu-project-software-engineering/documents/docs/images/08-Deployment-View.png)
 
 \clearpage
