@@ -5,8 +5,8 @@ import re
 
 def merge_and_convert_to_pdf(directory, output_file):
     """
-    Merge all markdown files in the specified directory into a single
-    file and convert it to PDF.
+    Merge all markdown files in the specified directory into a
+    single file and convert it to PDF.
 
     Args:
         directory (str): The directory containing the markdown files.
@@ -27,8 +27,7 @@ def merge_and_convert_to_pdf(directory, output_file):
             with open(os.path.join(directory, file), "r") as infile:
                 outfile.write(infile.read())
 
-    # Check if the output PDF file exists and change permissions if
-    # necessary
+    # Check if the output PDF file exists and change permissions if necessary
     output_file_path = os.path.join(directory, output_file)
     if os.path.exists(output_file_path):
         # Change permissions to ensure we can overwrite it
@@ -48,8 +47,9 @@ def merge_and_convert_to_pdf(directory, output_file):
     ]
 
     try:
-        result = subprocess.run(command, check=True, capture_output=True,
-                                text=True)
+        result = subprocess.run(
+            command, check=True, capture_output=True, text=True
+        )
         print(f"PDF file created: {output_file_path}")
     except subprocess.CalledProcessError as e:
         print(f"Failed to create PDF file. Error: {e}")
@@ -80,7 +80,9 @@ def split_chapters(markdown_file, destination):
     for i, chapter_content in enumerate(chapters, start=1):
         chapter_title = chapter_content.split('\n')[0].replace(
             '# ', '')  # Extract chapter title from header
-        chapter_filename = f'{destination}{i:02}_{chapter_title.replace(" ", "_")}.md'
+        chapter_filename = (
+            f'{destination}{i:02}_{chapter_title.replace(" ", "_")}.md'
+        )
 
         with open(chapter_filename, 'w', encoding='utf-8') as chapter_file:
             # Re-add header to chapter content
@@ -104,7 +106,6 @@ class bcolors:
 def main():
     # Change the working directory to the root of the repository
     print(bcolors.OKCYAN + "Working directory: ", os.getcwd() + bcolors.ENDC)
-
     # Set the working directory to the root of the repository
     os.system(
         'java -jar tools/plantuml-1.2024.3.jar '
