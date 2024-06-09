@@ -33,19 +33,19 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  frontend:
-    container_name: iu-project-software-engineering-frontend-1
-    build:
-      context: ./services/nuxt3-shadcn
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-    volumes:
-      - ./services/nuxt3-shadcn:/app
-    command: yarn && yarn dev
-    networks:
-      - my-network
-
+#  frontend:
+#    container_name: iu-project-software-engineering-frontend-1
+#    build:
+#      context: ./services/nuxt3-shadcn
+#      dockerfile: Dockerfile
+#    ports:
+#      - 3000:3000
+#    volumes:
+#      - ./services/nuxt3-shadcn:/app
+#    command: yarn && yarn dev
+#    networks:
+#      - my-network
+#
 networks:
   my-network:
     driver: bridge
