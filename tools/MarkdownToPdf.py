@@ -3,17 +3,19 @@ import subprocess
 import re
 
 
-def merge_and_convert_to_pdf(directory, outout_file):
+def merge_and_convert_to_pdf(directory, output_file):
     """
-    Merge all markdown files in the specified directory into a single file and convert it to PDF.
+    Merge all markdown files in the specified directory into a single
+    file and convert it to PDF.
 
     Args:
         directory (str): The directory containing the markdown files.
     """
 
     # Get all markdown files in the directory
-    markdown_files = [file for file in os.listdir(
-        directory) if file.endswith(".md")]
+    markdown_files = [
+        file for file in os.listdir(directory) if file.endswith(".md")
+    ]
 
     # Sort the files alphabetically
     markdown_files.sort()
@@ -25,25 +27,48 @@ def merge_and_convert_to_pdf(directory, outout_file):
             with open(os.path.join(directory, file), "r") as infile:
                 outfile.write(infile.read())
 
+    # Check if the output PDF file exists and change permissions if
+    # necessary
+    output_file_path = os.path.join(directory, output_file)
+    if os.path.exists(output_file_path):
+        # Change permissions to ensure we can overwrite it
+        os.chmod(output_file_path, 0o666)
+
     # Convert the merged markdown file to PDF
-    output_file = os.path.join(directory, outout_file)
-    subprocess.run(["pandoc", merged_file, "-o", output_file,
-                    "--variable=geometry:a4paper", "--variable=geometry:margin=1in",
-                    "--pdf-engine=xelatex", "--include-in-header", "preamble.tex",
-                    "--bibliography=bibliography.bib", "--number-sections"])
+    command = [
+        "pandoc", merged_file, "-o", output_file_path,
+        "--variable=geometry:a4paper",
+        "--variable=geometry:margin=1in",
+        "--pdf-engine=xelatex",
+        "--include-in-header",
+        "documents/docs/chapters/preamble.tex",
+        "--bibliography=documents/docs/chapters/bibliography.bib",
+        "--citeproc",
+        "--number-sections"
+    ]
+
+    try:
+        result = subprocess.run(command, check=True, capture_output=True,
+                                text=True)
+        print(f"PDF file created: {output_file_path}")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to create PDF file. Error: {e}")
+        print("Command output:", e.stdout)
+        print("Command error output:", e.stderr)
 
     # Remove the merged markdown file
     os.remove(merged_file)
 
-    print(f"PDF file created: {output_file}")
+    print(f"PDF file created: {output_file_path}")
 
 
 def split_chapters(markdown_file, destination):
     with open(markdown_file, 'r', encoding='utf-8') as file:
         content = file.read()
 
-    # Change references to images to point to the correct directory (../images/) instead of (images/)
-    content = content.replace('](images/', '](../images/')
+    # Change references to images to point to the correct directory
+    # (documents/docs/images/) instead of (images/)
+    content = content.replace('](images/', '](documents/docs/images/')
 
     # Split content into chapters based on headers
     chapters = re.split(r'\n#\s', content)
@@ -59,8 +84,7 @@ def split_chapters(markdown_file, destination):
 
         with open(chapter_filename, 'w', encoding='utf-8') as chapter_file:
             # Re-add header to chapter content
-            chapter_file.write('# ' + chapter_content +
-                               '\n')  # Add newline character
+            chapter_file.write('# ' + chapter_content + '\n')
 
     print(f'{len(chapters)} chapters split and saved successfully.')
 
@@ -80,22 +104,26 @@ class bcolors:
 def main():
     # Change the working directory to the root of the repository
     print(bcolors.OKCYAN + "Working directory: ", os.getcwd() + bcolors.ENDC)
+
     # Set the working directory to the root of the repository
     os.system(
-        'java -jar tools/plantuml-1.2024.3.jar -tpng documents/docs/00-HoppyBrew.md -o ./images/')
+        'java -jar tools/plantuml-1.2024.3.jar '
+        '-tpng documents/docs/00-HoppyBrew.md -o ./images/'
+    )
 
-    # Note that the markdown files deriving from the main markdown file are not in same directory as the main markdown file (00-HoppyBrew.md)
-    # we will therefore need to change the references in the derived markdown files to point to the correct directory
+    # Note that the markdown files deriving from the main markdown file
+    # are not in same directory as the main markdown file (00-HoppyBrew.md)
+    # we will therefore need to change the references in the derived
+    # markdown files to point to the correct directory
 
     # Split the markdown file into chapters
     markdown_file = './documents/docs/00-HoppyBrew.md'
-
     directory = "./documents/docs/chapters/"
     split_chapters(markdown_file, directory)
-    outout_file = "HoppyBrew.pdf"
+    output_file = "HoppyBrew.pdf"
 
     # Call the function to merge and convert the files
-    merge_and_convert_to_pdf(directory, outout_file)
+    merge_and_convert_to_pdf(directory, output_file)
 
 
 if __name__ == "__main__":

@@ -64,7 +64,7 @@ WebServer -> ClientBrowser : List Recipes
     </code>
 </pre>
 
-![CRUD Recipe](../images/06-Runtime-View-CRUD-Recipe.png)
+![CRUD Recipe](documents/docs/images/06-Runtime-View-CRUD-Recipe.png)
 
 ## CRUD Batch
 
@@ -140,4 +140,4 @@ WebServer -> ClientBrowser : Add Notes
     </code>
 </pre>
 
-![CRUD Batch](../images/07-Runtime-View-CRUD-Batch.png)
+![CRUD Batch](documents/docs/images/07-Runtime-View-CRUD-Batch.png)

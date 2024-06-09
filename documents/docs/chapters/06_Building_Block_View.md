@@ -47,7 +47,7 @@ hoppybrew -- postgres
     </code>
 </pre>
 
-![Overview Diagram](../images/05-black-box-overall-system.png)
+![Overview Diagram](documents/docs/images/05-black-box-overall-system.png)
 
 ### Client Browser
 
@@ -158,7 +158,7 @@ rectangle "Unraid Server" {
     </code>
 </pre>
 
-![Overview Diagram](../images/04-white-box-overall-system.png)
+![Overview Diagram](documents/docs/images/04-white-box-overall-system.png)
 
 The motivation for the decomposition is to separate the concerns of the different parts of the system. The client browser is responsible for displaying the data to the user, the ISpindel is responsible for collecting the data, and the Unraid Server is responsible for processing the data and storing it in the database. The Cloudflare service is responsible for routing the data between the client browser and the Unraid Server.
 

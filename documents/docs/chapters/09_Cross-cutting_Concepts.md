@@ -219,6 +219,6 @@ recipe ||--o{ inventory : "Contains"
     </code>
 </pre>
 
-![ER-Diagram](../images/09-ER-Diagram.png)
+![ER-Diagram](documents/docs/images/09-ER-Diagram.png)
 
 \clearpage

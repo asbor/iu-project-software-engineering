@@ -6,6 +6,14 @@ install:
 	echo "[Info] - Installing requirements"; \
 	pip3 install -r requirements.txt; \
 	echo "Done"; \
+	echo "[Info] - Run Unit Tests (pytest)"; \
+	pytest; \
+	echo "Docker-compose down"; \
+	docker-compose down; \
+	echo "Docker-compose up"; \
+	docker-compose up; \
+	
+
 
 uninstall:
 	echo "[Info] - Removing virtualenv"; \
@@ -63,7 +71,7 @@ MARKDOWNDIR=$(DIRECTORY)/chapters_markdown
 
 
 pdf:
-	python tools/MarkdownToPdf.py
+	python3 tools/MarkdownToPdf.py
 
 git:
 	git add .
