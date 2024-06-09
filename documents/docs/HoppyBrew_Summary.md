@@ -51,3 +51,13 @@ HoppyBrew is an operational web application that successfully meets the primary 
 ### Final Note
 
 The project, including all code, documentation, and necessary files, is hosted on GitHub and is publicly accessible. The application is also cloud-hosted for direct access, fulfilling the project requirements. The detailed documentation provides comprehensive insights into the development process, technical decisions, and implementation procedures.
+
+**GitHub Repository:** 
+ - [https://github.com/asbor/iu-project-software-engineering](https://github.com/asbor/iu-project-software-engineering)
+
+**Cloud Hosted Application:**
+ - [public.ecr.aws/m2z9f5m0/iu-project-backend](public.ecr.aws/m2z9f5m0/iu-project-backend)
+ - [public.ecr.aws/m2z9f5m0/iu-project-db](public.ecr.aws/m2z9f5m0/iu-project-db)
+ - [public.ecr.aws/m2z9f5m0/iu-project-frontend](public.ecr.aws/m2z9f5m0/iu-project-frontend)
+
+Note: The cloud-hosted application is currently not operational due to complications. Please refer to the GitHub repository for the latest codebase and documentation.
