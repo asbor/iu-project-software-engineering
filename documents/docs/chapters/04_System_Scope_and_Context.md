@@ -132,11 +132,9 @@ Table: High-level use cases for the application.
 
 ## Technical Context
 
-From a technical perspective, the system interacts with several external systems and services. The system is dependent on the iSpindel for collecting real-time data from the brewing process. The system is also dependent on a database for storing and managing data. The system uses GitHub for version control and collaboration. Finally, the system uses Docker for containerization and deployment.
+From a technical perspective, the system interacts with several external systems and services. The system relies on the iSpindel for collecting real-time data from the brewing process. Additionally, it depends on a database for storing and managing data. The system utilizes GitHub for version control and collaboration, and Docker for containerization and deployment.
 
-TODO: Create a new diagram for the technical context view.
-
-The technical context diagram provides a high-level overview of the technical environment in which the system operates. The diagram shows the system and its interactions with external systems and services. The diagram also shows the dependencies of the system on external systems and services.
+The technical context diagram provides a high-level overview of the technical environment in which the system operates. It illustrates the system and its interactions with external systems and services, as well as the dependencies on these external systems and services.
 
 <pre id="mycode" class="haskell numberLines" startFrom="100">
   <code>
