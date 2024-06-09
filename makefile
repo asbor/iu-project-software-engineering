@@ -8,12 +8,11 @@ install:
 	echo "Done"; \
 	echo "[Info] - Run Unit Tests (pytest)"; \
 	pytest; \
-	echo "Docker-compose down"; \
-	docker-compose down; \
-	echo "Docker-compose up"; \
-	docker-compose up; \
-	
-
+	echo "Docker-compose down and up"; \
+	docker-compose down && docker-compose up -d; \
+	echo "cd services/nuxt3-shadcn && yarn install && yarn dev --open"; \
+	cd services/nuxt3-shadcn && yarn install && yarn dev --open; \
+	echo "Done"; \
 
 uninstall:
 	echo "[Info] - Removing virtualenv"; \
